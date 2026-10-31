@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#101a24">
+  <meta name="description" content="VIRAL — Trasforma i video satisfying in esperienze touch. Inizia a tagliare il sapone!">
+  <title>VIRAL — Soap Cutting</title>
+  <style>
+    :root{font-family:ui-rounded,"Avenir Next",Avenir,"Segoe UI",sans-serif;color:#f6f5f0;background:#101a24;font-synthesis:none;-webkit-tap-highlight-color:transparent}
+    *{box-sizing:border-box}html,body{height:100%;margin:0;overscroll-behavior:none}body{min-height:100%;overflow:hidden}
+    button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #e3fbaf;outline-offset:3px}
+    .app{width:100%;max-width:600px;min-height:100svh;height:100dvh;margin:auto;display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 16px calc(8px + env(safe-area-inset-bottom));gap:12px}
+    .top{display:flex;align-items:center;justify-content:space-between;min-height:42px;flex:none}
+    .brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:1000;letter-spacing:-.09em}.brand-mark{display:grid;place-items:center;width:33px;height:33px;border-radius:11px;background:#c5f1a0;color:#18342a;font-size:24px;transform:rotate(-8deg)}
+    .top-right{display:flex;align-items:center;gap:10px}.tag{font-size:10px;color:#b9c7cc;border:1px solid #4d5d63;border-radius:99px;letter-spacing:.12em;padding:7px 10px;font-weight:800}
+    .icon-btn{display:grid;place-items:center;width:38px;height:38px;border:1px solid #344854;background:#1d303a;color:white;border-radius:13px;font-size:21px;line-height:1}
+    .intro{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex:none;padding:2px 2px 0}.eyebrow{font-size:10px;font-weight:900;letter-spacing:.2em;color:#bdeaa2;margin-bottom:5px}.intro h1{margin:0;font-size:clamp(26px,7.1vw,39px);letter-spacing:-.065em;line-height:1.02}.intro p{margin:7px 0 0;color:#abc0c8;font-size:12px}
+    .level{font-size:11px;color:#b8c9d0;border-radius:12px;background:#243943;padding:9px 11px;white-space:nowrap;font-weight:850}
+    .stage{position:relative;flex:1;min-height:200px;overflow:hidden;border-radius:27px;box-shadow:0 20px 48px #0003;isolation:isolate;background:radial-gradient(ellipse at 40% 31%,#e6f8ee 0%,#c5e3d8 54%,#9ebfba 100%);touch-action:none;cursor:crosshair}
+    #game{display:block;width:100%;height:100%;touch-action:none;user-select:none;-webkit-user-select:none}
+    .stage::after{content:"";position:absolute;inset:0;border:1px solid #fff7;border-radius:inherit;pointer-events:none}
+    .stage-top{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+    .little-label{color:#294e47;background:#ffffffb5;backdrop-filter:blur(5px);border:1px solid #ffffff9b;padding:8px 12px;font-size:10px;letter-spacing:.1em;font-weight:950;border-radius:99px}
+    .hint{position:absolute;bottom:21px;left:50%;transform:translateX(-50%);width:max-content;max-width:90%;border:1px solid #ffffffcc;background:#ffffffdc;color:#254b43;border-radius:14px;padding:10px 15px;font-weight:800;font-size:12px;box-shadow:0 5px 20px #225a4320;text-align:center;pointer-events:none;transition:opacity .25s}
+    .hint.hide{opacity:0}
+    .toast{position:absolute;top:19%;left:50%;transform:translate(-50%,12px) scale(.94);opacity:0;white-space:nowrap;max-width:90%;pointer-events:none;background:#20392e;color:#e8ffc9;font-weight:1000;font-size:17px;padding:12px 19px;border-radius:15px;box-shadow:0 14px 40px #2347384d;transition:opacity .3s, transform .3s}
+    .toast.show{opacity:1;transform:translate(-50%,0) scale(1)}
+    .finish{display:none;position:absolute;inset:0;background:#0c282a71;backdrop-filter:blur(3px);align-items:center;justify-content:center;flex-direction:column;gap:12px;text-align:center;padding:24px;color:#fff}
+    .finish.show{display:flex}.finish .trophy{font-size:51px}.finish h2{margin:0;font-size:27px;letter-spacing:-.05em}.finish p{margin:0 0 10px;font-size:13px;color:#ddf2eb}
+    .primary{border:0;background:#c6f1a5;color:#193b30;font-size:14px;font-weight:950;border-radius:15px;padding:14px 21px;box-shadow:0 5px 0 #729c64}
+    .dashboard{background:#20313b;border:1px solid #344952;border-radius:20px;padding:14px 15px;flex:none}
+    .statrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .statname{display:flex;flex-direction:column;gap:4px}.statname strong{font-size:15px;letter-spacing:-.02em}.statname small{font-size:11px;color:#b1c3c9}
+    .percentage{font-size:25px;color:#d3f5a4;font-weight:1000;font-variant-numeric:tabular-nums;letter-spacing:-.07em}
+    .bar{height:9px;background:#43545a;border-radius:20px;overflow:hidden;margin-top:13px}.bar>span{display:block;height:100%;width:0%;background:linear-gradient(90deg,#9de2bf,#def5a4);border-radius:inherit;transition:width .1s}
+    .controls{display:flex;gap:10px;flex:none}.control{border:1px solid #3b4b54;border-radius:15px;background:#21343e;color:#f0faf5;min-height:47px;font-size:12px;font-weight:850;padding:0 14px}.control.wide{flex:1;text-align:left;display:flex;align-items:center;justify-content:space-between}.control .accent{color:#c9edac}
+    .shelf{display:flex;gap:8px;align-items:center;overflow:hidden;white-space:nowrap;flex:none;min-height:26px}.shelf span{font-size:10px;color:#7e98a3;font-weight:850;letter-spacing:.045em}.shelf em{font-size:10px;color:#a2b3ba;border:1px solid #33454e;padding:5px 9px;border-radius:20px;font-style:normal}
+    .footer{text-align:center;color:#5e7884;font-size:9px;letter-spacing:.12em;font-weight:800;flex:none}
+    @media(max-height:690px){.app{gap:7px;padding-top:calc(6px + env(safe-area-inset-top))}.intro{padding:0}.intro p{margin-top:3px}.dashboard{padding:9px 12px}.bar{margin-top:8px}.control{min-height:40px}.shelf,.footer{display:none}}
+    @media(min-width:700px){body{background:radial-gradient(ellipse at center,#243640,#101a24 70%)}.app{padding-left:20px;padding-right:20px}.stage{max-height:760px}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div class="brand"><div class="brand-mark" aria-hidden="true">✳</div>VIRAL<span style="color:#c6f1a5">.</span></div>
+    <div class="top-right"><span class="tag">SATISFYING LAB</span><button id="soundBtn" class="icon-btn" type="button" aria-label="Disattiva suoni" title="Attiva o disattiva l'audio">♫</button></div>
+  </header>
+  <section class="intro" aria-label="Gioco">
+    <div><div class="eyebrow">TOCCA · TAGLIA · RILASSATI</div><h1>Soap Cutting</h1><p>Ogni movimento è nelle tue mani.</p></div>
+    <span class="level">GIOCO 01 / 04</span>
+  </section>
+  <section id="stage" class="stage" aria-label="Area interattiva: trascina il dito per tagliare la saponetta">
+    <canvas id="game"></canvas>
+    <div class="stage-top"><span class="little-label">✦ ASMR MODE</span><span id="score" class="little-label">0 PUNTI</span></div>
+    <div id="hint" class="hint">☝ Trascina il dito sulla saponetta</div>
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <div id="finish" class="finish" aria-live="polite"><div class="trophy" aria-hidden="true">✨</div><h2>Che soddisfazione!</h2><p>Hai tagliato tutta la saponetta.</p><button id="againBtn" type="button" class="primary">PROSSIMA SAPONETTA →</button></div>
+  </section>
+  <section class="dashboard" aria-label="Avanzamento">
+    <div class="statrow"><div class="statname"><strong id="soapName">Pesca vellutata</strong><small id="soapNote">Passa la lama sui quadretti</small></div><strong id="percent" class="percentage">0%</strong></div>
+    <div class="bar" role="progressbar" aria-label="Sapone tagliato" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
+  </section>
+  <div class="controls">
+    <button id="resetBtn" type="button" class="control" aria-label="Ricomincia la saponetta">↺ Ricomincia</button>
+    <button id="nextBtn" type="button" class="control wide">Cambia colore <span class="accent">→</span></button>
+  </div>
+  <div class="shelf"><span>IN ARRIVO</span><em>◈ Kinetic Sand</em><em>◌ Color Mixing</em><em>✧ Power Wash</em></div>
+  <div class="footer">VIRAL · MINI ESPERIENZE CHE SI SENTONO</div>
+</main>
+<script src="./game.js" defer></script>
+</body>
+</html>
