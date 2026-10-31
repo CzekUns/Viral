@@ -3,6 +3,8 @@ window.ViralArt = (() => {
   "use strict";
   const materialCache = new Map();
   let tablePattern = null;
+  let cachedSoap = null;
+  let cachedSoapKey = "";
   const clamp = (v, a=0, b=1) => Math.max(a, Math.min(b, v));
   const rnd = (a, b) => {
     let h = Math.imul(a + 0x7ed55d16, 0x85ebca6b) ^ Math.imul(b + 0x632be59b, 0xc2b2ae35);
@@ -145,6 +147,13 @@ window.ViralArt = (() => {
     ctx.restore();
   }
   function soap(ctx,geo,pal,cells,w,h) {
+    const key = [w,h,geo.x,geo.y,geo.bw,geo.bh,pal.main,cells.map(c => c.cut ? "1" : "0").join("")].join("|");
+    if (cachedSoapKey === key && cachedSoap) { ctx.drawImage(cachedSoap,0,0); return; }
+    const screenCtx=ctx;
+    if (!cachedSoap) cachedSoap=document.createElement("canvas");
+    cachedSoap.width=Math.max(1,Math.ceil(w)); cachedSoap.height=Math.max(1,Math.ceil(h));
+    ctx=cachedSoap.getContext("2d");
+    cachedSoapKey=key;
     const {x,y,bw,bh,x0,y0,cw,ch}=geo;
     if(!bw||!bh)return;
     ctx.save();
@@ -158,8 +167,6 @@ window.ViralArt = (() => {
     ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
     beveledFace(ctx,x,y,bw,bh,pal);
     ctx.save();round(ctx,x+6,y+5,bw-12,bh-11,18);ctx.clip();
-    const rectRows=12, rectCols=8;
-    const spanW=(bw-16)/rectCols,spanH=(bh-16)/rectRows;
     // Soft scored soap blocks — not individual floating tiles.
     for(const cell of cells){
       const xx=x0+cell.c*cw,yy=y0+cell.r*ch;
@@ -174,6 +181,7 @@ window.ViralArt = (() => {
     round(ctx,x+9,y+9,bw-18,bh-18,17);ctx.stroke();
     ctx.restore();
     ctx.restore();
+    screenCtx.drawImage(cachedSoap,0,0);
   }
   function fragment(ctx,p,alpha,pal){
     const ww=p.ww, hh=p.hh;
