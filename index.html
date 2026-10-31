@@ -39,6 +39,37 @@
     .footer{text-align:center;color:#5e7884;font-size:9px;letter-spacing:.12em;font-weight:800;flex:none}
     @media(max-height:690px){.app{gap:7px;padding-top:calc(6px + env(safe-area-inset-top))}.intro{padding:0}.intro p{margin-top:3px}.dashboard{padding:9px 12px}.bar{margin-top:8px}.control{min-height:40px}.shelf,.footer{display:none}}
     @media(min-width:700px){body{background:radial-gradient(ellipse at center,#243640,#101a24 70%)}.app{padding-left:20px;padding-right:20px}.stage{max-height:760px}}
+  
+    /* Studio edition — macro photography rather than an arcade interface. */
+    :root{color:#2b2927;background:#eeebe5}
+    body{background:radial-gradient(ellipse at 50% 35%,#f9f7f1 0%,#e6e0d6 100%);}
+    .brand{color:#292e2b;letter-spacing:-.065em}
+    .brand-mark{background:#e0c1aa;color:#694d42;transform:rotate(-8deg)}
+    .tag{color:#716961;border-color:#d2ccc1}
+    .icon-btn{background:#f8f4ec;border-color:#d8d0c4;color:#544a40}
+    .eyebrow{color:#956c57;letter-spacing:.15em}
+    .intro h1{color:#282927}
+    .intro p{color:#726d68}
+    .level{background:#e4ded3;color:#665b53}
+    .stage{border-radius:18px;background:#d6d0c6;box-shadow:0 22px 36px #5a4d3c30}
+    .stage::after{border-color:#ffffff69;border-radius:18px}
+    .little-label{background:#f7f2e8cf;color:#504940;border-color:#fffcf2b9}
+    .hint{background:#f9f5edde;border-color:#ffffffdc;color:#534a43;box-shadow:0 6px 26px #5546381f}
+    .dashboard{background:#f8f5ee;border-color:#e4dbd0;box-shadow:0 8px 30px #62594c0d}
+    .statname strong{color:#3b3733}
+    .statname small{color:#827770}
+    .percentage{color:#976d58}
+    .bar{background:#e3dcd3}
+    .bar>span{background:linear-gradient(90deg,#c8977f,#e6bea3)}
+    .control{background:#fbf8f3;color:#574a42;border-color:#e0d8ce}
+    .control .accent{color:#976d58}
+    .shelf span{color:#938981}
+    .shelf em{color:#a1988f;border-color:#d7cdc1}
+    .footer{color:#998f82}
+    .toast{background:#493c34;color:#fff3e4}
+    .finish{background:#433b327d}
+    .primary{background:#fff4df;color:#46372d;box-shadow:0 5px 0 #b9a38e}
+
   </style>
 </head>
 <body>
@@ -48,18 +79,18 @@
     <div class="top-right"><span class="tag">SATISFYING LAB</span><button id="soundBtn" class="icon-btn" type="button" aria-label="Disattiva suoni" title="Attiva o disattiva l'audio">♫</button></div>
   </header>
   <section class="intro" aria-label="Gioco">
-    <div><div class="eyebrow">TOCCA · TAGLIA · RILASSATI</div><h1>Soap Cutting</h1><p>Ogni movimento è nelle tue mani.</p></div>
+    <div><div class="eyebrow">IL PIACERE DEL GESTO</div><h1>Soap Cutting</h1><p>Una lama, il sapone, il suono delle scaglie.</p></div>
     <span class="level">GIOCO 01 / 04</span>
   </section>
   <section id="stage" class="stage" aria-label="Area interattiva: trascina il dito per tagliare la saponetta">
     <canvas id="game"></canvas>
-    <div class="stage-top"><span class="little-label">✦ ASMR MODE</span><span id="score" class="little-label">0 PUNTI</span></div>
-    <div id="hint" class="hint">☝ Trascina il dito sulla saponetta</div>
+    <div class="stage-top"><span class="little-label">◌ MACRO STUDIO</span><span id="score" class="little-label">0 PUNTI</span></div>
+    <div id="hint" class="hint">☝ Trascina lentamente il dito sul sapone</div>
     <div id="toast" class="toast" aria-live="polite"></div>
     <div id="finish" class="finish" aria-live="polite"><div class="trophy" aria-hidden="true">✨</div><h2>Che soddisfazione!</h2><p>Hai tagliato tutta la saponetta.</p><button id="againBtn" type="button" class="primary">PROSSIMA SAPONETTA →</button></div>
   </section>
   <section class="dashboard" aria-label="Avanzamento">
-    <div class="statrow"><div class="statname"><strong id="soapName">Pesca vellutata</strong><small id="soapNote">Passa la lama sui quadretti</small></div><strong id="percent" class="percentage">0%</strong></div>
+    <div class="statrow"><div class="statname"><strong id="soapName">Pesca vellutata</strong><small id="soapNote">Raschia e solleva piccole scaglie</small></div><strong id="percent" class="percentage">0%</strong></div>
     <div class="bar" role="progressbar" aria-label="Sapone tagliato" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
   </section>
   <div class="controls">
@@ -69,6 +100,7 @@
   <div class="shelf"><span>IN ARRIVO</span><em>◈ Kinetic Sand</em><em>◌ Color Mixing</em><em>✧ Power Wash</em></div>
   <div class="footer">VIRAL · MINI ESPERIENZE CHE SI SENTONO</div>
 </main>
-<script src="./game.js" defer></script>
+<script src="./realism.js?v=2" defer></script>
+<script src="./game.js?v=2" defer></script>
 </body>
 </html>
