@@ -78,15 +78,15 @@ button{touch-action:manipulation}
 @media(max-width:650px){.mode-bar{gap:6px}.mode-button{padding:8px 9px;min-height:58px}.mode-button.active{padding:7px 8px}.mode-button strong{font-size:12px}.mode-button small{font-size:10px}.deck-counter{min-width:67px;padding:6px 5px}.deck-counter small{font-size:9px}.deck-counter strong{font-size:20px}.ai-preview-slot{padding:5px}}
 @media(max-width:360px){.mode-button small{font-size:9px}.deck-counter{min-width:58px}}
 
-/* Graphics V02 — assets from PR #1 (provisional and replaceable). */
+/* Graphics V02 — original ImageGen WebP backgrounds (replaceable, provisional). */
 [hidden]{display:none!important}
 html{background:#e0be83}
 body{margin:0;min-height:100dvh;background:#e0be83;padding:0;color:#271b16}
 body:has(#menu-view:not([hidden])){overflow-x:hidden}
 .menu-screen,.game-screen{isolation:isolate;position:relative;min-height:100dvh;min-height:100svh}
 .menu-screen::before,.game-screen::before{content:"";z-index:-1;position:fixed;inset:0;pointer-events:none;background-position:center center;background-size:cover;background-repeat:no-repeat}
-.menu-screen::before{background-image:url('assets/board/menu-v01.svg');background-color:#eecb98}
-.game-screen::before{background-image:url('assets/board/board-v02.svg');background-color:#e9c691}
+.menu-screen::before{background-image:url('assets/board/menu-v01.webp');background-color:#eecb98}
+.game-screen::before{background-image:url('assets/board/board-v02.webp');background-color:#e9c691}
 .menu-screen{display:flex;align-items:stretch;justify-content:center;padding:max(26px,env(safe-area-inset-top)) max(21px,env(safe-area-inset-right)) max(36px,env(safe-area-inset-bottom)) max(21px,env(safe-area-inset-left))}
 .menu-content{width:min(100%,490px);min-height:calc(100dvh - 72px);margin:0 auto;display:flex;align-items:center;flex-direction:column}
 #menu-title{text-align:center;color:#311e14;font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:.035em;line-height:.98;text-shadow:0 2px 0 #f7e2a9;font-size:clamp(33px,8.2vw,57px);margin:clamp(140px,21dvh,235px) 0 0;max-width:100%}
