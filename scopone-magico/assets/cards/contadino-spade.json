@@ -1,0 +1,25 @@
+{
+  "id": "contadino_spade",
+  "set": "scopone_alchemico",
+  "suit": "spade",
+  "name": "Contadino",
+  "baseValue": 2,
+  "status": "pending_approval",
+  "artwork": "contadino-spade-originale.webp",
+  "gameArt": "contadino-spade-gioco.webp",
+  "thumbnail": "contadino-spade-anteprima-300x500.webp",
+  "reference": "https://commons.wikimedia.org/wiki/File:Carte_da_gioco_napoletane_spade.jpg",
+  "backgroundStyle": {
+    "nominalHex": "#F8F2E7",
+    "commonAcrossSuits": true
+  },
+  "imageSize": [
+    600,
+    1000
+  ],
+  "effectBandFromPixel": 749,
+  "embeddedEffects": false,
+  "qaOpen": [
+    "free hand overlaps blue sword blade"
+  ]
+}
