@@ -15,7 +15,7 @@ Per eliminare qualsiasi ambiguità:
 3. Sono stati copiati nell'immagine finale **senza alcuna modifica** tutti i pixel all'interno della sagoma: **399.892 pixel originali**.
 4. Esclusivamente la carta fuori sagoma ha ricevuto la correzione colorimetrica.
 5. Mediana del fondo misurata sul Bastoni: **RGB(247,240,231)**; mediana del Coppe ripristinato: **RGB(247,240,231)**. Le variazioni di grana della stampa restano naturali.
-6. L'illustrazione è stata esportata in WebP ad alta qualità e la variante per il gioco a 600 × 1007.
+6. L'illustrazione è stata esportata in WebP ad alta qualità e la variante per il gioco a 600 × 1000 (normalizzazione comune con Bastoni).
 
 ## Standard del mazzo
 - **Tinta della carta comune fra tutti i semi**, misurata sul modello approvato. Valore nominale di riferimento: `#F8F2E6`, soggetto a variazioni minime per la grana.
@@ -24,7 +24,7 @@ Per eliminare qualsiasi ambiguità:
 
 ## File della carta
 - `contadino-coppe-originale.webp`: figura autentica del progetto con fondo uniformato
-- `contadino-coppe-gioco.webp`: formato mobile con fascia inferiore libera
+- `contadino-coppe-gioco.webp`: formato mobile 600×1000, stesso ingombro del Bastoni e fascia inferiore del 25% libera
 - `contadino-coppe.json`: metadati, nessuna logica di gioco
 
 Questa modifica non altera il motore matematico, né le altre carte.
