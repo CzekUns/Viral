@@ -1,0 +1,14 @@
+{
+  "id": "contadino_bastoni",
+  "set": "scopone_alchemico",
+  "suit": "bastoni",
+  "name": "Contadino",
+  "baseValue": 2,
+  "status": "approval_pending",
+  "reference": "https://commons.wikimedia.org/wiki/File:Carte_da_gioco_napoletane_bastoni.jpg",
+  "artwork": "contadino-bastoni-originale.webp",
+  "gameArt": "contadino-bastoni-gioco.webp",
+  "textLayer": "separate",
+  "effects": "dynamic",
+  "embeddedPip": false
+}
