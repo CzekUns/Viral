@@ -1,0 +1,17 @@
+{
+  "id": "contadino_coppe",
+  "suit": "coppe",
+  "name": "Contadino",
+  "baseValue": 2,
+  "artwork": "contadino-coppe-originale.webp",
+  "gameArt": "contadino-coppe-gioco.webp",
+  "sourceReference": "https://commons.wikimedia.org/wiki/File:Carte_da_gioco_napoletane_coppe.jpg",
+  "backgroundStyle": {
+    "name": "avorio napoletano",
+    "nominalHex": "#F8F2E6",
+    "appliesTo": "all suits"
+  },
+  "textLayer": "separate",
+  "effects": "dynamic",
+  "status": "background_corrected"
+}
