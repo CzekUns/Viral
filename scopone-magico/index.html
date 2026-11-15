@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"><meta name="theme-color" content="#172c25">
-<title>Scopone Alchemico · Prototipo giocabile</title>
+<title>Scopone Alchemico · Menù e plancia V02</title>
 <style>
 :root{color-scheme:dark;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#12241d;color:#edf4ed;--paper:#fff9ed;--ink:#252a22;--gold:#deb96e;--green:#2e725a;--border:rgba(242,225,188,.3)}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#244b39 0%,transparent 52%),linear-gradient(165deg,#173226,#0e1d19);padding-bottom:calc(18px + env(safe-area-inset-bottom))}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #ffd171;outline-offset:2px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1350px;margin:auto;padding:14px 18px 4px}h1{font-size:clamp(22px,3.5vw,32px);margin:0;letter-spacing:-.045em;font-family:Georgia,serif;font-weight:600;color:#f5e5b7}h1 span{color:#bcdda6}header p{margin:3px 0 0;color:#c3d2c2;font-size:12px}button.primary{background:var(--gold);color:#1d281f;border:0;border-radius:10px;font-weight:800;padding:10px 14px;box-shadow:0 3px 0 #a77c35}button.ghost{background:rgba(255,255,255,.09);border:1px solid var(--border);border-radius:10px;padding:10px 12px;color:#f8f6e9}button:hover{filter:brightness(1.11)}.controls{display:flex;gap:8px;align-items:center}main{max-width:1350px;margin:0 auto;padding:10px 18px;display:grid;gap:14px}.scoreboard{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:stretch;gap:10px}.score{padding:12px 15px;border-radius:12px;background:#223d30;border:1px solid var(--border)}.score strong{font-size:24px;display:block;color:#fff4d1}.score small{display:block;color:#c9d6c6;font-size:12px}.score.center{text-align:center;background:rgba(8,15,12,.35)}.turn-banner{padding:10px 13px;border:1px solid #756b44;background:#303a27;border-radius:10px;font-size:14px;color:#f8e9b0}.zone{border:1px solid rgba(242,225,188,.22);border-radius:18px;padding:15px;background:rgba(12,29,22,.64)}.zone-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}.zone-head h2{font-size:16px;font-weight:700;margin:0}.zone-head span{font-size:12px;color:#bfcfbc}.hand,.table-cards{display:flex;flex-wrap:wrap;gap:9px;min-height:160px;align-items:flex-start}.table-cards{min-height:175px}.opponent-backs{display:flex;gap:5px;flex-wrap:wrap}.card-back{width:55px;height:78px;border:2px solid #e6d19c;border-radius:8px;background:repeating-linear-gradient(40deg,#233c43 0 7px,#334d50 7px 14px);display:grid;place-items:center;color:#e7cd91;font-size:25px;box-shadow:0 3px 5px rgba(0,0,0,.23)}.card{position:relative;border-radius:10px;background:var(--paper);color:var(--ink);border:3px solid #d6b983;box-shadow:0 4px 12px rgba(0,0,0,.25);min-width:105px;width:105px;height:160px;text-align:left;padding:6px 6px 7px;display:flex;flex-direction:column;gap:3px;transition:transform .12s,border-color .12s}.card.suit-coppe{border-color:#cd8069}.card.suit-bastoni{border-color:#76a48a}.card.suit-spade{border-color:#91a9d1}.card.suit-denari{border-color:#dfbd69}.card .top{display:flex;justify-content:space-between;align-items:center;gap:4px}.card .value{font-family:Georgia,serif;font-size:28px;line-height:1;font-weight:bold}.card .suit{font-size:22px;line-height:1}.card .name{font-size:11px;font-weight:800;line-height:1.15;min-height:27px}.card .effect{margin-top:auto;border-top:1px solid #d7c8a7;padding-top:5px;font-size:9px;line-height:1.22;white-space:normal;color:#574c37}.card .defvalue{font-size:10px;line-height:1.1;background:#efe8d7;border-radius:5px;padding:2px 3px;width:fit-content}.card .owner{position:absolute;left:5px;top:-17px;color:#f6e5ba;font-size:9px;font-weight:800}.card.interactive{cursor:pointer;touch-action:manipulation}.card.interactive:hover,.card.interactive.selected{transform:translateY(-8px);border-color:#ffdc6c;box-shadow:0 5px 20px #e0c76b4d}.card:disabled{opacity:.52;cursor:not-allowed}.options{min-height:80px;padding:12px 14px;border-radius:14px;background:#26392f;border:1px solid rgba(238,215,157,.25)}.options-title{font-weight:800;font-size:14px;color:#fff1c8;margin:0 0 8px}.options-help{margin:0;color:#c8d9c9;font-size:13px}.move-list{display:flex;flex-wrap:wrap;gap:8px;max-height:260px;overflow:auto}.move{border:1px solid #8b986b;background:#294938;color:#eef6e9;border-radius:10px;padding:9px 11px;text-align:left;min-width:170px;max-width:270px}.move strong{display:block;color:#ffe5a0;font-size:13px}.move small{display:block;font-size:11px;margin-top:3px}.more{font-size:12px;margin-top:8px;color:#c9d1bc}.footer{font-size:12px;color:#b7c8b5;line-height:1.5}.status-list{margin:6px 0 0;padding-left:18px;max-height:200px;overflow:auto;font-size:12px;color:#d4e6d4}.status-list li{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.08)}.empty{border:1px dashed rgba(245,231,192,.35);border-radius:10px;padding:24px;color:#c6d4bf;font-size:13px;width:100%;text-align:center}.end{border:2px solid #e5c47b;padding:16px;border-radius:14px;background:#3b4328}.end h2{margin:0 0 6px;color:#ffe9ad}.end p{margin:0 0 12px}dialog{border:1px solid #cba35d;background:#17271f;color:#e9f0e6;max-width:600px;width:calc(100% - 30px);border-radius:16px;padding:23px;box-shadow:0 20px 60px #000a}dialog::backdrop{background:#0009}dialog h2{font-family:Georgia,serif;color:#f3d99c}dialog p,dialog li{line-height:1.6}.help-sections{display:grid;gap:7px}.help-sections p{margin:0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 @media(max-width:650px){header{padding:12px 11px 2px}main{padding:10px 9px;gap:10px}.controls{gap:5px}header h1{font-size:24px}.scoreboard{gap:5px}.score{padding:9px 8px}.score strong{font-size:21px}.score small{font-size:10px}.zone{padding:10px 9px;border-radius:13px}.hand{flex-wrap:nowrap;overflow-x:auto;padding:8px 2px 5px;scroll-snap-type:x proximity}.hand .card{flex:none;scroll-snap-align:start}.card{min-width:91px;width:91px;height:147px;padding:5px}.card .name{font-size:10px}.card .value{font-size:25px}.card .effect{font-size:8px}.table-cards{gap:6px;min-height:150px}.table-cards .card{min-width:90px;width:90px}.card-back{width:32px;height:48px;font-size:15px}.move{min-width:135px;max-width:calc(50% - 4px);padding:8px}.move small{font-size:10px}.options{padding:10px}}
@@ -77,25 +77,110 @@ button{touch-action:manipulation}
 @keyframes appear-preview{from{opacity:.25;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @media(max-width:650px){.mode-bar{gap:6px}.mode-button{padding:8px 9px;min-height:58px}.mode-button.active{padding:7px 8px}.mode-button strong{font-size:12px}.mode-button small{font-size:10px}.deck-counter{min-width:67px;padding:6px 5px}.deck-counter small{font-size:9px}.deck-counter strong{font-size:20px}.ai-preview-slot{padding:5px}}
 @media(max-width:360px){.mode-button small{font-size:9px}.deck-counter{min-width:58px}}
+
+/* Graphics V02 — assets from PR #1 (provisional and replaceable). */
+[hidden]{display:none!important}
+html{background:#e0be83}
+body{margin:0;min-height:100dvh;background:#e0be83;padding:0;color:#271b16}
+body:has(#menu-view:not([hidden])){overflow-x:hidden}
+.menu-screen,.game-screen{isolation:isolate;position:relative;min-height:100dvh;min-height:100svh}
+.menu-screen::before,.game-screen::before{content:"";z-index:-1;position:fixed;inset:0;pointer-events:none;background-position:center center;background-size:cover;background-repeat:no-repeat}
+.menu-screen::before{background-image:url('assets/board/menu-v01.svg');background-color:#eecb98}
+.game-screen::before{background-image:url('assets/board/board-v02.svg');background-color:#e9c691}
+.menu-screen{display:flex;align-items:stretch;justify-content:center;padding:max(26px,env(safe-area-inset-top)) max(21px,env(safe-area-inset-right)) max(36px,env(safe-area-inset-bottom)) max(21px,env(safe-area-inset-left))}
+.menu-content{width:min(100%,490px);min-height:calc(100dvh - 72px);margin:0 auto;display:flex;align-items:center;flex-direction:column}
+#menu-title{text-align:center;color:#311e14;font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:.035em;line-height:.98;text-shadow:0 2px 0 #f7e2a9;font-size:clamp(33px,8.2vw,57px);margin:clamp(140px,21dvh,235px) 0 0;max-width:100%}
+#menu-title span{display:block;color:#6a3120;font-size:.83em;letter-spacing:.025em}
+.menu-buttons{display:flex;flex-direction:column;gap:13px;align-items:stretch;width:min(100%,365px);margin-top:clamp(33px,7dvh,76px)}
+.menu-choice{border:3px double #563624;min-height:70px;padding:11px 16px;border-radius:11px;background:linear-gradient(165deg,#faedc6ee,#ebd19bec);box-shadow:0 4px 0 #593a22,0 8px 18px #331b1470;color:#3b2418;font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:bold;line-height:1.1;text-align:center;touch-action:manipulation}
+.choice-name,.choice-detail{display:block}.choice-detail{font:500 12px/1.35 system-ui,sans-serif;color:#64452e;margin-top:6px}
+.menu-choice-secondary{min-height:54px;font-size:18px;background:#f7ebd6e8}
+.menu-choice:hover{filter:brightness(1.03)}.menu-choice:active{transform:translateY(2px);box-shadow:0 2px 0 #593a22}
+.game-topbar{margin:0 auto;padding:calc(7px + env(safe-area-inset-top)) 12px 8px;max-width:920px;display:flex;align-items:center;justify-content:space-between;gap:7px;color:#311e16}
+.game-topbar .controls{display:flex;flex-shrink:0;gap:5px}
+.game-topbar .ghost{background:#faf0d8eb;border:1px solid #9c6937;color:#301b16;min-height:39px;padding:6px 9px;font-weight:700}
+.game-topbar .menu-return{font-size:14px;min-width:65px}
+.game-meta{flex:1;min-width:0;text-align:center;display:flex;flex-direction:column;gap:2px;font-size:11px;font-weight:800}
+.deck-mini{font-size:10px;font-weight:600}.deck-mini strong{font-size:12px}
+.game-board{max-width:920px;min-width:0;margin:0 auto;padding:2px 12px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px}
+.game-board .scoreboard{gap:6px}.game-board .score{border:1px solid #a5753e;border-radius:9px;padding:7px 9px;background:#f9eacac9;color:#35221a;box-shadow:0 1px 2px #50351b38}
+.game-board .score.center{background:#fae8b7cc}.game-board .score strong{color:#302117;font-size:21px}.game-board .score small{color:#634b31;font-weight:700}
+.game-board .turn-banner{border:1px solid #a87d4c;border-radius:9px;background:#f9ecd4df;color:#513720;padding:8px 11px;font-size:12px;line-height:1.35}
+.game-board .zone{min-width:0;border-radius:10px;border:1px solid #97693d;background:#fae9c9ad;box-shadow:0 2px 4px #3d241a20;color:#302119;padding:8px 10px}
+.game-board .zone-head{margin:0 0 6px}.game-board .zone-head h2{color:#32241a}.game-board .zone-head span{color:#654e33}
+.game-board .opponent-zone{flex:none}.game-board .opponent-backs{min-height:42px;flex-wrap:nowrap;overflow:hidden}
+.game-board .table-zone{min-height:205px;flex:1 1 auto;display:flex;flex-direction:column}
+.game-board .table-cards{align-content:start;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;max-height:38dvh;min-height:165px;padding:13px 5px 8px;gap:8px;scrollbar-width:thin;scrollbar-color:#be9560 transparent}
+.game-board .table-cards .card{width:96px;min-width:96px;height:146px}
+.game-board .options{background:#f9e4bfec;border:1px solid #94703d;color:#36241a;padding:9px 10px;min-height:66px}
+.game-board .options-title{color:#3d2a1d}.game-board .options-help{color:#614d36}.game-board .move{background:#f1d9a4;color:#382419;border:1px solid #9e6c39}.game-board .move strong{color:#3d2414}
+.game-board .hand-zone{border:2px solid #80572e;background:#f7e6c5f2;box-shadow:0 -6px 20px #52321d44;position:sticky;bottom:0;bottom:env(safe-area-inset-bottom);z-index:15;padding-bottom:5px}
+.game-board .hand{min-height:0;max-width:100%;padding:9px 6px;overflow-x:auto;flex-wrap:nowrap}
+.game-board .hand-hint{color:#705036}.game-board .hand-arrow{background:#ebce96;color:#4a2919;border-color:#957444}
+.game-board .history-zone{background:#f7e4c4ca}.game-board .status-list{color:#493425;max-height:115px}.game-board .status-list li{border-color:#5d3c232b}
+.game-board .footer{color:#493120;font-size:10px;margin:0 5px}
+.game-board .empty{color:#67503a;border-color:#a17b4a}
+.game-board .table-card-target{outline:3px dashed #bb672a;outline-offset:1px}
+.game-board .card:disabled{opacity:1}
+@media(max-width:650px){
+ .menu-screen{padding-inline:max(14px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-left))}
+ #menu-title{font-size:clamp(29px,8.4vw,44px);margin-top:clamp(135px,21dvh,205px)}
+ .menu-buttons{width: min(89%,340px);margin-top:clamp(32px,8dvh,85px)}
+ .menu-choice{min-height:61px;padding:10px 12px;font-size:17px}.menu-choice-secondary{min-height:49px}
+ .game-topbar{padding:calc(5px + env(safe-area-inset-top)) 6px 5px;gap:4px}
+ .game-topbar .controls{gap:3px}.game-topbar .controls button{font-size:12px;min-height:36px;padding:4px 7px}
+ .game-topbar .controls #full-btn{width:36px}.game-topbar .menu-return{font-size:12px;min-width:59px;padding:4px 5px}
+ .game-meta{font-size:10px}.deck-mini{font-size:9px}
+ .game-board{padding:2px 7px calc(10px + env(safe-area-inset-bottom));gap:6px}
+ .game-board .score{padding:5px 7px}.game-board .score strong{font-size:18px}.game-board .score small{font-size:10px}
+ .game-board .turn-banner{padding:6px 8px;font-size:11px}
+ .game-board .zone{padding:6px 7px}.game-board .zone-head{margin-bottom:4px}
+ .game-board .zone-head h2{font-size:13px}
+ .game-board .opponent-backs{min-height:39px}
+ .game-board .table-zone{min-height:190px}
+ .game-board .table-cards{min-height:162px;max-height:34dvh;padding:10px 3px 6px;gap:5px}
+ .game-board .table-cards .card{min-width:82px;width:82px;height:136px}
+ .game-board .options{padding:8px;min-height:56px}
+ .game-board .hand-zone{padding:6px 7px 4px;background:#f4deb4f7;border-radius:12px 12px 0 0}
+ .game-board .hand{padding:8px 3px;gap:7px}
+ .game-board .hand .card{width:87px;min-width:87px;flex-basis:87px;height:135px}
+ .game-board .hand-arrow{width:30px;height:30px}
+ .game-board .hand-hint{font-size:10px}
+ .game-board .options-help{font-size:12px}
+}
+@media(max-width:350px){.game-board .hand .card{width:80px;min-width:80px;flex-basis:80px}.game-board .table-cards .card{width:78px;min-width:78px}.game-meta{font-size:9px}.game-board .score small{font-size:9px}}
+@media(max-height:730px) and (max-width:650px){.menu-buttons{margin-top:7dvh}.game-board .table-cards{max-height:29dvh}.game-board .table-zone{min-height:170px}}
+@media(prefers-reduced-motion:reduce){.menu-choice,.hand,.card{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header><div><h1>Scopone <span>Alchemico</span></h1><p>Prototipo 0.3 · sfida il computer</p></div><div class="controls"><button class="ghost" id="full-btn" type="button" title="Schermo intero" aria-label="Attiva schermo intero"><span class="screen-icon" aria-hidden="true">⛶</span><span class="fullscreen-label">Schermo intero</span></button><button class="ghost" id="help-btn" type="button">Regole</button><button class="primary" id="new-btn" type="button">Nuova partita</button></div></header>
-<main>
-<section class="mode-bar" aria-label="Seleziona la modalità di gioco">
-  <button id="mode-quick" type="button" class="mode-button active" aria-pressed="true"><strong>Partita rapida</strong><small>10 carte a testa · nessuna pesca</small></button>
-  <button id="mode-draw" type="button" class="mode-button" aria-pressed="false"><strong>Modalità 2</strong><small>Pesca una carta dopo ogni mossa</small></button>
-  <div class="deck-counter"><small>Mazzo di pesca</small><strong id="deck-left">—</strong></div>
+<section id="menu-view" class="menu-screen" aria-labelledby="menu-title">
+  <div class="menu-content">
+    <h1 id="menu-title">SCOPONE <span>ALCHEMICO</span></h1>
+    <div class="menu-buttons" role="group" aria-label="Scegli come giocare">
+      <button type="button" id="start-quick" class="menu-choice"><span class="choice-name">Partita rapida</span><span class="choice-detail">10 carte ciascuno, senza pesca</span></button>
+      <button type="button" id="start-draw" class="menu-choice"><span class="choice-name">Modalità 2</span><span class="choice-detail">Una carta pescata dopo ogni mossa</span></button>
+      <button type="button" id="menu-help" class="menu-choice menu-choice-secondary">Regole</button>
+    </div>
+  </div>
 </section>
+<div id="game-view" class="game-screen" hidden>
+<header class="game-topbar" aria-label="Comandi della partita">
+  <button type="button" id="back-menu" class="ghost menu-return" aria-label="Torna al menù principale">‹ Menù</button>
+  <div class="game-meta"><span id="mode-label" aria-live="polite">Partita rapida</span><span class="deck-mini">Mazzo <strong id="deck-left">—</strong></span></div>
+  <div class="controls"><button class="ghost" id="full-btn" type="button" title="Schermo intero" aria-label="Attiva schermo intero"><span class="screen-icon" aria-hidden="true">⛶</span><span class="fullscreen-label">Schermo intero</span></button><button class="ghost" id="help-btn" type="button">Regole</button><button class="ghost" id="new-btn" type="button">↻</button></div>
+</header>
+<main id="game-main" class="game-board">
 <section class="scoreboard" aria-label="Punteggio"><div class="score"><small>Tu · carte raccolte</small><strong id="my-cards">0</strong><small id="my-scopes">0 scope</small></div><div class="score center"><small>Giocate</small><strong id="round">0 / 20</strong><small id="next">Inizia tu</small></div><div class="score"><small>Computer · carte raccolte</small><strong id="ai-cards">0</strong><small id="ai-scopes">0 scope</small></div></section>
 <div class="turn-banner" id="message" role="status" aria-live="polite">Seleziona una carta per cominciare.</div>
-<section class="zone"><div class="zone-head"><h2>Mano del computer</h2><span id="ai-left">10 carte</span></div><div id="ai-hand" class="opponent-backs" aria-label="Carte coperte dell'avversario"></div></section>
-<section class="zone"><div class="zone-head"><h2>Carte a terra</h2><span id="table-count">Tavolo vuoto</span></div><div class="table-cards" id="table"></div></section>
+<section class="zone opponent-zone"><div class="zone-head"><h2>Computer</h2><span id="ai-left">10 carte</span></div><div id="ai-hand" class="opponent-backs" aria-label="Carte coperte dell'avversario"></div></section>
+<section class="zone table-zone"><div class="zone-head"><h2>Carte a terra</h2><span id="table-count">Tavolo vuoto</span></div><div class="table-cards" id="table"></div></section>
 <section class="options" id="options"><p class="options-title">La tua mossa</p><p class="options-help">Tocca una delle tue carte: vedrai tutte le prese disponibili oppure la possibilità di depositarla.</p></section>
 <section class="zone hand-zone"><div class="zone-head"><h2>Le tue carte</h2><div class="hand-controls"><span class="hand-hint" id="hand-hint">Scorri ↔</span><span id="my-left">10 carte</span><button id="hand-prev" class="hand-arrow" type="button" aria-label="Scorri mano a sinistra">‹</button><button id="hand-next" class="hand-arrow" type="button" aria-label="Scorri mano a destra">›</button></div></div><div class="hand" id="hand" role="group" aria-label="La tua mano, scorri orizzontalmente per vedere tutte le carte"></div></section>
-<section class="zone"><div class="zone-head"><h2>Ultime giocate</h2><span>Le regole possono ancora evolvere</span></div><ol id="history" class="status-list"></ol></section>
+<section class="zone history-zone"><div class="zone-head"><h2>Ultime giocate</h2><span>Le regole possono ancora evolvere</span></div><ol id="history" class="status-list"></ol></section>
 <p class="footer">Scopone Alchemico — primo prototipo con due modalità. Prima versione giocabile: nessuna grafica definitiva. Vince chi raccoglie più carte; in parità decide chi ha più scope. I valori difensivi dei numerali si fissano quando vengono depositati. Non si fanno prese nelle prime due giocate.</p>
 </main>
+</div>
 <dialog id="help"><h2>Come si gioca</h2><div class="help-sections"><p>In Partita rapida hai 10 carte e giochi 20 mosse totali. In Modalità 2 parti con 10 carte, ne peschi una dal mazzo comune dopo ciascuna mossa finché il mazzo si esaurisce, e giochi tutte le 40 carte; poi la partita termina. A ogni turno cali una carta. Puoi prendere una carta dello stesso <b>tipo</b> oppure più carte con valori che sommati eguagliano il tuo valore d'attacco. Nessuna presa ha precedenza sulle altre.</p><p>Se hai prese valide devi sceglierne una; se non ci sono, depositi la carta. Le prime due giocate sono depositi obbligatori.</p><p><b>Asso:</b> 1 in attacco, 10 in difesa. <b>Contadino (2):</b> vale 16 in attacco se ci sono Monaco e Dama sul tavolo. <b>Monaco (3):</b> può valere 6 con carte del proprio seme a terra.</p><p><b>Dama (4):</b> quando c'è un Re a terra, le Dame in difesa valgono 8. <b>Giullare (5):</b> può far valere 1 gli altri Giullari di seme diverso per la presa. <b>Alchimista (6):</b> in difesa porta a 6 le carte del proprio seme sotto 6.</p><p><b>Numerali:</b> attacco 7; difesa 7 o il numero originale (2 Coppe, 3 Bastoni, 5 Spade, 7 Denari). <b>Fante, Cavallo, Re:</b> 8, 9, 10, senza effetti propri.</p><p><b>Scopa:</b> svuotare il tavolo con una presa (tranne l'ultima giocata). A fine partita, le carte rimaste sul tavolo vanno all'ultima persona che ha effettuato una presa. Vince chi ne ha conquistate di più; le scope spareggiano.</p><p><small>Regole sperimentali ancora aperte: bilanciamento, obbligo di presa, punteggio finale e scelta difensiva. Le carte iniziali provengono da un insieme comune di 40 carte distinte.</small></p></div><button class="primary" id="help-close" type="button" style="margin-top:15px">Ho capito</button></dialog>
 <script>
 /* Scopone Alchemico — prototype game engine, browser + Node. No dependencies. */
@@ -168,8 +253,10 @@ function queueAI(fn,ms){const token=gameToken;const timer=setTimeout(()=>{aiTime
 function humanPlay(id,m){if(thinking||state.turn!==0)return;try{E.play(state,0,id,m.key);E.validate(state);selected=null;shown=12;msg(state.history.at(-1));render();if(!state.finished){thinking=true;msg('Il computer sta scegliendo la sua carta…');render();queueAI(aiPlay,320);}}catch(e){msg('Errore: '+e.message);console.error(e);}}
 function aiPlay(){if(!state||state.finished){thinking=false;return;}try{const m=E.bestMove(state,1);if(!m)throw Error('Mossa AI non disponibile');aiPreview={...m};msg(`Computer cala ${E.cards[m.cardId].name}. Osserva la carta prima della presa…`);render();queueAI(()=>resolveAI(m),1000);}catch(e){thinking=false;aiPreview=null;msg('Errore motore: '+e.message);console.error(e);}}
 function resolveAI(m){if(!state||state.finished)return;try{E.play(state,1,m.cardId,m.key);E.validate(state);aiPreview=null;thinking=false;msg(state.history.at(-1));render();}catch(e){aiPreview=null;thinking=false;msg('Errore motore: '+e.message);console.error(e);}}
-function restart(){gameToken++;for(const timer of aiTimers)clearTimeout(timer);aiTimers=[];aiPreview=null;state=E.start((Math.random()*4294967296)>>>0,mode);selected=null;thinking=false;shown=12;q('hand').scrollLeft=0;msg((mode==='draw'?'Modalità 2: pesca una carta dopo ogni mossa finché c’è il mazzo.':'Partita rapida: 10 carte a testa.')+' Nelle prime due giocate non ci sono prese.');render();}
-function changeMode(next){if(!['quick','draw'].includes(next)||next===mode)return;if(state&&state.plays>0&&!state.finished&&!confirm('Cambiare modalità e iniziare una nuova partita?'))return;mode=next;q('mode-quick').classList.toggle('active',mode==='quick');q('mode-draw').classList.toggle('active',mode==='draw');q('mode-quick').setAttribute('aria-pressed',String(mode==='quick'));q('mode-draw').setAttribute('aria-pressed',String(mode==='draw'));restart();}
+function cancelAI(){gameToken++;for(const timer of aiTimers)clearTimeout(timer);aiTimers=[];aiPreview=null;thinking=false;}
+function restart(){cancelAI();state=E.start((Math.random()*4294967296)>>>0,mode);selected=null;shown=12;q('hand').scrollLeft=0;msg((mode==='draw'?'Modalità 2: pesca una carta dopo ogni mossa finché c’è il mazzo.':'Partita rapida: 10 carte a testa.')+' Nelle prime due giocate non ci sono prese.');render();}
+function showGame(nextMode){if(!['quick','draw'].includes(nextMode))return;mode=nextMode;q('mode-label').textContent=mode==='quick'?'Partita rapida':'Modalità 2';q('menu-view').hidden=true;q('game-view').hidden=false;restart();window.scrollTo(0,0);}
+function showMenu(){if(state&&state.plays>0&&!state.finished&&!confirm('Abbandonare la partita in corso e tornare al menù?'))return;cancelAI();selected=null;state=null;q('game-view').hidden=true;q('menu-view').hidden=false;window.scrollTo(0,0);q('start-quick').focus({preventScroll:true});}
 function updateHandControls(){const h=q('hand'),max=Math.max(0,h.scrollWidth-h.clientWidth);q('hand-prev').disabled=h.scrollLeft<3;q('hand-next').disabled=h.scrollLeft>=max-3;q('hand-hint').textContent=max>6?'Scorri ↔':'Mano completa';}
 function updateFullscreenButton(){const on=!!(document.fullscreenElement||document.webkitFullscreenElement);const b=q('full-btn');b.setAttribute('aria-label',on?'Esci dallo schermo intero':'Attiva schermo intero');b.title=on?'Esci dallo schermo intero':'Schermo intero';b.querySelector('.screen-icon').textContent=on?'⤢':'⛶';b.querySelector('.fullscreen-label').textContent=on?'Esci':'Schermo intero';}
 async function toggleFullscreen(){try{if(document.fullscreenElement||document.webkitFullscreenElement){const exit=document.exitFullscreen||document.webkitExitFullscreen;if(exit)await exit.call(document);}else{const root=document.documentElement;const request=root.requestFullscreen||root.webkitRequestFullscreen;if(!request){msg('Su questo browser lo schermo intero non è disponibile.');return;}await request.call(root);}}catch(e){msg('Il browser non ha consentito lo schermo intero.');}finally{updateFullscreenButton();}}
@@ -188,5 +275,5 @@ document.addEventListener('selectstart',ev=>ev.preventDefault());
 document.addEventListener('dragstart',ev=>ev.preventDefault());
 document.addEventListener('contextmenu',ev=>{if(ev.target.closest('.card,.hand,.table-cards'))ev.preventDefault();});
 window.addEventListener('resize',updateHandControls,{passive:true});
-q('mode-quick').addEventListener('click',()=>changeMode('quick'));q('mode-draw').addEventListener('click',()=>changeMode('draw'));q('new-btn').addEventListener('click',restart);q('help-btn').addEventListener('click',()=>q('help').showModal());q('help-close').addEventListener('click',()=>q('help').close());restart();})();
+q('start-quick').addEventListener('click',()=>showGame('quick'));q('start-draw').addEventListener('click',()=>showGame('draw'));q('back-menu').addEventListener('click',showMenu);q('new-btn').addEventListener('click',()=>{if(state&&state.plays>0&&!state.finished&&!confirm('Ricominciare la partita?'))return;restart();});q('help-btn').addEventListener('click',()=>q('help').showModal());q('menu-help').addEventListener('click',()=>q('help').showModal());q('help-close').addEventListener('click',()=>q('help').close());})();
 </script></body></html>

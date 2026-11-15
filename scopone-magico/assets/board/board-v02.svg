@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920" role="img" aria-label="Sfondo illustrato di Scopone Alchemico, ispirato alle carte napoletane"><defs>
+<linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f8dfb6"/><stop offset=".5" stop-color="#f2d2a0"/><stop offset="1" stop-color="#f6ddb2"/></linearGradient>
+<pattern id="grain" width="53" height="71" patternUnits="userSpaceOnUse"><path d="M4 5l9 3m25 9-7 2M13 43l12-4M32 60l7 4" stroke="#9e6638" stroke-opacity=".12" stroke-width="1.3"/><circle cx="6" cy="58" r="2" fill="#ad793f" opacity=".17"/><circle cx="47" cy="37" r="1.5" fill="#ad793f" opacity=".17"/></pattern>
+<g id="corner" stroke="#142735" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 206C16 132 30 56 111 25c93-36 147 9 125 60-13 33-61 31-61-3 0-15 20-22 26-7 4-40-42-45-68-18-33 35-16 79 18 74 21-3 34-28 23-45C125 148 97 152 65 130c-31-21-18-63 11-65C45 75 20 123 22 206Z" fill="#e6ab28"/>
+<path d="M26 177C45 106 69 91 106 108c42 21 9 68-24 55 24-2 26-24 9-29-18-7-31 16-29 36Z" fill="#b72e27"/>
+<path d="M63 112C43 61 74 24 124 24c37 0 45 24 34 38-21-21-47-5-38 19-18-8-34-12-57 31Z" fill="#084a83"/>
+<path d="M141 153c38-5 75 8 108 43-46 0-67-12-82-28 8 30 31 44 45 65-46-5-65-31-71-80Z" fill="#467839" stroke-width="4"/>
+</g>
+<g id="sword" stroke="#182c35" stroke-width="5" stroke-linejoin="round"><path d="M-12-100L-20 44 0 70 20 44 12-100Z" fill="#3b7fa4"/><path d="M0-100V63" stroke="#d8e6d8" stroke-width="3"/><path d="M-50 64q50-35 100 0l-7 19q-40-13-86 0Z" fill="#e4ad2f"/><path d="M-9 80h18v59H-9Z" fill="#b63428"/><circle cy="141" r="13" fill="#edb733"/></g>
+<g id="cup" stroke="#182c35" stroke-width="5" stroke-linejoin="round"><path d="M-43-57h86l-11 71Q0 42-31 14Z" fill="#bf3a29"/><path d="M-29-45v42M0-48V25M29-45V-4" fill="none" stroke="#e4b233" stroke-width="7"/><path d="M-42-49q-24 14-8 45l17 13M42-49q24 14 8 45L33 9" fill="none"/><path d="M-6 29h12v32h-12M-35 65h70l11 15h-92Z" fill="#e3af2e"/></g>
+<g id="club" stroke="#142735" stroke-width="5" stroke-linejoin="round"><path d="M-16-107Q-49-87-37-27L-19 89Q-12 116 1 112Q21 106 22 84L35-34Q45-82 12-108Q-1-91-16-107Z" fill="#427738"/><path d="M-16-99q27 28 18 89L-1 106" fill="none" stroke="#e4b22c" stroke-width="10"/><path d="M-12-91q-50 25-19 66l24 16M12-91q48 42 20 68L9-9" fill="none" stroke="#b93028" stroke-width="12"/><circle cy="114" r="11" fill="#dfb130"/></g>
+<g id="coin" stroke="#182c35" stroke-width="5"><circle r="64" fill="#e7b72d"/><circle r="52" fill="#f9d26a" stroke-dasharray="4 6"/><path d="M-20-11q-4-28 27-27 28 4 25 34l-10 17q0 20 19 29h-79q17-11 18-29Z" fill="#c78033"/><path d="M-17-4Q14-29 32-4M-15 9Q3 20 21 12" fill="none" stroke-width="3"/></g>
+<g id="laurel" stroke="#173e25" stroke-width="4" fill="#457b3f" stroke-linejoin="round"><path d="M0 95Q-10 10 25-110" fill="none"/><path d="M10 48Q-57 34-57-8 5-2 10 48ZM19 1Q-26-54-3-83 25-52 19 1ZM27-46Q76-90 81-102 32-111 27-46ZM-1 77Q-47 62-57 32-7 25-1 77Z"/></g>
+<g id="flask" stroke="#1c3035" stroke-width="7" stroke-linejoin="round"><path d="M-24-100h48v15H10v65q67 41 64 89Q70 128 0 131-69 125-74 69-76 20-10-20v-65h-14Z" fill="#f8e7c7"/><path d="M-61 62q30 11 59 1T61 62q9 44-23 55-57 23-85-8Z" fill="#b83b2c"/><path d="M-35 11q-20 20-17 41M24-20Q51-1 51 31" fill="none" stroke="#80a6b2" stroke-width="6"/><circle cx="-20" cy="73" r="9" fill="#e7b12b"/><circle cx="21" cy="87" r="6" fill="#e7b12b"/></g>
+<g id="sun" stroke="#172c36" stroke-width="4"><circle r="55" fill="#e9b72e"/><circle r="38" fill="#f7d25f"/><path d="M-15-7q15-10 30 0M-15 17Q0 26 15 17" fill="none"/><path d="M-70 0h-15M70 0h15M0-70v-15M0 70v15M-48-48l-16-16M48 48l16 16M48-48l16-16M-48 48l-16 16" stroke="#d39b19" stroke-width="9"/><circle cx="-13" cy="-6" r="4"/><circle cx="13" cy="-6" r="4"/></g>
+</defs>
+<rect width="1080" height="1920" fill="url(#paper)"/><rect width="1080" height="1920" fill="url(#grain)"/>
+<rect x="9" y="9" width="1062" height="1902" fill="none" stroke="#0c4470" stroke-width="18"/>
+<rect x="24" y="24" width="1032" height="1872" fill="none" stroke="#e2b42f" stroke-width="7"/>
+<rect x="34" y="34" width="1012" height="1852" fill="none" stroke="#222b2b" stroke-width="2"/>
+<use href="#corner"/><use href="#corner" transform="translate(1080) scale(-1 1)"/>
+<use href="#corner" transform="translate(0 1920) scale(1 -1)"/><use href="#corner" transform="translate(1080 1920) scale(-1 -1)"/>
+<g stroke="#be874f" fill="none" opacity=".18" stroke-width="9" transform="translate(540 942)">
+<circle r="322"/><circle r="297" stroke-width="3"/><path d="M0-274 260 165-260 165Z M0 274 260-165-260-165Z" stroke-width="7"/>
+<circle r="99"/><circle cx="-225" cy="0" r="53"/><circle cx="225" cy="0" r="53"/><path d="M-25-215 0-259 25-215 70-221 47-179 78-143 26-153 0-111-26-153-78-143-47-179-70-221Z"/>
+<path d="M-18-82h36v66c58 57 60 121 2 138-83 20-128-70-38-138Z"/><path d="M-45 56q45-18 90 0"/>
+</g><use href="#sword" transform="translate(70 492) scale(.65)"/><use href="#sword" transform="translate(1010 492) scale(.65)"/>
+<use href="#cup" transform="translate(70 747) scale(.78)"/><use href="#cup" transform="translate(1010 747) scale(.78)"/>
+<use href="#coin" transform="translate(70 1002) scale(.71)"/><use href="#coin" transform="translate(1010 1002) scale(.71)"/>
+<use href="#club" transform="translate(70 1314) scale(.85)"/><use href="#club" transform="translate(1010 1314) scale(.85)"/>
+<use href="#laurel" transform="translate(70 660) scale(.37)"/><use href="#laurel" transform="translate(1010 660) scale(-.37 .37)"/>
+<use href="#laurel" transform="translate(70 1190) scale(.37)"/><use href="#laurel" transform="translate(1010 1190) scale(-.37 .37)"/>
+<g transform="translate(540 1828) scale(.45)"><use href="#flask"/><use href="#laurel" transform="translate(-125 12) scale(.7)"/><use href="#laurel" transform="translate(125 12) scale(-.7 .7)"/></g>
+<path d="M380 1890q160-28 320 0" fill="none" stroke="#d79e27" stroke-width="8"/>
+</svg>
