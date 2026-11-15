@@ -9,8 +9,17 @@
   "backgroundStyle": {
     "name": "avorio napoletano",
     "nominalHex": "#F8F2E6",
+    "measuredMedianRgb": [
+      247,
+      240,
+      231
+    ],
+    "referenceCard": "contadino-bastoni-originale.webp",
     "appliesTo": "all suits"
   },
+  "characterStyle": "independent per suit",
+  "subjectPixelsPreserved": true,
+  "provenanceNote": "subject exact from original PNG, background-only correction",
   "textLayer": "separate",
   "effects": "dynamic",
   "status": "background_corrected"
