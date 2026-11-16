@@ -339,6 +339,100 @@ body:has(#menu-view:not([hidden])){overflow-x:hidden}
  .game-board .table-cards .card .name{font-size:8px}
  .game-board .table-cards .card .effect{font-size:7.5px}
 }
+
+/* V06 — Tavolo alto circa la metà, carte intere e spiegazioni nell'area mosse. */
+@media(max-width:820px){
+ /* Il tavolo non consuma più tutta l'altezza libera; la parte guadagnata
+    appartiene al pannello delle mosse e delle abilità. */
+ .game-board .table-zone{
+   flex:0 0 clamp(130px,21.5dvh,185px);
+   height:clamp(130px,21.5dvh,185px);
+   min-height:0;max-height:none;
+ }
+ .game-board .table-cards{
+   min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;
+   padding:4px 2px 5px;align-content:start;
+ }
+ .game-board .table-cards.sparse-table{align-content:center;justify-content:center}
+ /* Fino a quattro carte: tutte intere. Cinque o più: ventaglio a scalare,
+    con gli angoli superiori visibili e scorrimento interno per le ultime. */
+ .game-board .table-cards.dense-table{
+   display:grid;
+   grid-template-columns:repeat(6,minmax(0,calc((100% - var(--table-card-width))/5)));
+   grid-auto-rows:calc(var(--table-card-width)*1.06);
+   gap:0;justify-content:start;align-content:start;
+   padding-bottom:calc(var(--table-card-width)*.66);
+ }
+ .game-board .table-cards.dense-table > .table-card-wrap{
+   position:relative;min-width:0;width:var(--table-card-width);
+   height:calc(var(--table-card-width)*1.06);overflow:visible;
+ }
+ .game-board .table-cards.dense-table > .table-card-wrap.table-card-target{z-index:10}
+ /* Conserva il WebP intero, senza deformarlo o ritagliarlo. L'asset 600×1000
+    ha già una fascia per il nome, quindi gli effetti non vanno sopra l'immagine. */
+ .game-board .card{padding:1px;border-radius:5px;overflow:hidden}
+ .game-board .card-art{object-fit:contain;object-position:center;background:#f8f2e7}
+ .game-board .card .effect{display:none}
+ .game-board .card .top{flex:0 0 auto;min-height:18px}
+ .game-board .card .name{
+   display:block;flex:0 0 auto;align-self:stretch;
+   margin-top:auto;font-size:9.6px;line-height:1.08;
+   padding:2px 3px;max-height:none;min-height:0;
+   overflow-wrap:anywhere;white-space:normal;
+ }
+ .game-board .table-cards .card .name{font-size:8.9px;line-height:1.08}
+ .game-board .card .defvalue{flex:0 0 auto;order:2;font-size:8px}
+ .game-board .hand .card{
+   height:calc(var(--hand-card-width)*1.667);
+ }
+ .game-board .table-cards .card,.game-board .ai-preview-slot .card{
+   height:calc(var(--table-card-width)*1.667);
+ }
+ .game-board .options{
+   flex:1 1 0;min-height:0;max-height:none;
+   overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+   padding:8px 10px;scrollbar-width:thin;
+ }
+ .game-board .options:has(> .options-help){display:flex;flex-direction:column;justify-content:center}
+ .game-board .selected-ability{
+   margin:0 0 7px;padding:6px 8px;
+   background:#fff3d8c7;border-left:3px solid #98652d;
+   border-radius:4px;color:#382315;
+ }
+ .game-board .selected-ability{
+   display:grid;grid-template-columns:clamp(62px,17.5vw,83px) minmax(0,1fr);
+   align-items:start;column-gap:9px;
+ }
+ .game-board .selected-card-preview{
+   display:block;width:100%;aspect-ratio:3/5;height:auto;
+   object-fit:contain;background:#f8f2e7;border:1px solid #a78c64;border-radius:5px;
+ }
+ .game-board .selected-ability strong{display:block;font-size:12px;line-height:1.25}
+ .game-board .selected-ability p{
+   font-size:12px;line-height:1.35;margin:4px 0 0;
+ }
+ .game-board .selected-ability .attack-defense{
+   margin-top:3px;font-weight:700;color:#6b4726;font-size:11px;
+ }
+ .game-board .options-title{font-size:12px;line-height:1.2;margin-bottom:5px}
+ .game-board .options-help{font-size:12px;line-height:1.35}
+ .game-board .move strong{font-size:11px}
+ .game-board .move small{font-size:10px}
+ .game-board .empty{padding:5px}
+}
+@media(max-width:820px) and (max-height:700px){
+ .game-board .table-zone{flex-basis:clamp(119px,20.5dvh,145px);height:clamp(119px,20.5dvh,145px)}
+ .game-board .selected-ability{padding:4px 6px;margin-bottom:4px;display:block}
+ .game-board .selected-card-preview{display:none}
+ .game-board .selected-ability p{font-size:11px;line-height:1.3}
+ .game-board .selected-ability strong{font-size:11px}
+ .game-board .options{padding:5px 8px}
+}
+@media(max-width:820px) and (max-height:590px){
+ .game-board .table-zone{flex-basis:110px;height:110px}
+ .game-board .card .name{font-size:8.5px}
+ .game-board .table-cards .card .name{font-size:8px}
+}
 </style>
 </head>
 <body>
@@ -439,18 +533,36 @@ function cardArtPath(card){
   const n=card.type==='numerale'?card.number:CLASSIC_TYPE_NUMBER[card.type];
   return `assets/cards/classiche/${card.suit}/${String(n).padStart(2,'0')}.webp`;
 }
-function cardHTML(id,meta,selectable=false){const c=E.cards[id],s=suitmap[c.suit],isNumber=c.type==='numerale';const n=isNumber?c.number:(c.type==='asso'?'A':c.base);const res=meta&&meta.defenseValue!==undefined?`<span class="defvalue">Difesa: ${meta.defenseValue}</span>`:'';const owner=meta&&meta.owner!==undefined?`<span class="owner">${meta.owner===0?'TUA':'COMPUTER'}</span>`:'';return `<button type="button" class="card suit-${c.suit}${selectable?' interactive':''}${selected===id?' selected':''}" ${selectable?`data-card="${id}"`:'disabled'} aria-label="${c.name}, ${desc[c.type]}"><img class="card-art" src="${cardArtPath(c)}" alt="" aria-hidden="true" draggable="false" loading="lazy">${owner}<span class="top"><span class="value">${n}</span><span class="suit" aria-hidden="true">${s.symbol}</span></span><span class="name">${c.name}</span>${res}<span class="effect">${compactDesc[c.type]}</span></button>`;}
+function cardHTML(id,meta,selectable=false){const c=E.cards[id],s=suitmap[c.suit],isNumber=c.type==='numerale';const n=isNumber?c.number:(c.type==='asso'?'A':c.base);const res=meta&&meta.defenseValue!==undefined?`<span class="defvalue">Difesa: ${meta.defenseValue}</span>`:'';const owner=meta&&meta.owner!==undefined?`<span class="owner">${meta.owner===0?'TUA':'COMPUTER'}</span>`:'';return `<button type="button" class="card suit-${c.suit}${selectable?' interactive':''}${selected===id?' selected':''}" ${selectable?`data-card="${id}"`:'disabled'} aria-label="${c.name}, ${desc[c.type]}"><img class="card-art" src="${cardArtPath(c)}" alt="" aria-hidden="true" draggable="false" loading="lazy">${owner}<span class="top"><span class="value">${n}</span><span class="suit" aria-hidden="true">${s.symbol}</span></span><span class="name">${c.name}</span>${res}</button>`;}
 function moveDisplay(m){if(m.kind==='place'){return {title:m.defenseChoice!==undefined?`Deposita · difesa ${m.defenseChoice}`:'Deposita sul tavolo',detail:'Nessuna presa disponibile'};}let title=m.mode==='Identità'?'Presa per identità':`Presa ${m.mode==='Base'?'per valore':m.mode} · ${m.attack}`;const names=m.take.map(id=>E.cards[id].name).join(' + ');return{title,detail:`${m.take.length} ${m.take.length===1?'carta':'carte'}: ${names}${state.table.length===m.take.length?' · SCOPA!':''}`};}
 function msg(v){q('message').textContent=v;}
 function render(){q('my-cards').textContent=state.captured[0].length;q('ai-cards').textContent=state.captured[1].length;q('my-scopes').textContent=`${state.scopes[0]} scope`;q('ai-scopes').textContent=`${state.scopes[1]} scope`;q('round').textContent=`${state.plays} / ${state.totalPlays}`;q('deck-left').textContent=state.mode==='draw'?String(state.deck.length):'—';q('next').textContent=state.finished?'Fine partita':(state.turn===0?'Il tuo turno':'Turno computer');q('my-left').textContent=`${state.hands[0].length} carte`;q('ai-left').textContent=`${state.hands[1].length} carte`;
  q('ai-hand').innerHTML=state.hands[1].map(()=>'<div class="card-back" aria-hidden="true">✧</div>').join('')||'<span class="options-help">Mano esaurita</span>';
- q('table-count').textContent=state.table.length?`${state.table.length} carte`:'Tavolo vuoto';const taken=new Set(aiPreview?.take||[]);const onTable=state.table.map(t=>`<div class="${taken.has(t.id)?'table-card-target':''}">${cardHTML(t.id,{owner:t.owner,defenseValue:E.defenseValue(t,state.table)})}</div>`).join('');const incoming=aiPreview?`<div class="ai-preview-slot" id="ai-preview" aria-label="Carta calata dal computer"><span class="preview-label">Il computer cala</span>${cardHTML(aiPreview.cardId)}<span class="preview-label">${escapeHtml(aiPreview.mode==='Identità'?'Presa per identità':aiPreview.kind==='place'?'Deposito':aiPreview.mode)}</span></div>`:'';q('table').innerHTML=onTable+incoming||'<div class="empty">Nessuna carta a terra</div>';q('table').classList.toggle('sparse-table',state.table.length<=3);
+ q('table-count').textContent=state.table.length?`${state.table.length} carte`:'Tavolo vuoto';const taken=new Set(aiPreview?.take||[]);const onTable=state.table.map(t=>`<div class="table-card-wrap ${taken.has(t.id)?'table-card-target':''}">${cardHTML(t.id,{owner:t.owner,defenseValue:E.defenseValue(t,state.table)})}</div>`).join('');const incoming=aiPreview?`<div class="ai-preview-slot" id="ai-preview" aria-label="Carta calata dal computer"><span class="preview-label">Il computer cala</span>${cardHTML(aiPreview.cardId)}<span class="preview-label">${escapeHtml(aiPreview.mode==='Identità'?'Presa per identità':aiPreview.kind==='place'?'Deposito':aiPreview.mode)}</span></div>`:'';q('table').innerHTML=onTable+incoming||'<div class="empty">Nessuna carta a terra</div>';q('table').classList.toggle('sparse-table',state.table.length<=3);q('table').classList.toggle('dense-table',state.table.length+(aiPreview?1:0)>=5);if(aiPreview)q('table').scrollTop=Math.max(0,q('table').scrollHeight-q('table').clientHeight);
  const handLeft=q('hand').scrollLeft; q('hand').innerHTML=state.hands[0].map(id=>cardHTML(id,null,state.turn===0&&!state.finished&&!thinking)).join('')||'<span class="options-help">Hai giocato tutte le carte</span>';q('hand').scrollLeft=handLeft;updateHandControls();
  q('history').innerHTML=state.history.slice().reverse().slice(0,8).map(x=>`<li>${escapeHtml(x)}</li>`).join('')||'<li>Partita iniziata.</li>';
  renderOptions();if(state.finished){const count=state.captured.map(a=>a.length);msg(state.winner===null?'Pareggio!':state.winner===0?'Hai vinto!':'Il computer ha vinto.');q('options').innerHTML=`<div class="end"><h2>${state.winner===null?'Pareggio':state.winner===0?'Hai vinto!':'Il computer vince'}</h2><p>Carte raccolte: ${count[0]}–${count[1]} · Scope: ${state.scopes[0]}–${state.scopes[1]}</p><button class="primary" id="again">Gioca ancora</button></div>`;q('again').addEventListener('click',restart);}
 }
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function renderOptions(){if(state.finished)return;if(thinking||state.turn!==0){q('options').innerHTML='<p class="options-title">'+(aiPreview?'Il computer ha calato una carta…':'Il computer sta scegliendo...')+'</p>';return;}if(!selected||!state.hands[0].includes(selected)){q('options').innerHTML='<p class="options-title">La tua mossa</p><p class="options-help">Tocca una carta della tua mano per vedere le prese possibili.</p>';return;}const moves=E.legalMoves(state,0,selected);q('options').innerHTML=`<p class="options-title">${E.cards[selected].name} · ${moves.length} ${moves.length===1?'mossa':'mosse'} possibili</p><p class="ability-help">${escapeHtml(desc[E.cards[selected].type])}</p><div class="move-list">${moves.slice(0,shown).map((m,i)=>{const label=moveDisplay(m);return `<button type="button" class="move" data-move="${i}"><strong>${escapeHtml(label.title)}</strong><small>${escapeHtml(label.detail)}</small></button>`;}).join('')}</div>${moves.length>shown?`<button class="ghost" id="more" style="margin-top:9px">Mostra altre prese (${moves.length-shown})</button>`:''}`;
+// La carta rimane graficamente pulita; l'abilità viene spiegata qui, solo se selezionata.
+function selectedCardExplanation(c){
+ const descriptions={
+  asso:'In attacco vale 1. Se viene lasciato sul tavolo, resiste come una carta di valore 10.',
+  contadino:'Attacca normalmente con 2. Se sul tavolo sono presenti sia un Monaco sia una Dama, puoi scegliere anche la Soglia: attacco 16.',
+  monaco:'Attacca con 3. Se sul tavolo c’è almeno una carta del suo stesso seme, puoi attivare Affinità e attaccare con 6.',
+  dama:'Attacca con 4. Quando sul tavolo c’è un Re, la Dama che si trova a terra raddoppia la propria difesa: 8.',
+  giullare:'Attacca con 5. Con Specchio, se sul tavolo c’è un Giullare di un altro seme, puoi considerare quel Giullare di valore 1 nella presa.',
+  alchimista:'Attacca con 6. Quando è sul tavolo, Progressione porta a 6 la difesa delle carte dello stesso seme che avrebbero un valore inferiore a 6.',
+  numerale:`Attacca con 7. Quando la depositi, puoi scegliere la sua difesa: 7 oppure ${c.number}, il numero tradizionale di ${c.suit}.`,
+  fante:'Carta senza abilità speciale: attacca e si difende con valore 8.',
+  cavallo:'Carta senza abilità speciale: attacca e si difende con valore 9.',
+  re:'Carta senza abilità speciale: attacca e si difende con valore 10. La sua presenza sul tavolo può attivare Gemellanza delle Dame.'
+ };
+ const atk=c.type==='asso'?1:c.base;
+ const def=c.type==='asso'?10:c.type==='numerale'?`7 o ${c.number}`:c.base;
+ return `<section class="selected-ability" aria-label="Effetto della carta selezionata"><img class="selected-card-preview" src="${cardArtPath(c)}" alt="" aria-hidden="true" draggable="false"><div class="selected-ability-text"><strong>${escapeHtml(c.name)}</strong><div class="attack-defense">Attacco ${atk} · Difesa ${def}${c.type==='dama'?' (8 con Re)':''}</div><p>${escapeHtml(descriptions[c.type])}</p></div></section>`;
+}
+function renderOptions(){if(state.finished)return;if(thinking||state.turn!==0){q('options').innerHTML='<p class="options-title">'+(aiPreview?'Il computer ha calato una carta…':'Il computer sta scegliendo...')+'</p>';return;}if(!selected||!state.hands[0].includes(selected)){q('options').innerHTML='<p class="options-title">La tua mossa</p><p class="options-help">Tocca una carta della tua mano per vedere le prese possibili.</p>';return;}const moves=E.legalMoves(state,0,selected);q('options').innerHTML=`<p class="options-title">${E.cards[selected].name} · ${moves.length} ${moves.length===1?'mossa':'mosse'} possibili</p>${selectedCardExplanation(E.cards[selected])}<div class="move-list">${moves.slice(0,shown).map((m,i)=>{const label=moveDisplay(m);return `<button type="button" class="move" data-move="${i}"><strong>${escapeHtml(label.title)}</strong><small>${escapeHtml(label.detail)}</small></button>`;}).join('')}</div>${moves.length>shown?`<button class="ghost" id="more" style="margin-top:9px">Mostra altre prese (${moves.length-shown})</button>`:''}`;
  q('options').querySelectorAll('[data-move]').forEach(b=>b.addEventListener('click',()=>humanPlay(selected,moves[Number(b.dataset.move)])));if(q('more'))q('more').addEventListener('click',()=>{shown+=20;renderOptions();});}
 function queueAI(fn,ms){const token=gameToken;const timer=setTimeout(()=>{aiTimers=aiTimers.filter(t=>t!==timer);if(token===gameToken)fn();},ms);aiTimers.push(timer);}
 function humanPlay(id,m){if(thinking||state.turn!==0)return;try{E.play(state,0,id,m.key);E.validate(state);selected=null;shown=12;msg(state.history.at(-1));render();if(!state.finished){thinking=true;msg('Il computer sta scegliendo la sua carta…');render();queueAI(aiPlay,320);}}catch(e){msg('Errore: '+e.message);console.error(e);}}
