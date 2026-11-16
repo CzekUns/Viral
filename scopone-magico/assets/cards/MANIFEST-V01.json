@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "classiche": {
+    "bastoni-06": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/06.webp",
+      "from_drive": "gioco/B06-sei-gioco-600x1000.webp",
+      "bytes": 46066,
+      "sha256": "a580513d5f79f55d0d6fb96ed2eddec3fa67c7fbf41df95684981b7b34506771"
+    },
+    "bastoni-01": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/01.webp",
+      "from_drive": "gioco/B01-asso-gioco-600x1000.webp",
+      "bytes": 50358,
+      "sha256": "79c326e6c4115db1cd81d103e3ca317daac71fc5cf597fa248d2df533a4ab1a7"
+    },
+    "bastoni-10": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/10.webp",
+      "from_drive": "gioco/B10-re-gioco-600x1000.webp",
+      "bytes": 69526,
+      "sha256": "37dbcd40d6287f918b7c566f40a24da1be58f7e5376847aa3056d0e6a8b30b24"
+    },
+    "bastoni-08": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/08.webp",
+      "from_drive": "gioco/B08-fante-gioco-600x1000.webp",
+      "bytes": 50376,
+      "sha256": "ffdd76ddec0cfc2a4690c1f48a4bae7a4dd8f0ab0fd9648ccfb2515e6c446586"
+    },
+    "bastoni-02": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/02.webp",
+      "from_drive": "gioco/B02-due-gioco-600x1000.webp",
+      "bytes": 51488,
+      "sha256": "b32ae7a898f8147efe537b58d8959b370fc041e7cebbef20de3f280fc4cb7704"
+    },
+    "bastoni-04": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/04.webp",
+      "from_drive": "gioco/B04-quattro-gioco-600x1000.webp",
+      "bytes": 46684,
+      "sha256": "691fabef50171cc13c7e28a9401fea9416b56b36e60e54ab7ea93b6435d5b74a"
+    },
+    "bastoni-07": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/07.webp",
+      "from_drive": "gioco/B07-sette-gioco-600x1000.webp",
+      "bytes": 54574,
+      "sha256": "f74ba314432d10c3cddc191b4cf5f1754ad5b86e12b316d36deccefba633094d"
+    },
+    "bastoni-09": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/09.webp",
+      "from_drive": "gioco/B09-cavallo-gioco-600x1000.webp",
+      "bytes": 75446,
+      "sha256": "34331eeaf1908cfe40ddbf375c5dfc3c9157df9b9f168954a2b68205e3a5f673"
+    },
+    "bastoni-05": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/05.webp",
+      "from_drive": "gioco/B05-cinque-gioco-600x1000.webp",
+      "bytes": 44742,
+      "sha256": "fb4db8a2a671a8d63e849692681ea3e7846b373f5968f4268ea4334d2db21740"
+    },
+    "bastoni-03": {
+      "path": "scopone-magico/assets/cards/classiche/bastoni/03.webp",
+      "from_drive": "gioco/B03-tre-gioco-600x1000.webp",
+      "bytes": 63090,
+      "sha256": "d3919a05673b6550b91e95f7d2678cec757d79e22570a6d3509db01a1081383a"
+    },
+    "coppe-03": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/03.webp",
+      "from_drive": "gioco/C03-tre-gioco-600x1000.webp",
+      "bytes": 46302,
+      "sha256": "6ae31ecae41a75eb38534437fe866955196fce8dfc2fc65a24fb6c1ee887f70c"
+    },
+    "coppe-08": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/08.webp",
+      "from_drive": "gioco/C08-fante-gioco-600x1000.webp",
+      "bytes": 54844,
+      "sha256": "9216945c17e6fa696783e80f1c9c25c3b7793ef04c9854dce53c2846da8adb1c"
+    },
+    "coppe-10": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/10.webp",
+      "from_drive": "gioco/C10-re-gioco-600x1000.webp",
+      "bytes": 67924,
+      "sha256": "a59f1078e2814a590297852509ddc2c955e423738481557493ee02ff113ce98f"
+    },
+    "coppe-09": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/09.webp",
+      "from_drive": "gioco/C09-cavallo-gioco-600x1000.webp",
+      "bytes": 80768,
+      "sha256": "ad05c5a0fe8f40bac133a9c115c87bc42f65ae66afc3f3863597f4fa537ef0e7"
+    },
+    "coppe-05": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/05.webp",
+      "from_drive": "gioco/C05-cinque-gioco-600x1000.webp",
+      "bytes": 49818,
+      "sha256": "73290875d3d4e9e9cbc12cbee5771aa9bfc2e8786dd7067046f2a1df22b77e51"
+    },
+    "coppe-06": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/06.webp",
+      "from_drive": "gioco/C06-sei-gioco-600x1000.webp",
+      "bytes": 50404,
+      "sha256": "ef75fe92b3b2387434d2eb4686027c1c88839e2972bb793c8d4b7c1e5d1b5dbf"
+    },
+    "coppe-01": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/01.webp",
+      "from_drive": "gioco/C01-asso-gioco-600x1000.webp",
+      "bytes": 65158,
+      "sha256": "1ac0b378c6fc34fb22010d6a9d45fbddce63b409b7002444d126995f441e1ad9"
+    },
+    "coppe-07": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/07.webp",
+      "from_drive": "gioco/C07-sette-gioco-600x1000.webp",
+      "bytes": 45198,
+      "sha256": "ed05a3d3f08a2fca8784ea4dbe79628a074bee64217533767992c264ed9c1264"
+    },
+    "coppe-04": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/04.webp",
+      "from_drive": "gioco/C04-quattro-gioco-600x1000.webp",
+      "bytes": 54154,
+      "sha256": "5e35de64cd530f45f92064f3d8c8aa240fac4e86d8c597cf361d9bdee763dbf4"
+    },
+    "coppe-02": {
+      "path": "scopone-magico/assets/cards/classiche/coppe/02.webp",
+      "from_drive": "gioco/C02-due-gioco-600x1000.webp",
+      "bytes": 56924,
+      "sha256": "1bde8ae8631d5f40a664397be1be343e165b54f9bee8626cfd8f9bb929b51acc"
+    },
+    "spade-10": {
+      "path": "scopone-magico/assets/cards/classiche/spade/10.webp",
+      "from_drive": "gioco/S10-re-gioco-600x1000.webp",
+      "bytes": 57466,
+      "sha256": "ade7814022989bde96cdc63a1f79b84546e3f2561d1939d78192b108a67e356b"
+    },
+    "spade-01": {
+      "path": "scopone-magico/assets/cards/classiche/spade/01.webp",
+      "from_drive": "gioco/S01-asso-gioco-600x1000.webp",
+      "bytes": 55518,
+      "sha256": "2f37dcd9db21e77542717b26f35011333c79b9d8eb754b74a4bff77ca402d4b9"
+    },
+    "spade-06": {
+      "path": "scopone-magico/assets/cards/classiche/spade/06.webp",
+      "from_drive": "gioco/S06-sei-gioco-600x1000.webp",
+      "bytes": 38696,
+      "sha256": "ed37979faedb490d42eb22e275e0a8e179350f1387b9515eaa4dd3d4652423ca"
+    },
+    "spade-05": {
+      "path": "scopone-magico/assets/cards/classiche/spade/05.webp",
+      "from_drive": "gioco/S05-cinque-gioco-600x1000.webp",
+      "bytes": 54684,
+      "sha256": "d5aff68b50fb88d510428a2ad2ff042697b1b7de8ae2f731482ee7e90b8b0f13"
+    },
+    "spade-04": {
+      "path": "scopone-magico/assets/cards/classiche/spade/04.webp",
+      "from_drive": "gioco/S04-quattro-gioco-600x1000.webp",
+      "bytes": 48262,
+      "sha256": "e22216d2defb0b79ab20bf6c465a1bc9f2b25ecf5ff5f917bfb16592ad5dd1c2"
+    },
+    "spade-02": {
+      "path": "scopone-magico/assets/cards/classiche/spade/02.webp",
+      "from_drive": "gioco/S02-due-gioco-600x1000.webp",
+      "bytes": 31542,
+      "sha256": "1cf02838dbb08d9adedc20e04c0c3f0aa78afb06cfc843721f36f057965d27eb"
+    },
+    "spade-07": {
+      "path": "scopone-magico/assets/cards/classiche/spade/07.webp",
+      "from_drive": "gioco/S07-sette-gioco-600x1000.webp",
+      "bytes": 52726,
+      "sha256": "5c4d9ed2da0b6213d9ef98bc635a9b29419aaf15af6a7e7d6acc4401f22dffc3"
+    },
+    "spade-09": {
+      "path": "scopone-magico/assets/cards/classiche/spade/09.webp",
+      "from_drive": "gioco/S09-cavallo-gioco-600x1000.webp",
+      "bytes": 78560,
+      "sha256": "b0d6fb71981391d62a9615c8ef81dea67d8cc17673a119b0e5b3107ccb1d6614"
+    },
+    "spade-08": {
+      "path": "scopone-magico/assets/cards/classiche/spade/08.webp",
+      "from_drive": "gioco/S08-fante-gioco-600x1000.webp",
+      "bytes": 47380,
+      "sha256": "a195ec645b7d4c8454641fef2eb52c5e45fd91ecd5c51a0e0e930919f4fdc7ed"
+    },
+    "spade-03": {
+      "path": "scopone-magico/assets/cards/classiche/spade/03.webp",
+      "from_drive": "gioco/S03-tre-gioco-600x1000.webp",
+      "bytes": 46474,
+      "sha256": "4383f3061462cc9bced1411aba1718adf85c8c5d0c909562dd88dca5170fec6f"
+    },
+    "denari-01": {
+      "path": "scopone-magico/assets/cards/classiche/denari/01.webp",
+      "from_drive": "gioco/D01-asso-gioco-600x1000.webp",
+      "bytes": 69810,
+      "sha256": "e8070b6f0d1c550e87c0691b1a245610f38d5c8f6cb6f81dd0ad945b9e45b4e2"
+    },
+    "denari-02": {
+      "path": "scopone-magico/assets/cards/classiche/denari/02.webp",
+      "from_drive": "gioco/D02-due-gioco-600x1000.webp",
+      "bytes": 56240,
+      "sha256": "6f2960c1b1e48288247612b413314df04d1ed6e6da0a75f7ccf6a22ea367a8d7"
+    },
+    "denari-03": {
+      "path": "scopone-magico/assets/cards/classiche/denari/03.webp",
+      "from_drive": "gioco/D03-tre-gioco-600x1000.webp",
+      "bytes": 56264,
+      "sha256": "bed44e8b759a95ebd6e8c3f9e0d26ae761f089fa5770e0eef9bb7713d5a70372"
+    },
+    "denari-04": {
+      "path": "scopone-magico/assets/cards/classiche/denari/04.webp",
+      "from_drive": "gioco/D04-quattro-gioco-600x1000.webp",
+      "bytes": 47706,
+      "sha256": "29c51f75c789e7832f01569df2e89e398019145cbbd5ef8f3e3d47ac740963db"
+    },
+    "denari-05": {
+      "path": "scopone-magico/assets/cards/classiche/denari/05.webp",
+      "from_drive": "gioco/D05-cinque-gioco-600x1000.webp",
+      "bytes": 61304,
+      "sha256": "17709acc1182f1b43904d833ccfcbda38dcf62f44f115038d38ee4077d5ed80b"
+    },
+    "denari-06": {
+      "path": "scopone-magico/assets/cards/classiche/denari/06.webp",
+      "from_drive": "gioco/D06-sei-gioco-600x1000.webp",
+      "bytes": 40480,
+      "sha256": "675e26ab9135194cf1b5dd5869aac2f3a00174a3bb7f8589dbbf971678312b9f"
+    },
+    "denari-07": {
+      "path": "scopone-magico/assets/cards/classiche/denari/07.webp",
+      "from_drive": "gioco/D07-sette-gioco-600x1000.webp",
+      "bytes": 33320,
+      "sha256": "90a0d1f8d2bd4ea57c8498ad2029b32f52e7d14063fd4a60f8654feada64757d"
+    },
+    "denari-08": {
+      "path": "scopone-magico/assets/cards/classiche/denari/08.webp",
+      "from_drive": "gioco/D08-fante-gioco-600x1000.webp",
+      "bytes": 54684,
+      "sha256": "988ab53ad1a2a5fbad1fedff2783c007adc642a6944dc629f7b7210a87b9319d"
+    },
+    "denari-09": {
+      "path": "scopone-magico/assets/cards/classiche/denari/09.webp",
+      "from_drive": "gioco/D09-cavallo-gioco-600x1000.webp",
+      "bytes": 97618,
+      "sha256": "5a49c19ffd927c6daccd412b0bd709d3fad6e5a6434115392a4e6e4c9310aa77"
+    },
+    "denari-10": {
+      "path": "scopone-magico/assets/cards/classiche/denari/10.webp",
+      "from_drive": "gioco/D10-re-gioco-600x1000.webp",
+      "bytes": 73996,
+      "sha256": "33d6c319d8df5defd3c2edc2cbb54bd8610f8112aa02987a3c79b67bb5420396"
+    }
+  },
+  "nuove": {
+    "bastoni-contadino": {
+      "path": "scopone-magico/assets/cards/nuove/contadino-bastoni.webp",
+      "versione": "BA-01",
+      "stato": "APPROVATA",
+      "source_png": "BA-01_Bastoni_approvato_berretto-verde_bastone-foglia.png",
+      "sha256": "c9c23821f0e484e9f51989e43c66a3bdd31d97721881f67b54aaaada371d75fa",
+      "byte_size": 70970
+    },
+    "coppe-contadino": {
+      "path": "scopone-magico/assets/cards/nuove/contadino-coppe.webp",
+      "versione": "CO-01B",
+      "stato": "ACCETTATA, SFONDO CORRETTO",
+      "source_png": "CO-01B_Coppe_stessa-figura_sfondo-avorio.png",
+      "sha256": "99850035a2ea4d88116a2ee09abae19763b33bf969d05a410d0547d5a5d8dab6",
+      "byte_size": 61138
+    },
+    "spade-contadino": {
+      "path": "scopone-magico/assets/cards/nuove/contadino-spade.webp",
+      "versione": "SP-03",
+      "stato": "PROVVISORIA (NO APPROVAZIONE)",
+      "source_png": "SP-03_Spade_contadino-rilassato_spada-appoggiata.png",
+      "sha256": "463ec6f3a5763ef8930ec47553c166f701620c742d5a90b0701ad746774d45b8",
+      "byte_size": 84308
+    },
+    "denari-contadino": {
+      "path": "scopone-magico/assets/cards/nuove/contadino-denari.webp",
+      "versione": "DE-01",
+      "stato": "PROVVISORIA (BOZZA DA TAVOLA)",
+      "source_png": "DE-01_Denari_prova-tavola4_seduto-moneta.png",
+      "sha256": "594b3c581b742c07bfc554da57f9ecf7cffb28b6b3fdd31fe08e99dc74678815",
+      "byte_size": 109598
+    }
+  },
+  "notes": "Le 40 carte classiche sono adattamenti WebP fedeli ai riferimenti originali nel Drive. Le nuove figure sono usate solo per il tipo contadino. Le altre figure non ancora disegnate visualizzano il numerale storico corrispondente, mantenendo nome, valore e abilita del motore invariati."
+}

@@ -151,6 +151,26 @@ body:has(#menu-view:not([hidden])){overflow-x:hidden}
 @media(max-width:350px){.game-board .hand .card{width:80px;min-width:80px;flex-basis:80px}.game-board .table-cards .card{width:78px;min-width:78px}.game-meta{font-size:9px}.game-board .score small{font-size:9px}}
 @media(max-height:730px) and (max-width:650px){.menu-buttons{margin-top:7dvh}.game-board .table-cards{max-height:29dvh}.game-board .table-zone{min-height:170px}}
 @media(prefers-reduced-motion:reduce){.menu-choice,.hand,.card{scroll-behavior:auto!important;transition:none!important}}
+
+/* Carte V03: 40 artwork napoletani originali, nuove figure in archivio, numerali sostitutivi. */
+.card{overflow:hidden;isolation:isolate;min-height:175px;height:175px;padding:5px;gap:2px}
+.card-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;border-radius:inherit;pointer-events:none;z-index:0}
+.card .top,.card .name,.card .effect,.card .defvalue{position:relative;z-index:1}
+.card .top{align-self:stretch;background:#f9f1e6c9;box-shadow:0 1px 3px #5a40222e;border-radius:4px;padding:1px 2px;line-height:1;min-height:27px}
+.card .value{font-size:21px}.card .suit{font-size:19px}
+.card .name{margin-top:auto;font-size:10px;font-weight:800;line-height:1.1;min-height:0;background:#f9f1e6ed;padding:3px 2px 1px;border-radius:4px 4px 0 0}
+.card .effect{margin-top:0;font-size:8px;line-height:1.1;min-height:26px;max-height:40px;overflow:hidden;background:#f9f1e6f4;border-top:1px solid #bfb092;padding:3px 2px;border-radius:0 0 3px 3px;color:#33261a}
+.card .defvalue{font-size:9px;line-height:1;background:#f9f1e6f4}
+.card .owner{z-index:3}
+.card:disabled{opacity:1;cursor:default}
+.card.interactive.selected{transform:translateY(-6px)}
+@media(max-width:650px){
+ .hand .card{min-width:102px;width:102px;flex:0 0 102px;height:171px}
+ .table-cards .card{min-width:90px;width:90px;height:150px}
+ .card .top{min-height:23px}.card .value{font-size:19px}.card .suit{font-size:17px}
+ .card .name{font-size:9px}.card .effect{font-size:7.5px;max-height:33px;min-height:23px}
+}
+@media(max-height:660px) and (max-width:650px){.hand .card{height:149px}.table-cards .card{height:143px}}
 </style>
 </head>
 <body>
@@ -236,7 +256,21 @@ return {SUITS,TYPES,NUMERALS,cards,rng,start,legalMoves,play,finish,bestMove,val
 <script>
 (function(){'use strict';const E=window.ScoponeEngine;let state=null,selected=null,shown=12,thinking=false,mode='quick',aiPreview=null,aiTimers=[],gameToken=0;const q=id=>document.getElementById(id);const suitmap=Object.fromEntries(E.SUITS.map(s=>[s.id,s]));
 const desc={asso:'Att. 1 · Res. 10',contadino:'ATT. Soglia: con Monaco + Dama vale 16',monaco:'ATT. Affinità: con stesso seme può valere 6',dama:'RES. Gemellanza: con Re le Dame valgono 8',giullare:'ATT. Specchio: Giullari di altro seme valgono 1',alchimista:'RES. Progressione: stesso seme sotto 6 → 6',numerale:'Att. 7 · Res. 7 o numero',fante:'Vale 8',cavallo:'Vale 9',re:'Vale 10'};
-function cardHTML(id,meta,selectable=false){const c=E.cards[id],s=suitmap[c.suit],isNumber=c.type==='numerale';const n=isNumber?c.number:(c.type==='asso'?'A':c.base);const res=meta&&meta.defenseValue!==undefined?`<span class="defvalue">Difesa: ${meta.defenseValue}</span>`:'';const owner=meta&&meta.owner!==undefined?`<span class="owner">${meta.owner===0?'TUA':'COMPUTER'}</span>`:'';return `<button type="button" class="card suit-${c.suit}${selectable?' interactive':''}${selected===id?' selected':''}" ${selectable?`data-card="${id}"`:'disabled'} aria-label="${c.name}, ${desc[c.type]}">${owner}<span class="top"><span class="value">${n}</span><span class="suit" aria-hidden="true">${s.symbol}</span></span><span class="name">${c.name}</span>${res}<span class="effect">${desc[c.type]}</span></button>`;}
+const NEW_CARD_ART={
+  'bastoni-contadino':'assets/cards/nuove/contadino-bastoni.webp',
+  'coppe-contadino':'assets/cards/nuove/contadino-coppe.webp',
+  'spade-contadino':'assets/cards/nuove/contadino-spade.webp',
+  'denari-contadino':'assets/cards/nuove/contadino-denari.webp'
+};
+const CLASSIC_TYPE_NUMBER={asso:1,contadino:2,monaco:3,dama:4,giullare:5,alchimista:6,numerale:7,fante:8,cavallo:9,re:10};
+function cardArtPath(card){
+  if(NEW_CARD_ART[card.id])return NEW_CARD_ART[card.id];
+  // Al posto delle figure ancora da disegnare usa i numerali tradizionali.
+  // Numerale (valore 7) raffigura la cifra storica specifica del suo seme.
+  const n=card.type==='numerale'?card.number:CLASSIC_TYPE_NUMBER[card.type];
+  return `assets/cards/classiche/${card.suit}/${String(n).padStart(2,'0')}.webp`;
+}
+function cardHTML(id,meta,selectable=false){const c=E.cards[id],s=suitmap[c.suit],isNumber=c.type==='numerale';const n=isNumber?c.number:(c.type==='asso'?'A':c.base);const res=meta&&meta.defenseValue!==undefined?`<span class="defvalue">Difesa: ${meta.defenseValue}</span>`:'';const owner=meta&&meta.owner!==undefined?`<span class="owner">${meta.owner===0?'TUA':'COMPUTER'}</span>`:'';return `<button type="button" class="card suit-${c.suit}${selectable?' interactive':''}${selected===id?' selected':''}" ${selectable?`data-card="${id}"`:'disabled'} aria-label="${c.name}, ${desc[c.type]}"><img class="card-art" src="${cardArtPath(c)}" alt="" aria-hidden="true" draggable="false" loading="lazy">${owner}<span class="top"><span class="value">${n}</span><span class="suit" aria-hidden="true">${s.symbol}</span></span><span class="name">${c.name}</span>${res}<span class="effect">${desc[c.type]}</span></button>`;}
 function moveDisplay(m){if(m.kind==='place'){return {title:m.defenseChoice!==undefined?`Deposita · difesa ${m.defenseChoice}`:'Deposita sul tavolo',detail:'Nessuna presa disponibile'};}let title=m.mode==='Identità'?'Presa per identità':`Presa ${m.mode==='Base'?'per valore':m.mode} · ${m.attack}`;const names=m.take.map(id=>E.cards[id].name).join(' + ');return{title,detail:`${m.take.length} ${m.take.length===1?'carta':'carte'}: ${names}${state.table.length===m.take.length?' · SCOPA!':''}`};}
 function msg(v){q('message').textContent=v;}
 function render(){q('my-cards').textContent=state.captured[0].length;q('ai-cards').textContent=state.captured[1].length;q('my-scopes').textContent=`${state.scopes[0]} scope`;q('ai-scopes').textContent=`${state.scopes[1]} scope`;q('round').textContent=`${state.plays} / ${state.totalPlays}`;q('deck-left').textContent=state.mode==='draw'?String(state.deck.length):'—';q('next').textContent=state.finished?'Fine partita':(state.turn===0?'Il tuo turno':'Turno computer');q('my-left').textContent=`${state.hands[0].length} carte`;q('ai-left').textContent=`${state.hands[1].length} carte`;
