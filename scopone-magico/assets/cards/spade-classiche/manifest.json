@@ -1,0 +1,112 @@
+{
+  "name": "Spade classiche",
+  "suit": "spade",
+  "status": "pending_approval",
+  "artistMode": "authentic-pixel-perfect-original",
+  "source": {
+    "url": "https://github.com/OMerkel/scopa_marco/tree/master/data/cards/Napoletane",
+    "license": "public domain per source README",
+    "suffix": "s.jpg"
+  },
+  "format": {
+    "width": 600,
+    "height": 1000,
+    "background": "#F8F2E7",
+    "effectBandStartY": 750,
+    "alchemyMark": "divisor only",
+    "textLayers": "separate HTML",
+    "originalRastersUnchanged": true
+  },
+  "cards": [
+    {
+      "id": "S01",
+      "slug": "asso",
+      "name": "Asso",
+      "rank": 1,
+      "original": "S01-asso-originale.jpg",
+      "game": "S01-asso-gioco.svg",
+      "source": "1s.jpg"
+    },
+    {
+      "id": "S02",
+      "slug": "due",
+      "name": "Due",
+      "rank": 2,
+      "original": "S02-due-originale.jpg",
+      "game": "S02-due-gioco.svg",
+      "source": "2s.jpg"
+    },
+    {
+      "id": "S03",
+      "slug": "tre",
+      "name": "Tre",
+      "rank": 3,
+      "original": "S03-tre-originale.jpg",
+      "game": "S03-tre-gioco.svg",
+      "source": "3s.jpg"
+    },
+    {
+      "id": "S04",
+      "slug": "quattro",
+      "name": "Quattro",
+      "rank": 4,
+      "original": "S04-quattro-originale.jpg",
+      "game": "S04-quattro-gioco.svg",
+      "source": "4s.jpg"
+    },
+    {
+      "id": "S05",
+      "slug": "cinque",
+      "name": "Cinque",
+      "rank": 5,
+      "original": "S05-cinque-originale.jpg",
+      "game": "S05-cinque-gioco.svg",
+      "source": "5s.jpg"
+    },
+    {
+      "id": "S06",
+      "slug": "sei",
+      "name": "Sei",
+      "rank": 6,
+      "original": "S06-sei-originale.jpg",
+      "game": "S06-sei-gioco.svg",
+      "source": "6s.jpg"
+    },
+    {
+      "id": "S07",
+      "slug": "sette",
+      "name": "Sette",
+      "rank": 7,
+      "original": "S07-sette-originale.jpg",
+      "game": "S07-sette-gioco.svg",
+      "source": "7s.jpg"
+    },
+    {
+      "id": "S08",
+      "slug": "fante",
+      "name": "Fante",
+      "rank": 8,
+      "original": "S08-fante-originale.jpg",
+      "game": "S08-fante-gioco.svg",
+      "source": "8s.jpg"
+    },
+    {
+      "id": "S09",
+      "slug": "cavallo",
+      "name": "Cavallo",
+      "rank": 9,
+      "original": "S09-cavallo-originale.jpg",
+      "game": "S09-cavallo-gioco.svg",
+      "source": "9s.jpg"
+    },
+    {
+      "id": "S10",
+      "slug": "re",
+      "name": "Re",
+      "rank": 10,
+      "original": "S10-re-originale.jpg",
+      "game": "S10-re-gioco.svg",
+      "source": "10s.jpg"
+    }
+  ]
+}
