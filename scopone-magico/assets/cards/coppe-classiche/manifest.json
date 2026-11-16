@@ -1,0 +1,112 @@
+{
+  "title": "Scopone Alchemico — Coppe classiche",
+  "status": "approval_pending",
+  "source": {
+    "repository": "OMerkel/scopa_marco",
+    "subfolder": "data/cards/Napoletane",
+    "license": "Public domain (per README della repository)",
+    "commons": "https://commons.wikimedia.org/wiki/Category:Naples_deck"
+  },
+  "render": {
+    "width": 600,
+    "height": 1000,
+    "imageEmbedded": true,
+    "originalExact": true,
+    "bg": "#F8F2E7",
+    "effectBandStart": 750,
+    "alchemySeal": "external to source",
+    "effectsText": "html/css"
+  },
+  "cards": [
+    {
+      "id": "C01",
+      "suit": "coppe",
+      "name": "Asso",
+      "rank": 1,
+      "source": "1c.jpg",
+      "original": "C01-asso-originale.jpg",
+      "game": "C01-asso-gioco.svg"
+    },
+    {
+      "id": "C02",
+      "suit": "coppe",
+      "name": "Due",
+      "rank": 2,
+      "source": "2c.jpg",
+      "original": "C02-due-originale.jpg",
+      "game": "C02-due-gioco.svg"
+    },
+    {
+      "id": "C03",
+      "suit": "coppe",
+      "name": "Tre",
+      "rank": 3,
+      "source": "3c.jpg",
+      "original": "C03-tre-originale.jpg",
+      "game": "C03-tre-gioco.svg"
+    },
+    {
+      "id": "C04",
+      "suit": "coppe",
+      "name": "Quattro",
+      "rank": 4,
+      "source": "4c.jpg",
+      "original": "C04-quattro-originale.jpg",
+      "game": "C04-quattro-gioco.svg"
+    },
+    {
+      "id": "C05",
+      "suit": "coppe",
+      "name": "Cinque",
+      "rank": 5,
+      "source": "5c.jpg",
+      "original": "C05-cinque-originale.jpg",
+      "game": "C05-cinque-gioco.svg"
+    },
+    {
+      "id": "C06",
+      "suit": "coppe",
+      "name": "Sei",
+      "rank": 6,
+      "source": "6c.jpg",
+      "original": "C06-sei-originale.jpg",
+      "game": "C06-sei-gioco.svg"
+    },
+    {
+      "id": "C07",
+      "suit": "coppe",
+      "name": "Sette",
+      "rank": 7,
+      "source": "7c.jpg",
+      "original": "C07-sette-originale.jpg",
+      "game": "C07-sette-gioco.svg"
+    },
+    {
+      "id": "C08",
+      "suit": "coppe",
+      "name": "Fante",
+      "rank": 8,
+      "source": "8c.jpg",
+      "original": "C08-fante-originale.jpg",
+      "game": "C08-fante-gioco.svg"
+    },
+    {
+      "id": "C09",
+      "suit": "coppe",
+      "name": "Cavallo",
+      "rank": 9,
+      "source": "9c.jpg",
+      "original": "C09-cavallo-originale.jpg",
+      "game": "C09-cavallo-gioco.svg"
+    },
+    {
+      "id": "C10",
+      "suit": "coppe",
+      "name": "Re",
+      "rank": 10,
+      "source": "10c.jpg",
+      "original": "C10-re-originale.jpg",
+      "game": "C10-re-gioco.svg"
+    }
+  ]
+}
