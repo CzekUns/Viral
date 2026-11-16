@@ -171,6 +171,149 @@ body:has(#menu-view:not([hidden])){overflow-x:hidden}
  .card .name{font-size:9px}.card .effect{font-size:7.5px;max-height:33px;min-height:23px}
 }
 @media(max-height:660px) and (max-width:650px){.hand .card{height:149px}.table-cards .card{height:143px}}
+
+/* V04 — Tavolo in un'unica schermata smartphone. Le sole aree scorrevoli
+   sono il tavolo, le opzioni (se molte) e la mano, mai l'intera pagina. */
+@media (max-width:820px){
+ html:has(#game-view:not([hidden])),body:has(#game-view:not([hidden])){
+  height:100%;overflow:hidden;overscroll-behavior:none;
+ }
+ #game-view.game-screen{
+  display:flex;flex-direction:column;overflow:hidden;
+  height:100dvh;min-height:0;max-height:100dvh;
+  padding-bottom:env(safe-area-inset-bottom);
+ }
+ .game-topbar{
+  width:100%;flex:0 0 auto;min-height:0;
+  padding:calc(3px + env(safe-area-inset-top)) 7px 3px;
+ }
+ .game-topbar .controls button{
+  min-height:31px;padding:3px 6px;font-size:11px;
+ }
+ .game-topbar .controls #full-btn{width:32px;min-width:32px}
+ .game-topbar .menu-return{min-width:51px;font-size:11px}
+ .game-meta{font-size:10px;line-height:1.15;gap:1px}
+ .game-board{
+  width:100%;flex:1 1 auto;min-height:0;max-height:none;
+  display:flex;flex-direction:column;overflow:hidden;
+  gap:4px;padding:2px max(6px,env(safe-area-inset-right)) 5px max(6px,env(safe-area-inset-left));
+ }
+ .game-board .scoreboard{flex:0 0 auto;gap:4px}
+ .game-board .score{padding:3px 5px;border-radius:6px;min-width:0}
+ .game-board .score strong{font-size:16px;line-height:1.05}
+ .game-board .score small{font-size:9px;line-height:1.14}
+ .game-board .turn-banner{
+  flex:0 0 auto;min-height:0;max-height:37px;overflow:hidden;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
+  padding:4px 7px;font-size:10px;line-height:1.25;border-radius:6px;
+ }
+ .game-board .zone{padding:4px 6px;border-radius:8px;min-height:0}
+ .game-board .zone-head{margin:0 0 3px;gap:5px;min-height:15px}
+ .game-board .zone-head h2{font-size:11px;line-height:1.15}
+ .game-board .zone-head span{font-size:10px}
+ .game-board .opponent-zone{flex:0 0 auto;overflow:hidden}
+ .game-board .opponent-backs{
+  gap:3px;min-height:30px;height:30px;align-items:center;
+ }
+ .game-board .card-back{
+  flex:0 0 22px;min-width:0;max-width:22px;width:22px;height:29px;
+  border-width:1px;border-radius:4px;font-size:11px;
+ }
+ .game-board .table-zone{
+  flex:1 1 0;min-height:0;max-height:none;
+  display:flex;flex-direction:column;overflow:hidden;
+ }
+ .game-board .table-cards{
+  flex:1 1 auto;min-height:0;max-height:none;
+  overflow-y:auto;overflow-x:hidden;
+  padding:5px 2px 7px;gap:5px;align-content:start;
+  overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+ }
+ .game-board .table-cards > div{flex:0 0 auto;min-width:0}
+ .game-board .options{
+  flex:0 1 auto;min-height:39px;max-height:min(19dvh,135px);
+  overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+  padding:5px 7px;border-radius:8px;
+ }
+ .game-board .options-title{font-size:11px;line-height:1.15;margin:0 0 3px}
+ .game-board .options-help{font-size:10px;line-height:1.25}
+ .game-board .move-list{max-height:none;gap:4px}
+ .game-board .move{min-width:0;min-height:32px;max-width:calc(50% - 2px);padding:4px 6px;border-radius:6px}
+ .game-board .move strong{font-size:10px;line-height:1.1}
+ .game-board .move small{font-size:9px;line-height:1.2;margin-top:2px}
+ .game-board .hand-zone{
+  position:relative;bottom:auto;z-index:2;
+  flex:0 0 auto;min-height:0;min-width:0;
+  padding:4px 5px 3px;border-width:1px;border-radius:8px;
+  box-shadow:0 -2px 10px #52321d33;
+ }
+ .game-board .hand-zone .zone-head{margin:0 0 1px}
+ .game-board .hand-controls{gap:5px}
+ .game-board .hand-hint{font-size:9px}
+ .game-board .hand-arrow{width:26px;height:25px;border-radius:5px;font-size:19px}
+ .game-board .hand{
+  flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+  min-height:0;max-height:none;gap:5px;
+  padding:5px 3px 4px;scroll-padding-inline:5px;
+ }
+ .game-board .hand .card{
+  box-sizing:border-box;flex:0 0 var(--hand-card-width);
+  width:var(--hand-card-width);min-width:var(--hand-card-width);
+  height:calc(var(--hand-card-width) * 1.60);min-height:0;
+ }
+ .game-board .table-cards .card,
+ .game-board .ai-preview-slot .card{
+  box-sizing:border-box;
+  width:var(--table-card-width);min-width:var(--table-card-width);
+  height:calc(var(--table-card-width) * 1.60);min-height:0;
+ }
+ .game-board .card{
+  padding:2px;gap:1px;min-height:0;border-width:1px;border-radius:5px;
+ }
+ .game-board .card .top{min-height:18px;padding:1px 2px}
+ .game-board .card .value{font-size:17px}
+ .game-board .card .suit{font-size:13px}
+ .game-board .card .name{
+  font-size:7.5px;line-height:1.05;
+  padding:2px 2px 1px;min-height:0;
+ }
+ .game-board .card .effect{
+  font-size:7px;line-height:1.06;
+  padding:2px;min-height:0;max-height:31px;
+ }
+ .game-board .card .defvalue{font-size:8px;padding:1px 2px}
+ .game-board .card .owner{top:-10px;font-size:7px}
+ .game-board .table-cards .card .effect{font-size:6.6px;max-height:23px}
+ .game-board .table-cards .card .name{font-size:7px}
+ .game-board .card.interactive.selected{transform:translateY(-2px)}
+ .game-board .ai-preview-slot{
+  flex:0 0 auto;min-width:0;padding:3px;gap:2px;border-width:1px;border-radius:6px;
+ }
+ .game-board .ai-preview-slot .preview-label{font-size:8px;max-width:var(--table-card-width)}
+ .game-board .history-zone,.game-board .footer{display:none}
+ .game-board .empty{padding:8px;font-size:10px}
+ :root{--hand-card-width:clamp(65px,19.4vw,86px);--table-card-width:clamp(58px,17.5vw,80px)}
+ #options{scroll-margin-bottom:0}
+ dialog{max-height:calc(100dvh - 24px);overflow-y:auto}
+}
+@media (max-width:820px) and (max-height:740px){
+ .game-board{gap:3px}
+ .game-board .score strong{font-size:14px}
+ .game-board .score small{font-size:8px}
+ .game-board .card-back{height:25px}
+ .game-board .opponent-backs{min-height:26px;height:26px}
+ .game-board .hand{padding-block:3px}
+ .game-board .options{max-height:16dvh}
+ :root{--hand-card-width:clamp(61px,18.5vw,75px);--table-card-width:clamp(55px,16.8vw,71px)}
+}
+@media (max-width:820px) and (max-height:590px){
+ .game-board .turn-banner{-webkit-line-clamp:1;max-height:21px}
+ .game-board .opponent-backs{min-height:20px;height:20px}
+ .game-board .card-back{height:19px;flex-basis:18px}
+ .game-board .zone-head{margin:0}
+ .game-board .options{max-height:14dvh}
+ :root{--hand-card-width:clamp(53px,16vw,68px);--table-card-width:clamp(48px,14.6vw,60px)}
+}
 </style>
 </head>
 <body>
@@ -298,7 +441,7 @@ async function toggleFullscreen(){try{if(document.fullscreenElement||document.we
 let swipeX=0,swipeY=0,swipeDetected=false;
 q('hand').addEventListener('touchstart',ev=>{if(ev.touches.length!==1)return;swipeX=ev.touches[0].clientX;swipeY=ev.touches[0].clientY;swipeDetected=false;},{passive:true});
 q('hand').addEventListener('touchmove',ev=>{if(ev.touches.length!==1)return;const dx=Math.abs(ev.touches[0].clientX-swipeX),dy=Math.abs(ev.touches[0].clientY-swipeY);if(dx>10&&dx>dy)swipeDetected=true;},{passive:true});
-q('hand').addEventListener('click',ev=>{if(swipeDetected){swipeDetected=false;ev.preventDefault();return;}const el=ev.target.closest('[data-card]');if(!el||thinking||state.finished||state.turn!==0)return;const id=el.dataset.card;selected=selected===id?null:id;shown=12;render();if(window.matchMedia('(max-width:650px)').matches)q('options').scrollIntoView({block:'nearest',behavior:'smooth'});});
+q('hand').addEventListener('click',ev=>{if(swipeDetected){swipeDetected=false;ev.preventDefault();return;}const el=ev.target.closest('[data-card]');if(!el||thinking||state.finished||state.turn!==0)return;const id=el.dataset.card;selected=selected===id?null:id;shown=12;render();if(window.matchMedia('(max-width:820px)').matches)q('options').scrollTop=0;});
 q('hand').addEventListener('scroll',updateHandControls,{passive:true});
 q('hand-prev').addEventListener('click',()=>q('hand').scrollBy({left:-Math.max(140,q('hand').clientWidth*.7),behavior:'smooth'}));
 q('hand-next').addEventListener('click',()=>q('hand').scrollBy({left:Math.max(140,q('hand').clientWidth*.7),behavior:'smooth'}));
