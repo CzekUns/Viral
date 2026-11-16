@@ -1,0 +1,112 @@
+{
+  "title": "Scopone Alchemico — Bastoni classiche",
+  "status": "approval_pending",
+  "source": {
+    "repository": "OMerkel/scopa_marco",
+    "path": "data/cards/Napoletane",
+    "license": "public domain",
+    "originalReference": "https://commons.wikimedia.org/wiki/File:Carte_da_gioco_napoletane_bastoni.jpg"
+  },
+  "format": {
+    "type": "self-contained SVG",
+    "width": 600,
+    "height": 1000,
+    "effectBandStart": 750,
+    "effectBandHeight": 250,
+    "background": "#F8F2E7",
+    "alchemyMark": "discreet seal at y=750; separate SVG graphics",
+    "textEffects": "external HTML"
+  },
+  "cards": [
+    {
+      "id": "B01",
+      "suit": "bastoni",
+      "value": 1,
+      "rank": "Asso",
+      "sourceFilename": "1b.jpg",
+      "original": "B01-asso-originale.jpg",
+      "game": "B01-asso-gioco.svg"
+    },
+    {
+      "id": "B02",
+      "suit": "bastoni",
+      "value": 2,
+      "rank": "Due",
+      "sourceFilename": "2b.jpg",
+      "original": "B02-due-originale.jpg",
+      "game": "B02-due-gioco.svg"
+    },
+    {
+      "id": "B03",
+      "suit": "bastoni",
+      "value": 3,
+      "rank": "Tre",
+      "sourceFilename": "3b.jpg",
+      "original": "B03-tre-originale.jpg",
+      "game": "B03-tre-gioco.svg"
+    },
+    {
+      "id": "B04",
+      "suit": "bastoni",
+      "value": 4,
+      "rank": "Quattro",
+      "sourceFilename": "4b.jpg",
+      "original": "B04-quattro-originale.jpg",
+      "game": "B04-quattro-gioco.svg"
+    },
+    {
+      "id": "B05",
+      "suit": "bastoni",
+      "value": 5,
+      "rank": "Cinque",
+      "sourceFilename": "5b.jpg",
+      "original": "B05-cinque-originale.jpg",
+      "game": "B05-cinque-gioco.svg"
+    },
+    {
+      "id": "B06",
+      "suit": "bastoni",
+      "value": 6,
+      "rank": "Sei",
+      "sourceFilename": "6b.jpg",
+      "original": "B06-sei-originale.jpg",
+      "game": "B06-sei-gioco.svg"
+    },
+    {
+      "id": "B07",
+      "suit": "bastoni",
+      "value": 7,
+      "rank": "Sette",
+      "sourceFilename": "7b.jpg",
+      "original": "B07-sette-originale.jpg",
+      "game": "B07-sette-gioco.svg"
+    },
+    {
+      "id": "B08",
+      "suit": "bastoni",
+      "value": 8,
+      "rank": "Fante",
+      "sourceFilename": "8b.jpg",
+      "original": "B08-fante-originale.jpg",
+      "game": "B08-fante-gioco.svg"
+    },
+    {
+      "id": "B09",
+      "suit": "bastoni",
+      "value": 9,
+      "rank": "Cavallo",
+      "sourceFilename": "9b.jpg",
+      "original": "B09-cavallo-originale.jpg",
+      "game": "B09-cavallo-gioco.svg"
+    },
+    {
+      "id": "B10",
+      "suit": "bastoni",
+      "value": 10,
+      "rank": "Re",
+      "sourceFilename": "10b.jpg",
+      "original": "B10-re-originale.jpg",
+      "game": "B10-re-gioco.svg"
+    }
+  ]
+}
