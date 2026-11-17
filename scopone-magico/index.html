@@ -433,6 +433,38 @@ body:has(#menu-view:not([hidden])){overflow-x:hidden}
  .game-board .card .name{font-size:8.5px}
  .game-board .table-cards .card .name{font-size:8px}
 }
+
+/* V07: fronti originali puliti e fondo avorio anticato uniforme. */
+.game-board .card,
+.game-board .card.suit-coppe,
+.game-board .card.suit-bastoni,
+.game-board .card.suit-spade,
+.game-board .card.suit-denari {
+  background:#f9f1e6;
+  border-color:#ab9878;
+}
+.game-board .card-art {
+  object-fit:contain;
+  object-position:center;
+  background:#f9f1e6;
+}
+.game-board .selected-card-preview {background:#f9f1e6;object-fit:contain}
+.game-board .card .top,
+.game-board .card .name,
+.game-board .card .owner,
+.game-board .card .effect {display:none!important}
+.game-board .card .defvalue {
+  position:absolute;right:2px;bottom:3px;left:auto;top:auto;
+  margin:0;padding:2px 3px;
+  border:1px solid #b5a17b;border-radius:3px;
+  background:#f9f1e6f0;color:#473222;font-size:9px;
+  font-weight:800;line-height:1.1;max-width:90%;
+  z-index:2;pointer-events:none;
+}
+.game-board .card.interactive.selected {
+  border-color:#e3bd62!important;
+  box-shadow:0 0 0 2px #ffdd77,0 4px 13px #38211b66;
+}
 </style>
 </head>
 <body>
@@ -528,12 +560,22 @@ const NEW_CARD_ART={
 const CLASSIC_TYPE_NUMBER={asso:1,contadino:2,monaco:3,dama:4,giullare:5,alchimista:6,numerale:7,fante:8,cavallo:9,re:10};
 function cardArtPath(card){
   if(NEW_CARD_ART[card.id])return NEW_CARD_ART[card.id];
-  // Al posto delle figure ancora da disegnare usa i numerali tradizionali.
-  // Numerale (valore 7) raffigura la cifra storica specifica del suo seme.
+  // Per le figure non ancora disegnate usiamo temporaneamente i numerali del seme.
   const n=card.type==='numerale'?card.number:CLASSIC_TYPE_NUMBER[card.type];
-  return `assets/cards/classiche/${card.suit}/${String(n).padStart(2,'0')}.webp`;
+  const folder=card.suit==='spade'?'v07-anticate/spade':`classiche/${card.suit}`;
+  return `assets/cards/${folder}/${String(n).padStart(2,'0')}.webp`;
 }
-function cardHTML(id,meta,selectable=false){const c=E.cards[id],s=suitmap[c.suit],isNumber=c.type==='numerale';const n=isNumber?c.number:(c.type==='asso'?'A':c.base);const res=meta&&meta.defenseValue!==undefined?`<span class="defvalue">Difesa: ${meta.defenseValue}</span>`:'';const owner=meta&&meta.owner!==undefined?`<span class="owner">${meta.owner===0?'TUA':'COMPUTER'}</span>`:'';return `<button type="button" class="card suit-${c.suit}${selectable?' interactive':''}${selected===id?' selected':''}" ${selectable?`data-card="${id}"`:'disabled'} aria-label="${c.name}, ${desc[c.type]}"><img class="card-art" src="${cardArtPath(c)}" alt="" aria-hidden="true" draggable="false" loading="lazy">${owner}<span class="top"><span class="value">${n}</span><span class="suit" aria-hidden="true">${s.symbol}</span></span><span class="name">${c.name}</span>${res}</button>`;}
+function cardHTML(id,meta,selectable=false){
+  const c=E.cards[id];
+  // Il fronte resta la carta napoletana originale: niente nome, seme o valore sovrapposti.
+  // Soltanto una difesa modificata da effetti/una scelta alternativa viene segnalata.
+  const unusualDefense=meta&&meta.defenseValue!==undefined&&c.type!=='asso'&&meta.defenseValue!==c.base;
+  const badge=unusualDefense?`<span class="defvalue" aria-label="Difesa effettiva ${meta.defenseValue}">Dif. ${meta.defenseValue}</span>`:'';
+  const who=meta?.owner===0?' · giocata da te':meta?.owner===1?' · giocata dal computer':'';
+  const def=meta?.defenseValue!==undefined?` · difesa ${meta.defenseValue}`:'';
+  const accessibility=`${c.name} · ${desc[c.type]}${who}${def}`;
+  return `<button type="button" class="card suit-${c.suit}${selectable?' interactive':''}${selected===id?' selected':''}" ${selectable?`data-card="${id}"`:'disabled'} aria-label="${escapeHtml(accessibility)}"><img class="card-art" src="${cardArtPath(c)}" alt="" aria-hidden="true" draggable="false" loading="lazy">${badge}</button>`;
+}
 function moveDisplay(m){if(m.kind==='place'){return {title:m.defenseChoice!==undefined?`Deposita · difesa ${m.defenseChoice}`:'Deposita sul tavolo',detail:'Nessuna presa disponibile'};}let title=m.mode==='Identità'?'Presa per identità':`Presa ${m.mode==='Base'?'per valore':m.mode} · ${m.attack}`;const names=m.take.map(id=>E.cards[id].name).join(' + ');return{title,detail:`${m.take.length} ${m.take.length===1?'carta':'carte'}: ${names}${state.table.length===m.take.length?' · SCOPA!':''}`};}
 function msg(v){q('message').textContent=v;}
 function render(){q('my-cards').textContent=state.captured[0].length;q('ai-cards').textContent=state.captured[1].length;q('my-scopes').textContent=`${state.scopes[0]} scope`;q('ai-scopes').textContent=`${state.scopes[1]} scope`;q('round').textContent=`${state.plays} / ${state.totalPlays}`;q('deck-left').textContent=state.mode==='draw'?String(state.deck.length):'—';q('next').textContent=state.finished?'Fine partita':(state.turn===0?'Il tuo turno':'Turno computer');q('my-left').textContent=`${state.hands[0].length} carte`;q('ai-left').textContent=`${state.hands[1].length} carte`;
