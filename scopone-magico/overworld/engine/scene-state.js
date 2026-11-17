@@ -4,7 +4,7 @@ export const STORAGE_V2='scopone-alchemico:overworld:v2';
 export function defaultState(external,internal){
   const a=external.entrance(external.manifest.start.zone,external.manifest.start.entrance);
   const b=internal.entrance(internal.manifest.start.zone,internal.manifest.start.entrance);
-  return {version:2,scene:'outside',cityId:null,outside:{...a,zoom:.88},inside:{...b,zoom:1.08}};
+  return {version:2,scene:'outside',cityId:null,outside:{...a,zoom:external.manifest.view?.zoom??.88},inside:{...b,zoom:internal.manifest.view?.zoom??1.08}};
 }
 export function restoreState(v2,v1,external,internal){
   const state=defaultState(external,internal);

@@ -4,23 +4,114 @@ import {IsoRenderer} from './renderer.js';
 import {TouchControls} from './controls.js';
 import {findPath} from './pathfinding.js';
 import {screenDirectionToWorld,normalize,clamp} from './geometry.js';
+import {STORAGE_V1,STORAGE_V2,restoreState,encodeState,cityOnTile} from './scene-state.js';
 
-const STORAGE='scopone-alchemico:overworld:v1';
 const $=id=>document.getElementById(id);
 const canvas=$('world-canvas'),status=$('status'),loading=$('loading');
 const debug=new URL(location.href).searchParams.has('debug');
-let world,assets,renderer,controls;
+let worlds,world,assets,renderer,controls,state;
 const lifecycle={active:true,fade:false,lastZone:null,path:[],destination:null,lastSave:0,lastFrame:0,raf:0};
-const player={x:16.5,y:16.5,facing:'SE',assetId:'player',animation:'idle',animationTime:0,renderWidth:110,renderHeight:110,speed:3.1,height:0};
+const player={x:0,y:0,facing:'SE',assetId:'player',animation:'idle',animationTime:0,renderWidth:48,renderHeight:48,speed:4.1,height:0};
 const hooks=new Map();
 function emit(name,detail){
  for(const fn of hooks.get(name)||[])try{fn(detail);}catch(e){console.error('Overworld listener error',e);}
  document.dispatchEvent(new CustomEvent('scopone:overworld:'+name,{detail}));
 }
-function subscribe(name,fn){if(!hooks.has(name))hooks.set(name,new Set());hooks.get(name).add(fn);return()=>hooks.get(name).delete(fn);}
-function restore(){try{const s=JSON.parse(localStorage.getItem(STORAGE)||'null');if(s?.version===1&&Number.isFinite(s.x)&&Number.isFinite(s.y)&&world.canStand(s.x,s.y)){player.x=s.x;player.y=s.y;return true;}}catch(e){console.warn('Unable to restore overworld',e);}return false;}
+function subscribe(name,fn){
+ if(!hooks.has(name))hooks.set(name,new Set());
+ hooks.get(name).add(fn);return()=>hooks.get(name).delete(fn);
+}
+function readSave(key){
+ try{return JSON.parse(localStorage.getItem(key)||'null');}
+ catch(e){console.warn('Invalid overworld save',e);return null;}
+}
+function cityById(id){return worlds.outside.manifest.cities?.find(c=>c.id===id)||null;}
+function syncPosition(){
+ if(!state||!renderer)return;
+ const slot=state.scene==='outside'?'outside':'inside';
+ state[slot]={x:player.x,y:player.y,zoom:renderer.camera.zoom};
+}
 function save(){
- try{const zone=world.globalPositionToZone(player.x,player.y);localStorage.setItem(STORAGE,JSON.stringify({version:1,x:player.x,y:player.y,zone:zone?.zone||null,zoom:renderer.camera.zoom,lastPlayed:Date.now()}));}catch(e){console.warn('Unable to persist overworld',e);}
+ if(!state)return;
+ syncPosition();
+ try{localStorage.setItem(STORAGE_V2,JSON.stringify(encodeState(state)));}
+ catch(e){console.warn('Unable to save overworld',e);}
+}
+function applyScene(){
+ world=worlds[state.scene];
+ renderer.world=world;
+ const slot=state.scene==='outside'?'outside':'inside';
+ const view=world.manifest.view||{};
+ const p=state[slot];player.x=p.x;player.y=p.y;
+ const size=view.playerSize||[110,110];
+ player.renderWidth=size[0];player.renderHeight=size[1];
+ player.speed=world.manifest.walkSpeedTilesPerSec||3.1;
+ renderer.setZoom(p.zoom??view.zoom??1);
+ renderer.camera.x=player.x;renderer.camera.y=player.y;
+ renderer.exitMarker=state.scene==='city'?cityById(state.cityId)?.exitInside&&{
+   x:cityById(state.cityId).exitInside[0],y:cityById(state.cityId).exitInside[1]
+ }:null;
+ lifecycle.path=[];lifecycle.destination=null;lifecycle.lastZone=null;
+ player.animation='idle';player.animationTime=0;
+ world.prefetchNear(player.x,player.y,2);
+ $('overworld').classList.toggle('city-scene',state.scene==='city');
+ $('leave-city').hidden=state.scene!=='city';
+}
+function updateHud(){
+ if(state.scene==='outside'){
+  $('zone-name').textContent='Campania';
+  document.querySelector('.mode-tag').textContent='ESTERNO';
+  status.textContent='Esplora il golfo e raggiungi una città';
+ }else{
+  $('zone-name').textContent=cityById(state.cityId)?.name||'Città';
+  document.querySelector('.mode-tag').textContent='CITTÀ';
+  status.textContent='Città vuota · raggiungi USCITA o usa il pulsante';
+ }
+}
+async function transition(next){
+ if(lifecycle.fade)return false;
+ lifecycle.fade=true;
+ const veil=$('transition-veil');veil.classList.add('active');
+ await new Promise(r=>setTimeout(r,200));
+ try{
+  next();applyScene();updateHud();save();
+  emit('scenechange',{scene:state.scene,cityId:state.cityId,position:position()});
+ }finally{
+  veil.classList.remove('active');
+  await new Promise(r=>setTimeout(r,200));lifecycle.fade=false;
+ }
+ return true;
+}
+function enterCity(id){
+ if(state.scene!=='outside'||!cityById(id)||lifecycle.fade)return Promise.resolve(false);
+ return transition(()=>{
+  syncPosition();
+  const city=cityById(id),entry=worlds.city.entrance(city.entry.zone,city.entry.entrance);
+  state.cityId=id;state.scene='city';
+  state.inside={x:entry.x,y:entry.y,zoom:worlds.city.manifest.view?.zoom??1.08};
+  emit('cityenter',{id,name:city.name});
+ });
+}
+function leaveCity(){
+ if(state.scene!=='city'||lifecycle.fade)return Promise.resolve(false);
+ return transition(()=>{
+  syncPosition();const city=cityById(state.cityId);
+  const previous=state.cityId;
+  state.outside.x=city.returnOutside[0];state.outside.y=city.returnOutside[1];
+  state.scene='outside';state.cityId=null;
+  emit('cityexit',{id:previous});
+ });
+}
+// Legacy portal API remains available for the original A/B/C/D city grid.
+async function travelPortal(zoneId,entranceId='start'){
+ if(state.scene!=='city'||lifecycle.fade)return false;
+ const target=world.entrance(zoneId,entranceId);
+ if(!world.canStand(target.x,target.y))return false;
+ return transition(()=>{
+  player.x=target.x;player.y=target.y;
+  state.inside.x=target.x;state.inside.y=target.y;
+  emit('portal',{zoneId,entranceId,position:{x:player.x,y:player.y}});
+ });
 }
 function facingFromScreen(dx,dy){
  const angle=(Math.atan2(dy,dx)*180/Math.PI+360)%360;
@@ -29,42 +120,27 @@ function facingFromScreen(dx,dy){
 function tryMove(dx,dy){
  const x=player.x,y=player.y;
  if(world.canStand(x+dx,y+dy)){player.x+=dx;player.y+=dy;return true;}
- // Optional slide along blocked cells, without changing the logical grid.
  let changed=false;
  if(world.canStand(x+dx,y)){player.x+=dx;changed=true;}
  if(world.canStand(player.x,y+dy)){player.y+=dy;changed=true;}
  return changed;
 }
-async function travelPortal(zoneId,entranceId='start'){
- if(lifecycle.fade)return false;
- const target=world.entrance(zoneId,entranceId);
- if(!world.canStand(target.x,target.y))return false;
- lifecycle.fade=true;lifecycle.path=[];lifecycle.destination=null;
- const veil=$('transition-veil');veil.classList.add('active');
- await new Promise(r=>setTimeout(r,200));
- player.x=target.x;player.y=target.y;
- world.prefetchNear(player.x,player.y,2);renderer.follow(player,1,true);
- emit('portal',{zoneId,entranceId,position:{x:player.x,y:player.y}});
- save();veil.classList.remove('active');
- await new Promise(r=>setTimeout(r,200));lifecycle.fade=false;return true;
-}
 function enterZone(){
  const here=world.globalPositionToZone(player.x,player.y);if(!here)return;
  if(here.zone!==lifecycle.lastZone){
   const previous=lifecycle.lastZone;lifecycle.lastZone=here.zone;
-  $('zone-name').textContent=`Zona ${here.zone}`;
-  emit('zonechange',{from:previous,to:here.zone,position:{x:player.x,y:player.y}});
+  emit('zonechange',{from:previous,to:here.zone,scene:state.scene,position:{x:player.x,y:player.y}});
  }
 }
 function update(dt){
  if(lifecycle.fade)return;
- let motion=controls.getVector();let move;
+ let motion=controls.getVector(),move;
  if(motion.x||motion.y){
   lifecycle.path=[];lifecycle.destination=null;
   move=screenDirectionToWorld(motion.x,motion.y,world.manifest.allowDiagonal!==false);
   player.facing=facingFromScreen(motion.x,motion.y);
  }else if(lifecycle.path.length){
-  const next=lifecycle.path[0];const dx=next.x-player.x,dy=next.y-player.y,dist=Math.hypot(dx,dy);
+  const next=lifecycle.path[0],dx=next.x-player.x,dy=next.y-player.y,dist=Math.hypot(dx,dy);
   if(dist<.06){lifecycle.path.shift();if(!lifecycle.path.length)lifecycle.destination=null;}
   else{
    move=normalize(dx,dy);
@@ -74,17 +150,27 @@ function update(dt){
   }
  }
  const previousAnimation=player.animation;
- if(move){const moved=tryMove(move.x*player.speed*dt,move.y*player.speed*dt);
-  player.animation=moved?'walk':'idle';if(!moved){lifecycle.path=[];lifecycle.destination=null;}
+ if(move){
+  const moved=tryMove(move.x*player.speed*dt,move.y*player.speed*dt);
+  player.animation=moved?'walk':'idle';
+  if(!moved){lifecycle.path=[];lifecycle.destination=null;}
  }else player.animation='idle';
- // Re-start an animation when the character changes from idle to walk.
  player.animationTime=previousAnimation===player.animation?player.animationTime+dt:0;
- world.prefetchNear(player.x,player.y,1);
- enterZone();
- const portal=world.getPortalAt(player.x,player.y);
- if(portal&&portal.active)travelPortal(portal.toZone,portal.entrance);
- lifecycle.lastSave+=dt;if(lifecycle.lastSave>1.2){save();lifecycle.lastSave=0;}
- if(debug){$('debug-data').textContent=`${player.x.toFixed(2)}, ${player.y.toFixed(2)} · ${world.globalPositionToZone(player.x,player.y)?.zone} · chunk ${world.preloaded.size}`;}
+ world.prefetchNear(player.x,player.y,1);enterZone();
+ if(state.scene==='outside'){
+  const city=cityOnTile(world.manifest,player.x,player.y);
+  if(city){void enterCity(city.id);return;}
+ }else{
+  const city=cityById(state.cityId);
+  if(city&&Math.hypot(player.x-city.exitInside[0],player.y-city.exitInside[1])<.43){
+   void leaveCity();return;
+  }
+  const portal=world.getPortalAt(player.x,player.y);
+  if(portal?.active){void travelPortal(portal.toZone,portal.entrance);return;}
+ }
+ lifecycle.lastSave+=dt;
+ if(lifecycle.lastSave>1.2){save();lifecycle.lastSave=0;}
+ if(debug){$('debug-data').textContent=state.scene+' · '+player.x.toFixed(2)+', '+player.y.toFixed(2)+' · '+world.globalPositionToZone(player.x,player.y)?.zone+' · chunk '+world.preloaded.size;}
 }
 function tick(t){
  if(!lifecycle.active)return;
@@ -95,28 +181,27 @@ function tick(t){
  lifecycle.raf=requestAnimationFrame(tick);
 }
 function canvasTap(e){
- if(e.pointerType==='touch'&&e.isPrimary===false)return;
+ if(lifecycle.fade||e.pointerType==='touch'&&e.isPrimary===false)return;
  const rect=canvas.getBoundingClientRect();
  const tile=renderer.screenTile(e.clientX-rect.left,e.clientY-rect.top);
- if(world.isBlocked(tile.x,tile.y)){status.textContent='Cella non raggiungibile';return;}
+ if(world.isBlocked(tile.x,tile.y)){status.textContent='Terreno non percorribile';return;}
  const path=findPath(world,player,tile,{diagonal:world.manifest.allowDiagonal!==false});
  if(!path.length){status.textContent='Nessun percorso disponibile';return;}
- lifecycle.path=path; lifecycle.destination={x:tile.x+.5,y:tile.y+.5};
- status.textContent='Tocca una cella o usa il joystick';
+ lifecycle.path=path;lifecycle.destination={x:tile.x+.5,y:tile.y+.5};
 }
 function setupInputs(){
  controls=new TouchControls($('joystick'));
  canvas.addEventListener('pointerup',canvasTap);
  $('zoom-in').addEventListener('click',()=>{renderer.setZoom(renderer.camera.zoom+.15);save();});
  $('zoom-out').addEventListener('click',()=>{renderer.setZoom(renderer.camera.zoom-.15);save();});
- $('exit').addEventListener('click',()=>exit());
+ $('exit').addEventListener('click',exit);
+ $('leave-city').addEventListener('click',()=>{void leaveCity();});
  $('debug-toggle').addEventListener('click',()=>{renderer.debug=!renderer.debug;$('debug-data').hidden=!renderer.debug;});
- $('portal-test').addEventListener('click',()=>travelPortal('D','start'));
+ $('portal-test').addEventListener('click',()=>{if(state.scene==='city')void travelPortal('D','start');});
  window.addEventListener('resize',()=>renderer.resize());
  if('ResizeObserver' in window)new ResizeObserver(()=>renderer.resize()).observe(canvas);
  window.addEventListener('pagehide',save);
- window.addEventListener('keydown',e=>{if(e.code==='Escape'){e.preventDefault();exit();}});
- // Two-finger pinch changes visual scale only, never global world coordinates.
+ window.addEventListener('keydown',e=>{if(e.code==='Escape'){e.preventDefault();if(state.scene==='city')void leaveCity();else exit();}});
  const pointers=new Map();let previousDistance=0;
  canvas.addEventListener('pointerdown',e=>{pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size>1)previousDistance=0;});
  canvas.addEventListener('pointermove',e=>{
@@ -130,29 +215,31 @@ function setupInputs(){
  const clear=e=>{pointers.delete(e.pointerId);if(pointers.size<2)previousDistance=0;};
  canvas.addEventListener('pointerup',clear);canvas.addEventListener('pointercancel',clear);
 }
-function exit(){save();lifecycle.active=false;cancelAnimationFrame(lifecycle.raf);controls?.dispose();if(window.parent!==window)window.parent.postMessage({type:'scopone-overworld-exit'},location.origin);else location.href='../index.html';}
+function exit(){
+ save();lifecycle.active=false;cancelAnimationFrame(lifecycle.raf);controls?.dispose();
+ if(window.parent!==window)window.parent.postMessage({type:'scopone-overworld-exit'},location.origin);
+ else location.href='../index.html';
+}
+function position(){return {scene:state?.scene||null,cityId:state?.cityId||null,x:player.x,y:player.y,zone:world?.globalPositionToZone(player.x,player.y)?.zone||null};}
 async function start(){
  try{
-  [world,assets]=await Promise.all([World.load(),AssetLibrary.load()]);
-   const playerArt=assets.info(player.assetId);if(Array.isArray(playerArt?.renderSize)){player.renderWidth=playerArt.renderSize[0];player.renderHeight=playerArt.renderSize[1];}
-  if(!restore()){const p=world.entrance(world.manifest.start.zone,world.manifest.start.entrance);player.x=p.x;player.y=p.y;}
-  renderer=new IsoRenderer(canvas,world,assets);renderer.debug=debug;renderer.camera.x=player.x;renderer.camera.y=player.y;
-  try{const s=JSON.parse(localStorage.getItem(STORAGE)||'null');if(s?.zoom)renderer.setZoom(s.zoom);}catch{}
-  world.prefetchNear(player.x,player.y,2);enterZone();setupInputs();
+  const [outside,city,library]=await Promise.all([
+   World.load(new URL('../maps/external/',import.meta.url)),World.load(),AssetLibrary.load()
+  ]);
+  worlds={outside,city};assets=library;
+  state=restoreState(readSave(STORAGE_V2),readSave(STORAGE_V1),outside,city);
+  renderer=new IsoRenderer(canvas,worlds[state.scene],assets);
+  applyScene();enterZone();updateHud();setupInputs();
   if(debug){$('debug-controls').hidden=false;$('debug-data').hidden=false;}
-  loading.hidden=true;canvas.setAttribute('aria-busy','false');lifecycle.raf=requestAnimationFrame(tick);
-  emit('ready',{world:world.manifest.id,position:{x:player.x,y:player.y}});
+  loading.hidden=true;canvas.setAttribute('aria-busy','false');
+  lifecycle.raf=requestAnimationFrame(tick);
+  emit('ready',{world:world.manifest.id,scene:state.scene,cityId:state.cityId,position:position()});
  }catch(e){console.error(e);loading.textContent='Impossibile caricare la mappa: '+e.message;loading.classList.add('error');}
 }
-// Public bridge for future NPC interaction, Scopone challenges and rewards.
 window.ScoponeOverworld={
- on:subscribe,
- position:()=>({x:player.x,y:player.y,zone:world?.globalPositionToZone(player.x,player.y)?.zone||null}),
- portal:travelPortal,
- launchScopone:details=>{const payload={position:{x:player.x,y:player.y},...details};emit('challenge-request',payload);if(window.parent!==window)window.parent.postMessage({type:'scopone-overworld-challenge',payload},location.origin);},
- reward:details=>emit('reward',details),
- save:()=>world&&save(),
- // Dedicated development API; not gameplay code.
- debug:()=>debug?{world,player,renderer,lifecycle,findPath,tryMove}:null
+ on:subscribe,position,portal:travelPortal,enterCity,leaveCity,
+ launchScopone:details=>{const payload={position:position(),...details};emit('challenge-request',payload);if(window.parent!==window)window.parent.postMessage({type:'scopone-overworld-challenge',payload},location.origin);},
+ reward:details=>emit('reward',details),save:()=>state&&save(),
+ debug:()=>debug?{worlds,world,player,renderer,lifecycle,state,findPath,tryMove}:null
 };
 start();

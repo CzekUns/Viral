@@ -6,7 +6,7 @@ export class IsoRenderer {
     this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});
     this.world=world;this.assets=assets;this.width=1;this.height=1;this.dpr=1;
     this.camera={x:16.5,y:16.5,zoom:1,anchorY:.44};
-    this.target={x:16.5,y:16.5};this.elapsed=0;this.debug=false;
+    this.target={x:16.5,y:16.5};this.elapsed=0;this.debug=false;this.exitMarker=null;
     this.resize();
   }
   resize(){
@@ -36,7 +36,7 @@ export class IsoRenderer {
   draw(player,entities=[],destination=null,dt=1/60){
     const c=this.ctx,w=this.width,h=this.height,z=this.camera.zoom;
     c.setTransform(this.dpr,0,0,this.dpr,0,0);
-    c.fillStyle='#d9c9b3';c.fillRect(0,0,w,h);
+    c.fillStyle=this.world.manifest.background||'#d9c9b3';c.fillRect(0,0,w,h);
     const b=this._cullBounds(),tw=TILE_WIDTH*z,th=TILE_HEIGHT*z;
     // A small size overlap removes sub-pixel hairlines between adjacent transparent diamonds.
     // Images and positions remain identical across chunk and zone boundaries.
@@ -55,10 +55,16 @@ export class IsoRenderer {
       }
     }
     if(destination){const p=this._screen(destination.x,destination.y);c.save();c.strokeStyle='rgba(127,77,36,.78)';c.lineWidth=1.5;c.beginPath();c.ellipse(p.x,p.y,tw*.25,th*.26,0,0,2*Math.PI);c.stroke();c.restore();}
+    if(this.exitMarker){
+      const p=this._screen(this.exitMarker.x,this.exitMarker.y);
+      c.save();c.strokeStyle='#a66836';c.lineWidth=2;c.beginPath();c.ellipse(p.x,p.y,tw*.28,th*.3,0,0,2*Math.PI);c.stroke();
+      c.font='bold 12px Georgia,serif';c.textAlign='center';c.lineWidth=3;c.strokeStyle='#f5edd9';c.strokeText('USCITA',p.x,p.y-th*.8);c.fillStyle='#6e402a';c.fillText('USCITA',p.x,p.y-th*.8);c.restore();
+    }
     // All future entities and props use the same feet-based depth ordering.
     const visible=this.world.renderables.filter(e=>e.x>=b.minX-2&&e.x<=b.maxX+2&&e.y>=b.minY-2&&e.y<=b.maxY+2);
     const all=[...visible,...entities,player].sort((a,b)=>(a.x+a.y+a.height*.01)-(b.x+b.y+b.height*.01));
     for(const item of all)this.drawEntity(item);
+    if(this.world.manifest.labels)this.drawLabels(this.world.manifest.labels);
     if(this.debug)this.drawDebug(player,b);
   }
   drawEntity(entity){
@@ -76,6 +82,20 @@ export class IsoRenderer {
     const anchor=spec.anchor;
     c.drawImage(spec.image,ix,0,iw,spec.image.naturalHeight,-width*anchor[0],-height*anchor[1],width,height);
     c.restore();
+    if(entity.label){
+      c.save();c.textAlign='center';c.font='bold 12px Georgia,serif';c.lineWidth=3;
+      c.strokeStyle='#f4e6c5';c.strokeText(entity.label,p.x,p.y-height-5);
+      c.fillStyle='#3f3027';c.fillText(entity.label,p.x,p.y-height-5);c.restore();
+    }
+  }
+  drawLabels(labels){
+    const c=this.ctx;c.save();c.textAlign='center';
+    for(const label of labels){const p=this._screen(label.x+.5,label.y+.5);
+      if(p.x< -120||p.x>this.width+120||p.y< -40||p.y>this.height+40)continue;
+      c.font=label.kind==='sea'?'italic 17px Georgia,serif':'italic 12px Georgia,serif';
+      c.lineWidth=3;c.strokeStyle=label.kind==='sea'?'#315e71':'#e8dfc4';
+      c.strokeText(label.text,p.x,p.y);c.fillStyle=label.kind==='sea'?'#d8e6df':'#544a33';c.fillText(label.text,p.x,p.y);
+    }c.restore();
   }
   drawDebug(player,b){
     const c=this.ctx;c.save();c.font='11px monospace';c.fillStyle='#3b2818';c.fillText(`world ${player.x.toFixed(2)} ${player.y.toFixed(2)} | draw ${b.maxX-b.minX+1}×${b.maxY-b.minY+1} | zoom ${this.camera.zoom.toFixed(2)}`,8,18);c.restore();

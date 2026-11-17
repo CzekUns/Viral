@@ -21,3 +21,9 @@
 @media(max-height:700px){.joystick{width:112px;height:112px}.joystick-ring{width:90px;height:90px}.joystick-knob{width:48px;height:48px}.control-layer{bottom:calc(12px + env(safe-area-inset-bottom))}.world-hint{top:calc(54px + env(safe-area-inset-top))}}
 @media(max-width:340px){.mode-tag{display:none}.zone-badge{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.transition-veil{transition:none}}
+
+/* Navigazione fra scala geografica e mappe cittadine */
+.leave-city{position:absolute;z-index:2;top:calc(70px + env(safe-area-inset-top));right:calc(11px + env(safe-area-inset-right));background:#f2dfb9;box-shadow:0 2px 9px #46342644}
+.leave-city[hidden]{display:none}
+.city-scene .world-hint{top:calc(124px + env(safe-area-inset-top))}
+@media(max-height:700px){.leave-city{top:calc(60px + env(safe-area-inset-top))}.city-scene .world-hint{top:calc(112px + env(safe-area-inset-top))}}
