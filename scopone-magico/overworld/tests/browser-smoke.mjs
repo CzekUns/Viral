@@ -121,6 +121,8 @@ async function main(){
  assert.equal(returned.cityId,null);assert.equal(returned.x,50.5);assert.equal(returned.y,38.5);
  // The scene identifier changes before the final fade finishes; wait for touch to unlock.
  await page.waitForFunction(()=>!document.querySelector('#overworld-frame')?.contentWindow?.document.querySelector('#transition-veil')?.classList.contains('active'));
+ // The controller keeps input locked for an additional 200 ms after the veil disappears.
+ await page.waitForTimeout(300);
  // Touch-to-move toward Napoli entrance, without using the development bridge.
  const externalZoom=.88,dx=48.5-returned.x,dy=39.5-returned.y;
  const cx=390/2+(dx-dy)*26*externalZoom;
