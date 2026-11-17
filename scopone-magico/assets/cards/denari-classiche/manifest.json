@@ -1,0 +1,114 @@
+{
+  "name": "Denari classiche",
+  "id": "spoco-legacy-denari",
+  "suit": "denari",
+  "status": "pending_approval",
+  "source": {
+    "repo": "OMerkel/scopa_marco",
+    "path": "data/cards/Napoletane",
+    "license": "public domain as documented in source README",
+    "commons": "https://commons.wikimedia.org/wiki/Category:Naples_deck"
+  },
+  "render": {
+    "width": 600,
+    "height": 1000,
+    "bg": "#F8F2E7",
+    "effectBandStart": 750,
+    "svgSelfContained": true,
+    "originalByteExact": true,
+    "alchemyMark": "divisor only",
+    "effectTextLayer": "external HTML"
+  },
+  "cards": [
+    {
+      "id": "D01",
+      "slug": "asso",
+      "name": "Asso",
+      "rank": 1,
+      "source": "1d.jpg",
+      "original": "D01-asso-originale.jpg",
+      "game": "D01-asso-gioco.svg"
+    },
+    {
+      "id": "D02",
+      "slug": "due",
+      "name": "Due",
+      "rank": 2,
+      "source": "2d.jpg",
+      "original": "D02-due-originale.jpg",
+      "game": "D02-due-gioco.svg"
+    },
+    {
+      "id": "D03",
+      "slug": "tre",
+      "name": "Tre",
+      "rank": 3,
+      "source": "3d.jpg",
+      "original": "D03-tre-originale.jpg",
+      "game": "D03-tre-gioco.svg"
+    },
+    {
+      "id": "D04",
+      "slug": "quattro",
+      "name": "Quattro",
+      "rank": 4,
+      "source": "4d.jpg",
+      "original": "D04-quattro-originale.jpg",
+      "game": "D04-quattro-gioco.svg"
+    },
+    {
+      "id": "D05",
+      "slug": "cinque",
+      "name": "Cinque",
+      "rank": 5,
+      "source": "5d.jpg",
+      "original": "D05-cinque-originale.jpg",
+      "game": "D05-cinque-gioco.svg"
+    },
+    {
+      "id": "D06",
+      "slug": "sei",
+      "name": "Sei",
+      "rank": 6,
+      "source": "6d.jpg",
+      "original": "D06-sei-originale.jpg",
+      "game": "D06-sei-gioco.svg"
+    },
+    {
+      "id": "D07",
+      "slug": "sette",
+      "name": "Sette",
+      "rank": 7,
+      "source": "7d.jpg",
+      "original": "D07-sette-originale.jpg",
+      "game": "D07-sette-gioco.svg"
+    },
+    {
+      "id": "D08",
+      "slug": "fante",
+      "name": "Fante",
+      "rank": 8,
+      "source": "8d.jpg",
+      "original": "D08-fante-originale.jpg",
+      "game": "D08-fante-gioco.svg"
+    },
+    {
+      "id": "D09",
+      "slug": "cavallo",
+      "name": "Cavallo",
+      "rank": 9,
+      "source": "9d.jpg",
+      "original": "D09-cavallo-originale.jpg",
+      "game": "D09-cavallo-gioco.svg"
+    },
+    {
+      "id": "D10",
+      "slug": "re",
+      "name": "Re",
+      "rank": 10,
+      "source": "10d.jpg",
+      "original": "D10-re-originale.jpg",
+      "game": "D10-re-gioco.svg"
+    }
+  ]
+}
