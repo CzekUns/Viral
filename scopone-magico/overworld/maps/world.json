@@ -25,5 +25,12 @@
     "D.json"
   ],
   "allowDiagonal": true,
-  "walkSpeedTilesPerSec": 3.1
+  "walkSpeedTilesPerSec": 3.1,
+  "view": {
+    "zoom": 1.08,
+    "playerSize": [
+      110,
+      110
+    ]
+  }
 }

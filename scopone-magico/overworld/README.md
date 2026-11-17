@@ -68,3 +68,20 @@ Il menù principale carica `overworld/index.html` in un iframe solo alla selezio
 ## Fuori ambito
 
 NPC, nemici, inventario, missioni, combattimenti, connessione effettiva delle sfide con lo Scopone, asset finali. Nessuna modifica alle regole delle modalità Partita rapida / Modalità 2.
+
+
+## Overworld esterno V01 — Campania / Golfo di Napoli
+
+La voce **Overworld** nel menu originale continua a caricare `overworld/index.html`, ma ora l'apertura iniziale porta alla **mappa esterna**. `maps/external/world.json` definisce città, coordinate, etichette, scala e punti di uscita; `maps/external/campania.json` descrive la costa, il golfo, il promontorio sorrento, le isole e il terreno naturale. La silhouette campana è **illustrativa**, non cartografia GIS. `engine/terrain.js` interpreta la topografia e genera la griglia di collisioni (mare bloccato, terreno percorribile). Gli asset sono in `tiles/outside/` e `objects/outside/`, registrati esclusivamente in `assets.json`.
+
+**Scala esterna:** mondo 96×96, joystick e tap-to-move A*, camera isometrica; sprite C08 in piccolo (48×48 logici, zoom 0.88). Entrando nella **cella** di un borgo (Napoli, Pozzuoli, Torre del Greco, Caserta, Sorrento, Salerno) si attiva il fade. I borghi hanno `id`, `name`, `x/y`, `assetId`, `map`, `entry`, `exitInside` e `returnOutside`. Le coordinate dei borghi sono celle della mappa esterna, non latitudine/longitudine.
+
+**Scala interna:** riusa senza duplicarlo il mondo storico `maps/world.json` e le sue 4 zone A/B/C/D da 32×32. Pavimento a scacchiera isometrica vuota, C08 a 110×110 logici e zoom 1.08. La via d'uscita è il cerchietto **USCITA** nella cella locale [16,19]; in alternativa è presente **Esci dalla città**. L'uscita restituisce il personaggio al punto `returnOutside` del relativo borgo, lontano dalla cella d'ingresso per evitare rientri ripetuti. La mappa interna è ancora un'unica *base tecnica condivisa* tra i sei borghi, progettata per essere sostituita in seguito con mappe distinte (riferimento `map` già previsto nei manifest).
+
+**Dati e salvataggio:** la nuova chiave `localStorage scopone-alchemico:overworld:v2` contiene `scene` (`outside` o `city`), `cityId`, coordinate e zoom indipendenti per ciascuna scena. Alla prima migrazione da `v1`, la precedente posizione viene preservata per una futura mappa cittadina, ma il gioco si avvia all'esterno. Dopo un riavvio di un salvataggio v2 dentro una città, si riparte all'interno. Le API già esistenti (`position`, `portal`, `save`, `launchScopone`) restano, con `enterCity`/`leaveCity` e gli eventi `cityenter`, `cityexit`, `scenechange`.
+
+**Sostituzione asset:** per inserire nuovi WebP/PNG al posto degli SVG provvisori, cambiare i percorsi `images.outer-*` in `assets.json`, mantenendo per i tile il rombo trasparente 104×60. Per città e Vesuvio usare sprite trasparenti con `anchor` ai piedi. `maps/external/campania.json.terrain.tiles` associa tipi di terreno agli ID di texture. I futuri mondi interni potranno avere manifest e file di zone separati; la V01 riusa volutamente il prototipo originale.
+
+**Test:** `cd scopone-magico/overworld && npm test` (o `node --test tests/*.test.mjs`). Controllare inoltre su telefono verticale joystick, tap, zoom, fade, ingresso/uscita, persistenza, e le modalità Partita rapida / Modalità 2. I test Node non sostituiscono un collaudo su un dispositivo Android fisico.
+
+**Mappe cittadine per nodo:** il campo `cities[].map` è effettivamente risolto al caricamento (relativo a `maps/external/`); il motore carica un manifest e le sue zone per ciascun percorso univoco e li riutilizza tramite cache. Per assegnare una pianta urbana diversa a Napoli, aggiungere un nuovo manifest (es. `maps/napoli/world.json` con i JSON delle relative zone), poi usare `"map": "../napoli/world.json"`. Senza ulteriori modifiche al controller il nodo aprirà la propria mappa.

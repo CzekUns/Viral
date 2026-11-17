@@ -1,4 +1,5 @@
 import {ISO,clamp} from './geometry.js';
+import {buildTerrain} from './terrain.js';
 
 export class World {
   constructor(manifest,zones){
@@ -14,6 +15,8 @@ export class World {
       // Explicit logical collision grid from compact, human-editable blocked-cell definitions.
       z.collisionGrid=new Uint8Array(z.width*z.height);
       z.collisionGrid.fill(z.collision?.defaultBlocked?1:0);
+      const terrain=buildTerrain(z);
+      if(terrain){z.terrainGrid=terrain.tiles;z.collisionGrid.set(terrain.blocked);}
       for(const [x,y] of z.collision?.blocked||[]) {
         if(x>=0&&y>=0&&x<z.width&&y<z.height) z.collisionGrid[y*z.width+x]=1;
       }
@@ -33,10 +36,17 @@ export class World {
         }
       }
     }
+    // I borghi sono entità di scena; ogni ingresso è definito nel manifest geografico.
+    for(const city of manifest.cities||[]){
+      if(!this.zoneAt(city.x+.5,city.y+.5)||this.isBlocked(city.x,city.y))throw Error('City on impassable tile: '+city.id);
+      this.renderables.push({x:city.x+.5,y:city.y+.5,assetId:city.assetId,label:city.name,renderWidth:83,renderHeight:86,layer:'objects'});
+    }
     this.listeners=new Set();
   }
-  static async load(base=new URL('../maps/',import.meta.url)){
-    const index=await (await fetch(new URL('world.json',base))).json();
+  static async load(base=new URL('../maps/',import.meta.url),manifestFile='world.json'){
+    const response=await fetch(new URL(manifestFile,base));
+    if(!response.ok)throw Error('World manifest not found: '+manifestFile);
+    const index=await response.json();
     const zones=await Promise.all(index.zones.map(async p=>{
       const res=await fetch(new URL(p,base));if(!res.ok)throw Error(`Zone not found: ${p}`);return res.json();
     }));
@@ -79,7 +89,7 @@ export class World {
     const c=this.ensureChunk(z.id,Math.floor(lx/this.chunkSize),Math.floor(ly/this.chunkSize));
     // Sparse per-tile overrides can be injected in zone maps without changing the renderer.
     const variants=z.floorVariants||[z.floor];
-    const variant=variants[(lx+ly)%variants.length];
+    const variant=z.terrainGrid?.[ly*z.width+lx]||variants[(lx+ly)%variants.length];
     return {zone:z,chunk:c,tileId:z.tileOverrides?.[`${lx},${ly}`]||variant,blocked:!!z.collisionGrid[ly*z.width+lx]};
   }
   getPortalAt(x,y){const z=this.zoneAt(x,y);if(!z)return null;const localX=Math.floor(x-z.worldX),localY=Math.floor(y-z.worldY);return (z.portals||[]).find(p=>p.active&&p.tileX===localX&&p.tileY===localY)||null;}
