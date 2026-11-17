@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "tileSourceSize": [
+    104,
+    60
+  ],
+  "renderScale": 0.5,
+  "fallbackTile": "stone-aa",
+  "images": {
+    "stone-aa": {
+      "src": "tiles/stone-aa.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "stone-ab": {
+      "src": "tiles/stone-ab.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "stone-ba": {
+      "src": "tiles/stone-ba.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "stone-bb": {
+      "src": "tiles/stone-bb.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "stone-ca": {
+      "src": "tiles/stone-ca.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "stone-cb": {
+      "src": "tiles/stone-cb.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "stone-da": {
+      "src": "tiles/stone-da.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "stone-db": {
+      "src": "tiles/stone-db.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ]
+    },
+    "player": {
+      "src": "characters/player-south.webp",
+      "type": "character",
+      "anchor": [
+        0.5,
+        0.99
+      ],
+      "directions": {
+        "S": "characters/player-south.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1
+        },
+        "walk": {
+          "frames": 1,
+          "fps": 1
+        }
+      },
+      "renderSize": [
+        43,
+        100
+      ]
+    }
+  },
+  "spritesheetSchema": {
+    "frames": 1,
+    "fps": 8,
+    "directions": [
+      "N",
+      "NE",
+      "E",
+      "SE",
+      "S",
+      "SW",
+      "W",
+      "NW"
+    ],
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  "layers": [
+    "floor",
+    "objects",
+    "characters",
+    "effects"
+  ]
+}

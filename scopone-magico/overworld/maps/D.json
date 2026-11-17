@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "id": "D",
+  "worldX": 32,
+  "worldY": 32,
+  "width": 32,
+  "height": 32,
+  "floor": "stone-da",
+  "floorVariants": [
+    "stone-da",
+    "stone-db"
+  ],
+  "tileOverrides": {},
+  "collision": {
+    "defaultBlocked": false,
+    "blocked": []
+  },
+  "layers": [
+    "floor",
+    "objects",
+    "characters",
+    "effects"
+  ],
+  "exits": [
+    {
+      "edge": "west",
+      "zone": "C",
+      "continuous": true
+    },
+    {
+      "edge": "north",
+      "zone": "B",
+      "continuous": true
+    }
+  ],
+  "entrances": {
+    "start": [
+      16,
+      16
+    ],
+    "north": [
+      16,
+      0
+    ],
+    "south": [
+      16,
+      31
+    ],
+    "east": [
+      31,
+      16
+    ],
+    "west": [
+      0,
+      16
+    ]
+  },
+  "portals": [],
+  "entities": [],
+  "objects": [],
+  "interactions": [],
+  "assetRefs": [
+    "stone-da",
+    "stone-db"
+  ]
+}

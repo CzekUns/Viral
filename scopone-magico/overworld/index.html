@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#d9c9b3"/>
+<title>Scopone Alchemico · Overworld</title>
+<link rel="stylesheet" href="ui/overworld.css"/>
+</head>
+<body>
+<main id="overworld" aria-label="Overworld di Scopone Alchemico">
+  <canvas id="world-canvas" tabindex="0" aria-label="Mappa isometrica, tocca un punto per camminare" aria-busy="true"></canvas>
+  <div class="topbar">
+    <button id="exit" class="ui-button" type="button" aria-label="Torna al menù">‹ Menù</button>
+    <span class="zone-badge" id="zone-name">Zona A</span>
+    <span class="mode-tag">OVERWORLD</span>
+  </div>
+  <p id="status" class="world-hint" role="status">Tocca una cella o usa il joystick</p>
+  <div class="control-layer" aria-label="Controlli di movimento">
+    <div id="joystick" class="joystick" role="group" aria-label="Joystick virtuale per camminare"><div class="joystick-ring"></div><div class="joystick-knob"></div></div>
+    <div class="zoom-controls" role="group" aria-label="Zoom della mappa">
+      <button id="zoom-in" class="ui-button zoom-button" type="button" aria-label="Ingrandisci mappa">+</button>
+      <button id="zoom-out" class="ui-button zoom-button" type="button" aria-label="Riduci mappa">−</button>
+    </div>
+  </div>
+  <div id="debug-controls" class="debug-controls" hidden><button id="debug-toggle" type="button">Griglia debug</button><button id="portal-test" type="button">Prova portale → D</button></div>
+  <span id="debug-data" class="debug-data" hidden></span>
+  <div id="transition-veil" class="transition-veil" aria-hidden="true"></div>
+  <div id="loading" class="loading">Preparazione dell'Overworld…</div>
+</main>
+<script type="module" src="engine/main.js"></script>
+</body>
+</html>

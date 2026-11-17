@@ -465,7 +465,17 @@ body:has(#menu-view:not([hidden])){overflow-x:hidden}
   border-color:#e3bd62!important;
   box-shadow:0 0 0 2px #ffdd77,0 4px 13px #38211b66;
 }
-</style>
+
+/* Overworld bridge: third mode is isolated from the Scopone match engine. */
+.overworld-host{position:fixed;inset:0;z-index:60;height:100dvh;width:100%;background:#d9c9b3}
+.overworld-host iframe{border:0;display:block;width:100%;height:100%}
+body:has(#overworld-view:not([hidden])){overflow:hidden}
+@media(max-width:650px) and (max-height:700px){
+ #menu-title{margin-top:clamp(74px,13dvh,130px)}
+ .menu-buttons{margin-top:clamp(20px,4.5dvh,42px);gap:9px}
+ .menu-choice{min-height:52px;padding:7px 10px}
+ .menu-choice-secondary{min-height:43px}
+}</style>
 </head>
 <body>
 <section id="menu-view" class="menu-screen" aria-labelledby="menu-title">
@@ -474,10 +484,12 @@ body:has(#menu-view:not([hidden])){overflow-x:hidden}
     <div class="menu-buttons" role="group" aria-label="Scegli come giocare">
       <button type="button" id="start-quick" class="menu-choice"><span class="choice-name">Partita rapida</span><span class="choice-detail">10 carte ciascuno, senza pesca</span></button>
       <button type="button" id="start-draw" class="menu-choice"><span class="choice-name">Modalità 2</span><span class="choice-detail">Una carta pescata dopo ogni mossa</span></button>
+      <button type="button" id="start-overworld" class="menu-choice"><span class="choice-name">Overworld</span><span class="choice-detail">Esplora il mondo isometrico</span></button>
       <button type="button" id="menu-help" class="menu-choice menu-choice-secondary">Regole</button>
     </div>
   </div>
 </section>
+<section id="overworld-view" class="overworld-host" hidden aria-label="Esplorazione Overworld"><iframe id="overworld-frame" title="Scopone Alchemico — Overworld isometrico" allow="fullscreen" loading="eager"></iframe></section>
 <div id="game-view" class="game-screen" hidden>
 <header class="game-topbar" aria-label="Comandi della partita">
   <button type="button" id="back-menu" class="ghost menu-return" aria-label="Torna al menù principale">‹ Menù</button>
@@ -633,4 +645,17 @@ document.addEventListener('dragstart',ev=>ev.preventDefault());
 document.addEventListener('contextmenu',ev=>{if(ev.target.closest('.card,.hand,.table-cards'))ev.preventDefault();});
 window.addEventListener('resize',updateHandControls,{passive:true});
 q('start-quick').addEventListener('click',()=>showGame('quick'));q('start-draw').addEventListener('click',()=>showGame('draw'));q('back-menu').addEventListener('click',showMenu);q('new-btn').addEventListener('click',()=>{if(state&&state.plays>0&&!state.finished&&!confirm('Ricominciare la partita?'))return;restart();});q('help-btn').addEventListener('click',()=>q('help').showModal());q('menu-help').addEventListener('click',()=>q('help').showModal());q('help-close').addEventListener('click',()=>q('help').close());})();
-</script></body></html>
+</script>
+<script>
+(function(){'use strict';
+ const enter=document.getElementById('start-overworld'),host=document.getElementById('overworld-view'),frame=document.getElementById('overworld-frame'),menu=document.getElementById('menu-view');
+ enter.addEventListener('click',function(){menu.hidden=true;host.hidden=false;frame.src='overworld/index.html';window.scrollTo(0,0);});
+ window.addEventListener('message',function(event){
+  if(event.origin!==location.origin||event.source!==frame.contentWindow)return;
+  const data=event.data||{};
+  if(data.type==='scopone-overworld-exit'){host.hidden=true;frame.removeAttribute('src');menu.hidden=false;enter.focus({preventScroll:true});}
+  else if(data.type==='scopone-overworld-challenge'){document.dispatchEvent(new CustomEvent('scopone:challenge-request',{detail:data.payload||{}}));}
+ });
+})();
+</script>
+</body></html>
