@@ -106,7 +106,8 @@ async function main(){
  await iframe.locator('#world-canvas').tap({position:{x:cx,y:cy}});
  await page.waitForFunction(()=>document.querySelector('#overworld-frame')?.contentWindow?.ScoponeOverworld?.position()?.scene==='city',null,{timeout:10000});
  await iframe.locator('#exit').click();
- assert.equal(await page.locator('#menu-view').isVisible(),true);
+ // postMessage from child iframe reaches the parent asynchronously.
+ await page.locator('#menu-view').waitFor({state:'visible',timeout:5000});
  await page.locator('#start-quick').click();
  assert.equal(await page.locator('#game-view').isVisible(),true);
  await page.locator('#back-menu').click();
