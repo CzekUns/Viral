@@ -49,6 +49,18 @@ test('two-scale persistence and migration from the legacy interior save',()=>{
  const migrated=restoreState(null,{version:1,x:19.5,y:21.5,zoom:1.2},outside,city);
  assert.equal(migrated.scene,'outside');assert.equal(migrated.inside.x,19.5);assert.equal(migrated.inside.zoom,1.2);
 });
+test('V03 test artwork is lossless to binary transport, retained beside legacy textures',()=>{
+ const images=parse('assets.json').images;
+ for(const name of ['grass','forest','hill','road','coast','shallow','sea']){
+  const src=images['outer-'+name].src;
+  assert.equal(src,'tiles/outside/v03/'+name+'.webp','unexpected V03 mapping');
+  const data=fs.readFileSync(path.join(root,src));
+  assert.ok(data.length>1000&&data.length<12000,'WebP should remain compact');
+  assert.equal(data.toString('ascii',0,4),'RIFF','valid WebP RIFF header');
+  assert.equal(data.toString('ascii',8,12),'WEBP','valid WebP signature');
+  assert.ok(fs.existsSync(path.join(root,'tiles/outside/'+name+'.svg')),'legacy fallback retained');
+ }
+});
 test('external artwork uses replaceable manifest paths and local files',()=>{
  const assets=parse('assets.json');
  for(const tile of Object.values(parse('maps/external/campania.json').terrain.tiles)){

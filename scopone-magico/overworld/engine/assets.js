@@ -4,6 +4,15 @@ export class AssetLibrary {
   static async load(url=new URL('../assets.json',import.meta.url)){
     const response=await fetch(url);if(!response.ok)throw Error('Asset manifest unavailable');
     const manifest=await response.json();const images=new Map();
+    // Preview switch: ?terrain=legacy restores the archived SVG art immediately.
+    // The default presentation uses the original Drive V03 WebP files.
+    const legacy=typeof window!=='undefined'&&new URLSearchParams(window.location.search).get('terrain')==='legacy';
+    if(legacy){
+      for(const id of ['grass','forest','hill','road','coast','shallow','sea']){
+        const entry=manifest.images['outer-'+id];
+        if(entry)entry.src='tiles/outside/'+id+'.svg';
+      }
+    }
     await Promise.all(Object.entries(manifest.images).map(async([id,config])=>{
       const image=new Image();image.decoding='async';
       image.src=new URL(config.src,url).href; // resolved from the module-relative manifest

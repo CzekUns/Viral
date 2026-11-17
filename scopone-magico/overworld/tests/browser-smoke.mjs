@@ -56,6 +56,28 @@ async function main(){
   return {ms,start,after,afterMove:r.terrainStats.builds,beforeMove,cacheSize,max:r.maxTerrainChunks,
    canvasDpr:r.dpr};
  });
+ const terrainImages=await perfPage.evaluate(()=>{
+  const {renderer}=window.ScoponeOverworld.debug();
+  return Object.fromEntries(['grass','forest','hill','road','coast','shallow','sea'].map(name=>{
+    const id='outer-'+name,info=renderer.assets.info(id),image=renderer.assets.image(id);
+    return [name,{src:info.src,width:image?.naturalWidth,height:image?.naturalHeight}];
+  }));
+ });
+ for(const [name,tile] of Object.entries(terrainImages)){
+  assert.equal(tile.src,'tiles/outside/v03/'+name+'.webp','V03 must be active by default');
+  assert.equal(tile.width,104,'V03 image width '+name);
+  assert.equal(tile.height,60,'V03 image height '+name);
+ }
+ console.log('EXTERIOR V03 TILES',JSON.stringify(terrainImages));
+ const legacyPage=await perfContext.newPage();
+ await legacyPage.goto(base+'overworld/index.html?debug=1&terrain=legacy',{waitUntil:'domcontentloaded'});
+ await legacyPage.locator('#loading').waitFor({state:'hidden',timeout:35000});
+ const legacyTerrain=await legacyPage.evaluate(()=>{
+  const assets=window.ScoponeOverworld.debug().renderer.assets;
+  return ['grass','forest','hill','road','coast','shallow','sea'].map(name=>assets.info('outer-'+name).src);
+ });
+ assert.deepEqual(legacyTerrain,['grass','forest','hill','road','coast','shallow','sea'].map(name=>'tiles/outside/'+name+'.svg'));
+ await legacyPage.close();
  assert.ok(benchmark.start.builds>0,'Exterior must build tile chunks on first draw');
  assert.equal(benchmark.after.builds,benchmark.start.builds,'Static chunks must not be rasterized again each frame');
  assert.ok(benchmark.after.hits>benchmark.start.hits+100,'Repeated frames reuse the cached chunks');
@@ -99,6 +121,8 @@ async function main(){
  assert.equal(returned.cityId,null);assert.equal(returned.x,50.5);assert.equal(returned.y,38.5);
  // The scene identifier changes before the final fade finishes; wait for touch to unlock.
  await page.waitForFunction(()=>!document.querySelector('#overworld-frame')?.contentWindow?.document.querySelector('#transition-veil')?.classList.contains('active'));
+ // The controller keeps input locked for an additional 200 ms after the veil disappears.
+ await page.waitForTimeout(300);
  // Touch-to-move toward Napoli entrance, without using the development bridge.
  const externalZoom=.88,dx=48.5-returned.x,dy=39.5-returned.y;
  const cx=390/2+(dx-dy)*26*externalZoom;

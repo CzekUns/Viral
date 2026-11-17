@@ -92,3 +92,13 @@ La voce **Overworld** nel menu originale continua a caricare `overworld/index.ht
 La mappa naturale rasterizza **una sola volta per blocco** le texture del terreno esterno in canvas trasparenti 16×16 tile, disegnando poi soltanto i blocchi visibili con `drawImage`. Cache LRU limitata a **28 blocchi** (senza ricomposizione finché rimangono in cache). Il livello indoor mantiene il renderer originale. Il canvas esterno usa un rapporto pixel massimo di **1,65**, con il renderer interno separato a massimo **2,25**: sullo smartphone il carico di pixel si riduce mantenendo leggibile il raster JRPG. A personaggio e camera fermi non si ridisegna la scena immutata.
 
 In debug `?debug=1`, `ScoponeOverworld.debug().renderer.terrainStats` mostra `builds`, `hits`, `evictions`, `draws`; `terrainCache.size` verifica il limite. Se si modificano dinamicamente tile o manifest, chiamare `renderer.invalidateTerrain()` per ricreare le texture cached; il movimento, i salvati v2, i sei nodi e i controlli sono invariati.
+
+## Preview V03 terreno/acqua (test estetico, novembre 2026)
+
+La Fase 1 dell'agente grafico ha fornito sette tile V03 (WebP 104×60, file leggeri) su Google Drive, cartella **01 — Terreno e acqua**. Le texture sono archiviate nel repository sotto `tiles/outside/v03/` e i sette ID `outer-*` in `assets.json` usano temporaneamente queste versioni nel motore, senza alterare la topografia, le collisioni, gli ingressi città, i salvataggi o la cache di rendering V01.1. **Non equivalgono a un'approvazione estetica definitiva.**
+
+Per confronto sullo stesso deploy:
+- `overworld/` — tessere V03 in prova (predefinite).
+- `overworld/?terrain=legacy` — grafiche SVG precedenti, conservate in `tiles/outside/*.svg`.
+
+Se la V03 viene respinta, basta ripristinare i sette percorsi in `assets.json` o aprire la versione `?terrain=legacy`. Per l'approvazione finale il proprietario valuterà la mappa reale su telefono: eventuali raccordi tra biomi, andamento delle coste e strade saranno lavoro successivo. Il manifest include `previewStatus` per indicare l'uso provvisorio.
