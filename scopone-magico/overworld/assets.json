@@ -104,6 +104,62 @@
       ]
     },
     "player": {
+      "src": "characters/c08/idle/S.webp",
+      "type": "character",
+      "characterId": "C08",
+      "name": "Fante di Coppe",
+      "variant": "V04 walk 3 poses, V03 static reserved",
+      "source": "Google Drive → Scopone Alchemico / 06 — Archivio bozze grafiche / C08 WALK V04",
+      "anchor": [
+        0.5,
+        0.9505208333333334
+      ],
+      "renderSize": [
+        110,
+        110
+      ],
+      "directions": {
+        "S": "characters/c08/idle/S.webp",
+        "SE": "characters/c08/idle/SE.webp",
+        "E": "characters/c08/idle/E.webp",
+        "NE": "characters/c08/idle/NE.webp",
+        "N": "characters/c08/idle/N.webp",
+        "NW": "characters/c08/idle/NW.webp",
+        "W": "characters/c08/idle/W.webp",
+        "SW": "characters/c08/idle/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/c08/idle/S.webp",
+            "SE": "characters/c08/idle/SE.webp",
+            "E": "characters/c08/idle/E.webp",
+            "NE": "characters/c08/idle/NE.webp",
+            "N": "characters/c08/idle/N.webp",
+            "NW": "characters/c08/idle/NW.webp",
+            "W": "characters/c08/idle/W.webp",
+            "SW": "characters/c08/idle/SW.webp"
+          }
+        },
+        "walk": {
+          "frames": 3,
+          "fps": 7,
+          "directions": {
+            "S": "characters/c08/walk/S.webp",
+            "SE": "characters/c08/walk/SE.webp",
+            "E": "characters/c08/walk/E.webp",
+            "NE": "characters/c08/walk/NE.webp",
+            "N": "characters/c08/walk/N.webp",
+            "NW": "characters/c08/walk/NW.webp",
+            "W": "characters/c08/walk/W.webp",
+            "SW": "characters/c08/walk/SW.webp"
+          }
+        }
+      }
+    },
+    "player-legacy": {
       "src": "characters/player-south.webp",
       "type": "character",
       "anchor": [
@@ -127,6 +183,182 @@
         43,
         100
       ]
+    },
+    "c08-idle-S": {
+      "src": "characters/c08/idle/S.webp",
+      "type": "sprite",
+      "direction": "S",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-S": {
+      "src": "characters/c08/walk/S.webp",
+      "type": "sprite",
+      "direction": "S",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
+    },
+    "c08-idle-SE": {
+      "src": "characters/c08/idle/SE.webp",
+      "type": "sprite",
+      "direction": "SE",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-SE": {
+      "src": "characters/c08/walk/SE.webp",
+      "type": "sprite",
+      "direction": "SE",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
+    },
+    "c08-idle-E": {
+      "src": "characters/c08/idle/E.webp",
+      "type": "sprite",
+      "direction": "E",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-E": {
+      "src": "characters/c08/walk/E.webp",
+      "type": "sprite",
+      "direction": "E",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
+    },
+    "c08-idle-NE": {
+      "src": "characters/c08/idle/NE.webp",
+      "type": "sprite",
+      "direction": "NE",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-NE": {
+      "src": "characters/c08/walk/NE.webp",
+      "type": "sprite",
+      "direction": "NE",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
+    },
+    "c08-idle-N": {
+      "src": "characters/c08/idle/N.webp",
+      "type": "sprite",
+      "direction": "N",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-N": {
+      "src": "characters/c08/walk/N.webp",
+      "type": "sprite",
+      "direction": "N",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
+    },
+    "c08-idle-NW": {
+      "src": "characters/c08/idle/NW.webp",
+      "type": "sprite",
+      "direction": "NW",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-NW": {
+      "src": "characters/c08/walk/NW.webp",
+      "type": "sprite",
+      "direction": "NW",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
+    },
+    "c08-idle-W": {
+      "src": "characters/c08/idle/W.webp",
+      "type": "sprite",
+      "direction": "W",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-W": {
+      "src": "characters/c08/walk/W.webp",
+      "type": "sprite",
+      "direction": "W",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
+    },
+    "c08-idle-SW": {
+      "src": "characters/c08/idle/SW.webp",
+      "type": "sprite",
+      "direction": "SW",
+      "state": "idle",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 1
+    },
+    "c08-walk-SW": {
+      "src": "characters/c08/walk/SW.webp",
+      "type": "sprite",
+      "direction": "SW",
+      "state": "walk",
+      "frameSize": [
+        384,
+        384
+      ],
+      "frames": 3
     }
   },
   "spritesheetSchema": {
