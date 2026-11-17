@@ -63,7 +63,7 @@ export class IsoRenderer {
   }
   drawEntity(entity){
     const c=this.ctx,p=this._screen(entity.x,entity.y),z=this.camera.zoom;
-    const spec=this.assets.spriteFor(entity,entity.facing||'S',this.elapsed);
+    const spec=this.assets.spriteFor(entity,entity.facing||'S',entity.animationTime??this.elapsed);
     const width=(entity.renderWidth||46)*z,height=(entity.renderHeight||100)*z;
     if(!spec.image){
       c.fillStyle='#883b2d';c.beginPath();c.ellipse(p.x,p.y-height*.5,width*.35,height*.44,0,0,Math.PI*2);c.fill();return;

@@ -11,7 +11,7 @@ const canvas=$('world-canvas'),status=$('status'),loading=$('loading');
 const debug=new URL(location.href).searchParams.has('debug');
 let world,assets,renderer,controls;
 const lifecycle={active:true,fade:false,lastZone:null,path:[],destination:null,lastSave:0,lastFrame:0,raf:0};
-const player={x:16.5,y:16.5,facing:'SE',assetId:'player',animation:'idle',renderWidth:43,renderHeight:100,speed:3.1,height:0};
+const player={x:16.5,y:16.5,facing:'SE',assetId:'player',animation:'idle',animationTime:0,renderWidth:110,renderHeight:110,speed:3.1,height:0};
 const hooks=new Map();
 function emit(name,detail){
  for(const fn of hooks.get(name)||[])try{fn(detail);}catch(e){console.error('Overworld listener error',e);}
@@ -73,9 +73,12 @@ function update(dt){
    if(dist<player.speed*dt)dt=dist/player.speed;
   }
  }
+ const previousAnimation=player.animation;
  if(move){const moved=tryMove(move.x*player.speed*dt,move.y*player.speed*dt);
   player.animation=moved?'walk':'idle';if(!moved){lifecycle.path=[];lifecycle.destination=null;}
  }else player.animation='idle';
+ // Re-start an animation when the character changes from idle to walk.
+ player.animationTime=previousAnimation===player.animation?player.animationTime+dt:0;
  world.prefetchNear(player.x,player.y,1);
  enterZone();
  const portal=world.getPortalAt(player.x,player.y);
@@ -131,6 +134,7 @@ function exit(){save();lifecycle.active=false;cancelAnimationFrame(lifecycle.raf
 async function start(){
  try{
   [world,assets]=await Promise.all([World.load(),AssetLibrary.load()]);
+   const playerArt=assets.info(player.assetId);if(Array.isArray(playerArt?.renderSize)){player.renderWidth=playerArt.renderSize[0];player.renderHeight=playerArt.renderSize[1];}
   if(!restore()){const p=world.entrance(world.manifest.start.zone,world.manifest.start.entrance);player.x=p.x;player.y=p.y;}
   renderer=new IsoRenderer(canvas,world,assets);renderer.debug=debug;renderer.camera.x=player.x;renderer.camera.y=player.y;
   try{const s=JSON.parse(localStorage.getItem(STORAGE)||'null');if(s?.zoom)renderer.setZoom(s.zoom);}catch{}
