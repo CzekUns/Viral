@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "id": "campania-golfo-v01",
+  "projection": "orthographic-isometric-30deg",
+  "tileSourceSize": [
+    104,
+    60
+  ],
+  "renderScale": 0.5,
+  "chunkSize": 16,
+  "width": 96,
+  "height": 96,
+  "start": {
+    "zone": "campania",
+    "entrance": "start"
+  },
+  "zones": [
+    "campania.json"
+  ],
+  "allowDiagonal": true,
+  "walkSpeedTilesPerSec": 4.1,
+  "view": {
+    "zoom": 0.88,
+    "playerSize": [
+      48,
+      48
+    ]
+  },
+  "cities": [
+    {
+      "id": "napoli",
+      "name": "Napoli",
+      "x": 48,
+      "y": 39,
+      "assetId": "outer-city",
+      "map": "../world.json",
+      "entry": {
+        "zone": "A",
+        "entrance": "start"
+      },
+      "exitInside": [
+        16.5,
+        19.5
+      ],
+      "returnOutside": [
+        50.5,
+        38.5
+      ]
+    },
+    {
+      "id": "pozzuoli",
+      "name": "Pozzuoli",
+      "x": 29,
+      "y": 43,
+      "assetId": "outer-city",
+      "map": "../world.json",
+      "entry": {
+        "zone": "A",
+        "entrance": "start"
+      },
+      "exitInside": [
+        16.5,
+        19.5
+      ],
+      "returnOutside": [
+        31.5,
+        42.5
+      ]
+    },
+    {
+      "id": "torre",
+      "name": "Torre del Greco",
+      "x": 67,
+      "y": 47,
+      "assetId": "outer-city",
+      "map": "../world.json",
+      "entry": {
+        "zone": "A",
+        "entrance": "start"
+      },
+      "exitInside": [
+        16.5,
+        19.5
+      ],
+      "returnOutside": [
+        69.5,
+        46.5
+      ]
+    },
+    {
+      "id": "caserta",
+      "name": "Caserta",
+      "x": 52,
+      "y": 17,
+      "assetId": "outer-city",
+      "map": "../world.json",
+      "entry": {
+        "zone": "A",
+        "entrance": "start"
+      },
+      "exitInside": [
+        16.5,
+        19.5
+      ],
+      "returnOutside": [
+        54.5,
+        18.5
+      ]
+    },
+    {
+      "id": "sorrento",
+      "name": "Sorrento",
+      "x": 82,
+      "y": 71,
+      "assetId": "outer-city",
+      "map": "../world.json",
+      "entry": {
+        "zone": "A",
+        "entrance": "start"
+      },
+      "exitInside": [
+        16.5,
+        19.5
+      ],
+      "returnOutside": [
+        84.5,
+        70.5
+      ]
+    },
+    {
+      "id": "salerno",
+      "name": "Salerno",
+      "x": 92,
+      "y": 64,
+      "assetId": "outer-city",
+      "map": "../world.json",
+      "entry": {
+        "zone": "A",
+        "entrance": "start"
+      },
+      "exitInside": [
+        16.5,
+        19.5
+      ],
+      "returnOutside": [
+        90.5,
+        63.5
+      ]
+    }
+  ],
+  "labels": [
+    {
+      "text": "Golfo di Napoli",
+      "x": 49,
+      "y": 60,
+      "kind": "sea"
+    },
+    {
+      "text": "Ischia",
+      "x": 15,
+      "y": 72
+    },
+    {
+      "text": "Procida",
+      "x": 28,
+      "y": 65
+    },
+    {
+      "text": "Capri",
+      "x": 59,
+      "y": 89
+    },
+    {
+      "text": "Vesuvio",
+      "x": 72,
+      "y": 36
+    }
+  ]
+}
