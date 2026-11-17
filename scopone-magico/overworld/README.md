@@ -85,3 +85,10 @@ La voce **Overworld** nel menu originale continua a caricare `overworld/index.ht
 **Test:** `cd scopone-magico/overworld && npm test` (o `node --test tests/*.test.mjs`). Controllare inoltre su telefono verticale joystick, tap, zoom, fade, ingresso/uscita, persistenza, e le modalità Partita rapida / Modalità 2. I test Node non sostituiscono un collaudo su un dispositivo Android fisico.
 
 **Mappe cittadine per nodo:** il campo `cities[].map` è effettivamente risolto al caricamento (relativo a `maps/external/`); il motore carica un manifest e le sue zone per ciascun percorso univoco e li riutilizza tramite cache. Per assegnare una pianta urbana diversa a Napoli, aggiungere un nuovo manifest (es. `maps/napoli/world.json` con i JSON delle relative zone), poi usare `"map": "../napoli/world.json"`. Senza ulteriori modifiche al controller il nodo aprirà la propria mappa.
+
+
+## Ottimizzazione mobile esterno V01.1
+
+La mappa naturale rasterizza **una sola volta per blocco** le texture del terreno esterno in canvas trasparenti 16×16 tile, disegnando poi soltanto i blocchi visibili con `drawImage`. Cache LRU limitata a **28 blocchi** (senza ricomposizione finché rimangono in cache). Il livello indoor mantiene il renderer originale. Il canvas esterno usa un rapporto pixel massimo di **1,65**, con il renderer interno separato a massimo **2,25**: sullo smartphone il carico di pixel si riduce mantenendo leggibile il raster JRPG. A personaggio e camera fermi non si ridisegna la scena immutata.
+
+In debug `?debug=1`, `ScoponeOverworld.debug().renderer.terrainStats` mostra `builds`, `hits`, `evictions`, `draws`; `terrainCache.size` verifica il limite. Se si modificano dinamicamente tile o manifest, chiamare `renderer.invalidateTerrain()` per ricreare le texture cached; il movimento, i salvati v2, i sei nodi e i controlli sono invariati.
