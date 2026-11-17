@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "scopone-overworld-demo",
+  "projection": "orthographic-isometric-30deg",
+  "tileSourceSize": [
+    104,
+    60
+  ],
+  "renderScale": 0.5,
+  "chunkSize": 16,
+  "zoneDefaultSize": [
+    32,
+    32
+  ],
+  "width": 64,
+  "height": 64,
+  "start": {
+    "zone": "A",
+    "entrance": "start"
+  },
+  "zones": [
+    "A.json",
+    "B.json",
+    "C.json",
+    "D.json"
+  ],
+  "allowDiagonal": true,
+  "walkSpeedTilesPerSec": 3.1
+}
