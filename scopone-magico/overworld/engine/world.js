@@ -43,8 +43,10 @@ export class World {
     }
     this.listeners=new Set();
   }
-  static async load(base=new URL('../maps/',import.meta.url)){
-    const index=await (await fetch(new URL('world.json',base))).json();
+  static async load(base=new URL('../maps/',import.meta.url),manifestFile='world.json'){
+    const response=await fetch(new URL(manifestFile,base));
+    if(!response.ok)throw Error('World manifest not found: '+manifestFile);
+    const index=await response.json();
     const zones=await Promise.all(index.zones.map(async p=>{
       const res=await fetch(new URL(p,base));if(!res.ok)throw Error(`Zone not found: ${p}`);return res.json();
     }));

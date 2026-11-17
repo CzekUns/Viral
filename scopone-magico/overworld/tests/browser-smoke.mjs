@@ -73,7 +73,7 @@ async function main(){
  const cx=390/2+(dx-dy)*26*externalZoom;
  const cy=844*.44+(dx+dy)*15*externalZoom;
  await iframe.locator('#world-canvas').tap({position:{x:cx,y:cy}});
- await page.waitForFunction(()=>document.querySelector('#overworld-frame')?.contentWindow?.ScoponeOverworld?.position()?.scene==='city',{timeout:10000});
+ await page.waitForFunction(()=>document.querySelector('#overworld-frame')?.contentWindow?.ScoponeOverworld?.position()?.scene==='city',null,{timeout:10000});
  await iframe.locator('#exit').click();
  assert.equal(await page.locator('#menu-view').isVisible(),true);
  await page.locator('#start-quick').click();

@@ -31,7 +31,7 @@ test('all city nodes provide unique IDs, reachable entry and safe return',()=>{
   assert.ok(outside.canStand(...c.returnOutside),c.name+' return');
   assert.ok(city.canStand(...c.exitInside),c.name+' internal exit');
   assert.ok(city.zoneById(c.entry.zone).entrances[c.entry.entrance],c.name+' internal entrance');
-  assert.ok(c.map.endsWith('world.json'));
+  assert.ok(fs.existsSync(path.resolve(root,'maps/external',c.map)),c.name+' manifest exists');
  }
  const p=findPath(outside,outside.entrance('campania','start'),{x:48.5,y:39.5});
  assert.ok(p.length>0&&p.length<25,'Napoli is reachable from initial spawn');

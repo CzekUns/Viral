@@ -86,7 +86,9 @@ function enterCity(id){
  if(state.scene!=='outside'||!cityById(id)||lifecycle.fade)return Promise.resolve(false);
  return transition(()=>{
   syncPosition();
-  const city=cityById(id),entry=worlds.city.entrance(city.entry.zone,city.entry.entrance);
+  const city=cityById(id);
+  worlds.city=worlds.cityMaps.get(city.map);
+  const entry=worlds.city.entrance(city.entry.zone,city.entry.entrance);
   state.cityId=id;state.scene='city';
   state.inside={x:entry.x,y:entry.y,zoom:worlds.city.manifest.view?.zoom??1.08};
   emit('cityenter',{id,name:city.name});
@@ -223,11 +225,21 @@ function exit(){
 function position(){return {scene:state?.scene||null,cityId:state?.cityId||null,x:player.x,y:player.y,zone:world?.globalPositionToZone(player.x,player.y)?.zone||null};}
 async function start(){
  try{
-  const [outside,city,library]=await Promise.all([
-   World.load(new URL('../maps/external/',import.meta.url)),World.load(),AssetLibrary.load()
-  ]);
-  worlds={outside,city};assets=library;
-  state=restoreState(readSave(STORAGE_V2),readSave(STORAGE_V1),outside,city);
+  const externalBase=new URL('../maps/external/',import.meta.url);
+  const [outside,library]=await Promise.all([World.load(externalBase),AssetLibrary.load()]);
+  const cities=outside.manifest.cities||[];
+  if(!cities.length)throw Error('No cities configured');
+  const cityMaps=new Map();
+  await Promise.all([...new Set(cities.map(c=>c.map))].map(async mapRef=>{
+    const url=new URL(mapRef,externalBase);
+    const folder=new URL('.',url),name=decodeURIComponent(url.pathname.split('/').at(-1));
+    cityMaps.set(mapRef,await World.load(folder,name));
+  }));
+  const saved=readSave(STORAGE_V2);
+  const requested=cities.find(c=>c.id===saved?.cityId)||cities[0];
+  const city=cityMaps.get(requested.map);
+  worlds={outside,city,cityMaps};assets=library;
+  state=restoreState(saved,readSave(STORAGE_V1),outside,city);
   renderer=new IsoRenderer(canvas,worlds[state.scene],assets);
   applyScene();enterZone();updateHud();setupInputs();
   if(debug){$('debug-controls').hidden=false;$('debug-data').hidden=false;}
