@@ -34,6 +34,35 @@ async function main(){
  const a=await getPos();
  assert.equal(a.scene,'outside','Overworld must start in external Campania');
  assert.equal(await iframe.locator('#zone-name').textContent(),'Campania');
+
+ // Re-run the exterior with developer diagnostics in an isolated session so
+ // perf counters cannot be hidden by the parent iframe or a saved city scene.
+ const perfContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
+ const perfPage=await perfContext.newPage();
+ await perfPage.goto(base+'overworld/index.html?debug=1',{waitUntil:'domcontentloaded'});
+ await perfPage.locator('#loading').waitFor({state:'hidden',timeout:35000});
+ const benchmark=await perfPage.evaluate(()=>{
+  const d=window.ScoponeOverworld.debug(),r=d.renderer;
+  if(!d||!r)throw Error('Debug renderer unavailable');
+  r.draw(d.player,[],null,1/60);
+  const start={...r.terrainStats};
+  const t0=performance.now();
+  for(let i=0;i<120;i++)r.draw(d.player,[],null,1/60);
+  const ms=(performance.now()-t0)/120;
+  const after={...r.terrainStats},cacheSize=r.terrainCache.size;
+  const beforeMove=after.builds;
+  d.player.x=70.5;d.player.y=44.5;r.follow(d.player,1,true);
+  r.draw(d.player,[],null,1/60);
+  return {ms,start,after,afterMove:r.terrainStats.builds,beforeMove,cacheSize,max:r.maxTerrainChunks,
+   canvasDpr:r.dpr};
+ });
+ assert.ok(benchmark.start.builds>0,'Exterior must build tile chunks on first draw');
+ assert.equal(benchmark.after.builds,benchmark.start.builds,'Static chunks must not be rasterized again each frame');
+ assert.ok(benchmark.after.hits>benchmark.start.hits+100,'Repeated frames reuse the cached chunks');
+ assert.ok(benchmark.cacheSize<=benchmark.max,'Terrain cache must remain memory-bounded');
+ assert.ok(benchmark.canvasDpr<2,'Exterior DPR should be capped for mobile');
+ console.log('EXTERIOR PERF',JSON.stringify(benchmark));
+ await perfContext.close();
  await page.screenshot({path:path.join(repoRoot,'browser-qa','01-esterno-mobile.png')});
  const colors=await iframe.locator('#world-canvas').evaluate(canvas=>{
   const ctx=canvas.getContext('2d'),data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
@@ -68,6 +97,8 @@ async function main(){
  await page.waitForFunction(()=>document.querySelector('#overworld-frame')?.contentWindow?.ScoponeOverworld?.position()?.scene==='outside');
  const returned=await getPos();
  assert.equal(returned.cityId,null);assert.equal(returned.x,50.5);assert.equal(returned.y,38.5);
+ // The scene identifier changes before the final fade finishes; wait for touch to unlock.
+ await page.waitForFunction(()=>!document.querySelector('#overworld-frame')?.contentWindow?.document.querySelector('#transition-veil')?.classList.contains('active'));
  // Touch-to-move toward Napoli entrance, without using the development bridge.
  const externalZoom=.88,dx=48.5-returned.x,dy=39.5-returned.y;
  const cx=390/2+(dx-dy)*26*externalZoom;
@@ -75,7 +106,8 @@ async function main(){
  await iframe.locator('#world-canvas').tap({position:{x:cx,y:cy}});
  await page.waitForFunction(()=>document.querySelector('#overworld-frame')?.contentWindow?.ScoponeOverworld?.position()?.scene==='city',null,{timeout:10000});
  await iframe.locator('#exit').click();
- assert.equal(await page.locator('#menu-view').isVisible(),true);
+ // postMessage from child iframe reaches the parent asynchronously.
+ await page.locator('#menu-view').waitFor({state:'visible',timeout:5000});
  await page.locator('#start-quick').click();
  assert.equal(await page.locator('#game-view').isVisible(),true);
  await page.locator('#back-menu').click();

@@ -7,12 +7,19 @@ export class IsoRenderer {
     this.world=world;this.assets=assets;this.width=1;this.height=1;this.dpr=1;
     this.camera={x:16.5,y:16.5,zoom:1,anchorY:.44};
     this.target={x:16.5,y:16.5};this.elapsed=0;this.debug=false;this.exitMarker=null;
+    // Cache only static exterior tiles. Local cities keep their original renderer.
+    this.terrainCache=new Map();this.cacheWorld=null;this.maxTerrainChunks=28;
+    this.terrainStats={builds:0,hits:0,evictions:0,draws:0};
     this.resize();
   }
   resize(){
     const box=this.canvas.getBoundingClientRect();this.width=Math.max(1,Math.round(box.width));this.height=Math.max(1,Math.round(box.height));
-    this.dpr=Math.min(window.devicePixelRatio||1,2.5);
-    this.canvas.width=Math.round(this.width*this.dpr);this.canvas.height=Math.round(this.height*this.dpr);
+    // Natural 52×30 tiles need less resolution than large indoor character sprites.
+    const dpr=Math.min(window.devicePixelRatio||1,this.world.manifest.cities?1.65:2.25);
+    const cw=Math.round(this.width*dpr),ch=Math.round(this.height*dpr);
+    if(this.canvas.width===cw&&this.canvas.height===ch&&this.dpr===dpr)return;
+    this.dpr=dpr;
+    this.canvas.width=cw;this.canvas.height=ch;
     this.ctx.setTransform(this.dpr,0,0,this.dpr,0,0);
     this.ctx.imageSmoothingEnabled=true;
   }
@@ -38,8 +45,10 @@ export class IsoRenderer {
     c.setTransform(this.dpr,0,0,this.dpr,0,0);
     c.fillStyle=this.world.manifest.background||'#d9c9b3';c.fillRect(0,0,w,h);
     const b=this._cullBounds(),tw=TILE_WIDTH*z,th=TILE_HEIGHT*z;
-    // A small size overlap removes sub-pixel hairlines between adjacent transparent diamonds.
-    // Images and positions remain identical across chunk and zone boundaries.
+    if(this.world.manifest.cities){
+      this._drawTerrainChunks(b);
+    }else{
+    // Legacy floor renderer remains untouched for the interior city scene.
     for(let sum=b.minX+b.minY;sum<=b.maxX+b.maxY;sum++){
       for(let x=b.minX;x<=b.maxX;x++){
         const y=sum-x;if(y<b.minY||y>b.maxY)continue;
@@ -54,6 +63,7 @@ export class IsoRenderer {
         else{c.fillStyle=tile.zone.fallback||'#d4c2ad';c.beginPath();c.moveTo(p.x,p.y-th/2);c.lineTo(p.x+tw/2,p.y);c.lineTo(p.x,p.y+th/2);c.lineTo(p.x-tw/2,p.y);c.closePath();c.fill();}
       }
     }
+    }
     if(destination){const p=this._screen(destination.x,destination.y);c.save();c.strokeStyle='rgba(127,77,36,.78)';c.lineWidth=1.5;c.beginPath();c.ellipse(p.x,p.y,tw*.25,th*.26,0,0,2*Math.PI);c.stroke();c.restore();}
     if(this.exitMarker){
       const p=this._screen(this.exitMarker.x,this.exitMarker.y);
@@ -66,6 +76,86 @@ export class IsoRenderer {
     for(const item of all)this.drawEntity(item);
     if(this.world.manifest.labels)this.drawLabels(this.world.manifest.labels);
     if(this.debug)this.drawDebug(player,b);
+  }
+  /** Precompose a 16×16 block once onto a small transparent canvas (1x).
+   * This avoids thousands of SVG drawImage calls per animation frame.
+   * Only the manifest-provided image IDs are used; no fixed art in the engine. */
+  _buildTerrainChunk(zone,cx,cy){
+    const n=this.world.chunkSize;
+    const tileW=TILE_WIDTH,tileH=TILE_HEIGHT,pad=2;
+    const columns=Math.min(n,zone.width-cx*n),rows=Math.min(n,zone.height-cy*n);
+    const width=(columns+rows)*tileW/2+pad*2;
+    const height=(columns+rows)*tileH/2+pad*2;
+    const buffer=document.createElement('canvas');
+    buffer.width=Math.ceil(width);buffer.height=Math.ceil(height);
+    const ctx=buffer.getContext('2d',{alpha:true});
+    ctx.imageSmoothingEnabled=true;
+    const anchorX=rows*tileW/2+pad,anchorY=pad;
+    const x0=zone.worldX+cx*n,y0=zone.worldY+cy*n;
+    for(let sum=0;sum<columns+rows-1;sum++){
+      for(let ix=Math.max(0,sum-rows+1);ix<=Math.min(columns-1,sum);ix++){
+        const iy=sum-ix;
+        const tile=this.world.tileAt(x0+ix,y0+iy);
+        if(!tile)continue;
+        const pX=anchorX+(ix-iy)*tileW/2,pY=anchorY+(ix+iy+1)*tileH/2;
+        const art=this.assets.getTile(tile.tileId);
+        if(art)ctx.drawImage(art,pX-tileW/2-.45,pY-tileH/2-.45,tileW+.9,tileH+.9);
+        else{
+          ctx.fillStyle=tile.zone.fallback||'#d4c2ad';
+          ctx.beginPath();ctx.moveTo(pX,pY-tileH/2);ctx.lineTo(pX+tileW/2,pY);
+          ctx.lineTo(pX,pY+tileH/2);ctx.lineTo(pX-tileW/2,pY);ctx.closePath();ctx.fill();
+        }
+      }
+    }
+    this.terrainStats.builds++;
+    return {buffer,anchorX,anchorY};
+  }
+  _terrainChunk(zone,cx,cy){
+    if(this.cacheWorld!==this.world){
+      this.terrainCache.clear();this.cacheWorld=this.world;
+    }
+    const key=zone.id+':'+cx+':'+cy;
+    if(this.terrainCache.has(key)){
+      const value=this.terrainCache.get(key);
+      // Recently visible chunks are retained when the player crosses boundaries.
+      this.terrainCache.delete(key);this.terrainCache.set(key,value);
+      this.terrainStats.hits++;return value;
+    }
+    const value=this._buildTerrainChunk(zone,cx,cy);
+    this.terrainCache.set(key,value);
+    if(this.terrainCache.size>this.maxTerrainChunks){
+      this.terrainCache.delete(this.terrainCache.keys().next().value);
+      this.terrainStats.evictions++;
+    }
+    return value;
+  }
+  /** Draw only chunks intersecting the viewport; map objects and player remain dynamic. */
+  _drawTerrainChunks(bounds){
+    const z=this.camera.zoom,ctx=this.ctx,n=this.world.chunkSize;
+    for(const zone of this.world.zoneBounds){
+      const firstX=Math.max(0,Math.floor((bounds.minX-zone.worldX)/n));
+      const lastX=Math.min(Math.ceil(zone.width/n)-1,Math.floor((bounds.maxX-zone.worldX)/n));
+      const firstY=Math.max(0,Math.floor((bounds.minY-zone.worldY)/n));
+      const lastY=Math.min(Math.ceil(zone.height/n)-1,Math.floor((bounds.maxY-zone.worldY)/n));
+      if(firstX>lastX||firstY>lastY)continue;
+      for(let cy=firstY;cy<=lastY;cy++)for(let cx=firstX;cx<=lastX;cx++){
+        const originX=zone.worldX+cx*n,originY=zone.worldY+cy*n;
+        const columns=Math.min(n,zone.width-cx*n),rows=Math.min(n,zone.height-cy*n);
+        const p=this._screen(originX,originY);
+        const left=p.x-(rows*TILE_WIDTH/2+2)*z;
+        const top=p.y-2*z;
+        const width=((columns+rows)*TILE_WIDTH/2+4)*z;
+        const height=((columns+rows)*TILE_HEIGHT/2+4)*z;
+        if(left>this.width||left+width<0||top>this.height||top+height<0)continue;
+        const entry=this._terrainChunk(zone,cx,cy);
+        ctx.drawImage(entry.buffer,p.x-entry.anchorX*z,p.y-entry.anchorY*z,entry.buffer.width*z,entry.buffer.height*z);
+        this.terrainStats.draws++;
+      }
+    }
+  }
+  /** Future dynamic tile edits must invalidate the relevant cached block. */
+  invalidateTerrain(){
+    this.terrainCache.clear();this.terrainStats.evictions=0;
   }
   drawEntity(entity){
     const c=this.ctx,p=this._screen(entity.x,entity.y),z=this.camera.zoom;

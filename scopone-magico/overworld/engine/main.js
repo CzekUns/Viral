@@ -40,6 +40,7 @@ function save(){
 function applyScene(){
  world=worlds[state.scene];
  renderer.world=world;
+ renderer.resize();
  const slot=state.scene==='outside'?'outside':'inside';
  const view=world.manifest.view||{};
  const p=state[slot];player.x=p.x;player.y=p.y;
@@ -179,7 +180,12 @@ function tick(t){
  const dt=clamp(lifecycle.lastFrame?(t-lifecycle.lastFrame)/1000:1/60,0,.05);
  lifecycle.lastFrame=t;
  update(dt);renderer.follow(player,dt);renderer.elapsed=t/1000;
- renderer.draw(player,[],lifecycle.destination,dt);
+ const key=[world.manifest.id,player.x.toFixed(3),player.y.toFixed(3),player.facing,
+   player.animation,renderer.camera.x.toFixed(3),renderer.camera.y.toFixed(3),renderer.camera.zoom.toFixed(3),
+   lifecycle.destination?.x,lifecycle.destination?.y,renderer.debug].join(':');
+ if(key!==lifecycle.lastDrawKey||player.animation==='walk'||renderer.debug){
+  renderer.draw(player,[],lifecycle.destination,dt);lifecycle.lastDrawKey=key;
+ }
  lifecycle.raf=requestAnimationFrame(tick);
 }
 function canvasTap(e){
