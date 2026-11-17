@@ -361,60 +361,67 @@
       "frames": 3
     },
     "outer-grass": {
-      "src": "tiles/outside/grass.svg",
+      "src": "tiles/outside/v03/grass.webp",
       "type": "tile",
       "size": [
         104,
         60
-      ]
+      ],
+      "previewStatus": "V03 - review in game, not artistically approved"
     },
     "outer-forest": {
-      "src": "tiles/outside/forest.svg",
+      "src": "tiles/outside/v03/forest.webp",
       "type": "tile",
       "size": [
         104,
         60
-      ]
+      ],
+      "previewStatus": "V03 - review in game, not artistically approved"
     },
     "outer-hill": {
-      "src": "tiles/outside/hill.svg",
+      "src": "tiles/outside/v03/hill.webp",
       "type": "tile",
       "size": [
         104,
         60
-      ]
+      ],
+      "previewStatus": "V03 - review in game, not artistically approved"
     },
     "outer-road": {
-      "src": "tiles/outside/road.svg",
+      "src": "tiles/outside/v03/road.webp",
       "type": "tile",
       "size": [
         104,
         60
-      ]
+      ],
+      "previewStatus": "V03 - review in game, not artistically approved"
     },
     "outer-coast": {
-      "src": "tiles/outside/coast.svg",
+      "src": "tiles/outside/v03/coast.webp",
       "type": "tile",
       "size": [
         104,
         60
-      ]
+      ],
+      "previewStatus": "V03 - review in game, not artistically approved"
     },
     "outer-shallow": {
-      "src": "tiles/outside/shallow.svg",
+      "src": "tiles/outside/v03/shallow.webp",
       "type": "tile",
       "size": [
         104,
         60
-      ]
+      ],
+      "previewStatus": "V03 - review in game, not artistically approved"
     },
     "outer-sea": {
-      "src": "tiles/outside/sea.svg",
+      "src": "tiles/outside/v03/sea.webp",
       "type": "tile",
       "size": [
         104,
         60
-      ]
+      ],
+      "previewStatus": "V03 - review in game, not artistically approved"
     },
     "outer-city": {
       "src": "objects/outside/town.svg",
