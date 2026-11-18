@@ -29,8 +29,8 @@ test('walk directions use AutoSprite 22 frames plus recovered E SE S',()=>{
       assert.ok(fs.statSync(path.join(root,source)).size>2500,source);
     }
   }
-  assert.equal(byName.walk.perDirection.S.artStatus,'TEST AUTOSPRITE SCREENREC V03');
-  assert.equal(byName.walk.perDirection.SE.artStatus,'TEST AUTOSPRITE SCREENREC V03');
+  assert.equal(byName.walk.perDirection.S.artStatus,'TEST AUTOSPRITE SCREENREC V04 ANCHOR FIX');
+  assert.equal(byName.walk.perDirection.SE.artStatus,'TEST AUTOSPRITE SCREENREC V04 ANCHOR FIX');
   assert.equal(byName.walk.perDirection.E.frames,12);
 });
 test('22 frames are preserved and advance at the specified rate',()=>{
@@ -48,7 +48,7 @@ test('22 frames are preserved and advance at the specified rate',()=>{
 test('WebP strips remain within Android-friendly 4096px width and match frame cell geometry',()=>{
   const entries=[...auto,'S'].map(d=>[d,22,180,249]).concat([['S',4,180,180],['SE',4,180,180],['E',12,180,249],['SE',12,180,249],['S',18,180,249]]);
   for(const [d,frames,fw,fh] of entries){
-    const src=frames===22?'characters/c08/v02/c08-v02-auto-'+d+'-22f.webp':frames===4?'characters/c08/v02/c08-approved-'+d+'-4f.webp':'characters/c08/v03-recovered/c08-auto-recovered-'+d+'-'+frames+'f.webp';
+    const src=frames===22?'characters/c08/v02/c08-v02-auto-'+d+'-22f.webp':frames===4?'characters/c08/v02/c08-approved-'+d+'-4f.webp':'characters/c08/v04-stabilized/c08-auto-stabilized-'+d+'-'+frames+'f.webp';
     const bytes=fs.readFileSync(path.join(root,src));
     assert.equal(bytes.toString('ascii',0,4),'RIFF',src);
     assert.equal(bytes.toString('ascii',8,12),'WEBP',src);
@@ -99,11 +99,23 @@ test('lazy walk sheets are budgeted via LRU without evicting small idle images',
 
 test('recovered E/SE/S preserve approved previous sources and expose matching frame sheets',()=>{
   for(const [d,count] of Object.entries(recovered)){
-    const spec=manifest.images['c08-recovered-walk-'+d];
+    const spec=manifest.images['c08-stabilized-walk-'+d];
     assert.equal(spec.frames,count);
     assert.deepEqual(spec.frameSize,[180,249]);
     assert.equal(byName.walk.directions[d],spec.src);
     assert.ok(manifest.images.player.comparisonBeforeRecovery[d].walk);
     assert.ok(fs.statSync(path.join(root,spec.src)).size>2500);
+  }
+});
+
+test('stabilization preserves original 12/12/18f animation paths for comparison',()=>{
+  for(const d of ['E','SE','S']){
+    const old=manifest.images.player.comparisonBeforeStabilization[d];
+    const now=manifest.images.player.animations.walk.directions[d];
+    assert.ok(old.walk.includes('v03-recovered/c08-auto-recovered-'+d));
+    assert.ok(now.includes('v04-stabilized/c08-auto-stabilized-'+d));
+    assert.equal(old.walkMeta.frames,manifest.images.player.animations.walk.perDirection[d].frames);
+    assert.ok(fs.existsSync(path.join(root,old.walk)));
+    assert.ok(fs.existsSync(path.join(root,now)));
   }
 });
