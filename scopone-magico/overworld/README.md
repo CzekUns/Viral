@@ -108,3 +108,16 @@ Se la V03 viene respinta, basta ripristinare i sette percorsi in `assets.json` o
 E and SE: **12 frames** each; S: **18 frames**. The captured animation was extracted from the user's AutoSprite screen recording, background removed and aligned; strips are lossless-alpha WebP with 180×249 cells and 12 FPS. These are **TEST assets**, not aesthetically approved. Earlier S V08 and SE V07 remain in this repo. To compare, open `overworld/?c08-recovered=off`: it restores exactly E static, S V08 and SE V07. The earlier `?c08=legacy` option is untouched. The joystick facing hysteresis, walk timer and runtime diagnostics already introduced by the parallel debug effort are preserved.
 
 Source files and QA GIFs on Google Drive: https://drive.google.com/drive/folders/14RJLgY4JUo7sqrVQKeTDOBKeLI8AbNgj . The screen-recorded masks retain minor edge artifacts; mobile visual validation is still required.
+
+## C08 Est / Sud-Est / Sud — micro-correzione anti-caduta V04, TEST 19/11/2026
+
+Nel video di estrazione AutoSprite del 17/11 un fotogramma risulta visivamente in caduta.
+Sono stati misurati gli estremi alpha del cappello e ricollocati soltanto pochi fotogrammi, con spostamenti **Y interi**; nessuna deformazione o ridisegno. 
+- E: F08 -19 px, F09 -4 px.
+- SE: F05/F06 -13 px, F07 +5 px, F08 +8 px.
+- S: F02 +5 px, F07 +4 px, F11 -8 px, F13 +5 px, F14 +13 px.
+
+Tutte le strisce conservano 12/12/18 fotogrammi a 180×249 px/cella, 12fps, alpha lossless. 
+I file V03 restano immutati: `?c08-stabilized=off` torna al ciclo AutoSprite precedente, `?c08-recovered=off` torna alle vecchie animazioni approvate S V08 e SE V07 (E statico).
+Drive QA: https://drive.google.com/drive/folders/1_YdMeURaoCQEWtmeCO01v5jbIm0ilmKX
+Le camminate nuove rimangono TEST, in attesa della verifica estetica sul telefono.

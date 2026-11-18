@@ -123,8 +123,8 @@ async function main(){
  // the normal requestAnimationFrame update handles input and pose selection.
  const joystickDirections=[
    {dir:'NE',dx:1,dy:-1,frames:22,pattern:/c08-v02-auto-NE-22f\.webp/},
-   {dir:'E',dx:1,dy:0,frames:12,pattern:/c08-auto-recovered-E-12f\.webp/},
-   {dir:'SE',dx:1,dy:1,frames:12,pattern:/c08-auto-recovered-SE-12f\.webp/},
+   {dir:'E',dx:1,dy:0,frames:12,pattern:/c08-auto-stabilized-E-12f\.webp/},
+   {dir:'SE',dx:1,dy:1,frames:12,pattern:/c08-auto-stabilized-SE-12f\.webp/},
  ];
  const analog=await iframe.locator('#joystick').boundingBox();
  const joyX=analog.x+analog.width/2,joyY=analog.y+analog.height/2;
@@ -273,7 +273,7 @@ async function main(){
      'Wrong directional frame strip '+direction);
    assert.ok(running.every(x=>direction==='NE'?
      /c08-v02-auto-NE-22f\.webp/.test(x.source):
-     /c08-auto-recovered-SE-12f\.webp/.test(x.source)),
+     /c08-auto-stabilized-SE-12f\.webp/.test(x.source)),
      'Unexpected C08 image decoded in renderer '+direction);
    await page.waitForTimeout(180);
    const stopped=await iframe.locator('#world-canvas').evaluate(
@@ -314,7 +314,7 @@ async function main(){
    },direction);
    assert.equal(snap.frames,expectedFrames[direction],direction+' wrong frame count');
    assert.match(snap.src,/\/characters\/c08\//,direction+' wrong C08 source');
-   if(['E','SE','S'].includes(direction))assert.match(snap.src,/c08-auto-recovered-/,'Recovered C08 sheet missing');
+   if(['E','SE','S'].includes(direction))assert.match(snap.src,/c08-auto-stabilized-/,'Recovered C08 sheet missing');
    if(['W','NW','N','NE','SW'].includes(direction))assert.match(snap.src,/c08-v02-auto-/,'AutoSprite was not selected');
    await writeFile(path.join(repoRoot,'browser-qa','c08-'+direction+'-city.png'),Buffer.from(snap.image,'base64'));
  }

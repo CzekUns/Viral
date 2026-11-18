@@ -108,7 +108,7 @@
       "type": "character",
       "characterId": "C08",
       "name": "Fante di Coppe",
-      "variant": "C08 AutoSprite E/SE/S screen-recording recovered TEST 12/12/18f; W/NW/N/NE/SW prior AutoSprite TEST",
+      "variant": "C08 AutoSprite E/SE/S V04 ANCHOR TEST, 12/12/18 frames",
       "source": "Recorded AutoSprite 2026-11-17 + prior V02; approved S V08 and SE V07 retained as rollback",
       "anchor": [
         0.5,
@@ -255,9 +255,9 @@
           "directions": {
             "N": "characters/c08/v02/c08-v02-auto-N-22f.webp",
             "NE": "characters/c08/v02/c08-v02-auto-NE-22f.webp",
-            "E": "characters/c08/v03-recovered/c08-auto-recovered-E-12f.webp",
-            "SE": "characters/c08/v03-recovered/c08-auto-recovered-SE-12f.webp",
-            "S": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp",
+            "E": "characters/c08/v04-stabilized/c08-auto-stabilized-E-12f.webp",
+            "SE": "characters/c08/v04-stabilized/c08-auto-stabilized-SE-12f.webp",
+            "S": "characters/c08/v04-stabilized/c08-auto-stabilized-S-18f.webp",
             "SW": "characters/c08/v02/c08-v02-auto-SW-22f.webp",
             "W": "characters/c08/v02/c08-v02-auto-W-22f.webp",
             "NW": "characters/c08/v02/c08-v02-auto-NW-22f.webp"
@@ -300,7 +300,8 @@
                 0.76,
                 1.05
               ],
-              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V04 ANCHOR FIX",
+              "stabilization": "integer-pixel Y-only correction, original frames unchanged"
             },
             "SE": {
               "frames": 12,
@@ -313,7 +314,8 @@
                 0.76,
                 1.05
               ],
-              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V04 ANCHOR FIX",
+              "stabilization": "integer-pixel Y-only correction, original frames unchanged"
             },
             "S": {
               "frames": 18,
@@ -326,7 +328,8 @@
                 0.76,
                 1.05
               ],
-              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V04 ANCHOR FIX",
+              "stabilization": "integer-pixel Y-only correction, original frames unchanged"
             },
             "SW": {
               "frames": 22,
@@ -477,6 +480,56 @@
               1
             ],
             "artStatus": "APPROVATO V08"
+          }
+        }
+      },
+      "comparisonBeforeStabilization": {
+        "E": {
+          "walk": "characters/c08/v03-recovered/c08-auto-recovered-E-12f.webp",
+          "walkMeta": {
+            "frames": 12,
+            "fps": 12,
+            "anchor": [
+              0.5,
+              0.955
+            ],
+            "renderScale": [
+              0.76,
+              1.05
+            ],
+            "artStatus": "TEST AUTOSPRITE SCREENREC V03"
+          }
+        },
+        "SE": {
+          "walk": "characters/c08/v03-recovered/c08-auto-recovered-SE-12f.webp",
+          "walkMeta": {
+            "frames": 12,
+            "fps": 12,
+            "anchor": [
+              0.5,
+              0.955
+            ],
+            "renderScale": [
+              0.76,
+              1.05
+            ],
+            "artStatus": "TEST AUTOSPRITE SCREENREC V03"
+          }
+        },
+        "S": {
+          "walk": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp",
+          "walkMeta": {
+            "frames": 18,
+            "fps": 12,
+            "anchor": [
+              0.5,
+              0.955
+            ],
+            "renderScale": [
+              0.76,
+              1.05
+            ],
+            "artStatus": "TEST AUTOSPRITE SCREENREC V03"
           }
         }
       }
@@ -1043,6 +1096,48 @@
         249
       ],
       "artStatus": "TEST"
+    },
+    "c08-stabilized-walk-E": {
+      "src": "characters/c08/v04-stabilized/c08-auto-stabilized-E-12f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "E",
+      "frames": 12,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST V04 ANCHOR FIX",
+      "provenance": "characters/c08/v03-recovered/c08-auto-recovered-E-12f.webp"
+    },
+    "c08-stabilized-walk-SE": {
+      "src": "characters/c08/v04-stabilized/c08-auto-stabilized-SE-12f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "SE",
+      "frames": 12,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST V04 ANCHOR FIX",
+      "provenance": "characters/c08/v03-recovered/c08-auto-recovered-SE-12f.webp"
+    },
+    "c08-stabilized-walk-S": {
+      "src": "characters/c08/v04-stabilized/c08-auto-stabilized-S-18f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "S",
+      "frames": 18,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST V04 ANCHOR FIX",
+      "provenance": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp"
     }
   },
   "spritesheetSchema": {

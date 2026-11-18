@@ -44,6 +44,13 @@ export class AssetLibrary {
         player.animations.walk.perDirection[d]={...old.walkMeta};
         player.animations.idle.perDirection[d]={...old.idleMeta};
       }
+    }else if(params.get('c08-stabilized')==='off'&&player.comparisonBeforeStabilization){
+      // Compare with pre-stabilization 12/12/18f AutoSprite captures.
+      for(const d of ['E','SE','S']){
+        const prior=player.comparisonBeforeStabilization[d];
+        player.animations.walk.directions[d]=prior.walk;
+        player.animations.walk.perDirection[d]={...prior.walkMeta};
+      }
     }else if(params.get('c08-sud')==='auto'&&player.comparisonSudAuto){
       // Deliberate opt-in: approved V08 Sud is the default.
       const cmp=player.comparisonSudAuto;
@@ -56,7 +63,7 @@ export class AssetLibrary {
     await Promise.all(Object.entries(manifest.images).filter(([,config])=>!config.lazy).map(async([id,config])=>{
       const image=new Image();image.decoding='async';
       const resolved=new URL(config.src,url);
-      if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-auto-e-se-s-screenrec-v04');
+      if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-e-se-s-anti-drop-v05');
       image.src=resolved.href;
       try{await image.decode();images.set(id,image);}
       catch(e){console.warn('Missing image',id,e);}
@@ -85,7 +92,7 @@ export class AssetLibrary {
     this.pending.add(id);
     const image=new Image();image.decoding='async';
     const resolved=new URL(config.src,this.manifestUrl);
-    if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-auto-e-se-s-screenrec-v04');
+    if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-e-se-s-anti-drop-v05');
     image.src=resolved.href;
     const decode=typeof image.decode==='function'?image.decode():new Promise((resolve,reject)=>{
       image.onload=resolve;image.onerror=reject;
