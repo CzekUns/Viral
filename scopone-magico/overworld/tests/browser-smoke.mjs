@@ -153,7 +153,7 @@ async function main(){
    // eight-direction screenshot tour. Wait for the on-demand WebP decode.
    let loaded=false;
    for(let attempt=0;attempt<90;attempt++){
-     const check=renderer.assets.spriteFor(player,'W',0);
+     const check=renderer.assets.spriteFor({...player,animation:'walk'},'W',0);
      if(check.image&&!check.loading){loaded=true;break;}
      await new Promise(r=>setTimeout(r,60));
    }
@@ -161,7 +161,8 @@ async function main(){
    const images=[];
    for(const elapsed of [0,5/22]){
      player.animationTime=elapsed;
-     const spec=renderer.assets.spriteFor(player,'W',elapsed);
+     player.animation='walk';
+     const spec=renderer.assets.spriteFor({...player,animation:'walk'},'W',elapsed);
      renderer.draw(player,[],null,1/60);
      images.push({frame:spec.frame,pixels:canvas.toDataURL('image/png')});
    }
