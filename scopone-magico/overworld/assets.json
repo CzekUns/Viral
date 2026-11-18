@@ -108,8 +108,8 @@
       "type": "character",
       "characterId": "C08",
       "name": "Fante di Coppe",
-      "variant": "V04 walk 3 poses, V03 static reserved",
-      "source": "Google Drive → Scopone Alchemico / 06 — Archivio bozze grafiche / C08 WALK V04",
+      "variant": "C08 V02 AutoSprite TEST (W,NW,N,NE,SW) + V08 S/V07 SE approved; E static",
+      "source": "Drive AutoSprite ANCORAGGI V02 132 PNG; Drive APPROVATE S V08 / SE V07",
       "anchor": [
         0.5,
         0.9505208333333334
@@ -119,45 +119,275 @@
         110
       ],
       "directions": {
-        "S": "characters/c08/idle/S.webp",
-        "SE": "characters/c08/idle/SE.webp",
+        "N": "characters/c08/v02/c08-v02-idle-N.webp",
+        "NE": "characters/c08/v02/c08-v02-idle-NE.webp",
         "E": "characters/c08/idle/E.webp",
-        "NE": "characters/c08/idle/NE.webp",
-        "N": "characters/c08/idle/N.webp",
-        "NW": "characters/c08/idle/NW.webp",
-        "W": "characters/c08/idle/W.webp",
-        "SW": "characters/c08/idle/SW.webp"
+        "SE": "characters/c08/v02/c08-approved-idle-SE.webp",
+        "S": "characters/c08/v02/c08-approved-idle-S.webp",
+        "SW": "characters/c08/v02/c08-v02-idle-SW.webp",
+        "W": "characters/c08/v02/c08-v02-idle-W.webp",
+        "NW": "characters/c08/v02/c08-v02-idle-NW.webp"
       },
       "animations": {
         "idle": {
           "frames": 1,
           "fps": 1,
           "directions": {
-            "S": "characters/c08/idle/S.webp",
-            "SE": "characters/c08/idle/SE.webp",
+            "N": "characters/c08/v02/c08-v02-idle-N.webp",
+            "NE": "characters/c08/v02/c08-v02-idle-NE.webp",
             "E": "characters/c08/idle/E.webp",
-            "NE": "characters/c08/idle/NE.webp",
-            "N": "characters/c08/idle/N.webp",
-            "NW": "characters/c08/idle/NW.webp",
-            "W": "characters/c08/idle/W.webp",
-            "SW": "characters/c08/idle/SW.webp"
+            "SE": "characters/c08/v02/c08-approved-idle-SE.webp",
+            "S": "characters/c08/v02/c08-approved-idle-S.webp",
+            "SW": "characters/c08/v02/c08-v02-idle-SW.webp",
+            "W": "characters/c08/v02/c08-v02-idle-W.webp",
+            "NW": "characters/c08/v02/c08-v02-idle-NW.webp"
+          },
+          "perDirection": {
+            "N": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "NE": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "E": {
+              "frames": 1,
+              "anchor": [
+                0.5,
+                0.9505208333333334
+              ],
+              "renderScale": [
+                1,
+                1
+              ],
+              "artStatus": "PROVVISORIO STATICO"
+            },
+            "SE": {
+              "frames": 1,
+              "fps": 8,
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1,
+                1
+              ],
+              "artStatus": "APPROVATO V07"
+            },
+            "S": {
+              "frames": 1,
+              "fps": 8,
+              "anchor": [
+                0.5,
+                0.94
+              ],
+              "renderScale": [
+                1,
+                1
+              ],
+              "artStatus": "APPROVATO V08"
+            },
+            "SW": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "W": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "NW": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            }
           }
         },
         "walk": {
-          "frames": 3,
-          "fps": 7,
+          "frames": 22,
+          "fps": 22,
           "directions": {
-            "S": "characters/c08/walk/S.webp",
-            "SE": "characters/c08/walk/SE.webp",
-            "E": "characters/c08/walk/E.webp",
-            "NE": "characters/c08/walk/NE.webp",
-            "N": "characters/c08/walk/N.webp",
-            "NW": "characters/c08/walk/NW.webp",
-            "W": "characters/c08/walk/W.webp",
-            "SW": "characters/c08/walk/SW.webp"
+            "N": "characters/c08/v02/c08-v02-auto-N-22f.webp",
+            "NE": "characters/c08/v02/c08-v02-auto-NE-22f.webp",
+            "E": "characters/c08/idle/E.webp",
+            "SE": "characters/c08/v02/c08-approved-SE-4f.webp",
+            "S": "characters/c08/v02/c08-approved-S-4f.webp",
+            "SW": "characters/c08/v02/c08-v02-auto-SW-22f.webp",
+            "W": "characters/c08/v02/c08-v02-auto-W-22f.webp",
+            "NW": "characters/c08/v02/c08-v02-auto-NW-22f.webp"
+          },
+          "perDirection": {
+            "N": {
+              "frames": 22,
+              "fps": 22,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "NE": {
+              "frames": 22,
+              "fps": 22,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "E": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.9505208333333334
+              ],
+              "renderScale": [
+                1,
+                1
+              ],
+              "artStatus": "NON ANIMATO"
+            },
+            "SE": {
+              "frames": 4,
+              "fps": 8,
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1,
+                1
+              ],
+              "artStatus": "APPROVATO V07"
+            },
+            "S": {
+              "frames": 4,
+              "fps": 8,
+              "anchor": [
+                0.5,
+                0.94
+              ],
+              "renderScale": [
+                1,
+                1
+              ],
+              "artStatus": "APPROVATO V08"
+            },
+            "SW": {
+              "frames": 22,
+              "fps": 22,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "W": {
+              "frames": 22,
+              "fps": 22,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            },
+            "NW": {
+              "frames": 22,
+              "fps": 22,
+              "anchor": [
+                0.5,
+                0.955
+              ],
+              "renderScale": [
+                0.76,
+                1.05
+              ],
+              "artStatus": "TEST"
+            }
           }
         }
-      }
+      },
+      "comparisonSudAuto": {
+        "walk": "characters/c08/v02/c08-v02-auto-S-22f.webp",
+        "idle": "characters/c08/v02/c08-v02-idle-S.webp",
+        "meta": {
+          "frames": 22,
+          "fps": 22,
+          "anchor": [
+            0.5,
+            0.955
+          ],
+          "renderScale": [
+            0.76,
+            1.05
+          ],
+          "artStatus": "TEST"
+        },
+        "query": "c08-sud=auto"
+      },
+      "legacySpritePaths": "characters/c08/idle|walk/{S,SE,E,NE,N,NW,W,SW}.webp (kept unchanged)"
     },
     "player-legacy": {
       "src": "characters/player-south.webp",
@@ -204,7 +434,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "c08-idle-SE": {
       "src": "characters/c08/idle/SE.webp",
@@ -226,7 +457,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "c08-idle-E": {
       "src": "characters/c08/idle/E.webp",
@@ -248,7 +480,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "c08-idle-NE": {
       "src": "characters/c08/idle/NE.webp",
@@ -270,7 +503,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "c08-idle-N": {
       "src": "characters/c08/idle/N.webp",
@@ -292,7 +526,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "c08-idle-NW": {
       "src": "characters/c08/idle/NW.webp",
@@ -314,7 +549,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "c08-idle-W": {
       "src": "characters/c08/idle/W.webp",
@@ -336,7 +572,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "c08-idle-SW": {
       "src": "characters/c08/idle/SW.webp",
@@ -358,7 +595,8 @@
         384,
         384
       ],
-      "frames": 3
+      "frames": 3,
+      "lazy": true
     },
     "outer-grass": {
       "src": "tiles/outside/v03/grass.webp",
@@ -438,6 +676,206 @@
         0.5,
         0.98
       ]
+    },
+    "c08-v02-walk-W": {
+      "src": "characters/c08/v02/c08-v02-auto-W-22f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "W",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-v02-idle-W": {
+      "src": "characters/c08/v02/c08-v02-idle-W.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "W",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-v02-walk-NW": {
+      "src": "characters/c08/v02/c08-v02-auto-NW-22f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "NW",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-v02-idle-NW": {
+      "src": "characters/c08/v02/c08-v02-idle-NW.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "NW",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-v02-walk-N": {
+      "src": "characters/c08/v02/c08-v02-auto-N-22f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "N",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-v02-idle-N": {
+      "src": "characters/c08/v02/c08-v02-idle-N.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "N",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-v02-walk-NE": {
+      "src": "characters/c08/v02/c08-v02-auto-NE-22f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "NE",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-v02-idle-NE": {
+      "src": "characters/c08/v02/c08-v02-idle-NE.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "NE",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-v02-walk-SW": {
+      "src": "characters/c08/v02/c08-v02-auto-SW-22f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "SW",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-v02-idle-SW": {
+      "src": "characters/c08/v02/c08-v02-idle-SW.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "SW",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-v02-walk-S": {
+      "src": "characters/c08/v02/c08-v02-auto-S-22f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "S",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-v02-idle-S": {
+      "src": "characters/c08/v02/c08-v02-idle-S.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "S",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-approved-walk-S": {
+      "src": "characters/c08/v02/c08-approved-S-4f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "S",
+      "frames": 4,
+      "frameSize": [
+        180,
+        180
+      ],
+      "lazy": true,
+      "artStatus": "APPROVATO"
+    },
+    "c08-approved-idle-S": {
+      "src": "characters/c08/v02/c08-approved-idle-S.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "S",
+      "frames": 1,
+      "frameSize": [
+        180,
+        180
+      ],
+      "artStatus": "APPROVATO"
+    },
+    "c08-approved-walk-SE": {
+      "src": "characters/c08/v02/c08-approved-SE-4f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "SE",
+      "frames": 4,
+      "frameSize": [
+        180,
+        180
+      ],
+      "lazy": true,
+      "artStatus": "APPROVATO"
+    },
+    "c08-approved-idle-SE": {
+      "src": "characters/c08/v02/c08-approved-idle-SE.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "SE",
+      "frames": 1,
+      "frameSize": [
+        180,
+        180
+      ],
+      "artStatus": "APPROVATO"
     }
   },
   "spritesheetSchema": {
