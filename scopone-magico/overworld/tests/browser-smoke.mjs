@@ -1,7 +1,7 @@
 /** Browser QA in emulazione touch 390x844. Per test fisico resta necessario un telefono. */
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
-import {mkdir} from 'node:fs/promises';
+import {mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {chromium} from 'playwright';
@@ -29,6 +29,11 @@ async function main(){
  await page.goto(base+'index.html',{waitUntil:'domcontentloaded'});
  await page.locator('#start-overworld').click();
  const iframe=page.frameLocator('#overworld-frame');
+ await page.locator('#overworld-frame').evaluate(element=>{
+   const url=new URL(element.src);
+   url.searchParams.set('debug','1');
+   element.src=url.href;
+ });
  await iframe.locator('#loading').waitFor({state:'hidden',timeout:35000});
  const getPos=()=>iframe.locator('#world-canvas').evaluate(()=>window.ScoponeOverworld.position());
  const a=await getPos();
@@ -111,6 +116,61 @@ async function main(){
  assert.equal(await iframe.locator('#zone-name').textContent(),'Napoli');
  assert.equal(await iframe.locator('#leave-city').isVisible(),true);
  await page.screenshot({path:path.join(repoRoot,'browser-qa','02-citta-mobile.png')});
+
+ // Actual 2D canvas rendering from the live Overworld in a portrait Chromium
+ // viewport. Captures the requested direction after its lazy strip has decoded.
+ const expectedFrames={W:22,NW:22,N:22,NE:22,SW:22,S:4,SE:4,E:1};
+ for(const direction of Object.keys(expectedFrames)){
+   const snap=await iframe.locator('#world-canvas').evaluate(async(canvas,dir)=>{
+     const env=window.ScoponeOverworld.debug();
+     if(!env)throw Error('QA debug API unavailable');
+     const {player,renderer}=env;
+     let sprite;
+     for(let t=0;t<90;t++){
+       sprite=renderer.assets.spriteFor({...player,animation:'walk'},dir,0.27);
+       if(sprite?.image&&!sprite.loading)break;
+       await new Promise(r=>setTimeout(r,60));
+     }
+     if(!sprite?.image||sprite.loading)throw Error('C08 direction did not decode: '+dir);
+     player.facing=dir;player.animation='walk';player.animationTime=.27;
+     renderer.draw(player,[],null,1/60);
+     const image=canvas.toDataURL('image/png').split(',')[1];
+     return {frames:sprite.frames,frame:sprite.frame,src:sprite.image.currentSrc||sprite.image.src,image};
+   },direction);
+   assert.equal(snap.frames,expectedFrames[direction],direction+' wrong frame count');
+   assert.match(snap.src,/\/characters\/c08\//,direction+' wrong C08 source');
+   if(direction==='E')assert.match(snap.src,/\/idle\/E\.webp$/,'East must remain static');
+   if(direction==='S'||direction==='SE')assert.match(snap.src,/c08-approved-/,'Approved direction was replaced');
+   if(['W','NW','N','NE','SW'].includes(direction))assert.match(snap.src,/c08-v02-auto-/,'AutoSprite was not selected');
+   await writeFile(path.join(repoRoot,'browser-qa','c08-'+direction+'-city.png'),Buffer.from(snap.image,'base64'));
+ }
+ // Verify that a 22-frame sequence actually advances between two draw calls.
+ const motion=await iframe.locator('#world-canvas').evaluate(async canvas=>{
+   const env=window.ScoponeOverworld.debug();
+   const {player,renderer}=env;
+   player.facing='W';player.animation='walk';
+   // W may have been evicted from the four-sheet LRU by the preceding
+   // eight-direction screenshot tour. Wait for the on-demand WebP decode.
+   let loaded=false;
+   for(let attempt=0;attempt<90;attempt++){
+     const check=renderer.assets.spriteFor({...player,animation:'walk'},'W',0);
+     if(check.image&&!check.loading){loaded=true;break;}
+     await new Promise(r=>setTimeout(r,60));
+   }
+   if(!loaded)throw Error('W sprite did not reload after LRU eviction');
+   const images=[];
+   for(const elapsed of [0,5/22]){
+     player.animationTime=elapsed;
+     player.animation='walk';
+     const spec=renderer.assets.spriteFor({...player,animation:'walk'},'W',elapsed);
+     renderer.draw(player,[],null,1/60);
+     images.push({frame:spec.frame,pixels:canvas.toDataURL('image/png')});
+   }
+   return images;
+ });
+ assert.deepEqual(motion.map(x=>x.frame),[0,5],'C08 must advance on the 22-frame sheet');
+ assert.notEqual(motion[0].pixels,motion[1].pixels,'The rendered walking poses must visibly differ');
+
  await page.reload({waitUntil:'domcontentloaded'});
  await page.locator('#start-overworld').click();
  await iframe.locator('#loading').waitFor({state:'hidden',timeout:35000});

@@ -137,6 +137,7 @@ function enterZone(){
 }
 function update(dt){
  if(lifecycle.fade)return;
+ const previousFacing=player.facing;
  let motion=controls.getVector(),move;
  if(motion.x||motion.y){
   lifecycle.path=[];lifecycle.destination=null;
@@ -158,7 +159,7 @@ function update(dt){
   player.animation=moved?'walk':'idle';
   if(!moved){lifecycle.path=[];lifecycle.destination=null;}
  }else player.animation='idle';
- player.animationTime=previousAnimation===player.animation?player.animationTime+dt:0;
+ player.animationTime=(previousAnimation===player.animation&&previousFacing===player.facing)?player.animationTime+dt:0;
  world.prefetchNear(player.x,player.y,1);enterZone();
  if(state.scene==='outside'){
   const city=cityOnTile(world.manifest,player.x,player.y);
