@@ -1,6 +1,7 @@
 import {World} from './world.js';
-import {AssetLibrary} from './assets.js?rev=c08-v02-ne-se-qa2';
-import {IsoRenderer} from './renderer.js';
+import {AssetLibrary} from './assets.js?rev=c08-live-clock-v03';
+import {facingWithHysteresis,advanceC08AnimationTime} from './c08-motion.js';
+import {IsoRenderer} from './renderer.js?rev=c08-live-clock-v03';
 import {TouchControls} from './controls.js';
 import {findPath} from './pathfinding.js';
 import {screenDirectionToWorld,normalize,clamp} from './geometry.js';
@@ -8,7 +9,9 @@ import {STORAGE_V1,STORAGE_V2,restoreState,encodeState,cityOnTile} from './scene
 
 const $=id=>document.getElementById(id);
 const canvas=$('world-canvas'),status=$('status'),loading=$('loading');
-const debug=new URL(location.href).searchParams.has('debug');
+const params=new URL(location.href).searchParams;
+const diagnostic=params.has('c08debug');
+const debug=params.has('debug')||diagnostic;
 let worlds,world,assets,renderer,controls,state;
 const lifecycle={active:true,fade:false,lastZone:null,path:[],destination:null,lastSave:0,lastFrame:0,raf:0};
 const player={x:0,y:0,facing:'SE',assetId:'player',animation:'idle',animationTime:0,renderWidth:48,renderHeight:48,speed:4.1,height:0};
@@ -116,10 +119,6 @@ async function travelPortal(zoneId,entranceId='start'){
   emit('portal',{zoneId,entranceId,position:{x:player.x,y:player.y}});
  });
 }
-function facingFromScreen(dx,dy){
- const angle=(Math.atan2(dy,dx)*180/Math.PI+360)%360;
- return ['E','SE','S','SW','W','NW','N','NE'][Math.round(angle/45)%8];
-}
 function tryMove(dx,dy){
  const x=player.x,y=player.y;
  if(world.canStand(x+dx,y+dy)){player.x+=dx;player.y+=dy;return true;}
@@ -137,19 +136,18 @@ function enterZone(){
 }
 function update(dt){
  if(lifecycle.fade)return;
- const previousFacing=player.facing;
  let motion=controls.getVector(),move;
  if(motion.x||motion.y){
   lifecycle.path=[];lifecycle.destination=null;
   move=screenDirectionToWorld(motion.x,motion.y,world.manifest.allowDiagonal!==false);
-  player.facing=facingFromScreen(motion.x,motion.y);
+  player.facing=facingWithHysteresis(motion.x,motion.y,player.facing);
  }else if(lifecycle.path.length){
   const next=lifecycle.path[0],dx=next.x-player.x,dy=next.y-player.y,dist=Math.hypot(dx,dy);
   if(dist<.06){lifecycle.path.shift();if(!lifecycle.path.length)lifecycle.destination=null;}
   else{
    move=normalize(dx,dy);
    const screenDx=(move.x-move.y)*26,screenDy=(move.x+move.y)*15;
-   player.facing=facingFromScreen(screenDx,screenDy);
+   player.facing=facingWithHysteresis(screenDx,screenDy,player.facing);
    if(dist<player.speed*dt)dt=dist/player.speed;
   }
  }
@@ -159,7 +157,7 @@ function update(dt){
   player.animation=moved?'walk':'idle';
   if(!moved){lifecycle.path=[];lifecycle.destination=null;}
  }else player.animation='idle';
- player.animationTime=(previousAnimation===player.animation&&previousFacing===player.facing)?player.animationTime+dt:0;
+ player.animationTime=advanceC08AnimationTime(previousAnimation,player.animation,player.animationTime,dt);
  world.prefetchNear(player.x,player.y,1);enterZone();
  if(state.scene==='outside'){
   const city=cityOnTile(world.manifest,player.x,player.y);
@@ -183,9 +181,22 @@ function tick(t){
  update(dt);renderer.follow(player,dt);renderer.elapsed=t/1000;
  const key=[world.manifest.id,player.x.toFixed(3),player.y.toFixed(3),player.facing,
    player.animation,renderer.camera.x.toFixed(3),renderer.camera.y.toFixed(3),renderer.camera.zoom.toFixed(3),
-   lifecycle.destination?.x,lifecycle.destination?.y,renderer.debug].join(':');
+   lifecycle.destination?.x,lifecycle.destination?.y,renderer.debug,assets.revision].join(':');
  if(key!==lifecycle.lastDrawKey||player.animation==='walk'||renderer.debug){
   renderer.draw(player,[],lifecycle.destination,dt);lifecycle.lastDrawKey=key;
+ }
+ if(diagnostic){
+  const rendered=renderer.lastPlayerSprite||{};
+  $('c08-diagnostics').textContent=[
+   'C08 · CANVAS / TOUCH',
+   'facing: '+player.facing,
+   'animation: '+player.animation,
+   'animationTime: '+player.animationTime.toFixed(2)+' s',
+   'frame: '+(rendered.frame??'—')+' / frames: '+(rendered.frames??'—'),
+   'loading: '+!!rendered.loading+' · failed: '+!!rendered.failed,
+   'drawn: '+!!rendered.drawn,
+   'source: '+(rendered.src||'none').split('/').pop().split('?')[0]
+  ].join('\n');
  }
  lifecycle.raf=requestAnimationFrame(tick);
 }
@@ -249,7 +260,8 @@ async function start(){
   state=restoreState(saved,readSave(STORAGE_V1),outside,city);
   renderer=new IsoRenderer(canvas,worlds[state.scene],assets);
   applyScene();enterZone();updateHud();setupInputs();
-  if(debug){$('debug-controls').hidden=false;$('debug-data').hidden=false;}
+  if(debug&&!diagnostic){$('debug-controls').hidden=false;$('debug-data').hidden=false;}
+  if(diagnostic)$('c08-diagnostics').hidden=false;
   loading.hidden=true;canvas.setAttribute('aria-busy','false');
   lifecycle.raf=requestAnimationFrame(tick);
   emit('ready',{world:world.manifest.id,scene:state.scene,cityId:state.cityId,position:position()});

@@ -162,17 +162,33 @@ export class IsoRenderer {
     const spec=this.assets.spriteFor(entity,entity.facing||'S',entity.animationTime??this.elapsed);
     const scale=spec.renderScale||[1,1];
     const width=(entity.renderWidth||46)*scale[0]*z,height=(entity.renderHeight||100)*scale[1]*z;
-    if(!spec.image){
+    // Inspect the exact frame passed to Canvas.drawImage, not a second manifest
+    // lookup that could disagree with the asynchronously decoded frame.
+    const playerSprite=entity.assetId==='player'?{
+      facing:entity.facing||'S',animation:entity.animation||'idle',
+      animationTime:entity.animationTime??0,frame:spec.frame,frames:spec.frames,
+      loading:!!spec.loading,failed:!!spec.failed,fallback:!!spec.fallback,
+      requested:spec.requested||'',src:spec.image?.currentSrc||spec.image?.src||'',
+      drawn:false,image:null,sourceX:0,sourceWidth:0
+    }:null;
+    if(playerSprite)this.lastPlayerSprite=playerSprite;
+    if(!spec.image||!spec.image.naturalWidth||!spec.image.naturalHeight){
       c.fillStyle='#883b2d';c.beginPath();c.ellipse(p.x,p.y-height*.5,width*.35,height*.44,0,0,Math.PI*2);c.fill();return;
     }
     c.save();c.translate(p.x,p.y);
     c.fillStyle='rgba(55,41,27,.22)';c.beginPath();c.ellipse(1,0,width*.31,height*.06,-.1,0,Math.PI*2);c.fill();
     if(spec.flip)c.scale(-1,1);
-    const frames=spec.frames,frame=spec.frame;
-    const ix=frame*(spec.image.naturalWidth/frames),iw=spec.image.naturalWidth/frames;
+    const frames=Math.max(1,Math.floor(spec.frames||1));
+    const frame=Math.max(0,Math.min(frames-1,Math.floor(spec.frame||0)));
+    const iw=spec.image.naturalWidth/frames,ix=frame*iw;
     const anchor=spec.anchor;
     c.drawImage(spec.image,ix,0,iw,spec.image.naturalHeight,-width*anchor[0],-height*anchor[1],width,height);
     c.restore();
+    if(playerSprite){
+      playerSprite.drawn=true;
+      playerSprite.frame=frame;playerSprite.frames=frames;
+      playerSprite.image=spec.image;playerSprite.sourceX=ix;playerSprite.sourceWidth=iw;
+    }
     if(entity.label){
       c.save();c.textAlign='center';c.font='bold 12px Georgia,serif';c.lineWidth=3;
       c.strokeStyle='#f4e6c5';c.strokeText(entity.label,p.x,p.y-height-5);

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
 <meta name="theme-color" content="#d9c9b3"/>
 <title>Scopone Alchemico · Overworld</title>
-<link rel="stylesheet" href="ui/overworld.css"/>
+<link rel="stylesheet" href="ui/overworld.css?rev=c08-live-clock-v03"/>
 </head>
 <body>
 <main id="overworld" aria-label="Overworld di Scopone Alchemico">
@@ -26,9 +26,10 @@
   </div>
   <div id="debug-controls" class="debug-controls" hidden><button id="debug-toggle" type="button">Griglia debug</button><button id="portal-test" type="button">Prova portale → D</button></div>
   <span id="debug-data" class="debug-data" hidden></span>
+  <output id="c08-diagnostics" class="c08-diagnostics" hidden aria-label="Diagnostica animazioni Fante di Coppe"></output>
   <div id="transition-veil" class="transition-veil" aria-hidden="true"></div>
   <div id="loading" class="loading">Preparazione dell'Overworld…</div>
 </main>
-<script type="module" src="engine/main.js?rev=c08-v02-ne-se-qa2"></script>
+<script type="module" src="engine/main.js?rev=c08-live-clock-v03"></script>
 </body>
 </html>

@@ -27,3 +27,7 @@
 .leave-city[hidden]{display:none}
 .city-scene .world-hint{top:calc(124px + env(safe-area-inset-top))}
 @media(max-height:700px){.leave-city{top:calc(60px + env(safe-area-inset-top))}.city-scene .world-hint{top:calc(112px + env(safe-area-inset-top))}}
+
+/* Optional ?c08debug=1 overlay: frame reported after the real Canvas drawImage. */
+.c08-diagnostics{position:absolute;z-index:3;top:calc(116px + env(safe-area-inset-top));left:calc(10px + env(safe-area-inset-left));max-width:calc(100vw - 20px);white-space:pre;background:rgba(28,25,22,.88);color:#fff1ce;border-radius:7px;border:1px solid #b6a178;padding:8px 10px;font:11px/1.4 ui-monospace,monospace;pointer-events:none;overflow:hidden;text-overflow:ellipsis}
+.c08-diagnostics[hidden]{display:none}
