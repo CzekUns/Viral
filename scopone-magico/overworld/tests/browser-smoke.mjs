@@ -149,6 +149,15 @@ async function main(){
    const env=window.ScoponeOverworld.debug();
    const {player,renderer}=env;
    player.facing='W';player.animation='walk';
+   // W may have been evicted from the four-sheet LRU by the preceding
+   // eight-direction screenshot tour. Wait for the on-demand WebP decode.
+   let loaded=false;
+   for(let attempt=0;attempt<90;attempt++){
+     const check=renderer.assets.spriteFor(player,'W',0);
+     if(check.image&&!check.loading){loaded=true;break;}
+     await new Promise(r=>setTimeout(r,60));
+   }
+   if(!loaded)throw Error('W sprite did not reload after LRU eviction');
    const images=[];
    for(const elapsed of [0,5/22]){
      player.animationTime=elapsed;
