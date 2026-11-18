@@ -1,5 +1,5 @@
 import {World} from './world.js';
-import {AssetLibrary} from './assets.js';
+import {AssetLibrary} from './assets.js?rev=c08-v02-ne-se-qa2';
 import {IsoRenderer} from './renderer.js';
 import {TouchControls} from './controls.js';
 import {findPath} from './pathfinding.js';

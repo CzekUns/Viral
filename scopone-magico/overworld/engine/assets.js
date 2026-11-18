@@ -13,7 +13,7 @@ export class AssetLibrary {
     this.maxWalkSheets=4;
   }
   static async load(url=new URL('../assets.json',import.meta.url)){
-    const response=await fetch(url);
+    const response=await fetch(url,{cache:'no-store'});
     if(!response.ok)throw Error('Asset manifest unavailable');
     const manifest=await response.json();
     const params=typeof window!=='undefined'?new URLSearchParams(window.location.search):new URLSearchParams();
@@ -45,7 +45,9 @@ export class AssetLibrary {
     const images=new Map();
     await Promise.all(Object.entries(manifest.images).filter(([,config])=>!config.lazy).map(async([id,config])=>{
       const image=new Image();image.decoding='async';
-      image.src=new URL(config.src,url).href;
+      const resolved=new URL(config.src,url);
+      if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-v02-ne-se-qa2');
+      image.src=resolved.href;
       try{await image.decode();images.set(id,image);}
       catch(e){console.warn('Missing image',id,e);}
     }));
@@ -70,7 +72,9 @@ export class AssetLibrary {
     if(!config)return;
     this.pending.add(id);
     const image=new Image();image.decoding='async';
-    image.src=new URL(config.src,this.manifestUrl).href;
+    const resolved=new URL(config.src,this.manifestUrl);
+    if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-v02-ne-se-qa2');
+    image.src=resolved.href;
     Promise.resolve(image.decode()).then(()=>{
       this.images.set(id,image);
       this._touch(id);
