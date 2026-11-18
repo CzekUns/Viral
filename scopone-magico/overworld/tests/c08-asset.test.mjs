@@ -34,11 +34,16 @@ test('walk directions use AutoSprite 22 frames plus recovered E SE S',()=>{
   assert.equal(byName.walk.perDirection.E.frames,12);
 });
 test('22 frames are preserved and advance at the specified rate',()=>{
+  // Start with a fresh decoded image bank: the previous test exercised four-sheet LRU eviction.
+  const phaseImages=new Map(Object.entries(manifest.images).map(([id,s])=>[
+    id,{naturalWidth:(s.frames||1)*(s.frameSize?.[0]||384),naturalHeight:s.frameSize?.[1]||384,src:s.src}
+  ]));
+  const phaseLib=new AssetLibrary(manifest,phaseImages);
   const p={assetId:'player',animation:'walk'};
-  assert.deepEqual([0,1/22,5/22,21/22,1].map(t=>lib.spriteFor(p,'W',t).frame),[0,1,5,21,0]);
-  assert.deepEqual([0,1/12,5/12,17/12,18/12].map(t=>lib.spriteFor(p,'S',t).frame),[0,1,5,17,0]);
-  assert.deepEqual([0,1/12,5/12,1].map(t=>lib.spriteFor(p,'E',t).frame),[0,1,5,0]);
-  assert.equal(lib.spriteFor({...p,animation:'idle'},'NW',999).frame,0);
+  assert.deepEqual([0,1/22,5/22,21/22,1].map(t=>phaseLib.spriteFor(p,'W',t).frame),[0,1,5,21,0]);
+  assert.deepEqual([0,1/12,5/12,17/12,18/12].map(t=>phaseLib.spriteFor(p,'S',t).frame),[0,1,5,17,0]);
+  assert.deepEqual([0,1/12,5/12,1].map(t=>phaseLib.spriteFor(p,'E',t).frame),[0,1,5,0]);
+  assert.equal(phaseLib.spriteFor({...p,animation:'idle'},'NW',999).frame,0);
 });
 test('WebP strips remain within Android-friendly 4096px width and match frame cell geometry',()=>{
   const entries=[...auto,'S'].map(d=>[d,22,180,249]).concat([['S',4,180,180],['SE',4,180,180],['E',12,180,249],['SE',12,180,249],['S',18,180,249]]);
