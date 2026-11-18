@@ -175,7 +175,7 @@ async function main(){
  const longHoldEvidence={};
  for(const direction of ['NE','SE']){
    const sign=direction==='NE'?-1:1;
-   const found=await iframe.locator('#world-canvas').evaluate((sign)=>{
+   const found=await iframe.locator('#world-canvas').evaluate((_canvas,sign)=>{
      const d=window.ScoponeOverworld.debug();
      const {world,player,renderer,lifecycle}=d;
      const sx=Math.SQRT1_2,sy=sign*Math.SQRT1_2;
