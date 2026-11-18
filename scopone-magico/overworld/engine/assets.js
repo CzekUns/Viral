@@ -8,7 +8,8 @@ export class AssetLibrary {
     this.manifestUrl=url;
     this.bySrc=new Map(Object.entries(manifest.images).map(([id,c])=>[c.src,id]));
     this.pending=new Set();
-    this.failed=new Set();
+    this.failed=new Map();
+    this.revision=0; // invalidate idle canvas after asynchronous decode/failure
     this.walkLru=[];
     this.maxWalkSheets=4;
   }
@@ -67,7 +68,9 @@ export class AssetLibrary {
     }
   }
   _request(id){
-    if(!id||this.images.has(id)||this.pending.has(id)||this.failed.has(id)||typeof Image==='undefined')return;
+    if(!id||this.images.has(id)||this.pending.has(id)||typeof Image==='undefined')return;
+    const previousFailure=this.failed.get(id);
+    if(previousFailure&&Date.now()<previousFailure.nextRetry)return;
     const config=this.info(id);
     if(!config)return;
     this.pending.add(id);
@@ -75,12 +78,21 @@ export class AssetLibrary {
     const resolved=new URL(config.src,this.manifestUrl);
     if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-v02-ne-se-qa2');
     image.src=resolved.href;
-    Promise.resolve(image.decode()).then(()=>{
+    const decode=typeof image.decode==='function'?image.decode():new Promise((resolve,reject)=>{
+      image.onload=resolve;image.onerror=reject;
+    });
+    Promise.resolve(decode).then(()=>{
+      if(!image.naturalWidth||!image.naturalHeight)throw Error('Decoded image has no pixels');
       this.images.set(id,image);
+      this.failed.delete(id);
       this._touch(id);
+      this.revision++;
     }).catch(e=>{
-      this.failed.add(id);
-      console.warn('Unable to decode lazy C08 sprite',id,e);
+      const attempts=(previousFailure?.attempts||0)+1;
+      const backoff=Math.min(30000,500*2**Math.min(attempts,6));
+      this.failed.set(id,{attempts,nextRetry:Date.now()+backoff,reason:String(e)});
+      this.revision++; // present fallback and error instead of claiming animation played
+      console.warn('Unable to decode C08 sprite; retry after',backoff,'ms',id,e);
     }).finally(()=>this.pending.delete(id));
   }
   spriteFor(character,heading,elapsed=0){
@@ -100,16 +112,17 @@ export class AssetLibrary {
       const idleId=this.bySrc.get(idlePath);
       const idleMeta=idle.perDirection?.[heading]||{};
       img=this.image(idleId)||this.image(character.assetId);
-      return {image:img,frame:0,frames:1,
+      return {image:img,frame:0,frames:1,requested:path,
         anchor:idleMeta.anchor||spec.anchor||[.5,1],
-        renderScale:idleMeta.renderScale||[1,1],flip:false,loading:true};
+        renderScale:idleMeta.renderScale||[1,1],flip:false,
+        loading:!this.failed.has(id),failed:this.failed.has(id),fallback:true};
     }
     this._touch(id);
     const frames=Math.max(1,Math.floor(specific.frames||anim.frames||1));
     const fps=Number.isFinite(specific.fps)?specific.fps:(anim.fps||6);
     const frame=frames>1?Math.floor(Math.max(0,elapsed)*fps)%frames:0;
-    return {image:img,frame,frames,
+    return {image:img,frame,frames,requested:path,
       anchor:specific.anchor||spec.anchor||[.5,1],
-      renderScale:specific.renderScale||[1,1],flip:false,loading:false};
+      renderScale:specific.renderScale||[1,1],flip:false,loading:false,failed:false,fallback:false};
   }
 }
