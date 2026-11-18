@@ -117,6 +117,53 @@ async function main(){
  assert.equal(await iframe.locator('#leave-city').isVisible(),true);
  await page.screenshot({path:path.join(repoRoot,'browser-qa','02-citta-mobile.png')});
 
+ // Real joystick QA for the three reported directions. Unlike the old
+ // screenshot test below, this does not assign facing or animation manually:
+ // the normal requestAnimationFrame update handles input and pose selection.
+ const joystickDirections=[
+   {dir:'NE',dx:1,dy:-1,frames:22,pattern:/c08-v02-auto-NE-22f\.webp/},
+   {dir:'E',dx:1,dy:0,frames:1,pattern:/\/idle\/E\.webp/},
+   {dir:'SE',dx:1,dy:1,frames:4,pattern:/c08-approved-SE-4f\.webp/},
+ ];
+ const analog=await iframe.locator('#joystick').boundingBox();
+ const joyX=analog.x+analog.width/2,joyY=analog.y+analog.height/2;
+ const realJoystickEvidence=[];
+ for(const {dir,dx,dy,frames,pattern} of joystickDirections){
+   const canMove=await iframe.locator('#world-canvas').evaluate(()=>{
+     const {world,player,renderer}=window.ScoponeOverworld.debug();
+     if(!world.canStand(20.5,20.5))return false;
+     player.x=20.5;player.y=20.5;
+     renderer.camera.x=player.x;renderer.camera.y=player.y;
+     return true;
+   });
+   assert.ok(canMove,'QA start location must be walkable');
+   await page.mouse.move(joyX,joyY);
+   await page.mouse.down();
+   await page.mouse.move(joyX+dx*25,joyY+dy*25,{steps:4});
+   await page.waitForTimeout(650);
+   const sample=await iframe.locator('#world-canvas').evaluate(()=>{
+     const env=window.ScoponeOverworld.debug();
+     const {player,renderer}=env;
+     const sprite=renderer.assets.spriteFor(player,player.facing,player.animationTime);
+     return {facing:player.facing,animation:player.animation,elapsed:player.animationTime,
+       frame:sprite.frame,frames:sprite.frames,loading:sprite.loading,
+       src:sprite.image?.currentSrc||sprite.image?.src||'',
+       pos:{x:player.x,y:player.y}};
+   });
+   await page.screenshot({path:path.join(repoRoot,'browser-qa','c08-joystick-'+dir+'-mobile.png')});
+   await page.mouse.up();
+   assert.equal(sample.facing,dir,'Joystick facing '+dir);
+   assert.equal(sample.animation,'walk','Joystick must trigger actual walk '+dir);
+   assert.ok(sample.elapsed>.15,'Walk timer must advance '+dir);
+   assert.equal(sample.frames,frames,'Frame count mismatch from joystick '+dir);
+   assert.match(sample.src,pattern,'Wrong sprite file from joystick '+dir);
+   assert.equal(sample.loading,false,'Directional walk still on fallback '+dir);
+   realJoystickEvidence.push({dir,frames:sample.frames,frame:sample.frame,
+     source:sample.src.split('/').pop(),elapsed:sample.elapsed,pos:sample.pos});
+ }
+ console.log('C08 REAL JOYSTICK NE/E/SE',JSON.stringify(realJoystickEvidence));
+
+
  // Actual 2D canvas rendering from the live Overworld in a portrait Chromium
  // viewport. Captures the requested direction after its lazy strip has decoded.
  const expectedFrames={W:22,NW:22,N:22,NE:22,SW:22,S:4,SE:4,E:1};
