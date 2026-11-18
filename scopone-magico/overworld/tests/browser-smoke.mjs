@@ -123,8 +123,8 @@ async function main(){
  // the normal requestAnimationFrame update handles input and pose selection.
  const joystickDirections=[
    {dir:'NE',dx:1,dy:-1,frames:22,pattern:/c08-v02-auto-NE-22f\.webp/},
-   {dir:'E',dx:1,dy:0,frames:1,pattern:/\/idle\/E\.webp/},
-   {dir:'SE',dx:1,dy:1,frames:4,pattern:/c08-approved-SE-4f\.webp/},
+   {dir:'E',dx:1,dy:0,frames:12,pattern:/c08-auto-recovered-E-12f\.webp/},
+   {dir:'SE',dx:1,dy:1,frames:12,pattern:/c08-auto-recovered-SE-12f\.webp/},
  ];
  const analog=await iframe.locator('#joystick').boundingBox();
  const joyX=analog.x+analog.width/2,joyY=analog.y+analog.height/2;
@@ -269,11 +269,11 @@ async function main(){
    assert.ok(running.every(x=>x.panelVisible&&x.diagnostic.includes('frame:')&&
      x.diagnostic.includes('animationTime:')&&x.diagnostic.includes('loading:')),
      'Live diagnostic is not visible or does not contain the drawn frame');
-   assert.ok(running.every(x=>x.frames===(direction==='NE'?22:4)),
+   assert.ok(running.every(x=>x.frames===(direction==='NE'?22:12)),
      'Wrong directional frame strip '+direction);
    assert.ok(running.every(x=>direction==='NE'?
      /c08-v02-auto-NE-22f\.webp/.test(x.source):
-     /c08-approved-SE-4f\.webp/.test(x.source)),
+     /c08-auto-recovered-SE-12f\.webp/.test(x.source)),
      'Unexpected C08 image decoded in renderer '+direction);
    await page.waitForTimeout(180);
    const stopped=await iframe.locator('#world-canvas').evaluate(
@@ -294,7 +294,7 @@ async function main(){
 
  // Actual 2D canvas rendering from the live Overworld in a portrait Chromium
  // viewport. Captures the requested direction after its lazy strip has decoded.
- const expectedFrames={W:22,NW:22,N:22,NE:22,SW:22,S:4,SE:4,E:1};
+ const expectedFrames={W:22,NW:22,N:22,NE:22,SW:22,S:18,SE:12,E:12};
  for(const direction of Object.keys(expectedFrames)){
    const snap=await iframe.locator('#world-canvas').evaluate(async(canvas,dir)=>{
      const env=window.ScoponeOverworld.debug();
@@ -314,8 +314,7 @@ async function main(){
    },direction);
    assert.equal(snap.frames,expectedFrames[direction],direction+' wrong frame count');
    assert.match(snap.src,/\/characters\/c08\//,direction+' wrong C08 source');
-   if(direction==='E')assert.match(snap.src,/\/idle\/E\.webp(?:\?.*)?$/,'East must remain static');
-   if(direction==='S'||direction==='SE')assert.match(snap.src,/c08-approved-/,'Approved direction was replaced');
+   if(['E','SE','S'].includes(direction))assert.match(snap.src,/c08-auto-recovered-/,'Recovered C08 sheet missing');
    if(['W','NW','N','NE','SW'].includes(direction))assert.match(snap.src,/c08-v02-auto-/,'AutoSprite was not selected');
    await writeFile(path.join(repoRoot,'browser-qa','c08-'+direction+'-city.png'),Buffer.from(snap.image,'base64'));
  }
@@ -345,6 +344,31 @@ async function main(){
  });
  assert.deepEqual(motion.map(x=>x.frame),[0,5],'C08 must advance on the 22-frame sheet');
  assert.notEqual(motion[0].pixels,motion[1].pixels,'The rendered walking poses must visibly differ');
+
+
+ // Confirm that each newly recovered direction changes image pixels across real frame indices.
+ for(const heading of ['E','SE','S']){
+   const samples=await iframe.locator('#world-canvas').evaluate(async(canvas,dir)=>{
+     const {player,renderer}=window.ScoponeOverworld.debug();
+     let sprite;
+     for(let i=0;i<90;i++){
+       sprite=renderer.assets.spriteFor({...player,animation:'walk'},dir,0);
+       if(sprite.image&&!sprite.loading)break;
+       await new Promise(resolve=>setTimeout(resolve,60));
+     }
+     if(!sprite.image||sprite.loading)throw Error('Recovered '+dir+' did not decode');
+     const frames=[];
+     for(const elapsed of [0,5/12]){
+       player.facing=dir;player.animation='walk';player.animationTime=elapsed;
+       const selected=renderer.assets.spriteFor(player,dir,elapsed);
+       renderer.draw(player,[],null,1/60);
+       frames.push({frame:selected.frame,pixels:canvas.toDataURL('image/png')});
+     }
+     return frames;
+   },heading);
+   assert.deepEqual(samples.map(x=>x.frame),[0,5],heading+' must advance');
+   assert.notEqual(samples[0].pixels,samples[1].pixels,heading+' must display different poses');
+ }
 
  await page.reload({waitUntil:'domcontentloaded'});
  await page.locator('#start-overworld').click();

@@ -104,12 +104,12 @@
       ]
     },
     "player": {
-      "src": "characters/c08/idle/S.webp",
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-S.webp",
       "type": "character",
       "characterId": "C08",
       "name": "Fante di Coppe",
-      "variant": "C08 V02 AutoSprite TEST (W,NW,N,NE,SW) + V08 S/V07 SE approved; E static",
-      "source": "Drive AutoSprite ANCORAGGI V02 132 PNG; Drive APPROVATE S V08 / SE V07",
+      "variant": "C08 AutoSprite E/SE/S screen-recording recovered TEST 12/12/18f; W/NW/N/NE/SW prior AutoSprite TEST",
+      "source": "Recorded AutoSprite 2026-11-17 + prior V02; approved S V08 and SE V07 retained as rollback",
       "anchor": [
         0.5,
         0.9505208333333334
@@ -135,9 +135,9 @@
           "directions": {
             "N": "characters/c08/v02/c08-v02-idle-N.webp",
             "NE": "characters/c08/v02/c08-v02-idle-NE.webp",
-            "E": "characters/c08/idle/E.webp",
-            "SE": "characters/c08/v02/c08-approved-idle-SE.webp",
-            "S": "characters/c08/v02/c08-approved-idle-S.webp",
+            "E": "characters/c08/v03-recovered/c08-auto-recovered-idle-E.webp",
+            "SE": "characters/c08/v03-recovered/c08-auto-recovered-idle-SE.webp",
+            "S": "characters/c08/v03-recovered/c08-auto-recovered-idle-S.webp",
             "SW": "characters/c08/v02/c08-v02-idle-SW.webp",
             "W": "characters/c08/v02/c08-v02-idle-W.webp",
             "NW": "characters/c08/v02/c08-v02-idle-NW.webp"
@@ -171,41 +171,42 @@
             },
             "E": {
               "frames": 1,
+              "fps": 1,
               "anchor": [
                 0.5,
-                0.9505208333333334
+                0.955
               ],
               "renderScale": [
-                1,
-                1
+                0.76,
+                1.05
               ],
-              "artStatus": "PROVVISORIO STATICO"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
             },
             "SE": {
               "frames": 1,
-              "fps": 8,
+              "fps": 1,
               "anchor": [
                 0.5,
-                0.9
+                0.955
               ],
               "renderScale": [
-                1,
-                1
+                0.76,
+                1.05
               ],
-              "artStatus": "APPROVATO V07"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
             },
             "S": {
               "frames": 1,
-              "fps": 8,
+              "fps": 1,
               "anchor": [
                 0.5,
-                0.94
+                0.955
               ],
               "renderScale": [
-                1,
-                1
+                0.76,
+                1.05
               ],
-              "artStatus": "APPROVATO V08"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
             },
             "SW": {
               "frames": 1,
@@ -254,9 +255,9 @@
           "directions": {
             "N": "characters/c08/v02/c08-v02-auto-N-22f.webp",
             "NE": "characters/c08/v02/c08-v02-auto-NE-22f.webp",
-            "E": "characters/c08/idle/E.webp",
-            "SE": "characters/c08/v02/c08-approved-SE-4f.webp",
-            "S": "characters/c08/v02/c08-approved-S-4f.webp",
+            "E": "characters/c08/v03-recovered/c08-auto-recovered-E-12f.webp",
+            "SE": "characters/c08/v03-recovered/c08-auto-recovered-SE-12f.webp",
+            "S": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp",
             "SW": "characters/c08/v02/c08-v02-auto-SW-22f.webp",
             "W": "characters/c08/v02/c08-v02-auto-W-22f.webp",
             "NW": "characters/c08/v02/c08-v02-auto-NW-22f.webp"
@@ -289,43 +290,43 @@
               "artStatus": "TEST"
             },
             "E": {
-              "frames": 1,
-              "fps": 1,
+              "frames": 12,
+              "fps": 12,
               "anchor": [
                 0.5,
-                0.9505208333333334
+                0.955
               ],
               "renderScale": [
-                1,
-                1
+                0.76,
+                1.05
               ],
-              "artStatus": "NON ANIMATO"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
             },
             "SE": {
-              "frames": 4,
-              "fps": 8,
+              "frames": 12,
+              "fps": 12,
               "anchor": [
                 0.5,
-                0.9
+                0.955
               ],
               "renderScale": [
-                1,
-                1
+                0.76,
+                1.05
               ],
-              "artStatus": "APPROVATO V07"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
             },
             "S": {
-              "frames": 4,
-              "fps": 8,
+              "frames": 18,
+              "fps": 12,
               "anchor": [
                 0.5,
-                0.94
+                0.955
               ],
               "renderScale": [
-                1,
-                1
+                0.76,
+                1.05
               ],
-              "artStatus": "APPROVATO V08"
+              "artStatus": "TEST AUTOSPRITE SCREENREC V03"
             },
             "SW": {
               "frames": 22,
@@ -387,7 +388,98 @@
         },
         "query": "c08-sud=auto"
       },
-      "legacySpritePaths": "characters/c08/idle|walk/{S,SE,E,NE,N,NW,W,SW}.webp (kept unchanged)"
+      "legacySpritePaths": "characters/c08/idle|walk/{S,SE,E,NE,N,NW,W,SW}.webp (kept unchanged)",
+      "comparisonBeforeRecovery": {
+        "E": {
+          "walk": "characters/c08/idle/E.webp",
+          "idle": "characters/c08/idle/E.webp",
+          "walkMeta": {
+            "frames": 1,
+            "fps": 1,
+            "anchor": [
+              0.5,
+              0.9505208333333334
+            ],
+            "renderScale": [
+              1,
+              1
+            ],
+            "artStatus": "NON ANIMATO"
+          },
+          "idleMeta": {
+            "frames": 1,
+            "anchor": [
+              0.5,
+              0.9505208333333334
+            ],
+            "renderScale": [
+              1,
+              1
+            ],
+            "artStatus": "PROVVISORIO STATICO"
+          }
+        },
+        "SE": {
+          "walk": "characters/c08/v02/c08-approved-SE-4f.webp",
+          "idle": "characters/c08/v02/c08-approved-idle-SE.webp",
+          "walkMeta": {
+            "frames": 4,
+            "fps": 8,
+            "anchor": [
+              0.5,
+              0.9
+            ],
+            "renderScale": [
+              1,
+              1
+            ],
+            "artStatus": "APPROVATO V07"
+          },
+          "idleMeta": {
+            "frames": 1,
+            "fps": 8,
+            "anchor": [
+              0.5,
+              0.9
+            ],
+            "renderScale": [
+              1,
+              1
+            ],
+            "artStatus": "APPROVATO V07"
+          }
+        },
+        "S": {
+          "walk": "characters/c08/v02/c08-approved-S-4f.webp",
+          "idle": "characters/c08/v02/c08-approved-idle-S.webp",
+          "walkMeta": {
+            "frames": 4,
+            "fps": 8,
+            "anchor": [
+              0.5,
+              0.94
+            ],
+            "renderScale": [
+              1,
+              1
+            ],
+            "artStatus": "APPROVATO V08"
+          },
+          "idleMeta": {
+            "frames": 1,
+            "fps": 8,
+            "anchor": [
+              0.5,
+              0.94
+            ],
+            "renderScale": [
+              1,
+              1
+            ],
+            "artStatus": "APPROVATO V08"
+          }
+        }
+      }
     },
     "player-legacy": {
       "src": "characters/player-south.webp",
@@ -876,6 +968,81 @@
         180
       ],
       "artStatus": "APPROVATO"
+    },
+    "c08-recovered-walk-E": {
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-E-12f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "E",
+      "frames": 12,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-recovered-idle-E": {
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-E.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "E",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-recovered-walk-SE": {
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-SE-12f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "SE",
+      "frames": 12,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-recovered-idle-SE": {
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-SE.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "SE",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
+    },
+    "c08-recovered-walk-S": {
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp",
+      "type": "sprite",
+      "state": "walk",
+      "direction": "S",
+      "frames": 18,
+      "frameSize": [
+        180,
+        249
+      ],
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "c08-recovered-idle-S": {
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-S.webp",
+      "type": "sprite",
+      "state": "idle",
+      "direction": "S",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "artStatus": "TEST"
     }
   },
   "spritesheetSchema": {

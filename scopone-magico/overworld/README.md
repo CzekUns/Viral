@@ -102,3 +102,9 @@ Per confronto sullo stesso deploy:
 - `overworld/?terrain=legacy` — grafiche SVG precedenti, conservate in `tiles/outside/*.svg`.
 
 Se la V03 viene respinta, basta ripristinare i sette percorsi in `assets.json` o aprire la versione `?terrain=legacy`. Per l'approvazione finale il proprietario valuterà la mappa reale su telefono: eventuali raccordi tra biomi, andamento delle coste e strade saranno lavoro successivo. Il manifest include `previewStatus` per indicare l'uso provvisorio.
+
+## C08 AutoSprite E / SE / S recovered from mobile recording — TEST 2026-11-18
+
+E and SE: **12 frames** each; S: **18 frames**. The captured animation was extracted from the user's AutoSprite screen recording, background removed and aligned; strips are lossless-alpha WebP with 180×249 cells and 12 FPS. These are **TEST assets**, not aesthetically approved. Earlier S V08 and SE V07 remain in this repo. To compare, open `overworld/?c08-recovered=off`: it restores exactly E static, S V08 and SE V07. The earlier `?c08=legacy` option is untouched. The joystick facing hysteresis, walk timer and runtime diagnostics already introduced by the parallel debug effort are preserved.
+
+Source files and QA GIFs on Google Drive: https://drive.google.com/drive/folders/14RJLgY4JUo7sqrVQKeTDOBKeLI8AbNgj . The screen-recorded masks retain minor edge artifacts; mobile visual validation is still required.
