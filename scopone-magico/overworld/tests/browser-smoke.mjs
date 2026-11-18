@@ -186,7 +186,7 @@ async function main(){
    },direction);
    assert.equal(snap.frames,expectedFrames[direction],direction+' wrong frame count');
    assert.match(snap.src,/\/characters\/c08\//,direction+' wrong C08 source');
-   if(direction==='E')assert.match(snap.src,/\/idle\/E\.webp$/,'East must remain static');
+   if(direction==='E')assert.match(snap.src,/\/idle\/E\.webp(?:\?.*)?$/,'East must remain static');
    if(direction==='S'||direction==='SE')assert.match(snap.src,/c08-approved-/,'Approved direction was replaced');
    if(['W','NW','N','NE','SW'].includes(direction))assert.match(snap.src,/c08-v02-auto-/,'AutoSprite was not selected');
    await writeFile(path.join(repoRoot,'browser-qa','c08-'+direction+'-city.png'),Buffer.from(snap.image,'base64'));
