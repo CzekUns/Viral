@@ -35,6 +35,15 @@ export class AssetLibrary {
         player.animations.idle.perDirection[d]={frames:1,fps:1,anchor:[.5,365/384],renderScale:[1,1]};
         player.animations.walk.perDirection[d]={frames:3,fps:7,anchor:[.5,365/384],renderScale:[1,1]};
       }
+    }else if(params.get('c08-recovered')==='off'&&player.comparisonBeforeRecovery){
+      // Restore exact previous E (static), SE V07 and S V08, without deleting source artwork.
+      for(const d of ['E','SE','S']){
+        const old=player.comparisonBeforeRecovery[d];
+        player.animations.walk.directions[d]=old.walk;
+        player.animations.idle.directions[d]=old.idle;
+        player.animations.walk.perDirection[d]={...old.walkMeta};
+        player.animations.idle.perDirection[d]={...old.idleMeta};
+      }
     }else if(params.get('c08-sud')==='auto'&&player.comparisonSudAuto){
       // Deliberate opt-in: approved V08 Sud is the default.
       const cmp=player.comparisonSudAuto;
@@ -47,7 +56,7 @@ export class AssetLibrary {
     await Promise.all(Object.entries(manifest.images).filter(([,config])=>!config.lazy).map(async([id,config])=>{
       const image=new Image();image.decoding='async';
       const resolved=new URL(config.src,url);
-      if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-v02-ne-se-qa2');
+      if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-auto-e-se-s-screenrec-v04');
       image.src=resolved.href;
       try{await image.decode();images.set(id,image);}
       catch(e){console.warn('Missing image',id,e);}
@@ -76,7 +85,7 @@ export class AssetLibrary {
     this.pending.add(id);
     const image=new Image();image.decoding='async';
     const resolved=new URL(config.src,this.manifestUrl);
-    if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-v02-ne-se-qa2');
+    if(config.src.startsWith('characters/c08/'))resolved.searchParams.set('rev','c08-auto-e-se-s-screenrec-v04');
     image.src=resolved.href;
     const decode=typeof image.decode==='function'?image.decode():new Promise((resolve,reject)=>{
       image.onload=resolve;image.onerror=reject;
