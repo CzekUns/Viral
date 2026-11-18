@@ -32,6 +32,7 @@ async function main(){
  await page.locator('#overworld-frame').evaluate(element=>{
    const url=new URL(element.src);
    url.searchParams.set('debug','1');
+   url.searchParams.set('c08debug','1');
    element.src=url.href;
  });
  await iframe.locator('#loading').waitFor({state:'hidden',timeout:35000});
@@ -162,6 +163,133 @@ async function main(){
      source:sample.src.split('/').pop(),elapsed:sample.elapsed,pos:sample.pos});
  }
  console.log('C08 REAL JOYSTICK NE/E/SE',JSON.stringify(realJoystickEvidence));
+
+ // Long-held REAL TOUCH (not mouse or artificially assigned frames): Android
+ // portrait viewport, native Chromium Input.dispatchTouchEvent and RAF movement.
+ // The QA snapshots the EXACT image and source rectangle used by Canvas.drawImage;
+ // comparing cropped sprite pixels avoids false positives from camera/terrain motion.
+ const touchSession=await context.newCDPSession(page);
+ const stableJoystick=await iframe.locator('#joystick').boundingBox();
+ const cxTouch=stableJoystick.x+stableJoystick.width/2;
+ const cyTouch=stableJoystick.y+stableJoystick.height/2;
+ const longHoldEvidence={};
+ for(const direction of ['NE','SE']){
+   const sign=direction==='NE'?-1:1;
+   const found=await iframe.locator('#world-canvas').evaluate((sign)=>{
+     const d=window.ScoponeOverworld.debug();
+     const {world,player,renderer,lifecycle}=d;
+     const sx=Math.SQRT1_2,sy=sign*Math.SQRT1_2;
+     const ux=sx/52+sy/30,uy=sy/30-sx/52,length=Math.hypot(ux,uy);
+     const vx=ux/length,vy=uy/length;
+     let spawn=null;
+     for(const x of [20.5,24.5,16.5,28.5,36.5,44.5,12.5]){
+       if(spawn)break;
+       for(const y of [20.5,24.5,16.5,28.5,36.5,44.5,12.5]){
+         let safe=true;
+         for(let i=0;i<=36;i++){
+           const distance=i/36*9.5,px=x+vx*distance,py=y+vy*distance;
+           if(!world.canStand(px,py)||world.getPortalAt(px,py)?.active){safe=false;break;}
+         }
+         if(safe){spawn={x,y};break;}
+       }
+     }
+     if(!spawn)return null;
+     player.x=spawn.x;player.y=spawn.y;
+     player.animation='idle';player.animationTime=0;
+     renderer.camera.x=spawn.x;renderer.camera.y=spawn.y;
+     lifecycle.path=[];lifecycle.destination=null;
+     return spawn;
+   },sign);
+   assert.ok(found,'No traversable 9.5-tile route for '+direction);
+   const samples=[];
+   const savedPoseHashes=new Set();
+   await touchSession.send('Input.dispatchTouchEvent',{
+     type:'touchStart',touchPoints:[{x:cxTouch,y:cyTouch,id:41}]
+   });
+   try{
+     await touchSession.send('Input.dispatchTouchEvent',{
+       type:'touchMove',touchPoints:[{x:cxTouch+28,y:cyTouch+sign*28,id:41}]
+     });
+     for(let i=0;i<26;i++){
+       // Deliberate small analog wobble around the E/NE or E/SE boundary
+       // during the last second. A real walk phase must continue.
+       if(i>=16){
+         const wobble=(i%2===0?28:10);
+         await touchSession.send('Input.dispatchTouchEvent',{
+           type:'touchMove',touchPoints:[{x:cxTouch+28,y:cyTouch+sign*wobble,id:41}]
+         });
+       }
+       await page.waitForTimeout(105);
+       const snapshot=await iframe.locator('#world-canvas').evaluate(canvas=>{
+         const env=window.ScoponeOverworld.debug();
+         const p=env.player,d=env.renderer.lastPlayerSprite;
+         const panel=document.getElementById('c08-diagnostics');
+         if(!d)return null;
+         let poseHash=null,opaquePixels=0;
+         if(d.drawn&&d.image&&d.sourceWidth>0){
+           const tile=document.createElement('canvas');
+           tile.width=72;tile.height=96;
+           const ctx=tile.getContext('2d',{willReadFrequently:true});
+           ctx.drawImage(d.image,d.sourceX,0,d.sourceWidth,d.image.naturalHeight,0,0,72,96);
+           const pixels=ctx.getImageData(0,0,72,96).data;
+           let h=2166136261>>>0;
+           for(let z=0;z<pixels.length;z+=4){
+             if(pixels[z+3]<32)continue;
+             opaquePixels++;
+             for(let c=0;c<4;c++)h=Math.imul(h^pixels[z+c],16777619)>>>0;
+           }
+           poseHash=h.toString(16);
+         }
+         return {facing:p.facing,animation:p.animation,
+           animationTime:p.animationTime,renderedTime:d.animationTime,
+           frame:d.frame,frames:d.frames,loading:d.loading,failed:d.failed,
+           drawn:d.drawn,source:d.src,poseHash,opaquePixels,
+           diagnostic:panel?.textContent||'',panelVisible:!!panel&&!panel.hidden};
+       });
+       if(snapshot)samples.push(snapshot);
+       if(snapshot?.drawn&&!snapshot.loading&&!snapshot.failed&&snapshot.animation==='walk'&&snapshot.facing===direction&&snapshot.poseHash){
+         if(!savedPoseHashes.has(snapshot.poseHash)&&savedPoseHashes.size<2){
+           savedPoseHashes.add(snapshot.poseHash);
+           await page.screenshot({path:path.join(repoRoot,'browser-qa','c08-touch-'+direction+'-pose'+savedPoseHashes.size+'.png')});
+         }
+       }
+     }
+   }finally{
+     await touchSession.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   }
+   const running=samples.filter(x=>x.animation==='walk'&&x.facing===direction&&
+     x.drawn&&!x.loading&&!x.failed&&x.poseHash&&x.opaquePixels>100);
+   const frameValues=new Set(running.map(x=>x.frame));
+   const poseValues=new Set(running.map(x=>x.poseHash));
+   assert.ok(running.length>=8,direction+' did not keep walking with native touch');
+   assert.ok(Math.max(...running.map(x=>x.animationTime))>1.8,
+     direction+' animation timer was reset during joystick wobble');
+   assert.ok(frameValues.size>=(direction==='NE'?3:2),direction+' frame index is stuck');
+   assert.ok(poseValues.size>=2,direction+' drawn poses have identical source pixels');
+   assert.ok(running.every(x=>x.panelVisible&&x.diagnostic.includes('frame:')&&
+     x.diagnostic.includes('animationTime:')&&x.diagnostic.includes('loading:')),
+     'Live diagnostic is not visible or does not contain the drawn frame');
+   assert.ok(running.every(x=>x.frames===(direction==='NE'?22:4)),
+     'Wrong directional frame strip '+direction);
+   assert.ok(running.every(x=>direction==='NE'?
+     /c08-v02-auto-NE-22f\.webp/.test(x.source):
+     /c08-approved-SE-4f\.webp/.test(x.source)),
+     'Unexpected C08 image decoded in renderer '+direction);
+   await page.waitForTimeout(180);
+   const stopped=await iframe.locator('#world-canvas').evaluate(
+     ()=>window.ScoponeOverworld.debug().player.animation);
+   assert.equal(stopped,'idle','C08 must return to idle when finger lifts');
+   longHoldEvidence[direction]={
+     samples:samples.length,walkingSamples:running.length,
+     maxTime:Math.max(...running.map(x=>x.animationTime)),
+     frames:[...frameValues].sort((a,b)=>a-b),
+     distinctDrawnPoses:poseValues.size,
+     source:running[0].source.split('/').pop(),
+     screenshotFiles:['c08-touch-'+direction+'-pose1.png','c08-touch-'+direction+'-pose2.png']
+   };
+ }
+ console.log('C08 REAL TOUCH HOLD 2.7s + ANALOG WOBBLE',JSON.stringify(longHoldEvidence));
+
 
 
  // Actual 2D canvas rendering from the live Overworld in a portrait Chromium
