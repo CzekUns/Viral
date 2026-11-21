@@ -1,0 +1,117 @@
+{
+  "character_id": "B08",
+  "name": "Otto di Bastoni / Fante di Bastoni",
+  "version": "V01_HANDSFREE",
+  "status": "TEST_VISUAL_REVIEW",
+  "production_ready": false,
+  "frameSize": [
+    512,
+    512
+  ],
+  "anchor": [
+    256,
+    390
+  ],
+  "renderSize": [
+    96,
+    96
+  ],
+  "equipment": {
+    "club": "anatomical RIGHT hip, belt straps, green bulb/gold leaf/red shaft",
+    "hands": "empty"
+  },
+  "directions": {
+    "S": {
+      "standing": {
+        "image": "standing/S.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/S.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "SE": {
+      "standing": {
+        "image": "standing/SE.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/SE.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "E": {
+      "standing": {
+        "image": "standing/E.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/E.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "NE": {
+      "standing": {
+        "image": "standing/NE.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/NE.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "N": {
+      "standing": {
+        "image": "standing/N.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/N.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "NW": {
+      "standing": {
+        "image": "standing/NW.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/NW.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "W": {
+      "standing": {
+        "image": "standing/W.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/W.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "SW": {
+      "standing": {
+        "image": "standing/SW.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/SW.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    }
+  },
+  "notes": [
+    "Runtime WebP export only. PNG sources, detailed provenance and QA in Drive archive.",
+    "Not connected to global engine manifest. Visual review and game test pending."
+  ]
+}
