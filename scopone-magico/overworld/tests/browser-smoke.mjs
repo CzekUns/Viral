@@ -244,6 +244,7 @@ async function main(){
    assert.equal(snapB.loading,false,'S08 fell back to static '+direction);
    assert.ok(snapB.src.includes('/s08/v02-handsfree-test/walk/'+direction+'.webp'), 'Wrong live S08 sprite '+direction);
    assert.ok(snapB.animationTime>snapA.animationTime,'S08 animation clock stalled '+direction);
+   assert.notEqual(snapA.frame,snapB.frame,'Actual Canvas walking pose did not advance '+direction);
    assert.ok(Math.hypot(snapB.x-20.5,snapB.y-20.5)>.5,'S08 did not move '+direction);
    s08TouchProof.push({direction,frames:snapB.frames,frameA:snapA.frame,
      frameB:snapB.frame,time:snapB.animationTime});
