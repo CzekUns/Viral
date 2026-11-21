@@ -118,6 +118,178 @@ async function main(){
  assert.equal(await iframe.locator('#leave-city').isVisible(),true);
  await page.screenshot({path:path.join(repoRoot,'browser-qa','02-citta-mobile.png')});
 
+ // Switch between C08 and S08 in the real Overworld UI without changing world
+ // coordinates, camera, gameplay state or facing. S08 V02 remains labelled TEST.
+ const avatarButton=iframe.locator('#character-switch');
+ assert.equal(await avatarButton.isVisible(),true,'Avatar toggle must be visible on Android');
+ assert.match(await avatarButton.textContent(),/8 Spade/);
+ const beforeSwitch=await iframe.locator('#world-canvas').evaluate(()=>{
+   const p=window.ScoponeOverworld.debug().player;
+   return {x:p.x,y:p.y,facing:p.facing,asset:p.assetId};
+ });
+ assert.equal(beforeSwitch.asset,'player');
+ await avatarButton.click();
+ assert.match(await avatarButton.textContent(),/8 Coppe/);
+ assert.equal(await avatarButton.getAttribute('aria-pressed'),'true');
+ const afterSwitch=await iframe.locator('#world-canvas').evaluate(()=>{
+   const p=window.ScoponeOverworld.debug().player;
+   return {x:p.x,y:p.y,facing:p.facing,asset:p.assetId,
+     stored:localStorage.getItem('scopone-alchemico:overworld:character:v1')};
+ });
+ assert.equal(afterSwitch.asset,'s08-player');
+ assert.equal(afterSwitch.stored,'s08-player');
+ for(const dim of ['x','y','facing'])assert.equal(afterSwitch[dim],beforeSwitch[dim],
+   'Character switch must not move or rotate player: '+dim);
+ await page.screenshot({path:path.join(repoRoot,'browser-qa','s08-v02-standing-switch-mobile.png')});
+
+ // Decode every directional S08 sheet, assert all 4 frames are visually distinct
+ // source images (not merely four manifest entries), with no sprites mirrored.
+ const s08Frames=await iframe.locator('#world-canvas').evaluate(async()=>{
+   const {renderer,player}=window.ScoponeOverworld.debug();
+   const dirs=['S','SE','E','NE','N','NW','W','SW'];
+   const result={};
+   for(const direction of dirs){
+     let sp;
+     for(let k=0;k<100;k++){
+       sp=renderer.assets.spriteFor({...player,animation:'walk'},direction,.36);
+       if(sp.image&&!sp.loading)break;
+       await new Promise(r=>setTimeout(r,50));
+     }
+     if(!sp?.image||sp.loading)throw Error('Missing S08 walk '+direction);
+     const img=sp.image,cellW=img.naturalWidth/4;
+     const hashes=[];
+     const canvas=document.createElement('canvas');
+     canvas.width=96;canvas.height=96;
+     const ctx=canvas.getContext('2d',{willReadFrequently:true});
+     for(let frame=0;frame<4;frame++){
+       ctx.clearRect(0,0,96,96);
+       ctx.drawImage(img,frame*cellW,0,cellW,img.naturalHeight,0,0,96,96);
+       const rgba=ctx.getImageData(0,0,96,96).data;
+       let h=2166136261>>>0;
+       for(let i=0;i<rgba.length;i+=4)if(rgba[i+3]>16){
+         for(let color=0;color<4;color++)h=Math.imul(h^rgba[i+color],16777619)>>>0;
+       }
+       hashes.push(h.toString(16));
+     }
+     result[direction]={frames:sp.frames,width:img.naturalWidth,height:img.naturalHeight,
+       src:img.currentSrc||img.src,hashes};
+   }
+   return result;
+ });
+ for(const [direction,entry] of Object.entries(s08Frames)){
+   assert.equal(entry.frames,4,'Wrong S08 frame count '+direction);
+   assert.equal(entry.width,2048,'Wrong S08 sheet width '+direction);
+   assert.equal(entry.height,512,'Wrong S08 sheet height '+direction);
+   assert.equal(new Set(entry.hashes).size,4,'S08 pose duplication '+direction);
+   assert.ok(entry.src.includes('/s08/v02-handsfree-test/walk/'+direction+'.webp'),
+     'Wrong S08 sheet '+direction);
+ }
+ console.log('S08 WEBP ALL DIRECTIONS 4 DISTINCT POSES',Object.keys(s08Frames));
+
+ // Native touch events, rather than programmatic animationTime assignments.
+ // Record actual source image and frame passed to Canvas.drawImage during motion.
+ const s08Input=await context.newCDPSession(page);
+ const s08Rect=await iframe.locator('#joystick').boundingBox();
+ const sx=s08Rect.x+s08Rect.width/2,sy=s08Rect.y+s08Rect.height/2;
+ const motions=[
+   ['S',0,1],['SE',1,1],['E',1,0],['NE',1,-1],
+   ['N',0,-1],['NW',-1,-1],['W',-1,0],['SW',-1,1]
+ ];
+ const s08TouchProof=[];
+ for(const [direction,dx,dy] of motions){
+   await iframe.locator('#world-canvas').evaluate(()=>{
+     const d=window.ScoponeOverworld.debug();
+     d.player.x=45.5;d.player.y=45.5;d.player.animation='idle';d.player.animationTime=0;
+     d.renderer.camera.x=45.5;d.renderer.camera.y=45.5;
+     d.lifecycle.path=[];d.lifecycle.destination=null;
+   });
+   await s08Input.send('Input.dispatchTouchEvent',{
+     type:'touchStart',touchPoints:[{x:sx,y:sy,id:39}]
+   });
+   let snapA,snapB;
+   const observedFrames=[],observedHashes=[];
+   try{
+     await s08Input.send('Input.dispatchTouchEvent',{
+       type:'touchMove',touchPoints:[{x:sx+28*dx,y:sy+28*dy,id:39}]
+     });
+     await page.waitForTimeout(235);
+     snapA=await iframe.locator('#world-canvas').evaluate(()=>{
+       const {player,renderer}=window.ScoponeOverworld.debug();
+       const spec=renderer.lastPlayerSprite;
+       return {asset:player.assetId,facing:player.facing,animation:player.animation,
+         frame:spec?.frame,frames:spec?.frames,drawn:spec?.drawn,
+         loading:spec?.loading,src:spec?.src,
+         x:player.x,y:player.y,animationTime:player.animationTime};
+     });
+     if(['S','E'].includes(direction))
+       await page.screenshot({path:path.join(repoRoot,'browser-qa','s08-touch-'+direction+'-first.png')});
+     await page.waitForTimeout(330);
+     snapB=await iframe.locator('#world-canvas').evaluate(()=>{
+       const {player,renderer}=window.ScoponeOverworld.debug();
+       const spec=renderer.lastPlayerSprite;
+       return {asset:player.assetId,facing:player.facing,animation:player.animation,
+         frame:spec?.frame,frames:spec?.frames,drawn:spec?.drawn,
+         loading:spec?.loading,src:spec?.src,
+         x:player.x,y:player.y,animationTime:player.animationTime};
+     });
+     if(['S','E'].includes(direction))
+       await page.screenshot({path:path.join(repoRoot,'browser-qa','s08-touch-'+direction+'-second.png')});
+     // A single two-point test can alias the same frame after one complete
+     // 4-frame loop. Sample across time while the real finger stays down.
+     observedFrames.push(snapA.frame,snapB.frame);
+     for(let check=0;check<6;check++){
+       await page.waitForTimeout(95);
+       const drawn=await iframe.locator('#world-canvas').evaluate(()=>{
+         const r=window.ScoponeOverworld.debug().renderer.lastPlayerSprite;
+         if(!r?.drawn||!r.image||r.loading)return {frame:r?.frame,hash:null};
+         const box=document.createElement('canvas');box.width=72;box.height=96;
+         const ctx=box.getContext('2d',{willReadFrequently:true});
+         ctx.drawImage(r.image,r.sourceX,0,r.sourceWidth,r.image.naturalHeight,0,0,72,96);
+         const data=ctx.getImageData(0,0,72,96).data;
+         let h=2166136261>>>0;
+         for(let p=0;p<data.length;p+=4)if(data[p+3]>16){
+           for(let c=0;c<4;c++)h=Math.imul(h^data[p+c],16777619)>>>0;
+         }
+         return {frame:r.frame,hash:h.toString(16)};
+       });
+       observedFrames.push(drawn.frame);
+       if(drawn.hash)observedHashes.push(drawn.hash);
+     }
+   }finally{
+     await s08Input.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   }
+   assert.equal(snapB.asset,'s08-player','Lost S08 selection '+direction);
+   assert.equal(snapB.facing,direction,'Wrong real touch direction '+direction);
+   assert.equal(snapB.animation,'walk','No actual S08 walking '+direction);
+   assert.equal(snapB.frames,4,'Canvas did not receive S08 strip '+direction);
+   assert.equal(snapB.drawn,true,'Canvas did not draw S08 '+direction);
+   assert.equal(snapB.loading,false,'S08 fell back to static '+direction);
+   assert.ok(snapB.src.includes('/s08/v02-handsfree-test/walk/'+direction+'.webp'), 'Wrong live S08 sprite '+direction);
+   assert.ok(snapB.animationTime>snapA.animationTime,'S08 animation clock stalled '+direction);
+   assert.ok(new Set(observedFrames).size>=2,'Actual Canvas frame never advanced '+direction);
+   assert.ok(new Set(observedHashes).size>=2,'Actual Canvas poses never changed visually '+direction);
+   assert.ok(Math.hypot(snapB.x-45.5,snapB.y-45.5)>.5,'S08 did not move '+direction);
+   s08TouchProof.push({direction,frames:snapB.frames,frameA:snapA.frame,
+     frameB:snapB.frame,seen:[...new Set(observedFrames)].sort(),differentPoses:new Set(observedHashes).size,time:snapB.animationTime});
+   await page.waitForTimeout(95);
+ }
+ console.log('S08 REAL TOUCH ALL 8 DIRECTIONS',JSON.stringify(s08TouchProof));
+
+ // One-button roundtrip must restore C08 assets without touching any cards.
+ const posS08=await getPos();
+ await avatarButton.click();
+ assert.match(await avatarButton.textContent(),/8 Spade/);
+ assert.equal(await avatarButton.getAttribute('aria-pressed'),'false');
+ const afterRoundtrip=await iframe.locator('#world-canvas').evaluate(()=>{
+   const d=window.ScoponeOverworld.debug();
+   return {asset:d.player.assetId,frameSource:d.renderer.lastPlayerSprite?.src,
+     stored:localStorage.getItem('scopone-alchemico:overworld:character:v1')};
+ });
+ assert.equal(afterRoundtrip.asset,'player');
+ assert.equal(afterRoundtrip.stored,'player');
+ assert.deepEqual(await getPos(),posS08,'Avatar swap must not change scene coordinates');
+
+
  // Real joystick QA for the three reported directions. Unlike the old
  // screenshot test below, this does not assign facing or animation manually:
  // the normal requestAnimationFrame update handles input and pose selection.
@@ -370,6 +542,9 @@ async function main(){
    assert.notEqual(samples[0].pixels,samples[1].pixels,heading+' must display different poses');
  }
 
+ const s08EndScene=await getPos();
+ assert.equal(s08EndScene.scene,'city','S08 QA must not approach city exit trigger');
+ await iframe.locator('#world-canvas').evaluate(()=>window.ScoponeOverworld.save());
  await page.reload({waitUntil:'domcontentloaded'});
  await page.locator('#start-overworld').click();
  await iframe.locator('#loading').waitFor({state:'hidden',timeout:35000});

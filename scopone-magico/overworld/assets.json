@@ -1842,6 +1842,491 @@
         0.96
       ],
       "previewStatus": "V01 - installed in external overworld; artwork pending final visual approval"
+    },
+    "s08-v02-idle-S": {
+      "src": "characters/s08/v02-handsfree-test/standing/S.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "S",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-S": {
+      "src": "characters/s08/v02-handsfree-test/walk/S.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "S",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-v02-idle-SE": {
+      "src": "characters/s08/v02-handsfree-test/standing/SE.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "SE",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-SE": {
+      "src": "characters/s08/v02-handsfree-test/walk/SE.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "SE",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-v02-idle-E": {
+      "src": "characters/s08/v02-handsfree-test/standing/E.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "E",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-E": {
+      "src": "characters/s08/v02-handsfree-test/walk/E.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "E",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-v02-idle-NE": {
+      "src": "characters/s08/v02-handsfree-test/standing/NE.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "NE",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-NE": {
+      "src": "characters/s08/v02-handsfree-test/walk/NE.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "NE",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-v02-idle-N": {
+      "src": "characters/s08/v02-handsfree-test/standing/N.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "N",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-N": {
+      "src": "characters/s08/v02-handsfree-test/walk/N.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "N",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-v02-idle-NW": {
+      "src": "characters/s08/v02-handsfree-test/standing/NW.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "NW",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-NW": {
+      "src": "characters/s08/v02-handsfree-test/walk/NW.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "NW",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-v02-idle-W": {
+      "src": "characters/s08/v02-handsfree-test/standing/W.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "W",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-W": {
+      "src": "characters/s08/v02-handsfree-test/walk/W.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "W",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-v02-idle-SW": {
+      "src": "characters/s08/v02-handsfree-test/standing/SW.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "SW",
+      "state": "idle",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "artStatus": "TEST"
+    },
+    "s08-v02-walk-SW": {
+      "src": "characters/s08/v02-handsfree-test/walk/SW.webp",
+      "type": "sprite",
+      "characterId": "S08",
+      "direction": "SW",
+      "state": "walk",
+      "frameSize": [
+        512,
+        512
+      ],
+      "frames": 4,
+      "lazy": true,
+      "artStatus": "TEST"
+    },
+    "s08-player": {
+      "src": "characters/s08/v02-handsfree-test/standing/S.webp",
+      "type": "character",
+      "characterId": "S08",
+      "name": "Otto di Spade (Fante di Spade)",
+      "variant": "V02 mani libere, spada sinistra e ramo destra alla cintura · TEST",
+      "source": "PR #28, Drive S08 V02 Mani Libere Standing Walk TEST",
+      "artStatus": "TEST_VISUAL_REVIEW",
+      "anchor": [
+        0.5,
+        0.68359375
+      ],
+      "renderSize": [
+        96,
+        96
+      ],
+      "directions": {
+        "S": "characters/s08/v02-handsfree-test/standing/S.webp",
+        "SE": "characters/s08/v02-handsfree-test/standing/SE.webp",
+        "E": "characters/s08/v02-handsfree-test/standing/E.webp",
+        "NE": "characters/s08/v02-handsfree-test/standing/NE.webp",
+        "N": "characters/s08/v02-handsfree-test/standing/N.webp",
+        "NW": "characters/s08/v02-handsfree-test/standing/NW.webp",
+        "W": "characters/s08/v02-handsfree-test/standing/W.webp",
+        "SW": "characters/s08/v02-handsfree-test/standing/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/s08/v02-handsfree-test/standing/S.webp",
+            "SE": "characters/s08/v02-handsfree-test/standing/SE.webp",
+            "E": "characters/s08/v02-handsfree-test/standing/E.webp",
+            "NE": "characters/s08/v02-handsfree-test/standing/NE.webp",
+            "N": "characters/s08/v02-handsfree-test/standing/N.webp",
+            "NW": "characters/s08/v02-handsfree-test/standing/NW.webp",
+            "W": "characters/s08/v02-handsfree-test/standing/W.webp",
+            "SW": "characters/s08/v02-handsfree-test/standing/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "SE": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "E": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "NE": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "N": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "NW": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "W": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "SW": {
+              "frames": 1,
+              "fps": 1,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            }
+          }
+        },
+        "walk": {
+          "frames": 4,
+          "fps": 7,
+          "directions": {
+            "S": "characters/s08/v02-handsfree-test/walk/S.webp",
+            "SE": "characters/s08/v02-handsfree-test/walk/SE.webp",
+            "E": "characters/s08/v02-handsfree-test/walk/E.webp",
+            "NE": "characters/s08/v02-handsfree-test/walk/NE.webp",
+            "N": "characters/s08/v02-handsfree-test/walk/N.webp",
+            "NW": "characters/s08/v02-handsfree-test/walk/NW.webp",
+            "W": "characters/s08/v02-handsfree-test/walk/W.webp",
+            "SW": "characters/s08/v02-handsfree-test/walk/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "SE": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "E": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "NE": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "N": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "NW": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "W": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            },
+            "SW": {
+              "frames": 4,
+              "fps": 7,
+              "anchor": [
+                0.5,
+                0.68359375
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST V02 mani libere"
+            }
+          }
+        }
+      }
     }
   },
   "spritesheetSchema": {

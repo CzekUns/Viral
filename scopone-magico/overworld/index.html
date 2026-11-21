@@ -19,7 +19,8 @@
   <button id="leave-city" class="ui-button leave-city" type="button" hidden>↩ Esci dalla città</button>
   <div class="control-layer" aria-label="Controlli di movimento">
     <div id="joystick" class="joystick" role="group" aria-label="Joystick virtuale per camminare"><div class="joystick-ring"></div><div class="joystick-knob"></div></div>
-    <div class="zoom-controls" role="group" aria-label="Zoom della mappa">
+    <div class="zoom-controls" role="group" aria-label="Zoom e cambio personaggio">
+      <button id="character-switch" class="ui-button character-switch" type="button" aria-label="Passa all'Otto di Spade" aria-pressed="false">⚔ 8 Spade</button>
       <button id="zoom-in" class="ui-button zoom-button" type="button" aria-label="Ingrandisci mappa">+</button>
       <button id="zoom-out" class="ui-button zoom-button" type="button" aria-label="Riduci mappa">−</button>
     </div>
@@ -30,6 +31,6 @@
   <div id="transition-veil" class="transition-veil" aria-hidden="true"></div>
   <div id="loading" class="loading">Preparazione dell'Overworld…</div>
 </main>
-<script type="module" src="engine/main.js?rev=outside-cities-v01"></script>
+<script type="module" src="engine/main.js?rev=s08-switch-v01"></script>
 </body>
 </html>
