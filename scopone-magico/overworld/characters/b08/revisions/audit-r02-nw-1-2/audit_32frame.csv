@@ -1,0 +1,33 @@
+id,direction,frame,index,status,finding,source,sha256
+S-1,S,1,0,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/S_00.png,3e100a9b62d31194b9ce08975ddd7aa2a07827d1c6a514faaa5d3018ac314d66
+S-2,S,2,1,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/S_01.png,a396317ebfe15ff91f62454d142abeafc41c447525a18a5b5ca8a8ec3f5b571e
+S-3,S,3,2,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/S_02.png,16f5b6951c035ac69ac87b8f842e1d2097218e08c21122048b395ca68a9855da
+S-4,S,4,3,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/S_03.png,fae4409ebc66ebc0ebdc720bf790f64ec93db1867ee33661bb77258d11392f17
+SE-1,SE,1,0,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SE_00.png,d2636891d7473f9cb77d8237d94c927b683599fab41c5b47e1a862f036688743
+SE-2,SE,2,1,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SE_01.png,ef637b3206aae1667909e86e661b438d71744fa5a3f4efaac1533f3d2130db7b
+SE-3,SE,3,2,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SE_02.png,1f07aa62af9a00277f433d3e0e45f9a147955f153e6e8c7c5e4b92cd5451be3a
+SE-4,SE,4,3,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SE_03.png,4f8c92b848587a3a7fc463818c23d1db23bbc807feb326846f8a0dfb36fbb2e7
+E-1,E,1,0,SEQUENZA_DUBBIA,Contatti poco distinguibili: alternanza di gamba da verificare. Non e il difetto NW.,walk/E_00.png,29c9b445f34758adbefca9c9f56ac45202926342ae557012a54abcd898ad915e
+E-2,E,2,1,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/E_01.png,d128bc19871e51d58b3b4269e8b30004b78ab2579ed5ee070f1d376b52a0d3c8
+E-3,E,3,2,SEQUENZA_DUBBIA,Contatti poco distinguibili: alternanza di gamba da verificare. Non e il difetto NW.,walk/E_02.png,bb5d3e4fba528e722126d0e37bc1d239981a6dbe1f6a99ec0a11afa5ca5e21ec
+E-4,E,4,3,SEQUENZA_DUBBIA,"Gamba ripiegata/scarpa inclinata. Revisione E-R01 separata, non prioritaria per orientamento.",walk/E_03.png,a8324d1ae1c75e4fac581cf230dcc9f96c99e9dc6e882d14630ebd712322a841
+NE-1,NE,1,0,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/NE_00.png,a9c5c9ed2d6fd593e74203cdc6c1dc38fd2a0430a0809a0ad6cc176e277c21cd
+NE-2,NE,2,1,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/NE_01.png,9a9f7cc71048508454753540ac03be6b9cf702b5dcfd7fe2e4265efee2731e22
+NE-3,NE,3,2,DIREZIONE_ERRATA,Testa/busto NE; piedi e parte inferiore ruotano verso NW. Priorita alta.,walk/NE_02.png,6bbfd089bbab89d30a8e6642d95797668ceb70a5dd3c1f548079197898143b93
+NE-4,NE,4,3,DIREZIONE_ERRATA,Testa/busto NE; piedi e parte inferiore ruotano verso NW. Priorita alta.,walk/NE_03.png,13b9658454112c06461471b82361b19fba29d20a8670777a32473633475cd221
+N-1,N,1,0,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/N_00.png,02c69730a2528a96e3d5f81d9fc411d1c6f6574d86e4c996f461f04ba475dffe
+N-2,N,2,1,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/N_01.png,d72e5125b507ea79abec952437bb46ec78af1d775b034ae7854233eaa73c8c01
+N-3,N,3,2,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/N_02.png,b6b4a3d378feb42e4d81ec297fa20d97ac9f795f6cc6a3195c8ecbb327ff2dff
+N-4,N,4,3,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/N_03.png,4259eb3eb44322f25307fd10b126f22987bb40dc953386e2067e012ee75abb44
+NW-1,NW,1,0,DIREZIONE_ERRATA,Testa/busto NW; bacino e traiettoria dei piedi seguono asse NE/SW. Priorita alta.,walk/NW_00.png,d76559f5fd3bef3b1ea32d3dbd3596cee3b07559ac77fa706bfeb2c0f53dfebc
+NW-2,NW,2,1,DIREZIONE_ERRATA,Testa/busto NW; bacino e traiettoria dei piedi seguono asse NE/SW. Priorita alta.,walk/NW_01.png,939c4bfaef76cb62ac5367fd1847355383f07a7c9183d65dfed5275e92c53c29
+NW-3,NW,3,2,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/NW_02.png,5468df6155c4fe317a16d35974412baca188c911434a0dfc463882f7ad819c29
+NW-4,NW,4,3,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/NW_03.png,92322d36c8258872f34314be487040bb97826f69d177a91af6354d0815f7098b
+W-1,W,1,0,SEQUENZA_DUBBIA,Contatti poco distinguibili: alternanza di gamba da verificare. Non e il difetto NW.,walk/W_00.png,a1da8d61c4316da2f844cb58946c70f814bc82358d1a4091ef7037226bf7147f
+W-2,W,2,1,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/W_01.png,ad04f1fd92ed1ceb3ca682bff351c7020cb388345bdf603c29cdd881e7c82105
+W-3,W,3,2,SEQUENZA_DUBBIA,Contatti poco distinguibili: alternanza di gamba da verificare. Non e il difetto NW.,walk/W_02.png,f0c0e1fd6d305131275802807e2b93c33f0707824f1a23aca5bc4dde38990a50
+W-4,W,4,3,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/W_03.png,808ea417dc6c1b96d37f758af8f63e2cec059e1a75bf64102da95ba6dde628b0
+SW-1,SW,1,0,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SW_00.png,a180f7dc15ae850026ca10eb3a79aa83d6c14e87f0d014cbc7c3957e85feb69e
+SW-2,SW,2,1,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SW_01.png,4a4fca8d0ec78b2ca19a6f370620b1b6e78d8b9031c5a3832f36cc72b5ed132d
+SW-3,SW,3,2,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SW_02.png,0d7c9b60a0542da8245eec4a912e79af9fbcec7ea5379d29ec227ee5d2b976ec
+SW-4,SW,4,3,NON_EVIDENTE,Nessun errore direzionale evidente; non certifica il ciclo.,walk/SW_03.png,c001fedd8a4e8d61d1b9ae4e3cf784e19d1dbe85c1279fa726d7fd8222674a8b

@@ -1,0 +1,51 @@
+{
+  "character_id": "B08",
+  "direction": "NW",
+  "status": "CANDIDATE_REVIEW",
+  "changed": [
+    {
+      "frame": 1,
+      "index": 0,
+      "candidate": "NW_frame01_candidate.webp",
+      "scale": 0.4064748201438849,
+      "translation": [
+        133,
+        33
+      ],
+      "status": "CANDIDATE_REVIEW"
+    },
+    {
+      "frame": 2,
+      "index": 1,
+      "candidate": "NW_frame02_candidate.webp",
+      "scale": 0.40213523131672596,
+      "translation": [
+        135,
+        33
+      ],
+      "status": "CANDIDATE_REVIEW"
+    }
+  ],
+  "unchanged_frames": [
+    3,
+    4
+  ],
+  "frameSize": [
+    512,
+    512
+  ],
+  "anchor": [
+    256,
+    390
+  ],
+  "production_ready": false,
+  "next_priority": [
+    "NE-3",
+    "NE-4"
+  ],
+  "limits": [
+    "Only first two NW frames corrected for direction.",
+    "Upper-body generation differences and residual animation continuity still need visual review.",
+    "No change to runtime manifest or original V01."
+  ]
+}
