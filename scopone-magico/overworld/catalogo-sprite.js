@@ -157,6 +157,9 @@ function choose(which,item,frame){
  $('chosen-from').textContent=state.from?infoChoice(state.from):'Tocca «Da sostituire» su uno sprite';
  $('chosen-to').textContent=state.to?infoChoice(state.to):'Tocca «Con questo» su un altro sprite';
  $('add-replacement').disabled=!(state.from&&state.to);
+ const ready=!!(state.from&&state.to);
+ document.querySelector('.selection-title span').textContent=ready?'A e B selezionati: apri per aggiungere':(state.from||state.to?'1 di 2 sprite selezionati':'Apri per costruire un elenco da inviarmi.');
+ if(ready){$('selection-panel').open=true;$('selection-panel').scrollIntoView({behavior:'smooth',block:'start'});}
  toast((which==='from'?'A · Da sostituire: ':'B · Con questo: ')+infoChoice(state[which]));
 }
 function openDetail(item){
@@ -271,6 +274,7 @@ function bindControls(){
    $('chosen-from').textContent='Tocca «Da sostituire» su uno sprite';
    $('chosen-to').textContent='Tocca «Con questo» su un altro sprite';
    $('add-replacement').disabled=true;
+   document.querySelector('.selection-title span').textContent=state.changes.length+' sostituzion'+(state.changes.length===1?'e':'i')+' nell’elenco';
    renderChanges();toast('Sostituzione aggiunta all’elenco');
  });
  $('clear-replacements').addEventListener('click',()=>{state.changes=[];renderChanges();$('copy-status').textContent='';});
