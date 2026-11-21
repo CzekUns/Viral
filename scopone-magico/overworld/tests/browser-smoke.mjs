@@ -199,8 +199,8 @@ async function main(){
  for(const [direction,dx,dy] of motions){
    await iframe.locator('#world-canvas').evaluate(()=>{
      const d=window.ScoponeOverworld.debug();
-     d.player.x=20.5;d.player.y=20.5;d.player.animation='idle';d.player.animationTime=0;
-     d.renderer.camera.x=20.5;d.renderer.camera.y=20.5;
+     d.player.x=45.5;d.player.y=45.5;d.player.animation='idle';d.player.animationTime=0;
+     d.renderer.camera.x=45.5;d.renderer.camera.y=45.5;
      d.lifecycle.path=[];d.lifecycle.destination=null;
    });
    await s08Input.send('Input.dispatchTouchEvent',{
@@ -268,7 +268,7 @@ async function main(){
    assert.ok(snapB.animationTime>snapA.animationTime,'S08 animation clock stalled '+direction);
    assert.ok(new Set(observedFrames).size>=2,'Actual Canvas frame never advanced '+direction);
    assert.ok(new Set(observedHashes).size>=2,'Actual Canvas poses never changed visually '+direction);
-   assert.ok(Math.hypot(snapB.x-20.5,snapB.y-20.5)>.5,'S08 did not move '+direction);
+   assert.ok(Math.hypot(snapB.x-45.5,snapB.y-45.5)>.5,'S08 did not move '+direction);
    s08TouchProof.push({direction,frames:snapB.frames,frameA:snapA.frame,
      frameB:snapB.frame,seen:[...new Set(observedFrames)].sort(),differentPoses:new Set(observedHashes).size,time:snapB.animationTime});
    await page.waitForTimeout(95);
@@ -542,6 +542,9 @@ async function main(){
    assert.notEqual(samples[0].pixels,samples[1].pixels,heading+' must display different poses');
  }
 
+ const s08EndScene=await getPos();
+ assert.equal(s08EndScene.scene,'city','S08 QA must not approach city exit trigger');
+ await iframe.locator('#world-canvas').evaluate(()=>window.ScoponeOverworld.save());
  await page.reload({waitUntil:'domcontentloaded'});
  await page.locator('#start-overworld').click();
  await iframe.locator('#loading').waitFor({state:'hidden',timeout:35000});
