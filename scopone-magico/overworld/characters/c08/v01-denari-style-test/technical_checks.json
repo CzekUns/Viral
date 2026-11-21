@@ -1,0 +1,18 @@
+{
+  "character": "C08",
+  "style": "D08 V01",
+  "standing_rgba512": 8,
+  "walk_rgba512": 32,
+  "webp_standing": 8,
+  "webp_strips2048x512": 8,
+  "gif_cycles_with_4_frames": 8,
+  "export_checks": "PASS",
+  "visual_approval": false,
+  "in_engine_test": false,
+  "known_review": [
+    "NE repeated leading leg; extra candidates not consumed",
+    "SW contacts too similar",
+    "W cup shape differs from model; accessory consistency to review"
+  ],
+  "N_source": "selected alpha-cleaned imagegen revision"
+}
