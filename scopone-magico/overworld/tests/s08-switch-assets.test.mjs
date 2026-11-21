@@ -14,9 +14,10 @@ const mock=new Map(Object.entries(manifest.images).map(([id,x])=>[id,{
   src:x.src,naturalWidth:(x.frames||1)*(x.frameSize?.[0]||512),
   naturalHeight:x.frameSize?.[1]||512
 }]));
-const lib=new AssetLibrary(manifest,mock);
+const makeLibrary=()=>new AssetLibrary(manifest,new Map(mock));
 
 test('S08 V02 registers 8 standing WebPs and 8 four-frame walks, no generated replacements',()=>{
+  const lib=makeLibrary();
   assert.equal(avatar.characterId,'S08');
   assert.equal(avatar.artStatus,'TEST_VISUAL_REVIEW');
   assert.deepEqual(avatar.anchor,[.5,350/512]);
@@ -36,6 +37,7 @@ test('S08 V02 registers 8 standing WebPs and 8 four-frame walks, no generated re
   }
 });
 test('S08 four-frame walk advances without changing facing',()=>{
+  const lib=makeLibrary();
   const p={assetId:'s08-player',animation:'walk'};
   assert.deepEqual([0,.15,.30,.45,.60].map(t=>lib.spriteFor(p,'SE',t).frame),[0,1,2,3,0]);
   assert.equal(lib.spriteFor({...p,animation:'idle'},'SE',300).frame,0);
