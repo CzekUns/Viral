@@ -19,6 +19,7 @@ jobs:
       - name: Validate Overworld JavaScript
         run: |
           for file in scopone-magico/overworld/engine/*.js; do node --check "$file"; done
+          node --check scopone-magico/overworld/catalogo-sprite.js
       - name: Test isometric scenes, coastline and town transitions
         working-directory: scopone-magico/overworld
         run: npm test
@@ -39,6 +40,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Browser QA mobile portrait with touch
         run: node scopone-magico/overworld/tests/browser-smoke.mjs
+      - name: Visual sprite inventory QA with exact frame comparison
+        run: node scopone-magico/overworld/tests/sprite-catalog-browser.mjs
       - name: Upload screenshots for visual inspection
         if: always()
         uses: actions/upload-artifact@v4

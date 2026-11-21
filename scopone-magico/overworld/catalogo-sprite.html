@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eee4d2">
+<title>Catalogo sprite — Scopone Alchemico</title>
+<link rel="stylesheet" href="catalogo-sprite.css?rev=1">
+</head>
+<body>
+<main class="page">
+<header class="page-head">
+  <div class="kicker">SCOPONE ALCHEMICO · ARCHIVIO OVERWORLD</div>
+  <h1>Catalogo degli sprite</h1>
+  <p>Confronta i file realmente in uso con quelli precedenti. Apri una scheda per esaminare <strong>ogni fotogramma</strong>; seleziona «Da sostituire» e «Con questo» per preparare le istruzioni da inviarmi.</p>
+  <div class="header-actions">
+    <a class="text-link" href="./">Torna al gioco</a>
+    <a class="text-link" href="https://github.com/CzekUns/Viral/tree/main/scopone-magico/overworld/characters" target="_blank" rel="noopener noreferrer">Originali su GitHub</a>
+  </div>
+  <div class="stats" aria-label="Conteggio sprite">
+    <div><span id="total-count">—</span><small>File WebP</small></div>
+    <div><span id="used-count">—</span><small>In uso normale</small></div>
+    <div><span id="unused-count">—</span><small>Alternative / backup</small></div>
+  </div>
+</header>
+
+<section class="filter-panel" aria-label="Filtri catalogo">
+  <div class="state-tabs" role="group" aria-label="Stato dello sprite">
+    <button type="button" data-status="all" aria-pressed="true">Tutti</button>
+    <button type="button" data-status="used" aria-pressed="false">In uso</button>
+    <button type="button" data-status="unused" aria-pressed="false">Non in uso</button>
+  </div>
+  <div class="filter-fields">
+    <label>Personaggio
+      <select id="filter-character"><option value="all">Entrambi</option><option value="C08">8 Coppe · C08</option><option value="S08">8 Spade · S08</option></select>
+    </label>
+    <label>Direzione
+      <select id="filter-direction"><option value="all">Tutte</option><option value="N">N · Nord</option><option value="NE">NE · Nord-est</option><option value="E">E · Est</option><option value="SE">SE · Sud-est</option><option value="S">S · Sud</option><option value="SW">SW · Sud-ovest</option><option value="W">W · Ovest</option><option value="NW">NW · Nord-ovest</option></select>
+    </label>
+    <label>Stato
+      <select id="filter-pose"><option value="all">Standing e walk</option><option value="idle">Fermo · standing</option><option value="walk">Camminata · walk</option></select>
+    </label>
+    <label>Versione
+      <select id="filter-version"><option value="all">Tutte le versioni</option></select>
+    </label>
+  </div>
+  <label class="search-label">Cerca codice o nome file
+    <input type="search" id="filter-search" autocomplete="off" placeholder="Es. C08 NE, V07, Spade V01">
+  </label>
+  <div class="filter-foot"><span id="visible-count" aria-live="polite"></span><button type="button" id="reset-filters" class="text-button">Azzera filtri</button></div>
+</section>
+
+<details class="selection-panel" id="selection-panel" aria-label="Proposta di sostituzione">
+  <summary class="selection-title"><strong>Prepara le sostituzioni</strong><span>Apri per costruire un elenco da inviarmi.</span></summary>
+  <div class="selection-body">
+  <div class="selection-choices">
+    <div class="choice"><small>A · Da sostituire</small><span id="chosen-from">Tocca «Da sostituire» su uno sprite</span></div>
+    <div class="choice"><small>B · Con questo</small><span id="chosen-to">Tocca «Con questo» su un altro sprite</span></div>
+  </div>
+  <div class="selection-actions">
+    <button type="button" id="add-replacement" disabled>Aggiungi all'elenco</button>
+    <button type="button" id="copy-replacements" disabled>Copia istruzioni</button>
+    <button type="button" id="clear-replacements" class="quiet">Svuota</button>
+  </div>
+  <ol id="replacement-list" aria-label="Sostituzioni selezionate"></ol>
+  <textarea id="replacement-text" readonly aria-label="Testo istruzioni pronto da copiare" placeholder="Le tue sostituzioni appariranno qui."></textarea>
+  <span id="copy-status" role="status" aria-live="polite"></span>
+  </div>
+</details>
+
+<section aria-label="Sprite e versioni">
+  <div class="collection-title"><h2>Sprite disponibili</h2><p>Un riquadro = un file grafico, anche quando contiene 22 fotogrammi. Le camminate si animano automaticamente quando scorri la pagina.</p></div>
+  <div id="catalog-grid" class="sprite-grid" aria-live="off"></div>
+  <div id="empty-result" class="empty" hidden>Non ci sono sprite per questi filtri. Prova un'altra combinazione.</div>
+</section>
+
+<section class="sources">
+  <h2>Archivio originale su Drive</h2>
+  <p>I master PNG e le GIF di revisione sono conservati nei pacchetti originali. Il catalogo mostra <strong>tutti i WebP presenti nella repository</strong>; non conta come versioni separate gli export PNG equivalenti.</p>
+  <div class="source-links">
+    <a href="https://drive.google.com/file/d/1rHPQD9WpEfi-jhU6DNxlp6oVAUXnej3_/view" target="_blank" rel="noopener noreferrer">8 Spade V02 · pacchetto completo</a>
+    <a href="https://drive.google.com/file/d/1qS2pyzlHxL2dt8xvpUf96mUG952tKsL3/view" target="_blank" rel="noopener noreferrer">8 Spade V01 · standing originali</a>
+    <a href="https://drive.google.com/file/d/1Jvrix2WlyA0bnfguuq-u0HeHb3ovqN64/view" target="_blank" rel="noopener noreferrer">8 Coppe AutoSprite · master PNG</a>
+    <a href="https://github.com/CzekUns/Viral/pull/28" target="_blank" rel="noopener noreferrer">PR #28 · origine 8 Spade</a>
+  </div>
+  <p class="fine">«In uso» significa che il file compare in <code>animations.idle.directions</code> o <code>animations.walk.directions</code> nel manifest normale. Gli asset storici possono ancora essere attivabili con parametri diagnostici. Il catalogo non modifica gli sprite di gioco.</p>
+</section>
+<footer>Scopone Alchemico · Revisione tecnica degli asset · C08 / S08</footer>
+</main>
+
+<dialog id="sprite-dialog" aria-label="Dettaglio sprite e fotogrammi">
+  <div class="dialog-inside">
+    <div class="dialog-header">
+      <div><small id="detail-status"></small><h2 id="detail-title"></h2><div id="detail-code" class="mono"></div></div>
+      <button id="detail-close" type="button" class="detail-close" aria-label="Chiudi dettaglio">×</button>
+    </div>
+    <canvas id="detail-canvas" width="340" height="306" aria-label="Fotogramma dello sprite ingrandito"></canvas>
+    <div class="frame-controls">
+      <button id="detail-play" type="button">Pausa</button>
+      <label for="detail-range">Fotogramma <span id="detail-frame-label">1/1</span></label>
+      <input type="range" id="detail-range" min="0" max="0" value="0" step="1">
+    </div>
+    <div id="detail-strip" class="filmstrip" aria-label="Seleziona il fotogramma preciso"></div>
+    <div class="detail-meta"><div id="detail-meta"></div><code id="detail-path"></code></div>
+    <div class="detail-actions">
+      <button type="button" id="detail-from">A · Da sostituire</button>
+      <button type="button" id="detail-to">B · Con questo</button>
+    </div>
+    <p class="fine">Se il difetto riguarda un singolo fotogramma, fermalo qui e premi «Da sostituire»: il numero verrà incluso nelle istruzioni.</p>
+  </div>
+</dialog>
+<script type="module" src="catalogo-sprite.js?rev=1"></script>
+</body>
+</html>
