@@ -1788,6 +1788,60 @@
         0.5
       ],
       "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-city-napoli": {
+      "src": "objects/outside/cities/napoli.webp",
+      "type": "prop",
+      "anchor": [
+        0.5,
+        0.96
+      ],
+      "previewStatus": "V01 - installed in external overworld; artwork pending final visual approval"
+    },
+    "outer-city-pozzuoli": {
+      "src": "objects/outside/cities/pozzuoli.webp",
+      "type": "prop",
+      "anchor": [
+        0.5,
+        0.96
+      ],
+      "previewStatus": "V01 - installed in external overworld; artwork pending final visual approval"
+    },
+    "outer-city-torre": {
+      "src": "objects/outside/cities/torre.webp",
+      "type": "prop",
+      "anchor": [
+        0.5,
+        0.96
+      ],
+      "previewStatus": "V01 - installed in external overworld; artwork pending final visual approval"
+    },
+    "outer-city-caserta": {
+      "src": "objects/outside/cities/caserta.webp",
+      "type": "prop",
+      "anchor": [
+        0.5,
+        0.96
+      ],
+      "previewStatus": "V01 - installed in external overworld; artwork pending final visual approval"
+    },
+    "outer-city-sorrento": {
+      "src": "objects/outside/cities/sorrento.webp",
+      "type": "prop",
+      "anchor": [
+        0.5,
+        0.96
+      ],
+      "previewStatus": "V01 - installed in external overworld; artwork pending final visual approval"
+    },
+    "outer-city-salerno": {
+      "src": "objects/outside/cities/salerno.webp",
+      "type": "prop",
+      "anchor": [
+        0.5,
+        0.96
+      ],
+      "previewStatus": "V01 - installed in external overworld; artwork pending final visual approval"
     }
   },
   "spritesheetSchema": {

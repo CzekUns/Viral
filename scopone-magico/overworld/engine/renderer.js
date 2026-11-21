@@ -71,7 +71,8 @@ export class IsoRenderer {
       c.font='bold 12px Georgia,serif';c.textAlign='center';c.lineWidth=3;c.strokeStyle='#f5edd9';c.strokeText('USCITA',p.x,p.y-th*.8);c.fillStyle='#6e402a';c.fillText('USCITA',p.x,p.y-th*.8);c.restore();
     }
     // All future entities and props use the same feet-based depth ordering.
-    const visible=this.world.renderables.filter(e=>e.x>=b.minX-2&&e.x<=b.maxX+2&&e.y>=b.minY-2&&e.y<=b.maxY+2);
+    const objectCullMargin=this.world.manifest.cities?12:2; // allow tall exterior cities to enter view before their feet do
+    const visible=this.world.renderables.filter(e=>e.x>=b.minX-objectCullMargin&&e.x<=b.maxX+objectCullMargin&&e.y>=b.minY-objectCullMargin&&e.y<=b.maxY+objectCullMargin);
     const all=[...visible,...entities,player].sort((a,b)=>(a.x+a.y+a.height*.01)-(b.x+b.y+b.height*.01));
     for(const item of all)this.drawEntity(item);
     if(this.world.manifest.labels)this.drawLabels(this.world.manifest.labels);
@@ -191,8 +192,8 @@ export class IsoRenderer {
     }
     if(entity.label){
       c.save();c.textAlign='center';c.font='bold 12px Georgia,serif';c.lineWidth=3;
-      c.strokeStyle='#f4e6c5';c.strokeText(entity.label,p.x,p.y-height-5);
-      c.fillStyle='#3f3027';c.fillText(entity.label,p.x,p.y-height-5);c.restore();
+      c.strokeStyle='#f4e6c5';c.strokeText(entity.label,p.x,p.y-height*anchor[1]-8);
+      c.fillStyle='#3f3027';c.fillText(entity.label,p.x,p.y-height*anchor[1]-8);c.restore();
     }
   }
   drawLabels(labels){
