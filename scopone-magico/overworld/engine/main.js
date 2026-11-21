@@ -3,6 +3,7 @@ import {AssetLibrary} from './assets.js?rev=c08-e-se-s-anti-drop-v05';
 import {facingWithHysteresis,advanceC08AnimationTime} from './c08-motion.js';
 import {IsoRenderer} from './renderer.js?rev=s08-switch-v01';
 import {TouchControls} from './controls.js';
+import {OVERWORLD_AVATARS,resolveAvatar,nextAvatar} from './avatar-roster.js';
 import {findPath} from './pathfinding.js';
 import {screenDirectionToWorld,normalize,clamp} from './geometry.js';
 import {STORAGE_V1,STORAGE_V2,restoreState,encodeState,cityOnTile} from './scene-state.js';
@@ -18,26 +19,35 @@ const lifecycle={active:true,fade:false,lastZone:null,path:[],destination:null,l
 const player={x:0,y:0,facing:'SE',assetId:'player',animation:'idle',animationTime:0,renderWidth:48,renderHeight:48,speed:4.1,height:0};
 const hooks=new Map();
 function savedCharacter(){
- try{return localStorage.getItem(CHARACTER_KEY)==='s08-player'?'s08-player':'player';}
+ try{return resolveAvatar(localStorage.getItem(CHARACTER_KEY)).id;}
  catch{return 'player';}
 }
 function updateCharacterButton(){
- const button=$('character-switch');if(!button)return;
- const isSpade=player.assetId==='s08-player';
- button.textContent=isSpade?'🏺 8 Coppe':'⚔ 8 Spade';
- button.setAttribute('aria-label',isSpade?"Passa all'Otto di Coppe":"Passa all'Otto di Spade");
- button.setAttribute('aria-pressed',String(isSpade));
- button.title=isSpade?'Personaggio attuale: Otto di Spade (TEST)':'Personaggio attuale: Otto di Coppe';
+ const button=$('character-switch'),selected=resolveAvatar(player.assetId),next=nextAvatar(player.assetId);
+ if(button){
+  button.textContent='↻ '+next.short;
+  button.setAttribute('aria-label','Prossimo personaggio: '+next.name);
+  button.title='Ora: '+selected.name+' · Prossimo: '+next.name;
+ }
+ const current=$('character-current');
+ if(current)current.textContent=selected.emoji+' '+selected.name+(selected.id==='player'?'':' · TEST');
+ for(const option of document.querySelectorAll('[data-avatar]')){
+  const on=option.dataset.avatar===player.assetId;
+  option.setAttribute('aria-pressed',String(on));
+  option.classList.toggle('selected',on);
+ }
 }
-function switchCharacter(){
- if(!assets?.info('s08-player'))return;
- player.assetId=player.assetId==='s08-player'?'player':'s08-player';
+function switchCharacter(requested){
+ const desired=typeof requested==='string'?resolveAvatar(requested):nextAvatar(player.assetId);
+ if(!assets?.info(desired.id)||desired.id===player.assetId)return false;
+ player.assetId=desired.id;
  player.animation='idle';player.animationTime=0;
  lifecycle.lastDrawKey='';
  updateCharacterButton();
  try{localStorage.setItem(CHARACTER_KEY,player.assetId);}catch{}
  renderer?.draw(player,[],lifecycle.destination,1/60);
- emit('characterchange',{characterId:player.assetId==='s08-player'?'S08':'C08',position:position()});
+ emit('characterchange',{characterId:assets.info(player.assetId).characterId,variant:player.assetId,position:position()});
+ return true;
 }
 function emit(name,detail){
  for(const fn of hooks.get(name)||[])try{fn(detail);}catch(e){console.error('Overworld listener error',e);}
@@ -212,7 +222,7 @@ function tick(t){
  if(diagnostic){
   const rendered=renderer.lastPlayerSprite||{};
   $('c08-diagnostics').textContent=[
-   (player.assetId==='s08-player'?'S08':'C08')+' · CANVAS / TOUCH',
+   assets.info(player.assetId)?.characterId+' · '+player.assetId+' · CANVAS / TOUCH',
    'facing: '+player.facing,
    'animation: '+player.animation,
    'animationTime: '+player.animationTime.toFixed(2)+' s',
@@ -235,7 +245,10 @@ function canvasTap(e){
 }
 function setupInputs(){
  controls=new TouchControls($('joystick'));
- $('character-switch').addEventListener('click',switchCharacter);
+ $('character-switch').addEventListener('click',()=>switchCharacter());
+ for(const option of document.querySelectorAll('[data-avatar]')){
+  option.addEventListener('click',()=>switchCharacter(option.dataset.avatar));
+ }
  canvas.addEventListener('pointerup',canvasTap);
  $('zoom-in').addEventListener('click',()=>{renderer.setZoom(renderer.camera.zoom+.15);save();});
  $('zoom-out').addEventListener('click',()=>{renderer.setZoom(renderer.camera.zoom-.15);save();});
@@ -282,7 +295,7 @@ async function start(){
   const requested=cities.find(c=>c.id===saved?.cityId)||cities[0];
   const city=cityMaps.get(requested.map);
   worlds={outside,city,cityMaps};assets=library;
-  player.assetId=assets.info('s08-player')?savedCharacter():'player';
+  player.assetId=assets.info(savedCharacter())?savedCharacter():'player';
   state=restoreState(saved,readSave(STORAGE_V1),outside,city);
   renderer=new IsoRenderer(canvas,worlds[state.scene],assets);
   applyScene();enterZone();updateHud();setupInputs();
@@ -295,7 +308,7 @@ async function start(){
 }
 window.ScoponeOverworld={
  on:subscribe,position,portal:travelPortal,enterCity,leaveCity,
- character:()=>player.assetId,switchCharacter,
+ character:()=>player.assetId,characters:()=>OVERWORLD_AVATARS.map(x=>({...x})),switchCharacter,
  launchScopone:details=>{const payload={position:position(),...details};emit('challenge-request',payload);if(window.parent!==window)window.parent.postMessage({type:'scopone-overworld-challenge',payload},location.origin);},
  reward:details=>emit('reward',details),save:()=>state&&save(),
  debug:()=>debug?{worlds,world,player,renderer,lifecycle,state,findPath,tryMove}:null

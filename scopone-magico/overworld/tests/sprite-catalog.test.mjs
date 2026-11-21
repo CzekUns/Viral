@@ -9,16 +9,18 @@ const read=relative=>JSON.parse(readFileSync(path.join(root,relative),'utf8'));
 const inventory=read('catalogo-sprite-data.json').items;
 const manifest=read('assets.json');
 const dirs=['N','NE','E','SE','S','SW','W','NW'];
-const current=new Set(['player','s08-player'].flatMap(id=>
+const current=new Set(['player','s08-player','b08-player','d08-player','c08-v01-player','c08-v02-player'].flatMap(id=>
  ['idle','walk'].flatMap(kind=>Object.values(manifest.images[id].animations[kind].directions))));
 
-test('visual catalog includes every original C08/S08 WebP from repo',()=>{
- assert.equal(inventory.length,66);
- assert.equal(new Set(inventory.map(x=>x.src)).size,66);
- assert.equal(new Set(inventory.map(x=>x.code)).size,66);
- assert.equal(inventory.filter(x=>current.has(x.src)).length,32);
- assert.equal(inventory.filter(x=>!current.has(x.src)).length,34);
- assert.equal(inventory.filter(x=>x.character==='C08').length,42);
+test('visual catalog includes all B08/C08/D08/S08 WebPs and Bastoni candidates',()=>{
+ assert.equal(inventory.length,135);
+ assert.equal(new Set(inventory.map(x=>x.src)).size,135);
+ assert.equal(new Set(inventory.map(x=>x.code)).size,135);
+ assert.equal(inventory.filter(x=>current.has(x.src)).length,96);
+ assert.equal(inventory.filter(x=>!current.has(x.src)).length,39);
+ assert.equal(inventory.filter(x=>x.character==='C08').length,74);
+ assert.equal(inventory.filter(x=>x.character==='B08').length,21);
+ assert.equal(inventory.filter(x=>x.character==='D08').length,16);
  assert.equal(inventory.filter(x=>x.character==='S08').length,24);
  for(const item of inventory){
   assert.ok(item.src.startsWith('characters/'),item.code);
@@ -36,7 +38,7 @@ test('visual catalog includes every original C08/S08 WebP from repo',()=>{
  }
 });
 test('default animation selection, not stale player.directions, drives status',()=>{
- for(const id of ['player','s08-player']){
+ for(const id of ['player','s08-player','b08-player','d08-player','c08-v01-player','c08-v02-player']){
   const spec=manifest.images[id];
   for(const [state,config] of Object.entries(spec.animations)){
    for(const [dir,src] of Object.entries(config.directions)){
@@ -52,6 +54,8 @@ test('default animation selection, not stale player.directions, drives status',(
  assert.ok(legacy&&!current.has(legacy.src));
  const approved=inventory.find(x=>x.src.endsWith('c08-approved-SE-4f.webp'));
  assert.ok(approved&&!current.has(approved.src),'approved V07 is rollback and not current default');
+ assert.equal(inventory.filter(x=>x.src.includes('characters/b08/revisions/')).length,5);
+ assert.ok(inventory.filter(x=>x.src.includes('characters/b08/revisions/')).every(x=>!current.has(x.src)));
  const s08old=inventory.filter(x=>x.version==='Spade V01');
  assert.equal(s08old.length,8);
  assert.ok(s08old.every(x=>!current.has(x.src)));

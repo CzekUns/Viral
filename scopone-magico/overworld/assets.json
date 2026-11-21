@@ -2327,6 +2327,1894 @@
           }
         }
       }
+    },
+    "b08-player-walk-S": {
+      "src": "characters/b08/v01-handsfree-test/walk/S.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "S",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-idle-SE": {
+      "src": "characters/b08/v01-handsfree-test/standing/SE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-walk-SE": {
+      "src": "characters/b08/v01-handsfree-test/walk/SE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-idle-E": {
+      "src": "characters/b08/v01-handsfree-test/standing/E.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "E",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-walk-E": {
+      "src": "characters/b08/v01-handsfree-test/walk/E.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "E",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-idle-NE": {
+      "src": "characters/b08/v01-handsfree-test/standing/NE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-walk-NE": {
+      "src": "characters/b08/v01-handsfree-test/walk/NE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-idle-N": {
+      "src": "characters/b08/v01-handsfree-test/standing/N.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "N",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-walk-N": {
+      "src": "characters/b08/v01-handsfree-test/walk/N.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "N",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-idle-NW": {
+      "src": "characters/b08/v01-handsfree-test/standing/NW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-walk-NW": {
+      "src": "characters/b08/v01-handsfree-test/walk/NW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-idle-W": {
+      "src": "characters/b08/v01-handsfree-test/standing/W.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "W",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-walk-W": {
+      "src": "characters/b08/v01-handsfree-test/walk/W.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "W",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-idle-SW": {
+      "src": "characters/b08/v01-handsfree-test/standing/SW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player-walk-SW": {
+      "src": "characters/b08/v01-handsfree-test/walk/SW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "b08-player": {
+      "src": "characters/b08/v01-handsfree-test/standing/S.webp",
+      "type": "character",
+      "characterId": "B08",
+      "name": "8 Bastoni · V01",
+      "variant": "B08 V01 mani libere TEST",
+      "artStatus": "TEST_VISUAL_REVIEW",
+      "source": "https://drive.google.com/file/d/1PqO9FwdJ2Kit407mJYx5dtT2Fml9Rcd_/view",
+      "anchor": [
+        0.5,
+        0.76171875
+      ],
+      "renderSize": [
+        96,
+        96
+      ],
+      "directions": {
+        "S": "characters/b08/v01-handsfree-test/standing/S.webp",
+        "SE": "characters/b08/v01-handsfree-test/standing/SE.webp",
+        "E": "characters/b08/v01-handsfree-test/standing/E.webp",
+        "NE": "characters/b08/v01-handsfree-test/standing/NE.webp",
+        "N": "characters/b08/v01-handsfree-test/standing/N.webp",
+        "NW": "characters/b08/v01-handsfree-test/standing/NW.webp",
+        "W": "characters/b08/v01-handsfree-test/standing/W.webp",
+        "SW": "characters/b08/v01-handsfree-test/standing/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/b08/v01-handsfree-test/standing/S.webp",
+            "SE": "characters/b08/v01-handsfree-test/standing/SE.webp",
+            "E": "characters/b08/v01-handsfree-test/standing/E.webp",
+            "NE": "characters/b08/v01-handsfree-test/standing/NE.webp",
+            "N": "characters/b08/v01-handsfree-test/standing/N.webp",
+            "NW": "characters/b08/v01-handsfree-test/standing/NW.webp",
+            "W": "characters/b08/v01-handsfree-test/standing/W.webp",
+            "SW": "characters/b08/v01-handsfree-test/standing/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            }
+          }
+        },
+        "walk": {
+          "frames": 4,
+          "fps": 7,
+          "directions": {
+            "S": "characters/b08/v01-handsfree-test/walk/S.webp",
+            "SE": "characters/b08/v01-handsfree-test/walk/SE.webp",
+            "E": "characters/b08/v01-handsfree-test/walk/E.webp",
+            "NE": "characters/b08/v01-handsfree-test/walk/NE.webp",
+            "N": "characters/b08/v01-handsfree-test/walk/N.webp",
+            "NW": "characters/b08/v01-handsfree-test/walk/NW.webp",
+            "W": "characters/b08/v01-handsfree-test/walk/W.webp",
+            "SW": "characters/b08/v01-handsfree-test/walk/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            }
+          }
+        }
+      }
+    },
+    "d08-player-walk-S": {
+      "src": "characters/d08/v01-handsfree-test/walk/S.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "S",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-idle-SE": {
+      "src": "characters/d08/v01-handsfree-test/standing/SE.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "SE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-walk-SE": {
+      "src": "characters/d08/v01-handsfree-test/walk/SE.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "SE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-idle-E": {
+      "src": "characters/d08/v01-handsfree-test/standing/E.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "E",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-walk-E": {
+      "src": "characters/d08/v01-handsfree-test/walk/E.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "E",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-idle-NE": {
+      "src": "characters/d08/v01-handsfree-test/standing/NE.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "NE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-walk-NE": {
+      "src": "characters/d08/v01-handsfree-test/walk/NE.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "NE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-idle-N": {
+      "src": "characters/d08/v01-handsfree-test/standing/N.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "N",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-walk-N": {
+      "src": "characters/d08/v01-handsfree-test/walk/N.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "N",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-idle-NW": {
+      "src": "characters/d08/v01-handsfree-test/standing/NW.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "NW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-walk-NW": {
+      "src": "characters/d08/v01-handsfree-test/walk/NW.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "NW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-idle-W": {
+      "src": "characters/d08/v01-handsfree-test/standing/W.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "W",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-walk-W": {
+      "src": "characters/d08/v01-handsfree-test/walk/W.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "W",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-idle-SW": {
+      "src": "characters/d08/v01-handsfree-test/standing/SW.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "SW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player-walk-SW": {
+      "src": "characters/d08/v01-handsfree-test/walk/SW.webp",
+      "type": "sprite",
+      "characterId": "D08",
+      "direction": "SW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "d08-player": {
+      "src": "characters/d08/v01-handsfree-test/standing/S.webp",
+      "type": "character",
+      "characterId": "D08",
+      "name": "8 Denari · V01",
+      "variant": "D08 V01 mani libere TEST",
+      "artStatus": "TEST_VISUAL_REVIEW",
+      "source": "https://drive.google.com/file/d/1aR0tlBcQmsK2I7ppb4I_83lJ2GX2V9oC/view",
+      "anchor": [
+        0.5,
+        0.76171875
+      ],
+      "renderSize": [
+        96,
+        96
+      ],
+      "directions": {
+        "S": "characters/d08/v01-handsfree-test/standing/S.webp",
+        "SE": "characters/d08/v01-handsfree-test/standing/SE.webp",
+        "E": "characters/d08/v01-handsfree-test/standing/E.webp",
+        "NE": "characters/d08/v01-handsfree-test/standing/NE.webp",
+        "N": "characters/d08/v01-handsfree-test/standing/N.webp",
+        "NW": "characters/d08/v01-handsfree-test/standing/NW.webp",
+        "W": "characters/d08/v01-handsfree-test/standing/W.webp",
+        "SW": "characters/d08/v01-handsfree-test/standing/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/d08/v01-handsfree-test/standing/S.webp",
+            "SE": "characters/d08/v01-handsfree-test/standing/SE.webp",
+            "E": "characters/d08/v01-handsfree-test/standing/E.webp",
+            "NE": "characters/d08/v01-handsfree-test/standing/NE.webp",
+            "N": "characters/d08/v01-handsfree-test/standing/N.webp",
+            "NW": "characters/d08/v01-handsfree-test/standing/NW.webp",
+            "W": "characters/d08/v01-handsfree-test/standing/W.webp",
+            "SW": "characters/d08/v01-handsfree-test/standing/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            }
+          }
+        },
+        "walk": {
+          "frames": 4,
+          "fps": 7,
+          "directions": {
+            "S": "characters/d08/v01-handsfree-test/walk/S.webp",
+            "SE": "characters/d08/v01-handsfree-test/walk/SE.webp",
+            "E": "characters/d08/v01-handsfree-test/walk/E.webp",
+            "NE": "characters/d08/v01-handsfree-test/walk/NE.webp",
+            "N": "characters/d08/v01-handsfree-test/walk/N.webp",
+            "NW": "characters/d08/v01-handsfree-test/walk/NW.webp",
+            "W": "characters/d08/v01-handsfree-test/walk/W.webp",
+            "SW": "characters/d08/v01-handsfree-test/walk/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            }
+          }
+        }
+      }
+    },
+    "c08-v01-player-walk-S": {
+      "src": "characters/c08/v01-denari-style-test/walk/S.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "S",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-idle-SE": {
+      "src": "characters/c08/v01-denari-style-test/standing/SE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-walk-SE": {
+      "src": "characters/c08/v01-denari-style-test/walk/SE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-idle-E": {
+      "src": "characters/c08/v01-denari-style-test/standing/E.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "E",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-walk-E": {
+      "src": "characters/c08/v01-denari-style-test/walk/E.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "E",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-idle-NE": {
+      "src": "characters/c08/v01-denari-style-test/standing/NE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-walk-NE": {
+      "src": "characters/c08/v01-denari-style-test/walk/NE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-idle-N": {
+      "src": "characters/c08/v01-denari-style-test/standing/N.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "N",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-walk-N": {
+      "src": "characters/c08/v01-denari-style-test/walk/N.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "N",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-idle-NW": {
+      "src": "characters/c08/v01-denari-style-test/standing/NW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-walk-NW": {
+      "src": "characters/c08/v01-denari-style-test/walk/NW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-idle-W": {
+      "src": "characters/c08/v01-denari-style-test/standing/W.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "W",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-walk-W": {
+      "src": "characters/c08/v01-denari-style-test/walk/W.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "W",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-idle-SW": {
+      "src": "characters/c08/v01-denari-style-test/standing/SW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player-walk-SW": {
+      "src": "characters/c08/v01-denari-style-test/walk/SW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_VISUAL_REVIEW"
+    },
+    "c08-v01-player": {
+      "src": "characters/c08/v01-denari-style-test/standing/S.webp",
+      "type": "character",
+      "characterId": "C08",
+      "name": "8 Coppe · V01",
+      "variant": "C08 V01 nello stile Denari TEST",
+      "artStatus": "TEST_VISUAL_REVIEW",
+      "source": "https://drive.google.com/file/d/195ybq4GU-ZEL_65g4w_OekOg7qp2FP2M/view",
+      "anchor": [
+        0.5,
+        0.76171875
+      ],
+      "renderSize": [
+        96,
+        96
+      ],
+      "directions": {
+        "S": "characters/c08/v01-denari-style-test/standing/S.webp",
+        "SE": "characters/c08/v01-denari-style-test/standing/SE.webp",
+        "E": "characters/c08/v01-denari-style-test/standing/E.webp",
+        "NE": "characters/c08/v01-denari-style-test/standing/NE.webp",
+        "N": "characters/c08/v01-denari-style-test/standing/N.webp",
+        "NW": "characters/c08/v01-denari-style-test/standing/NW.webp",
+        "W": "characters/c08/v01-denari-style-test/standing/W.webp",
+        "SW": "characters/c08/v01-denari-style-test/standing/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/c08/v01-denari-style-test/standing/S.webp",
+            "SE": "characters/c08/v01-denari-style-test/standing/SE.webp",
+            "E": "characters/c08/v01-denari-style-test/standing/E.webp",
+            "NE": "characters/c08/v01-denari-style-test/standing/NE.webp",
+            "N": "characters/c08/v01-denari-style-test/standing/N.webp",
+            "NW": "characters/c08/v01-denari-style-test/standing/NW.webp",
+            "W": "characters/c08/v01-denari-style-test/standing/W.webp",
+            "SW": "characters/c08/v01-denari-style-test/standing/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            }
+          }
+        },
+        "walk": {
+          "frames": 4,
+          "fps": 7,
+          "directions": {
+            "S": "characters/c08/v01-denari-style-test/walk/S.webp",
+            "SE": "characters/c08/v01-denari-style-test/walk/SE.webp",
+            "E": "characters/c08/v01-denari-style-test/walk/E.webp",
+            "NE": "characters/c08/v01-denari-style-test/walk/NE.webp",
+            "N": "characters/c08/v01-denari-style-test/walk/N.webp",
+            "NW": "characters/c08/v01-denari-style-test/walk/NW.webp",
+            "W": "characters/c08/v01-denari-style-test/walk/W.webp",
+            "SW": "characters/c08/v01-denari-style-test/walk/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            }
+          }
+        }
+      }
+    },
+    "c08-v02-player-walk-S": {
+      "src": "characters/c08/v02-compact-test/walk/S.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "S",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-idle-SE": {
+      "src": "characters/c08/v02-compact-test/standing/SE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-walk-SE": {
+      "src": "characters/c08/v02-compact-test/walk/SE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-idle-E": {
+      "src": "characters/c08/v02-compact-test/standing/E.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "E",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-walk-E": {
+      "src": "characters/c08/v02-compact-test/walk/E.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "E",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-idle-NE": {
+      "src": "characters/c08/v02-compact-test/standing/NE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-walk-NE": {
+      "src": "characters/c08/v02-compact-test/walk/NE.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-idle-N": {
+      "src": "characters/c08/v02-compact-test/standing/N.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "N",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-walk-N": {
+      "src": "characters/c08/v02-compact-test/walk/N.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "N",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-idle-NW": {
+      "src": "characters/c08/v02-compact-test/standing/NW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-walk-NW": {
+      "src": "characters/c08/v02-compact-test/walk/NW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "NW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-idle-W": {
+      "src": "characters/c08/v02-compact-test/standing/W.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "W",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-walk-W": {
+      "src": "characters/c08/v02-compact-test/walk/W.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "W",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-idle-SW": {
+      "src": "characters/c08/v02-compact-test/standing/SW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player-walk-SW": {
+      "src": "characters/c08/v02-compact-test/walk/SW.webp",
+      "type": "sprite",
+      "characterId": "C08",
+      "direction": "SW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_WALK_VISUAL_REVIEW"
+    },
+    "c08-v02-player": {
+      "src": "characters/c08/v02-compact-test/standing/S.webp",
+      "type": "character",
+      "characterId": "C08",
+      "name": "8 Coppe · V02 compatto",
+      "variant": "C08 V02 compatto MODELLO APPROVATO · camminate TEST",
+      "artStatus": "TEST_WALK_VISUAL_REVIEW",
+      "source": "https://drive.google.com/file/d/19M-RdwCPoUkB1Y9S0UFMlivHjwwlV2de/view",
+      "anchor": [
+        0.5,
+        0.76171875
+      ],
+      "renderSize": [
+        96,
+        96
+      ],
+      "directions": {
+        "S": "characters/c08/v02-compact-test/standing/S.webp",
+        "SE": "characters/c08/v02-compact-test/standing/SE.webp",
+        "E": "characters/c08/v02-compact-test/standing/E.webp",
+        "NE": "characters/c08/v02-compact-test/standing/NE.webp",
+        "N": "characters/c08/v02-compact-test/standing/N.webp",
+        "NW": "characters/c08/v02-compact-test/standing/NW.webp",
+        "W": "characters/c08/v02-compact-test/standing/W.webp",
+        "SW": "characters/c08/v02-compact-test/standing/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/c08/v02-compact-test/standing/S.webp",
+            "SE": "characters/c08/v02-compact-test/standing/SE.webp",
+            "E": "characters/c08/v02-compact-test/standing/E.webp",
+            "NE": "characters/c08/v02-compact-test/standing/NE.webp",
+            "N": "characters/c08/v02-compact-test/standing/N.webp",
+            "NW": "characters/c08/v02-compact-test/standing/NW.webp",
+            "W": "characters/c08/v02-compact-test/standing/W.webp",
+            "SW": "characters/c08/v02-compact-test/standing/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 1,
+              "fps": 1
+            }
+          }
+        },
+        "walk": {
+          "frames": 4,
+          "fps": 7,
+          "directions": {
+            "S": "characters/c08/v02-compact-test/walk/S.webp",
+            "SE": "characters/c08/v02-compact-test/walk/SE.webp",
+            "E": "characters/c08/v02-compact-test/walk/E.webp",
+            "NE": "characters/c08/v02-compact-test/walk/NE.webp",
+            "N": "characters/c08/v02-compact-test/walk/N.webp",
+            "NW": "characters/c08/v02-compact-test/walk/NW.webp",
+            "W": "characters/c08/v02-compact-test/walk/W.webp",
+            "SW": "characters/c08/v02-compact-test/walk/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.76171875
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_WALK_VISUAL_REVIEW",
+              "frames": 4,
+              "fps": 7
+            }
+          }
+        }
+      }
     }
   },
   "spritesheetSchema": {

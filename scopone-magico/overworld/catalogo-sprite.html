@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#eee4d2">
 <title>Catalogo sprite — Scopone Alchemico</title>
-<link rel="stylesheet" href="catalogo-sprite.css?rev=1">
+<link rel="stylesheet" href="catalogo-sprite.css?rev=four-suits-v01">
 </head>
 <body>
 <main class="page">
@@ -15,6 +15,7 @@
   <p>Confronta i file realmente in uso con quelli precedenti. Apri una scheda per esaminare <strong>ogni fotogramma</strong>; seleziona «Da sostituire» e «Con questo» per preparare le istruzioni da inviarmi.</p>
   <div class="header-actions">
     <a class="text-link" href="./">Torna al gioco</a>
+    <a class="text-link" href="laboratorio-frame.html">Laboratorio · prova sostituzioni frame</a>
     <a class="text-link" href="https://github.com/CzekUns/Viral/tree/main/scopone-magico/overworld/characters" target="_blank" rel="noopener noreferrer">Originali su GitHub</a>
   </div>
   <div class="stats" aria-label="Conteggio sprite">
@@ -32,7 +33,7 @@
   </div>
   <div class="filter-fields">
     <label>Personaggio
-      <select id="filter-character"><option value="all">Entrambi</option><option value="C08">8 Coppe · C08</option><option value="S08">8 Spade · S08</option></select>
+      <select id="filter-character"><option value="all">Tutti e quattro i semi</option><option value="C08">8 Coppe · C08</option><option value="S08">8 Spade · S08</option><option value="B08">8 Bastoni · B08</option><option value="D08">8 Denari · D08</option></select>
     </label>
     <label>Direzione
       <select id="filter-direction"><option value="all">Tutte</option><option value="N">N · Nord</option><option value="NE">NE · Nord-est</option><option value="E">E · Est</option><option value="SE">SE · Sud-est</option><option value="S">S · Sud</option><option value="SW">SW · Sud-ovest</option><option value="W">W · Ovest</option><option value="NW">NW · Nord-ovest</option></select>
@@ -45,7 +46,7 @@
     </label>
   </div>
   <label class="search-label">Cerca codice o nome file
-    <input type="search" id="filter-search" autocomplete="off" placeholder="Es. C08 NE, V07, Spade V01">
+    <input type="search" id="filter-search" autocomplete="off" placeholder="Es. B08 NW, Denari V01, Coppe V02">
   </label>
   <div class="filter-foot"><span id="visible-count" aria-live="polite"></span><button type="button" id="reset-filters" class="text-button">Azzera filtri</button></div>
 </section>
@@ -81,11 +82,15 @@
     <a href="https://drive.google.com/file/d/1rHPQD9WpEfi-jhU6DNxlp6oVAUXnej3_/view" target="_blank" rel="noopener noreferrer">8 Spade V02 · pacchetto completo</a>
     <a href="https://drive.google.com/file/d/1qS2pyzlHxL2dt8xvpUf96mUG952tKsL3/view" target="_blank" rel="noopener noreferrer">8 Spade V01 · standing originali</a>
     <a href="https://drive.google.com/file/d/1Jvrix2WlyA0bnfguuq-u0HeHb3ovqN64/view" target="_blank" rel="noopener noreferrer">8 Coppe AutoSprite · master PNG</a>
+    <a href="https://drive.google.com/file/d/1PqO9FwdJ2Kit407mJYx5dtT2Fml9Rcd_/view" target="_blank" rel="noopener noreferrer">8 Bastoni V01 · PNG e GIF</a>
+    <a href="https://drive.google.com/file/d/1aR0tlBcQmsK2I7ppb4I_83lJ2GX2V9oC/view" target="_blank" rel="noopener noreferrer">8 Denari V01 · PNG e GIF</a>
+    <a href="https://drive.google.com/file/d/195ybq4GU-ZEL_65g4w_OekOg7qp2FP2M/view" target="_blank" rel="noopener noreferrer">8 Coppe V01 · stile Denari</a>
+    <a href="https://drive.google.com/file/d/19M-RdwCPoUkB1Y9S0UFMlivHjwwlV2de/view" target="_blank" rel="noopener noreferrer">8 Coppe V02 · compatto</a>
     <a href="https://github.com/CzekUns/Viral/pull/28" target="_blank" rel="noopener noreferrer">PR #28 · origine 8 Spade</a>
   </div>
   <p class="fine">«In uso» significa che il file compare in <code>animations.idle.directions</code> o <code>animations.walk.directions</code> nel manifest normale. Gli asset storici possono ancora essere attivabili con parametri diagnostici. Il catalogo non modifica gli sprite di gioco.</p>
 </section>
-<footer>Scopone Alchemico · Revisione tecnica degli asset · C08 / S08</footer>
+<footer>Scopone Alchemico · Revisione tecnica degli asset · B08 / C08 / D08 / S08</footer>
 </main>
 
 <dialog id="sprite-dialog" aria-label="Dettaglio sprite e fotogrammi">
@@ -109,6 +114,6 @@
     <p class="fine">Se il difetto riguarda un singolo fotogramma, fermalo qui e premi «Da sostituire»: il numero verrà incluso nelle istruzioni.</p>
   </div>
 </dialog>
-<script type="module" src="catalogo-sprite.js?rev=1"></script>
+<script type="module" src="catalogo-sprite.js?rev=four-suits-v01"></script>
 </body>
 </html>

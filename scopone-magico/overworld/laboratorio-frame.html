@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#efe5d4">
+<title>Laboratorio fotogrammi · Scopone Alchemico</title>
+<link rel="stylesheet" href="laboratorio-frame.css?rev=1">
+</head><body>
+<main class="studio">
+<header class="masthead">
+ <div class="eyebrow">SCOPONE ALCHEMICO / REVISIONE SPRITE</div>
+ <h1>Laboratorio fotogrammi</h1>
+ <p>Scegli la camminata, seleziona un fotogramma da correggere e assegnagli uno degli altri fotogrammi disponibili. <strong>Confronta subito l'animazione prima e dopo</strong>, senza cambiare i file originali.</p>
+ <nav><a href="./">Torna al gioco</a><a href="catalogo-sprite.html">Catalogo completo</a></nav>
+</header>
+<section class="selectors" aria-label="Animazione da revisionare">
+ <label>Personaggio<select id="lab-avatar"></select></label>
+ <label>Direzione<select id="lab-direction">
+ <option value="S">Sud</option><option value="SE">Sud-est</option><option value="E">Est</option><option value="NE">Nord-est</option><option value="N">Nord</option><option value="NW">Nord-ovest</option><option value="W">Ovest</option><option value="SW">Sud-ovest</option>
+ </select></label>
+ <div class="meta" id="lab-meta" aria-live="polite"></div>
+</section>
+<section class="comparison" aria-label="Confronto animazioni">
+ <div class="screen"><div class="screen-label">ORIGINALE · IN USO</div><canvas id="lab-original" width="280" height="290" aria-label="Animazione originale"></canvas></div>
+ <div class="screen"><div class="screen-label">ANTEPRIMA · MODIFICATA</div><canvas id="lab-preview" width="280" height="290" aria-label="Animazione modificata"></canvas></div>
+</section>
+<div class="play-controls">
+ <button id="lab-play" type="button">Pausa</button><label>Velocità
+ <input id="lab-fps" type="range" min="2" max="24" step="1" value="7"><span id="lab-fps-value">7 FPS</span></label>
+ <button id="lab-reset" type="button">Ripristina sequenza</button>
+</div>
+<section class="current" aria-label="Fotogrammi attualmente in uso">
+ <div class="section-head"><h2>1 · Fotogrammi in uso</h2><span>Seleziona quello da sostituire</span></div>
+ <div id="lab-frames" class="frame-grid" role="group" aria-label="Fotogramma destinazione"></div>
+</section>
+<section class="alternatives" aria-label="Fotogrammi sostitutivi">
+ <div class="section-head"><h2>2 · Scegli un sostituto</h2><span>Alternative dello stesso seme e direzione</span></div>
+ <p class="helper" id="lab-help">Prima seleziona un fotogramma sopra, poi tocca un candidato sotto. Puoi anche riutilizzare un altro fotogramma della sequenza corrente.</p>
+ <div id="lab-candidates" class="candidate-list"></div>
+</section>
+<section class="export" aria-label="Istruzioni da inviare in chat">
+ <div class="section-head"><h2>3 · Rivedi e comunica</h2><span>La preview non modifica il gioco pubblicato</span></div>
+ <div id="lab-changes" class="change-summary"></div>
+ <textarea id="lab-instructions" readonly aria-label="Istruzioni per sostituire i fotogrammi"></textarea>
+ <div class="actions"><button id="lab-copy" type="button">Copia sostituzioni</button><button id="lab-undo" type="button">Annulla ultima modifica</button></div>
+ <p id="lab-status" role="status" aria-live="polite"></p>
+</section>
+<footer>I file su GitHub e Drive restano originali; le modifiche qui sono solo una simulazione visiva finché non le integriamo.</footer>
+</main>
+<script type="module" src="laboratorio-frame.js?rev=1"></script>
+</body></html>

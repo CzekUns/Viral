@@ -42,3 +42,22 @@
 .character-tools{display:flex;gap:6px;align-items:center}
 .sprite-catalog-link{width:44px;min-width:44px;height:48px;display:grid;place-items:center;text-decoration:none;font:700 24px/1 Georgia,serif;touch-action:manipulation;background:#f8edd9}
 @media(max-height:700px){.sprite-catalog-link{height:44px}}
+
+/* Tutti e quattro i semi e le tre versioni di Coppe in test: sempre accessibili. */
+.character-tools{display:flex;flex-direction:column;align-items:stretch;gap:4px;width:164px;max-width:calc(100vw - 164px)}
+.character-current{font:bold 10px/1.2 system-ui,sans-serif;padding:5px 6px;border:1px solid #ad946d;background:#fcf1d9e8;border-radius:6px;text-align:center;color:#573c2c}
+.character-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;max-height:calc(100dvh - 240px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.avatar-choice{min-width:0;min-height:44px;padding:4px 2px;border:1px solid #baa17a;background:#fcf3ddf2;border-radius:8px;color:#4f3b2d;font:bold 10px/1.1 system-ui,sans-serif;white-space:nowrap;touch-action:manipulation;box-shadow:0 1px 4px #3e301f24}
+.avatar-choice[aria-pressed="true"]{outline:2px solid #976134;outline-offset:-3px;background:#fae2b1;color:#4e3020}
+.avatar-tools-row{display:flex;gap:6px;justify-content:flex-end}
+.avatar-tools-row .character-switch{flex:1;min-width:0;min-height:44px;padding:7px 5px;font-size:12px}
+.avatar-tools-row .sprite-catalog-link{height:44px;min-height:44px}
+@media(max-width:350px){
+.character-tools{width:139px;max-width:calc(100vw - 142px)}
+.avatar-choice{font-size:9px;padding:3px 1px}
+.character-current{font-size:9px}
+}
+@media(max-height:550px){
+.character-options{max-height:124px}
+.character-current{display:none}
+}

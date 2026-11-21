@@ -1,7 +1,8 @@
-/* Scopone Alchemico — visual inventory of original committed C08/S08 WebPs.
+/* Scopone Alchemico — visual inventory of original B08/C08/D08/S08 WebPs.
  * "In uso" is computed from the actual default animations map, not the stale
  * player.directions or the existence of a manifest sprite ID.
  * Does not modify the actual Overworld runtime, saves, or artwork. */
+import {OVERWORLD_AVATARS} from './engine/avatar-roster.js';
 const $=id=>document.getElementById(id);
 const directions=['S','SE','E','NE','N','NW','W','SW'];
 const directionNames={S:'Sud',SE:'Sud-est',E:'Est',NE:'Nord-est',N:'Nord',NW:'Nord-ovest',W:'Ovest',SW:'Sud-ovest'};
@@ -11,7 +12,7 @@ const visible=new Set();
 let observer;
 let toastTimer;
 function safe(value){return String(value??'');}
-function itemLabel(x){return (x.character==='C08'?'8 Coppe':'8 Spade')+' · '+directionNames[x.direction]+' · '+(x.state==='walk'?'Camminata':'Standing');}
+function itemLabel(x){return ({C08:'8 Coppe',S08:'8 Spade',B08:'8 Bastoni',D08:'8 Denari'}[x.character]||x.character)+' · '+directionNames[x.direction]+' · '+(x.state==='walk'?'Camminata':'Standing');}
 function infoChoice(chosen){
  if(!chosen)return '';
  return chosen.item.code+(chosen.frame===null?'':' · fotogramma '+(chosen.frame+1)+'/'+chosen.item.frames);
@@ -41,7 +42,7 @@ function toast(message){
 function classify(raw,manifest){
  const usedPaths=new Set();
  const usages=new Map();
- for(const id of ['player','s08-player']){
+ for(const {id} of OVERWORLD_AVATARS){
    const spec=manifest.images[id];
    if(!spec)throw Error('Personaggio mancante dal manifest: '+id);
    for(const phase of ['idle','walk']){

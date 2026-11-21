@@ -122,15 +122,16 @@ async function main(){
  // coordinates, camera, gameplay state or facing. S08 V02 remains labelled TEST.
  const avatarButton=iframe.locator('#character-switch');
  assert.equal(await avatarButton.isVisible(),true,'Avatar toggle must be visible on Android');
- assert.match(await avatarButton.textContent(),/8 Spade/);
+ assert.match(await avatarButton.textContent(),/Spade/);
+ assert.equal(await iframe.locator('[data-avatar]').count(),6,'Four suits and two extra Coppe variants must be available');
  const beforeSwitch=await iframe.locator('#world-canvas').evaluate(()=>{
    const p=window.ScoponeOverworld.debug().player;
    return {x:p.x,y:p.y,facing:p.facing,asset:p.assetId};
  });
  assert.equal(beforeSwitch.asset,'player');
  await avatarButton.click();
- assert.match(await avatarButton.textContent(),/8 Coppe/);
- assert.equal(await avatarButton.getAttribute('aria-pressed'),'true');
+ assert.match(await avatarButton.textContent(),/Bastoni/);
+ assert.equal(await iframe.locator('[data-avatar="s08-player"]').getAttribute('aria-pressed'),'true');
  const afterSwitch=await iframe.locator('#world-canvas').evaluate(()=>{
    const p=window.ScoponeOverworld.debug().player;
    return {x:p.x,y:p.y,facing:p.facing,asset:p.assetId,
@@ -274,12 +275,94 @@ async function main(){
    await page.waitForTimeout(95);
  }
  console.log('S08 REAL TOUCH ALL 8 DIRECTIONS',JSON.stringify(s08TouchProof));
+ 
+ // New suits + both new C08 versions: real multi-variant selection,
+ // directional WebP decoding, live touch and Canvas-drawn frame differences.
+ const suits=[
+  {id:'b08-player',folder:'b08/v01-handsfree-test'},
+  {id:'d08-player',folder:'d08/v01-handsfree-test'},
+  {id:'c08-v01-player',folder:'c08/v01-denari-style-test'},
+  {id:'c08-v02-player',folder:'c08/v02-compact-test'}
+ ];
+ const varietyProof=[];
+ const allJoystick=await iframe.locator('#joystick').boundingBox();
+ const vx=allJoystick.x+allJoystick.width/2,vy=allJoystick.y+allJoystick.height/2;
+ const deviceTouch=await context.newCDPSession(page);
+ for(const testAvatar of suits){
+   const old=await getPos();
+   await iframe.locator('[data-avatar="'+testAvatar.id+'"]').click();
+   const selected=await iframe.locator('#world-canvas').evaluate(()=>{
+      const d=window.ScoponeOverworld.debug();
+      return {id:d.player.assetId,scene:d.state.scene,pos:{x:d.player.x,y:d.player.y},stored:localStorage.getItem('scopone-alchemico:overworld:character:v1')};
+   });
+   assert.equal(selected.id,testAvatar.id);
+   assert.equal(selected.stored,testAvatar.id);
+   assert.equal(selected.scene,'city');
+   assert.equal(selected.pos.x,old.x,'Switch must preserve x '+testAvatar.id);
+   assert.equal(selected.pos.y,old.y,'Switch must preserve y '+testAvatar.id);
+   assert.equal(await iframe.locator('[data-avatar="'+testAvatar.id+'"]').getAttribute('aria-pressed'),'true');
+   // All eight directions must be registered and decoded as 4-frame WebP strips.
+   const art=await iframe.locator('#world-canvas').evaluate(async()=>{
+     const d=window.ScoponeOverworld.debug(),a=d.renderer.assets;
+     const result={};
+     for(const dir of ['N','NE','E','SE','S','SW','W','NW']){
+       let spec=null;
+       for(let i=0;i<90;i++){
+         spec=a.spriteFor({...d.player,animation:'walk'},dir,.3);
+         if(!spec.loading&&spec.frames===4&&spec.image?.naturalWidth)break;
+         await new Promise(r=>setTimeout(r,50));
+       }
+       result[dir]={frames:spec?.frames,loading:spec?.loading,src:spec?.image?.src,
+         w:spec?.image?.naturalWidth,h:spec?.image?.naturalHeight};
+     }
+     return result;
+   });
+   for(const [dir,entry] of Object.entries(art)){
+     assert.equal(entry.frames,4,'wrong animation count '+testAvatar.id+' '+dir);
+     assert.equal(entry.loading,false,'image loading fallback '+testAvatar.id+' '+dir);
+     assert.equal(entry.w,2048,'WebP strip width '+testAvatar.id+' '+dir);
+     assert.equal(entry.h,512,'WebP strip height '+testAvatar.id+' '+dir);
+     assert.ok(entry.src.includes(testAvatar.folder+'/walk/'+dir+'.webp'),testAvatar.id+' '+dir);
+   }
+   // Walk EAST with a real mobile touch; collect drawn Canvas frame index,
+   // not just spriteFor() or stored filenames.
+   await iframe.locator('#world-canvas').evaluate(()=>{
+     const d=window.ScoponeOverworld.debug();
+     d.player.x=45.5;d.player.y=45.5;d.player.animation='idle';d.player.animationTime=0;
+     d.renderer.camera.x=45.5;d.renderer.camera.y=45.5;
+     d.lifecycle.path=[];d.lifecycle.destination=null;
+   });
+   const observed=[];
+   await deviceTouch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:vx,y:vy,id:31}]});
+   try{
+     await deviceTouch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:vx+27,y:vy,id:31}]});
+     for(let i=0;i<10;i++){
+       await page.waitForTimeout(108);
+       observed.push(await iframe.locator('#world-canvas').evaluate(()=>{
+         const d=window.ScoponeOverworld.debug(),s=d.renderer.lastPlayerSprite;
+         return {id:d.player.assetId,facing:d.player.facing,animation:d.player.animation,
+           frame:s?.frame,frames:s?.frames,drawn:s?.drawn,loading:s?.loading,
+           src:s?.src,elapsed:d.player.animationTime};
+       }));
+     }
+   }finally{
+     await deviceTouch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   }
+   const valid=observed.filter(x=>x.id===testAvatar.id&&x.facing==='E'&&x.animation==='walk'&&x.drawn&&!x.loading&&x.frames===4&&x.src?.includes(testAvatar.folder));
+   assert.ok(valid.length>=6,testAvatar.id+' must walk east under real touch');
+   assert.ok(new Set(valid.map(x=>x.frame)).size>=3,testAvatar.id+' drawn sprite frames are stuck');
+   await page.screenshot({path:path.join(repoRoot,'browser-qa','four-suits-'+testAvatar.id+'.png')});
+   varietyProof.push({variant:testAvatar.id,validSamples:valid.length,drawnFrames:[...new Set(valid.map(x=>x.frame))],maxTime:Math.max(...valid.map(x=>x.elapsed))});
+ }
+ await iframe.locator('[data-avatar="player"]').click();
+ console.log('FOUR SUITS REAL ANDROID TOUCH',JSON.stringify(varietyProof));
+
 
  // One-button roundtrip must restore C08 assets without touching any cards.
  const posS08=await getPos();
- await avatarButton.click();
- assert.match(await avatarButton.textContent(),/8 Spade/);
- assert.equal(await avatarButton.getAttribute('aria-pressed'),'false');
+ await iframe.locator('[data-avatar="player"]').click();
+ assert.match(await avatarButton.textContent(),/Spade/);
+ assert.equal(await iframe.locator('[data-avatar="player"]').getAttribute('aria-pressed'),'true');
  const afterRoundtrip=await iframe.locator('#world-canvas').evaluate(()=>{
    const d=window.ScoponeOverworld.debug();
    return {asset:d.player.assetId,frameSource:d.renderer.lastPlayerSprite?.src,
