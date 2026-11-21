@@ -207,6 +207,7 @@ async function main(){
      type:'touchStart',touchPoints:[{x:sx,y:sy,id:39}]
    });
    let snapA,snapB;
+   const observedFrames=[],observedHashes=[];
    try{
      await s08Input.send('Input.dispatchTouchEvent',{
        type:'touchMove',touchPoints:[{x:sx+28*dx,y:sy+28*dy,id:39}]
@@ -233,6 +234,27 @@ async function main(){
      });
      if(['S','E'].includes(direction))
        await page.screenshot({path:path.join(repoRoot,'browser-qa','s08-touch-'+direction+'-second.png')});
+     // A single two-point test can alias the same frame after one complete
+     // 4-frame loop. Sample across time while the real finger stays down.
+     observedFrames.push(snapA.frame,snapB.frame);
+     for(let check=0;check<6;check++){
+       await page.waitForTimeout(95);
+       const drawn=await iframe.locator('#world-canvas').evaluate(()=>{
+         const r=window.ScoponeOverworld.debug().renderer.lastPlayerSprite;
+         if(!r?.drawn||!r.image||r.loading)return {frame:r?.frame,hash:null};
+         const box=document.createElement('canvas');box.width=72;box.height=96;
+         const ctx=box.getContext('2d',{willReadFrequently:true});
+         ctx.drawImage(r.image,r.sourceX,0,r.sourceWidth,r.image.naturalHeight,0,0,72,96);
+         const data=ctx.getImageData(0,0,72,96).data;
+         let h=2166136261>>>0;
+         for(let p=0;p<data.length;p+=4)if(data[p+3]>16){
+           for(let c=0;c<4;c++)h=Math.imul(h^data[p+c],16777619)>>>0;
+         }
+         return {frame:r.frame,hash:h.toString(16)};
+       });
+       observedFrames.push(drawn.frame);
+       if(drawn.hash)observedHashes.push(drawn.hash);
+     }
    }finally{
      await s08Input.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
    }
@@ -244,10 +266,11 @@ async function main(){
    assert.equal(snapB.loading,false,'S08 fell back to static '+direction);
    assert.ok(snapB.src.includes('/s08/v02-handsfree-test/walk/'+direction+'.webp'), 'Wrong live S08 sprite '+direction);
    assert.ok(snapB.animationTime>snapA.animationTime,'S08 animation clock stalled '+direction);
-   assert.notEqual(snapA.frame,snapB.frame,'Actual Canvas walking pose did not advance '+direction);
+   assert.ok(new Set(observedFrames).size>=2,'Actual Canvas frame never advanced '+direction);
+   assert.ok(new Set(observedHashes).size>=2,'Actual Canvas poses never changed visually '+direction);
    assert.ok(Math.hypot(snapB.x-20.5,snapB.y-20.5)>.5,'S08 did not move '+direction);
    s08TouchProof.push({direction,frames:snapB.frames,frameA:snapA.frame,
-     frameB:snapB.frame,time:snapB.animationTime});
+     frameB:snapB.frame,seen:[...new Set(observedFrames)].sort(),differentPoses:new Set(observedHashes).size,time:snapB.animationTime});
    await page.waitForTimeout(95);
  }
  console.log('S08 REAL TOUCH ALL 8 DIRECTIONS',JSON.stringify(s08TouchProof));
