@@ -121,3 +121,9 @@ Tutte le strisce conservano 12/12/18 fotogrammi a 180×249 px/cella, 12fps, alph
 I file V03 restano immutati: `?c08-stabilized=off` torna al ciclo AutoSprite precedente, `?c08-recovered=off` torna alle vecchie animazioni approvate S V08 e SE V07 (E statico).
 Drive QA: https://drive.google.com/drive/folders/1_YdMeURaoCQEWtmeCO01v5jbIm0ilmKX
 Le camminate nuove rimangono TEST, in attesa della verifica estetica sul telefono.
+
+## Esterno — 6 icone cittadine V01 (21 novembre 2026)
+
+Gli ingressi di Napoli, Pozzuoli, Torre del Greco, Caserta, Sorrento e Salerno hanno sei sprite isometrici distinti. File WebP RGBA da 960×960 (sorgenti PNG a 1254×1254 su Google Drive), in `objects/outside/cities/`. Asset ID: `outer-city-<id>` in `assets.json`, con `anchor:[0.5,0.96]`. `maps/external/world.json.cities[*].renderSize` imposta la dimensione di scena per città (154–174 unità logiche), indipendente dalla risoluzione sorgente. Il motore continua a usare lo zoom esterno preesistente 0.88 e i sei punti di ingresso originali; nessuna modifica a collisioni, coordinate, savegame o paesi interni.
+
+Per la verifica: aprire `overworld/` e raggiungere i sei ingressi. Gli asset V01 sono integrati ma richiedono approvazione estetica sulla mappa reale (leggibilità, proporzioni, eventuale sovrapposizione a costa e strade). Il vecchio `objects/outside/town.svg` e l'ID `outer-city` sono conservati per rollback.

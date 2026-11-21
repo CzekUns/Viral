@@ -39,7 +39,7 @@ export class World {
     // I borghi sono entità di scena; ogni ingresso è definito nel manifest geografico.
     for(const city of manifest.cities||[]){
       if(!this.zoneAt(city.x+.5,city.y+.5)||this.isBlocked(city.x,city.y))throw Error('City on impassable tile: '+city.id);
-      this.renderables.push({x:city.x+.5,y:city.y+.5,assetId:city.assetId,label:city.name,renderWidth:83,renderHeight:86,layer:'objects'});
+      this.renderables.push({x:city.x+.5,y:city.y+.5,assetId:city.assetId,label:city.name,renderWidth:city.renderSize?.[0]??83,renderHeight:city.renderSize?.[1]??86,layer:'objects'});
     }
     this.listeners=new Set();
   }
