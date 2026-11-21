@@ -50,8 +50,9 @@
   <div class="filter-foot"><span id="visible-count" aria-live="polite"></span><button type="button" id="reset-filters" class="text-button">Azzera filtri</button></div>
 </section>
 
-<section class="selection-panel" id="selection-panel" aria-label="Proposta di sostituzione">
-  <div class="selection-title"><strong>Prepara le sostituzioni</strong><span>Non modifica il gioco: crea un elenco da inviarmi.</span></div>
+<details class="selection-panel" id="selection-panel" aria-label="Proposta di sostituzione">
+  <summary class="selection-title"><strong>Prepara le sostituzioni</strong><span>Apri per costruire un elenco da inviarmi.</span></summary>
+  <div class="selection-body">
   <div class="selection-choices">
     <div class="choice"><small>A · Da sostituire</small><span id="chosen-from">Tocca «Da sostituire» su uno sprite</span></div>
     <div class="choice"><small>B · Con questo</small><span id="chosen-to">Tocca «Con questo» su un altro sprite</span></div>
@@ -64,7 +65,8 @@
   <ol id="replacement-list" aria-label="Sostituzioni selezionate"></ol>
   <textarea id="replacement-text" readonly aria-label="Testo istruzioni pronto da copiare" placeholder="Le tue sostituzioni appariranno qui."></textarea>
   <span id="copy-status" role="status" aria-live="polite"></span>
-</section>
+  </div>
+</details>
 
 <section aria-label="Sprite e versioni">
   <div class="collection-title"><h2>Sprite disponibili</h2><p>Un riquadro = un file grafico, anche quando contiene 22 fotogrammi. Le camminate si animano automaticamente quando scorri la pagina.</p></div>
