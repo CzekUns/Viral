@@ -37,3 +37,8 @@
 .character-switch{min-width:108px;min-height:48px;padding:7px 10px;background:rgba(249,239,217,.96);font:bold 13px/1 Georgia,'Times New Roman',serif;white-space:nowrap;letter-spacing:.02em;touch-action:manipulation}
 .character-switch[aria-pressed="true"]{border-color:#7e734c;background:#f3e6c4}
 @media(max-height:700px){.character-switch{min-height:44px;font-size:12px}}
+
+/* Open the original C08/S08 visual inventory without interfering with joystick. */
+.character-tools{display:flex;gap:6px;align-items:center}
+.sprite-catalog-link{width:44px;min-width:44px;height:48px;display:grid;place-items:center;text-decoration:none;font:700 24px/1 Georgia,serif;touch-action:manipulation;background:#f8edd9}
+@media(max-height:700px){.sprite-catalog-link{height:44px}}
