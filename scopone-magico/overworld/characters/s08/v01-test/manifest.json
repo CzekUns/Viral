@@ -1,0 +1,127 @@
+{
+  "character_id": "S08",
+  "name": "Otto di Spade / Fante di Spade",
+  "version": "v01",
+  "status": "TEST_REVIEW_REQUIRED",
+  "frameSize": [
+    384,
+    384
+  ],
+  "anchor": [
+    192,
+    365
+  ],
+  "renderSize": [
+    72,
+    72
+  ],
+  "animation": false,
+  "directions": {
+    "S": {
+      "idle": {
+        "png": "idle/S.png",
+        "image": "idle/S.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    },
+    "SE": {
+      "idle": {
+        "png": "idle/SE.png",
+        "image": "idle/SE.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    },
+    "E": {
+      "idle": {
+        "png": "idle/E.png",
+        "image": "idle/E.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    },
+    "NE": {
+      "idle": {
+        "png": "idle/NE.png",
+        "image": "idle/NE.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    },
+    "N": {
+      "idle": {
+        "png": "idle/N.png",
+        "image": "idle/N.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    },
+    "NW": {
+      "idle": {
+        "png": "idle/NW.png",
+        "image": "idle/NW.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    },
+    "W": {
+      "idle": {
+        "png": "idle/W.png",
+        "image": "idle/W.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    },
+    "SW": {
+      "idle": {
+        "png": "idle/SW.png",
+        "image": "idle/SW.webp",
+        "frames": 1,
+        "fps": 0,
+        "anchor": [
+          192,
+          365
+        ]
+      }
+    }
+  },
+  "references": {
+    "style": "C08 V03",
+    "identity": "S08-fante-estratto-album.jpg"
+  },
+  "notes": [
+    "Idle only; no walk frames included.",
+    "Uniform 0.80 export scale, no reflections or deformations.",
+    "Foot baseline y=365; root is provisional pending engine review.",
+    "Visual approval and in-engine QA remain pending."
+  ]
+}
