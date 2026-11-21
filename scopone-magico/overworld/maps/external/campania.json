@@ -315,6 +315,64 @@
       "coast": "outer-coast",
       "shallow": "outer-shallow",
       "sea": "outer-sea"
+    },
+    "variants": {
+      "grass": [
+        "outer-grass-var01",
+        "outer-grass-var02",
+        "outer-grass-var03"
+      ],
+      "forest": [
+        "outer-forest-var01",
+        "outer-forest-var02",
+        "outer-forest-var03"
+      ],
+      "hill": [
+        "outer-hill-var01",
+        "outer-hill-var02",
+        "outer-hill-var03"
+      ],
+      "road": [
+        "outer-road-var01",
+        "outer-road-var02",
+        "outer-road-var03"
+      ],
+      "coast": [
+        "outer-coast-var01",
+        "outer-coast-var02",
+        "outer-coast-var03"
+      ],
+      "shallow": [
+        "outer-shallow-var01",
+        "outer-shallow-var02",
+        "outer-shallow-var03"
+      ],
+      "sea": [
+        "outer-sea-var01",
+        "outer-sea-var02",
+        "outer-sea-var03"
+      ]
+    },
+    "transitions": {
+      "grass": {
+        "forest": "outer-grass-to-forest",
+        "hill": "outer-grass-to-hill",
+        "road": "outer-grass-to-road",
+        "coast": "outer-grass-to-coast"
+      },
+      "coast": {
+        "shallow": "outer-coast-to-shallow"
+      },
+      "shallow": {
+        "sea": "outer-shallow-to-sea"
+      }
+    },
+    "roadPieces": {
+      "ne-sw": "outer-road-path-ne-sw",
+      "nw-se": "outer-road-path-nw-se",
+      "bend-ne-se": "outer-road-path-bend-ne-se",
+      "cross": "outer-road-path-cross",
+      "end-ne": "outer-road-path-end-ne"
     }
   }
 }
