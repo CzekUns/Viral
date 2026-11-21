@@ -165,7 +165,7 @@ export class IsoRenderer {
     const width=(entity.renderWidth||46)*scale[0]*z,height=(entity.renderHeight||100)*scale[1]*z;
     // Inspect the exact frame passed to Canvas.drawImage, not a second manifest
     // lookup that could disagree with the asynchronously decoded frame.
-    const playerSprite=(entity.assetId==='player'||entity.assetId==='s08-player')?{
+    const playerSprite=this.assets.info(entity.assetId)?.type==='character'?{
       facing:entity.facing||'S',animation:entity.animation||'idle',
       animationTime:entity.animationTime??0,frame:spec.frame,frames:spec.frames,
       loading:!!spec.loading,failed:!!spec.failed,fallback:!!spec.fallback,
