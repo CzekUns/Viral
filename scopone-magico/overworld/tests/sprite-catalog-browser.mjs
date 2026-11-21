@@ -30,12 +30,12 @@ try{
  page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'catalogo-sprite.html',{waitUntil:'domcontentloaded'});
  await page.locator('.sprite-card').first().waitFor({timeout:25000});
- assert.equal(await page.locator('.sprite-card').count(),66,'All 66 originals must be visible by default');
- assert.equal(await page.locator('#total-count').textContent(),'66');
- assert.equal(await page.locator('#used-count').textContent(),'32');
- assert.equal(await page.locator('#unused-count').textContent(),'34');
- assert.equal(await page.locator('.sprite-card[data-used=true]').count(),32);
- assert.equal(await page.locator('.sprite-card[data-used=false]').count(),34);
+ assert.equal(await page.locator('.sprite-card').count(),135,'All 135 originals/candidates must be visible by default');
+ assert.equal(await page.locator('#total-count').textContent(),'135');
+ assert.equal(await page.locator('#used-count').textContent(),'96');
+ assert.equal(await page.locator('#unused-count').textContent(),'39');
+ assert.equal(await page.locator('.sprite-card[data-used=true]').count(),96);
+ assert.equal(await page.locator('.sprite-card[data-used=false]').count(),39);
  assert.ok(await page.locator('a[href="catalogo-sprite.html"]').count()===0,'Catalog links back to game, not itself');
  await page.screenshot({path:path.join(root,'browser-qa','catalogo-01-mobile-home.png')});
 
@@ -44,10 +44,10 @@ try{
  await page.locator('#filter-character').selectOption('C08');
  await page.locator('#filter-direction').selectOption('SE');
  await page.locator('#filter-pose').selectOption('walk');
- assert.equal(await page.locator('.sprite-card').count(),4);
- assert.equal(await page.locator('.sprite-card[data-used=true]').count(),1);
+ assert.equal(await page.locator('.sprite-card').count(),6);
+ assert.equal(await page.locator('.sprite-card[data-used=true]').count(),3);
  assert.equal(await page.locator('.sprite-card[data-used=false]').count(),3);
- await page.locator('.sprite-card[data-used=true] .sprite-preview').click();
+ await page.locator('.sprite-card').filter({hasText:'C08-WALK-SE-STABILIZZATA-V04'}).locator('.sprite-preview').click();
  await page.locator('#detail-strip button').nth(1).waitFor({timeout:20000});
  assert.equal(await page.locator('#detail-strip button').count(),12);
  await page.locator('#detail-strip button').first().click();
@@ -74,10 +74,28 @@ try{
  await page.locator('[data-status="unused"]').click();
  assert.equal(await page.locator('.sprite-card').count(),3);
  await page.locator('[data-status="used"]').click();
- assert.equal(await page.locator('.sprite-card').count(),1);
+ assert.equal(await page.locator('.sprite-card').count(),3);
  await page.locator('[data-status="all"]').click();
 
  // S08 V02 standing (in use) alongside V01 test standing (not in use).
+
+ // New B08 candidate replacements and four-suit browsing.
+ await page.locator('#filter-character').selectOption('B08');
+ await page.locator('#filter-direction').selectOption('NW');
+ await page.locator('#filter-pose').selectOption('walk');
+ assert.equal(await page.locator('.sprite-card').count(),4,'B08 NW has V01 plus three R02 candidates');
+ assert.equal(await page.locator('.sprite-card[data-used=true]').count(),1);
+ assert.equal(await page.locator('.sprite-card[data-used=false]').count(),3);
+ await page.screenshot({path:path.join(root,'browser-qa','catalogo-Bastoni-NW-candidati.png')});
+ await page.locator('#filter-character').selectOption('D08');
+ await page.locator('#filter-direction').selectOption('E');
+ assert.equal(await page.locator('.sprite-card').count(),1);
+ assert.equal(await page.locator('.sprite-card[data-used=true]').count(),1);
+ await page.locator('#filter-character').selectOption('C08');
+ await page.locator('#filter-version').selectOption('Coppe V02 compatto');
+ assert.equal(await page.locator('.sprite-card').count(),1);
+ assert.equal(await page.locator('.sprite-card[data-used=true]').count(),1);
+ await page.locator('#filter-version').selectOption('all');
  await page.locator('#filter-character').selectOption('S08');
  await page.locator('#filter-direction').selectOption('S');
  await page.locator('#filter-pose').selectOption('idle');
@@ -98,5 +116,5 @@ try{
  },null,{timeout:20000});
  assert.ok(await page.locator('a[href="./"]').count()===1,'Link back to live game');
  assert.deepEqual(errors,[],'Browser page must not throw errors');
- console.log('VISUAL SPRITE CATALOG QA OK: 66 total, 32 active, 34 backup, C08 frame scrub, S08 V01/V02 and copy');
+ console.log('VISUAL SPRITE CATALOG QA OK: 135 total, 96 active, 39 backup, B08 R02 candidate frames, C08 V02, D08 and copy');
 }finally{await browser?.close();server.kill();}
