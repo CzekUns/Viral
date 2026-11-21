@@ -181,7 +181,7 @@ async function main(){
    assert.equal(entry.width,2048,'Wrong S08 sheet width '+direction);
    assert.equal(entry.height,512,'Wrong S08 sheet height '+direction);
    assert.equal(new Set(entry.hashes).size,4,'S08 pose duplication '+direction);
-   assert.match(entry.src,new RegExp('/s08/v02-handsfree-test/walk/'+direction+'\\\\.webp'),
+   assert.ok(entry.src.includes('/s08/v02-handsfree-test/walk/'+direction+'.webp'),
      'Wrong S08 sheet '+direction);
  }
  console.log('S08 WEBP ALL DIRECTIONS 4 DISTINCT POSES',Object.keys(s08Frames));
@@ -242,7 +242,7 @@ async function main(){
    assert.equal(snapB.frames,4,'Canvas did not receive S08 strip '+direction);
    assert.equal(snapB.drawn,true,'Canvas did not draw S08 '+direction);
    assert.equal(snapB.loading,false,'S08 fell back to static '+direction);
-   assert.match(snapB.src,new RegExp('/s08/v02-handsfree-test/walk/'+direction+'\\\\.webp'));
+   assert.ok(snapB.src.includes('/s08/v02-handsfree-test/walk/'+direction+'.webp'), 'Wrong live S08 sprite '+direction);
    assert.ok(snapB.animationTime>snapA.animationTime,'S08 animation clock stalled '+direction);
    assert.ok(Math.hypot(snapB.x-20.5,snapB.y-20.5)>.5,'S08 did not move '+direction);
    s08TouchProof.push({direction,frames:snapB.frames,frameA:snapA.frame,
