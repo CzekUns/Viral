@@ -1,0 +1,117 @@
+{
+  "character_id": "S08",
+  "version": "V02_HANDSFREE",
+  "status": "TEST_VISUAL_REVIEW",
+  "frameSize": [
+    512,
+    512
+  ],
+  "anchor": [
+    256,
+    350
+  ],
+  "renderSize": [
+    96,
+    96
+  ],
+  "equipment": {
+    "sword": "anatomical LEFT hip, belt mounted",
+    "branch": "anatomical RIGHT hip, belt mounted",
+    "hands": "empty"
+  },
+  "production_ready": false,
+  "directions": {
+    "S": {
+      "standing": {
+        "image": "standing/S.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/S.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "SE": {
+      "standing": {
+        "image": "standing/SE.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/SE.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "E": {
+      "standing": {
+        "image": "standing/E.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/E.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "NE": {
+      "standing": {
+        "image": "standing/NE.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/NE.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "N": {
+      "standing": {
+        "image": "standing/N.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/N.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "NW": {
+      "standing": {
+        "image": "standing/NW.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/NW.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "W": {
+      "standing": {
+        "image": "standing/W.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/W.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    },
+    "SW": {
+      "standing": {
+        "image": "standing/SW.webp",
+        "frames": 1
+      },
+      "walk": {
+        "image": "walk/SW.webp",
+        "frames": 4,
+        "fps": 7
+      }
+    }
+  },
+  "notes": [
+    "Runtime-only WebP package. Full PNG sources, frame provenance, QA and GIF previews in Drive archive.",
+    "Not wired into global engine manifest. Requires visual review and engine testing."
+  ]
+}
