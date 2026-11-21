@@ -750,7 +750,7 @@
         104,
         60
       ],
-      "previewStatus": "V03 - review in game, not artistically approved"
+      "previewStatus": "V03 approved by owner; fallback supported"
     },
     "outer-forest": {
       "src": "tiles/outside/v03/forest.webp",
@@ -759,7 +759,7 @@
         104,
         60
       ],
-      "previewStatus": "V03 - review in game, not artistically approved"
+      "previewStatus": "V03 approved by owner; fallback supported"
     },
     "outer-hill": {
       "src": "tiles/outside/v03/hill.webp",
@@ -768,7 +768,7 @@
         104,
         60
       ],
-      "previewStatus": "V03 - review in game, not artistically approved"
+      "previewStatus": "V03 approved by owner; fallback supported"
     },
     "outer-road": {
       "src": "tiles/outside/v03/road.webp",
@@ -777,7 +777,7 @@
         104,
         60
       ],
-      "previewStatus": "V03 - review in game, not artistically approved"
+      "previewStatus": "V03 approved by owner; fallback supported"
     },
     "outer-coast": {
       "src": "tiles/outside/v03/coast.webp",
@@ -786,7 +786,7 @@
         104,
         60
       ],
-      "previewStatus": "V03 - review in game, not artistically approved"
+      "previewStatus": "V03 approved by owner; fallback supported"
     },
     "outer-shallow": {
       "src": "tiles/outside/v03/shallow.webp",
@@ -795,7 +795,7 @@
         104,
         60
       ],
-      "previewStatus": "V03 - review in game, not artistically approved"
+      "previewStatus": "V03 approved by owner; fallback supported"
     },
     "outer-sea": {
       "src": "tiles/outside/v03/sea.webp",
@@ -804,7 +804,7 @@
         104,
         60
       ],
-      "previewStatus": "V03 - review in game, not artistically approved"
+      "previewStatus": "V03 approved by owner; fallback supported"
     },
     "outer-city": {
       "src": "objects/outside/town.svg",
@@ -1138,6 +1138,656 @@
       "lazy": true,
       "artStatus": "TEST V04 ANCHOR FIX",
       "provenance": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp"
+    },
+    "outer-grass-var01": {
+      "src": "tiles/outside/v04/grass-var01_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-var02": {
+      "src": "tiles/outside/v04/grass-var02_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-var03": {
+      "src": "tiles/outside/v04/grass-var03_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-forest-var01": {
+      "src": "tiles/outside/v04/forest-var01_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-forest-var02": {
+      "src": "tiles/outside/v04/forest-var02_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-forest-var03": {
+      "src": "tiles/outside/v04/forest-var03_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-hill-var01": {
+      "src": "tiles/outside/v04/hill-var01_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-hill-var02": {
+      "src": "tiles/outside/v04/hill-var02_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-hill-var03": {
+      "src": "tiles/outside/v04/hill-var03_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-var01": {
+      "src": "tiles/outside/v04/road-var01_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-var02": {
+      "src": "tiles/outside/v04/road-var02_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-var03": {
+      "src": "tiles/outside/v04/road-var03_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-coast-var01": {
+      "src": "tiles/outside/v04/coast-var01_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-coast-var02": {
+      "src": "tiles/outside/v04/coast-var02_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-coast-var03": {
+      "src": "tiles/outside/v04/coast-var03_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-shallow-var01": {
+      "src": "tiles/outside/v04/shallow-var01_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-shallow-var02": {
+      "src": "tiles/outside/v04/shallow-var02_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-shallow-var03": {
+      "src": "tiles/outside/v04/shallow-var03_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-sea-var01": {
+      "src": "tiles/outside/v04/sea-var01_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-sea-var02": {
+      "src": "tiles/outside/v04/sea-var02_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-sea-var03": {
+      "src": "tiles/outside/v04/sea-var03_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-forest-nw": {
+      "src": "tiles/outside/v04/grass-to-forest-nw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-forest-ne": {
+      "src": "tiles/outside/v04/grass-to-forest-ne_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-forest-se": {
+      "src": "tiles/outside/v04/grass-to-forest-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-forest-sw": {
+      "src": "tiles/outside/v04/grass-to-forest-sw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-hill-nw": {
+      "src": "tiles/outside/v04/grass-to-hill-nw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-hill-ne": {
+      "src": "tiles/outside/v04/grass-to-hill-ne_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-hill-se": {
+      "src": "tiles/outside/v04/grass-to-hill-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-hill-sw": {
+      "src": "tiles/outside/v04/grass-to-hill-sw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-road-nw": {
+      "src": "tiles/outside/v04/grass-to-road-nw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-road-ne": {
+      "src": "tiles/outside/v04/grass-to-road-ne_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-road-se": {
+      "src": "tiles/outside/v04/grass-to-road-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-road-sw": {
+      "src": "tiles/outside/v04/grass-to-road-sw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-coast-nw": {
+      "src": "tiles/outside/v04/grass-to-coast-nw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-coast-ne": {
+      "src": "tiles/outside/v04/grass-to-coast-ne_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-coast-se": {
+      "src": "tiles/outside/v04/grass-to-coast-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-grass-to-coast-sw": {
+      "src": "tiles/outside/v04/grass-to-coast-sw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-coast-to-shallow-nw": {
+      "src": "tiles/outside/v04/coast-to-shallow-nw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-coast-to-shallow-ne": {
+      "src": "tiles/outside/v04/coast-to-shallow-ne_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-coast-to-shallow-se": {
+      "src": "tiles/outside/v04/coast-to-shallow-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-coast-to-shallow-sw": {
+      "src": "tiles/outside/v04/coast-to-shallow-sw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-shallow-to-sea-nw": {
+      "src": "tiles/outside/v04/shallow-to-sea-nw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-shallow-to-sea-ne": {
+      "src": "tiles/outside/v04/shallow-to-sea-ne_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-shallow-to-sea-se": {
+      "src": "tiles/outside/v04/shallow-to-sea-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-shallow-to-sea-sw": {
+      "src": "tiles/outside/v04/shallow-to-sea-sw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-path-ne-sw": {
+      "src": "tiles/outside/v04/road-path-ne-sw_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-path-nw-se": {
+      "src": "tiles/outside/v04/road-path-nw-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-path-bend-ne-se": {
+      "src": "tiles/outside/v04/road-path-bend-ne-se_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-path-cross": {
+      "src": "tiles/outside/v04/road-path-cross_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
+    },
+    "outer-road-path-end-ne": {
+      "src": "tiles/outside/v04/road-path-end-ne_v04.webp",
+      "type": "tile",
+      "size": [
+        104,
+        60
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "previewStatus": "V04 added; mobile visual QA pending"
     }
   },
   "spritesheetSchema": {
