@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"/>
 <meta name="theme-color" content="#d9c9b3"/>
 <title>Scopone Alchemico · Overworld</title>
-<link rel="stylesheet" href="ui/overworld.css?rev=c08-e-se-s-anti-drop-v05"/>
+<link rel="stylesheet" href="ui/overworld.css?rev=four-suits-v01"/>
 </head>
 <body>
 <main id="overworld" aria-label="Overworld di Scopone Alchemico">
@@ -20,7 +20,21 @@
   <div class="control-layer" aria-label="Controlli di movimento">
     <div id="joystick" class="joystick" role="group" aria-label="Joystick virtuale per camminare"><div class="joystick-ring"></div><div class="joystick-knob"></div></div>
     <div class="zoom-controls" role="group" aria-label="Zoom e cambio personaggio">
-      <div class="character-tools"><button id="character-switch" class="ui-button character-switch" type="button" aria-label="Passa all'Otto di Spade" aria-pressed="false">⚔ 8 Spade</button><a href="catalogo-sprite.html" class="ui-button sprite-catalog-link" aria-label="Apri il catalogo sprite" title="Catalogo sprite">▦</a></div>
+      <div class="character-tools" aria-label="Selezione personaggio e archivio">
+        <div id="character-current" class="character-current" aria-live="polite">🏺 8 Coppe Auto</div>
+        <div class="character-options" role="group" aria-label="Scegli il fante da usare nell'Overworld">
+          <button type="button" class="avatar-choice" data-avatar="player" aria-pressed="true">🏺 Coppe Auto</button>
+          <button type="button" class="avatar-choice" data-avatar="s08-player" aria-pressed="false">⚔ Spade</button>
+          <button type="button" class="avatar-choice" data-avatar="b08-player" aria-pressed="false">🪵 Bastoni</button>
+          <button type="button" class="avatar-choice" data-avatar="d08-player" aria-pressed="false">🪙 Denari</button>
+          <button type="button" class="avatar-choice" data-avatar="c08-v01-player" aria-pressed="false">🏺 Coppe V01</button>
+          <button type="button" class="avatar-choice" data-avatar="c08-v02-player" aria-pressed="false">🏺 Coppe V02</button>
+        </div>
+        <div class="avatar-tools-row">
+          <button id="character-switch" class="ui-button character-switch" type="button" aria-label="Prossimo personaggio">↻ Spade</button>
+          <a href="catalogo-sprite.html" class="ui-button sprite-catalog-link" aria-label="Apri il catalogo sprite" title="Catalogo sprite">▦</a>
+        </div>
+      </div>
       <button id="zoom-in" class="ui-button zoom-button" type="button" aria-label="Ingrandisci mappa">+</button>
       <button id="zoom-out" class="ui-button zoom-button" type="button" aria-label="Riduci mappa">−</button>
     </div>
@@ -31,6 +45,6 @@
   <div id="transition-veil" class="transition-veil" aria-hidden="true"></div>
   <div id="loading" class="loading">Preparazione dell'Overworld…</div>
 </main>
-<script type="module" src="engine/main.js?rev=s08-switch-v01"></script>
+<script type="module" src="engine/main.js?rev=four-suits-v01"></script>
 </body>
 </html>
