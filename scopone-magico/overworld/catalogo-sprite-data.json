@@ -754,7 +754,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-E-SPADE-V02-",
+      "code": "S08-STAND-E-SPADE-V02",
       "character": "S08",
       "direction": "E",
       "state": "idle",
@@ -769,7 +769,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-N-SPADE-V02-",
+      "code": "S08-STAND-N-SPADE-V02",
       "character": "S08",
       "direction": "N",
       "state": "idle",
@@ -784,7 +784,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-NE-SPADE-V02-",
+      "code": "S08-STAND-NE-SPADE-V02",
       "character": "S08",
       "direction": "NE",
       "state": "idle",
@@ -799,7 +799,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-NW-SPADE-V02-",
+      "code": "S08-STAND-NW-SPADE-V02",
       "character": "S08",
       "direction": "NW",
       "state": "idle",
@@ -814,7 +814,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-S-SPADE-V02-",
+      "code": "S08-STAND-S-SPADE-V02",
       "character": "S08",
       "direction": "S",
       "state": "idle",
@@ -829,7 +829,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-SE-SPADE-V02-",
+      "code": "S08-STAND-SE-SPADE-V02",
       "character": "S08",
       "direction": "SE",
       "state": "idle",
@@ -844,7 +844,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-SW-SPADE-V02-",
+      "code": "S08-STAND-SW-SPADE-V02",
       "character": "S08",
       "direction": "SW",
       "state": "idle",
@@ -859,7 +859,7 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-W-SPADE-V02-",
+      "code": "S08-STAND-W-SPADE-V02",
       "character": "S08",
       "direction": "W",
       "state": "idle",
@@ -874,7 +874,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-E-SPADE-V02-",
+      "code": "S08-WALK-E-SPADE-V02",
       "character": "S08",
       "direction": "E",
       "state": "walk",
@@ -889,7 +889,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-N-SPADE-V02-",
+      "code": "S08-WALK-N-SPADE-V02",
       "character": "S08",
       "direction": "N",
       "state": "walk",
@@ -904,7 +904,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-NE-SPADE-V02-",
+      "code": "S08-WALK-NE-SPADE-V02",
       "character": "S08",
       "direction": "NE",
       "state": "walk",
@@ -919,7 +919,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-NW-SPADE-V02-",
+      "code": "S08-WALK-NW-SPADE-V02",
       "character": "S08",
       "direction": "NW",
       "state": "walk",
@@ -934,7 +934,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-S-SPADE-V02-",
+      "code": "S08-WALK-S-SPADE-V02",
       "character": "S08",
       "direction": "S",
       "state": "walk",
@@ -949,7 +949,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-SE-SPADE-V02-",
+      "code": "S08-WALK-SE-SPADE-V02",
       "character": "S08",
       "direction": "SE",
       "state": "walk",
@@ -964,7 +964,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-SW-SPADE-V02-",
+      "code": "S08-WALK-SW-SPADE-V02",
       "character": "S08",
       "direction": "SW",
       "state": "walk",
@@ -979,7 +979,7 @@
       "bytes": null
     },
     {
-      "code": "S08-WALK-W-SPADE-V02-",
+      "code": "S08-WALK-W-SPADE-V02",
       "character": "S08",
       "direction": "W",
       "state": "walk",
