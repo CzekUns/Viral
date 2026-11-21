@@ -1,0 +1,24 @@
+{
+  "export_checks": "PASS",
+  "character": "C08",
+  "version": "V02_COMPACT",
+  "standing": 8,
+  "walk_frames": 32,
+  "cycles": 8,
+  "rgba_frame_size": [
+    512,
+    512
+  ],
+  "webp_strip_size": [
+    2048,
+    512
+  ],
+  "model_approval": "approved_in_chat",
+  "animation_approval": "pending",
+  "in_engine_test": false,
+  "visual_review": [
+    "Diagonal contact poses/arm swing can repeat, especially NE/NW/SW",
+    "Accessory shape and feather continuity need per-frame review",
+    "Per-direction uniform cap registration; in-engine anchor still provisional"
+  ]
+}
