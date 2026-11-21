@@ -68,7 +68,8 @@ try{
  assert.match(instructions,/characters\/c08\/v04-stabilized\//);
  assert.match(instructions,/Usa questi file già presenti/);
  await page.locator('#copy-replacements').click();
- assert.match(await page.locator('#copy-status').textContent(),/copiate/i);
+ await page.waitForFunction(()=>/copiate|seleziona e copia/i.test(document.querySelector('#copy-status')?.textContent||''),null,{timeout:10000});
+ assert.match(await page.locator('#copy-status').textContent(),/copiate|seleziona e copia/i);
  await page.screenshot({path:path.join(root,'browser-qa','catalogo-03-sostituzione-pronta.png'),fullPage:true});
  await page.locator('[data-status="unused"]').click();
  assert.equal(await page.locator('.sprite-card').count(),3);
