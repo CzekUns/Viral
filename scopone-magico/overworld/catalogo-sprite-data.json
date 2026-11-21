@@ -1,8 +1,353 @@
 {
   "schema": 1,
-  "sourceCommit": "eee5526cddcbb63e40350057d11942346e82c461",
+  "sourceCommit": "f40ccf04fc64586aa1a2e06b220c8490ad2e49d0",
   "source": "Repository GitHub CzekUns/Viral scopone-magico/overworld/characters/",
   "items": [
+    {
+      "code": "B08-STAND-E-BASTONI-V01",
+      "character": "B08",
+      "direction": "E",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 69156
+    },
+    {
+      "code": "B08-WALK-E-R01-CANDIDATA-4F",
+      "character": "B08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Bastoni revisione R01 candidato",
+      "src": "characters/b08/revisions/E-r01/E_candidate_4f.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 328660
+    },
+    {
+      "code": "B08-WALK-E-R01-FRAME04",
+      "character": "B08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Bastoni revisione R01 candidato",
+      "src": "characters/b08/revisions/E-r01/E_frame04_candidate.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 75944
+    },
+    {
+      "code": "B08-WALK-E-BASTONI-V01",
+      "character": "B08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 326872
+    },
+    {
+      "code": "B08-STAND-N-BASTONI-V01",
+      "character": "B08",
+      "direction": "N",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 85380
+    },
+    {
+      "code": "B08-WALK-N-BASTONI-V01",
+      "character": "B08",
+      "direction": "N",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 352072
+    },
+    {
+      "code": "B08-STAND-NE-BASTONI-V01",
+      "character": "B08",
+      "direction": "NE",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 79056
+    },
+    {
+      "code": "B08-WALK-NE-BASTONI-V01",
+      "character": "B08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 317768
+    },
+    {
+      "code": "B08-STAND-NW-BASTONI-V01",
+      "character": "B08",
+      "direction": "NW",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 79688
+    },
+    {
+      "code": "B08-WALK-NW-R02-CANDIDATA-4F",
+      "character": "B08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Bastoni revisione R02 candidato",
+      "src": "characters/b08/revisions/audit-r02-nw-1-2/NW_candidate_4f.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 362552
+    },
+    {
+      "code": "B08-WALK-NW-R02-FRAME01",
+      "character": "B08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Bastoni revisione R02 candidato",
+      "src": "characters/b08/revisions/audit-r02-nw-1-2/NW_frame01_candidate.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 84010
+    },
+    {
+      "code": "B08-WALK-NW-R02-FRAME02",
+      "character": "B08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Bastoni revisione R02 candidato",
+      "src": "characters/b08/revisions/audit-r02-nw-1-2/NW_frame02_candidate.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 80522
+    },
+    {
+      "code": "B08-WALK-NW-BASTONI-V01",
+      "character": "B08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 365756
+    },
+    {
+      "code": "B08-STAND-S-BASTONI-V01",
+      "character": "B08",
+      "direction": "S",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 91704
+    },
+    {
+      "code": "B08-WALK-S-BASTONI-V01",
+      "character": "B08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 307356
+    },
+    {
+      "code": "B08-STAND-SE-BASTONI-V01",
+      "character": "B08",
+      "direction": "SE",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 85520
+    },
+    {
+      "code": "B08-WALK-SE-BASTONI-V01",
+      "character": "B08",
+      "direction": "SE",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 321796
+    },
+    {
+      "code": "B08-STAND-SW-BASTONI-V01",
+      "character": "B08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 81174
+    },
+    {
+      "code": "B08-WALK-SW-BASTONI-V01",
+      "character": "B08",
+      "direction": "SW",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 371852
+    },
+    {
+      "code": "B08-STAND-W-BASTONI-V01",
+      "character": "B08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 63994
+    },
+    {
+      "code": "B08-WALK-W-BASTONI-V01",
+      "character": "B08",
+      "direction": "W",
+      "state": "walk",
+      "version": "Bastoni V01 mani libere",
+      "src": "characters/b08/v01-handsfree-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 284654
+    },
+    {
+      "code": "C08-STAND-E-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "E",
+      "state": "idle",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 55482
+    },
+    {
+      "code": "C08-STAND-E-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "E",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 57846
+    },
     {
       "code": "C08-STAND-E-LEGACY-V04",
       "character": "C08",
@@ -19,178 +364,73 @@
       "bytes": null
     },
     {
-      "code": "C08-STAND-N-LEGACY-V04",
+      "code": "C08-STAND-E-RECUPERO-V03",
       "character": "C08",
-      "direction": "N",
+      "direction": "E",
       "state": "idle",
-      "version": "Legacy V04",
-      "src": "characters/c08/idle/N.webp",
+      "version": "Recupero V03",
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-E.webp",
       "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-NE-LEGACY-V04",
-      "character": "C08",
-      "direction": "NE",
-      "state": "idle",
-      "version": "Legacy V04",
-      "src": "characters/c08/idle/NE.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-NW-LEGACY-V04",
-      "character": "C08",
-      "direction": "NW",
-      "state": "idle",
-      "version": "Legacy V04",
-      "src": "characters/c08/idle/NW.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-S-LEGACY-V04",
-      "character": "C08",
-      "direction": "S",
-      "state": "idle",
-      "version": "Legacy V04",
-      "src": "characters/c08/idle/S.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-SE-LEGACY-V04",
-      "character": "C08",
-      "direction": "SE",
-      "state": "idle",
-      "version": "Legacy V04",
-      "src": "characters/c08/idle/SE.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-SW-LEGACY-V04",
-      "character": "C08",
-      "direction": "SW",
-      "state": "idle",
-      "version": "Legacy V04",
-      "src": "characters/c08/idle/SW.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-W-LEGACY-V04",
-      "character": "C08",
-      "direction": "W",
-      "state": "idle",
-      "version": "Legacy V04",
-      "src": "characters/c08/idle/W.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-S-V08-APPROVATA",
-      "character": "C08",
-      "direction": "S",
-      "state": "walk",
-      "version": "V08 approvata",
-      "src": "characters/c08/v02/c08-approved-S-4f.webp",
-      "frames": 4,
       "frameSize": [
         180,
-        180
+        249
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-E-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 224372
+    },
+    {
+      "code": "C08-WALK-E-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 253080
+    },
+    {
+      "code": "C08-WALK-E-LEGACY-V04",
+      "character": "C08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Legacy V04",
+      "src": "characters/c08/walk/E.webp",
+      "frames": 3,
+      "frameSize": [
+        384,
+        384
       ],
       "fps": 7,
       "bytes": null
     },
     {
-      "code": "C08-WALK-SE-V07-APPROVATA",
+      "code": "C08-WALK-E-RECUPERO-V03",
       "character": "C08",
-      "direction": "SE",
+      "direction": "E",
       "state": "walk",
-      "version": "V07 approvata",
-      "src": "characters/c08/v02/c08-approved-SE-4f.webp",
-      "frames": 4,
-      "frameSize": [
-        180,
-        180
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-S-V08-APPROVATA",
-      "character": "C08",
-      "direction": "S",
-      "state": "idle",
-      "version": "V08 approvata",
-      "src": "characters/c08/v02/c08-approved-idle-S.webp",
-      "frames": 1,
-      "frameSize": [
-        180,
-        180
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-SE-V08-APPROVATA",
-      "character": "C08",
-      "direction": "SE",
-      "state": "idle",
-      "version": "V08 approvata",
-      "src": "characters/c08/v02/c08-approved-idle-SE.webp",
-      "frames": 1,
-      "frameSize": [
-        180,
-        180
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-N-AUTOSPRITE-V02",
-      "character": "C08",
-      "direction": "N",
-      "state": "walk",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-auto-N-22f.webp",
-      "frames": 22,
+      "version": "Recupero V03",
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-E-12f.webp",
+      "frames": 12,
       "frameSize": [
         180,
         249
@@ -199,73 +439,13 @@
       "bytes": null
     },
     {
-      "code": "C08-WALK-NE-AUTOSPRITE-V02",
+      "code": "C08-WALK-E-STABILIZZATA-V04",
       "character": "C08",
-      "direction": "NE",
+      "direction": "E",
       "state": "walk",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-auto-NE-22f.webp",
-      "frames": 22,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 12,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-NW-AUTOSPRITE-V02",
-      "character": "C08",
-      "direction": "NW",
-      "state": "walk",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-auto-NW-22f.webp",
-      "frames": 22,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 12,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-S-AUTOSPRITE-V02",
-      "character": "C08",
-      "direction": "S",
-      "state": "walk",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-auto-S-22f.webp",
-      "frames": 22,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 12,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-SW-AUTOSPRITE-V02",
-      "character": "C08",
-      "direction": "SW",
-      "state": "walk",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-auto-SW-22f.webp",
-      "frames": 22,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 12,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-W-AUTOSPRITE-V02",
-      "character": "C08",
-      "direction": "W",
-      "state": "walk",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-auto-W-22f.webp",
-      "frames": 22,
+      "version": "Stabilizzata V04",
+      "src": "characters/c08/v04-stabilized/c08-auto-stabilized-E-12f.webp",
+      "frames": 12,
       "frameSize": [
         180,
         249
@@ -289,6 +469,111 @@
       "bytes": null
     },
     {
+      "code": "C08-STAND-N-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "N",
+      "state": "idle",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 80164
+    },
+    {
+      "code": "C08-STAND-N-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "N",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 80064
+    },
+    {
+      "code": "C08-STAND-N-LEGACY-V04",
+      "character": "C08",
+      "direction": "N",
+      "state": "idle",
+      "version": "Legacy V04",
+      "src": "characters/c08/idle/N.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-N-AUTOSPRITE-V02",
+      "character": "C08",
+      "direction": "N",
+      "state": "walk",
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-auto-N-22f.webp",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-N-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "N",
+      "state": "walk",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 282404
+    },
+    {
+      "code": "C08-WALK-N-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "N",
+      "state": "walk",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 343930
+    },
+    {
+      "code": "C08-WALK-N-LEGACY-V04",
+      "character": "C08",
+      "direction": "N",
+      "state": "walk",
+      "version": "Legacy V04",
+      "src": "characters/c08/walk/N.webp",
+      "frames": 3,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
       "code": "C08-STAND-NE-AUTOSPRITE-V02",
       "character": "C08",
       "direction": "NE",
@@ -301,6 +586,111 @@
         249
       ],
       "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-STAND-NE-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "NE",
+      "state": "idle",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 71558
+    },
+    {
+      "code": "C08-STAND-NE-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "NE",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 71568
+    },
+    {
+      "code": "C08-STAND-NE-LEGACY-V04",
+      "character": "C08",
+      "direction": "NE",
+      "state": "idle",
+      "version": "Legacy V04",
+      "src": "characters/c08/idle/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-NE-AUTOSPRITE-V02",
+      "character": "C08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-auto-NE-22f.webp",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-NE-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 256248
+    },
+    {
+      "code": "C08-WALK-NE-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 289500
+    },
+    {
+      "code": "C08-WALK-NE-LEGACY-V04",
+      "character": "C08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "Legacy V04",
+      "src": "characters/c08/walk/NE.webp",
+      "frames": 3,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 7,
       "bytes": null
     },
     {
@@ -319,6 +709,111 @@
       "bytes": null
     },
     {
+      "code": "C08-STAND-NW-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "NW",
+      "state": "idle",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 71930
+    },
+    {
+      "code": "C08-STAND-NW-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "NW",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 70562
+    },
+    {
+      "code": "C08-STAND-NW-LEGACY-V04",
+      "character": "C08",
+      "direction": "NW",
+      "state": "idle",
+      "version": "Legacy V04",
+      "src": "characters/c08/idle/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-NW-AUTOSPRITE-V02",
+      "character": "C08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-auto-NW-22f.webp",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-NW-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 265848
+    },
+    {
+      "code": "C08-WALK-NW-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 273380
+    },
+    {
+      "code": "C08-WALK-NW-LEGACY-V04",
+      "character": "C08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Legacy V04",
+      "src": "characters/c08/walk/NW.webp",
+      "frames": 3,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
       "code": "C08-STAND-S-AUTOSPRITE-V02",
       "character": "C08",
       "direction": "S",
@@ -334,91 +829,61 @@
       "bytes": null
     },
     {
-      "code": "C08-STAND-SW-AUTOSPRITE-V02",
-      "character": "C08",
-      "direction": "SW",
-      "state": "idle",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-idle-SW.webp",
-      "frames": 1,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-W-AUTOSPRITE-V02",
-      "character": "C08",
-      "direction": "W",
-      "state": "idle",
-      "version": "AutoSprite V02",
-      "src": "characters/c08/v02/c08-v02-idle-W.webp",
-      "frames": 1,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-E-RECUPERO-V03",
-      "character": "C08",
-      "direction": "E",
-      "state": "walk",
-      "version": "Recupero V03",
-      "src": "characters/c08/v03-recovered/c08-auto-recovered-E-12f.webp",
-      "frames": 12,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 12,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-S-RECUPERO-V03",
+      "code": "C08-STAND-S-COPPE-V01-DENARI",
       "character": "C08",
       "direction": "S",
-      "state": "walk",
-      "version": "Recupero V03",
-      "src": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp",
-      "frames": 18,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 12,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-SE-RECUPERO-V03",
-      "character": "C08",
-      "direction": "SE",
-      "state": "walk",
-      "version": "Recupero V03",
-      "src": "characters/c08/v03-recovered/c08-auto-recovered-SE-12f.webp",
-      "frames": 12,
-      "frameSize": [
-        180,
-        249
-      ],
-      "fps": 12,
-      "bytes": null
-    },
-    {
-      "code": "C08-STAND-E-RECUPERO-V03",
-      "character": "C08",
-      "direction": "E",
       "state": "idle",
-      "version": "Recupero V03",
-      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-E.webp",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/S.webp",
       "frames": 1,
       "frameSize": [
-        180,
-        249
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 82228
+    },
+    {
+      "code": "C08-STAND-S-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "S",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 78672
+    },
+    {
+      "code": "C08-STAND-S-LEGACY-V04",
+      "character": "C08",
+      "direction": "S",
+      "state": "idle",
+      "version": "Legacy V04",
+      "src": "characters/c08/idle/S.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-STAND-S-PROTOTIPO-INIZIALE",
+      "character": "C08",
+      "direction": "S",
+      "state": "idle",
+      "version": "Prototipo iniziale",
+      "src": "characters/player-south.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
       ],
       "fps": 1,
       "bytes": null
@@ -439,28 +904,88 @@
       "bytes": null
     },
     {
-      "code": "C08-STAND-SE-RECUPERO-V03",
+      "code": "C08-STAND-S-V08-APPROVATA",
       "character": "C08",
-      "direction": "SE",
+      "direction": "S",
       "state": "idle",
-      "version": "Recupero V03",
-      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-SE.webp",
+      "version": "V08 approvata",
+      "src": "characters/c08/v02/c08-approved-idle-S.webp",
       "frames": 1,
       "frameSize": [
         180,
-        249
+        180
       ],
       "fps": 1,
       "bytes": null
     },
     {
-      "code": "C08-WALK-E-STABILIZZATA-V04",
+      "code": "C08-WALK-S-AUTOSPRITE-V02",
       "character": "C08",
-      "direction": "E",
+      "direction": "S",
       "state": "walk",
-      "version": "Stabilizzata V04",
-      "src": "characters/c08/v04-stabilized/c08-auto-stabilized-E-12f.webp",
-      "frames": 12,
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-auto-S-22f.webp",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-S-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 274492
+    },
+    {
+      "code": "C08-WALK-S-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 294566
+    },
+    {
+      "code": "C08-WALK-S-LEGACY-V04",
+      "character": "C08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Legacy V04",
+      "src": "characters/c08/walk/S.webp",
+      "frames": 3,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-S-RECUPERO-V03",
+      "character": "C08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Recupero V03",
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-S-18f.webp",
+      "frames": 18,
       "frameSize": [
         180,
         249
@@ -484,94 +1009,124 @@
       "bytes": null
     },
     {
-      "code": "C08-WALK-SE-STABILIZZATA-V04",
+      "code": "C08-WALK-S-V08-APPROVATA",
+      "character": "C08",
+      "direction": "S",
+      "state": "walk",
+      "version": "V08 approvata",
+      "src": "characters/c08/v02/c08-approved-S-4f.webp",
+      "frames": 4,
+      "frameSize": [
+        180,
+        180
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "C08-STAND-SE-COPPE-V01-DENARI",
       "character": "C08",
       "direction": "SE",
-      "state": "walk",
-      "version": "Stabilizzata V04",
-      "src": "characters/c08/v04-stabilized/c08-auto-stabilized-SE-12f.webp",
-      "frames": 12,
+      "state": "idle",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 76442
+    },
+    {
+      "code": "C08-STAND-SE-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "SE",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 74926
+    },
+    {
+      "code": "C08-STAND-SE-LEGACY-V04",
+      "character": "C08",
+      "direction": "SE",
+      "state": "idle",
+      "version": "Legacy V04",
+      "src": "characters/c08/idle/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-STAND-SE-RECUPERO-V03",
+      "character": "C08",
+      "direction": "SE",
+      "state": "idle",
+      "version": "Recupero V03",
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-idle-SE.webp",
+      "frames": 1,
       "frameSize": [
         180,
         249
       ],
-      "fps": 12,
+      "fps": 1,
       "bytes": null
     },
     {
-      "code": "C08-WALK-E-LEGACY-V04",
+      "code": "C08-STAND-SE-V08-APPROVATA",
       "character": "C08",
-      "direction": "E",
-      "state": "walk",
-      "version": "Legacy V04",
-      "src": "characters/c08/walk/E.webp",
-      "frames": 3,
+      "direction": "SE",
+      "state": "idle",
+      "version": "V08 approvata",
+      "src": "characters/c08/v02/c08-approved-idle-SE.webp",
+      "frames": 1,
       "frameSize": [
-        384,
-        384
+        180,
+        180
       ],
-      "fps": 7,
+      "fps": 1,
       "bytes": null
     },
     {
-      "code": "C08-WALK-N-LEGACY-V04",
+      "code": "C08-WALK-SE-COPPE-V01-DENARI",
       "character": "C08",
-      "direction": "N",
+      "direction": "SE",
       "state": "walk",
-      "version": "Legacy V04",
-      "src": "characters/c08/walk/N.webp",
-      "frames": 3,
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/SE.webp",
+      "frames": 4,
       "frameSize": [
-        384,
-        384
+        512,
+        512
       ],
       "fps": 7,
-      "bytes": null
+      "bytes": 241734
     },
     {
-      "code": "C08-WALK-NE-LEGACY-V04",
+      "code": "C08-WALK-SE-COPPE-V02-COMPATTO",
       "character": "C08",
-      "direction": "NE",
+      "direction": "SE",
       "state": "walk",
-      "version": "Legacy V04",
-      "src": "characters/c08/walk/NE.webp",
-      "frames": 3,
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/SE.webp",
+      "frames": 4,
       "frameSize": [
-        384,
-        384
+        512,
+        512
       ],
       "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-NW-LEGACY-V04",
-      "character": "C08",
-      "direction": "NW",
-      "state": "walk",
-      "version": "Legacy V04",
-      "src": "characters/c08/walk/NW.webp",
-      "frames": 3,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "C08-WALK-S-LEGACY-V04",
-      "character": "C08",
-      "direction": "S",
-      "state": "walk",
-      "version": "Legacy V04",
-      "src": "characters/c08/walk/S.webp",
-      "frames": 3,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 7,
-      "bytes": null
+      "bytes": 293564
     },
     {
       "code": "C08-WALK-SE-LEGACY-V04",
@@ -589,6 +1144,156 @@
       "bytes": null
     },
     {
+      "code": "C08-WALK-SE-RECUPERO-V03",
+      "character": "C08",
+      "direction": "SE",
+      "state": "walk",
+      "version": "Recupero V03",
+      "src": "characters/c08/v03-recovered/c08-auto-recovered-SE-12f.webp",
+      "frames": 12,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-SE-STABILIZZATA-V04",
+      "character": "C08",
+      "direction": "SE",
+      "state": "walk",
+      "version": "Stabilizzata V04",
+      "src": "characters/c08/v04-stabilized/c08-auto-stabilized-SE-12f.webp",
+      "frames": 12,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-SE-V07-APPROVATA",
+      "character": "C08",
+      "direction": "SE",
+      "state": "walk",
+      "version": "V07 approvata",
+      "src": "characters/c08/v02/c08-approved-SE-4f.webp",
+      "frames": 4,
+      "frameSize": [
+        180,
+        180
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "C08-STAND-SW-AUTOSPRITE-V02",
+      "character": "C08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-idle-SW.webp",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-STAND-SW-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 76518
+    },
+    {
+      "code": "C08-STAND-SW-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 78592
+    },
+    {
+      "code": "C08-STAND-SW-LEGACY-V04",
+      "character": "C08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "Legacy V04",
+      "src": "characters/c08/idle/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-SW-AUTOSPRITE-V02",
+      "character": "C08",
+      "direction": "SW",
+      "state": "walk",
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-auto-SW-22f.webp",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-SW-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "SW",
+      "state": "walk",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 246838
+    },
+    {
+      "code": "C08-WALK-SW-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "SW",
+      "state": "walk",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 307938
+    },
+    {
       "code": "C08-WALK-SW-LEGACY-V04",
       "character": "C08",
       "direction": "SW",
@@ -602,6 +1307,111 @@
       ],
       "fps": 7,
       "bytes": null
+    },
+    {
+      "code": "C08-STAND-W-AUTOSPRITE-V02",
+      "character": "C08",
+      "direction": "W",
+      "state": "idle",
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-idle-W.webp",
+      "frames": 1,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-STAND-W-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 52662
+    },
+    {
+      "code": "C08-STAND-W-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 60746
+    },
+    {
+      "code": "C08-STAND-W-LEGACY-V04",
+      "character": "C08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Legacy V04",
+      "src": "characters/c08/idle/W.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-W-AUTOSPRITE-V02",
+      "character": "C08",
+      "direction": "W",
+      "state": "walk",
+      "version": "AutoSprite V02",
+      "src": "characters/c08/v02/c08-v02-auto-W-22f.webp",
+      "frames": 22,
+      "frameSize": [
+        180,
+        249
+      ],
+      "fps": 12,
+      "bytes": null
+    },
+    {
+      "code": "C08-WALK-W-COPPE-V01-DENARI",
+      "character": "C08",
+      "direction": "W",
+      "state": "walk",
+      "version": "Coppe V01 stile Denari",
+      "src": "characters/c08/v01-denari-style-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 230952
+    },
+    {
+      "code": "C08-WALK-W-COPPE-V02-COMPATTO",
+      "character": "C08",
+      "direction": "W",
+      "state": "walk",
+      "version": "Coppe V02 compatto",
+      "src": "characters/c08/v02-compact-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 280610
     },
     {
       "code": "C08-WALK-W-LEGACY-V04",
@@ -619,19 +1429,244 @@
       "bytes": null
     },
     {
-      "code": "C08-STAND-S-PROTOTIPO-INIZIALE",
-      "character": "C08",
-      "direction": "S",
+      "code": "D08-STAND-E-DENARI-V01",
+      "character": "D08",
+      "direction": "E",
       "state": "idle",
-      "version": "Prototipo iniziale",
-      "src": "characters/player-south.webp",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/E.webp",
       "frames": 1,
       "frameSize": [
         512,
         512
       ],
       "fps": 1,
-      "bytes": null
+      "bytes": 60704
+    },
+    {
+      "code": "D08-WALK-E-DENARI-V01",
+      "character": "D08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 305386
+    },
+    {
+      "code": "D08-STAND-N-DENARI-V01",
+      "character": "D08",
+      "direction": "N",
+      "state": "idle",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 81874
+    },
+    {
+      "code": "D08-WALK-N-DENARI-V01",
+      "character": "D08",
+      "direction": "N",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 324120
+    },
+    {
+      "code": "D08-STAND-NE-DENARI-V01",
+      "character": "D08",
+      "direction": "NE",
+      "state": "idle",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 66978
+    },
+    {
+      "code": "D08-WALK-NE-DENARI-V01",
+      "character": "D08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 289154
+    },
+    {
+      "code": "D08-STAND-NW-DENARI-V01",
+      "character": "D08",
+      "direction": "NW",
+      "state": "idle",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 70530
+    },
+    {
+      "code": "D08-WALK-NW-DENARI-V01",
+      "character": "D08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 281172
+    },
+    {
+      "code": "D08-STAND-S-DENARI-V01",
+      "character": "D08",
+      "direction": "S",
+      "state": "idle",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 83170
+    },
+    {
+      "code": "D08-WALK-S-DENARI-V01",
+      "character": "D08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 332024
+    },
+    {
+      "code": "D08-STAND-SE-DENARI-V01",
+      "character": "D08",
+      "direction": "SE",
+      "state": "idle",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 76746
+    },
+    {
+      "code": "D08-WALK-SE-DENARI-V01",
+      "character": "D08",
+      "direction": "SE",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 303258
+    },
+    {
+      "code": "D08-STAND-SW-DENARI-V01",
+      "character": "D08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 74668
+    },
+    {
+      "code": "D08-WALK-SW-DENARI-V01",
+      "character": "D08",
+      "direction": "SW",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 284292
+    },
+    {
+      "code": "D08-STAND-W-DENARI-V01",
+      "character": "D08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 59046
+    },
+    {
+      "code": "D08-WALK-W-DENARI-V01",
+      "character": "D08",
+      "direction": "W",
+      "state": "walk",
+      "version": "Denari V01 mani libere",
+      "src": "characters/d08/v01-handsfree-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 311670
     },
     {
       "code": "S08-STAND-E-SPADE-V01",
@@ -640,111 +1675,6 @@
       "state": "idle",
       "version": "Spade V01",
       "src": "characters/s08/v01-test/idle/E.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-STAND-N-SPADE-V01",
-      "character": "S08",
-      "direction": "N",
-      "state": "idle",
-      "version": "Spade V01",
-      "src": "characters/s08/v01-test/idle/N.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-STAND-NE-SPADE-V01",
-      "character": "S08",
-      "direction": "NE",
-      "state": "idle",
-      "version": "Spade V01",
-      "src": "characters/s08/v01-test/idle/NE.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-STAND-NW-SPADE-V01",
-      "character": "S08",
-      "direction": "NW",
-      "state": "idle",
-      "version": "Spade V01",
-      "src": "characters/s08/v01-test/idle/NW.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-STAND-S-SPADE-V01",
-      "character": "S08",
-      "direction": "S",
-      "state": "idle",
-      "version": "Spade V01",
-      "src": "characters/s08/v01-test/idle/S.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-STAND-SE-SPADE-V01",
-      "character": "S08",
-      "direction": "SE",
-      "state": "idle",
-      "version": "Spade V01",
-      "src": "characters/s08/v01-test/idle/SE.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-STAND-SW-SPADE-V01",
-      "character": "S08",
-      "direction": "SW",
-      "state": "idle",
-      "version": "Spade V01",
-      "src": "characters/s08/v01-test/idle/SW.webp",
-      "frames": 1,
-      "frameSize": [
-        384,
-        384
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-STAND-W-SPADE-V01",
-      "character": "S08",
-      "direction": "W",
-      "state": "idle",
-      "version": "Spade V01",
-      "src": "characters/s08/v01-test/idle/W.webp",
       "frames": 1,
       "frameSize": [
         384,
@@ -769,6 +1699,36 @@
       "bytes": null
     },
     {
+      "code": "S08-WALK-E-SPADE-V02",
+      "character": "S08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Spade V02 mani libere",
+      "src": "characters/s08/v02-handsfree-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-N-SPADE-V01",
+      "character": "S08",
+      "direction": "N",
+      "state": "idle",
+      "version": "Spade V01",
+      "src": "characters/s08/v01-test/idle/N.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
       "code": "S08-STAND-N-SPADE-V02",
       "character": "S08",
       "direction": "N",
@@ -779,6 +1739,36 @@
       "frameSize": [
         512,
         512
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "S08-WALK-N-SPADE-V02",
+      "character": "S08",
+      "direction": "N",
+      "state": "walk",
+      "version": "Spade V02 mani libere",
+      "src": "characters/s08/v02-handsfree-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-NE-SPADE-V01",
+      "character": "S08",
+      "direction": "NE",
+      "state": "idle",
+      "version": "Spade V01",
+      "src": "characters/s08/v01-test/idle/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
       ],
       "fps": 1,
       "bytes": null
@@ -799,6 +1789,36 @@
       "bytes": null
     },
     {
+      "code": "S08-WALK-NE-SPADE-V02",
+      "character": "S08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "Spade V02 mani libere",
+      "src": "characters/s08/v02-handsfree-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-NW-SPADE-V01",
+      "character": "S08",
+      "direction": "NW",
+      "state": "idle",
+      "version": "Spade V01",
+      "src": "characters/s08/v01-test/idle/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
       "code": "S08-STAND-NW-SPADE-V02",
       "character": "S08",
       "direction": "NW",
@@ -809,6 +1829,36 @@
       "frameSize": [
         512,
         512
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "S08-WALK-NW-SPADE-V02",
+      "character": "S08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Spade V02 mani libere",
+      "src": "characters/s08/v02-handsfree-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-S-SPADE-V01",
+      "character": "S08",
+      "direction": "S",
+      "state": "idle",
+      "version": "Spade V01",
+      "src": "characters/s08/v01-test/idle/S.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
       ],
       "fps": 1,
       "bytes": null
@@ -829,6 +1879,36 @@
       "bytes": null
     },
     {
+      "code": "S08-WALK-S-SPADE-V02",
+      "character": "S08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Spade V02 mani libere",
+      "src": "characters/s08/v02-handsfree-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-SE-SPADE-V01",
+      "character": "S08",
+      "direction": "SE",
+      "state": "idle",
+      "version": "Spade V01",
+      "src": "characters/s08/v01-test/idle/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
       "code": "S08-STAND-SE-SPADE-V02",
       "character": "S08",
       "direction": "SE",
@@ -839,6 +1919,36 @@
       "frameSize": [
         512,
         512
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "S08-WALK-SE-SPADE-V02",
+      "character": "S08",
+      "direction": "SE",
+      "state": "walk",
+      "version": "Spade V02 mani libere",
+      "src": "characters/s08/v02-handsfree-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-SW-SPADE-V01",
+      "character": "S08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "Spade V01",
+      "src": "characters/s08/v01-test/idle/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
       ],
       "fps": 1,
       "bytes": null
@@ -859,111 +1969,6 @@
       "bytes": null
     },
     {
-      "code": "S08-STAND-W-SPADE-V02",
-      "character": "S08",
-      "direction": "W",
-      "state": "idle",
-      "version": "Spade V02 mani libere",
-      "src": "characters/s08/v02-handsfree-test/standing/W.webp",
-      "frames": 1,
-      "frameSize": [
-        512,
-        512
-      ],
-      "fps": 1,
-      "bytes": null
-    },
-    {
-      "code": "S08-WALK-E-SPADE-V02",
-      "character": "S08",
-      "direction": "E",
-      "state": "walk",
-      "version": "Spade V02 mani libere",
-      "src": "characters/s08/v02-handsfree-test/walk/E.webp",
-      "frames": 4,
-      "frameSize": [
-        512,
-        512
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "S08-WALK-N-SPADE-V02",
-      "character": "S08",
-      "direction": "N",
-      "state": "walk",
-      "version": "Spade V02 mani libere",
-      "src": "characters/s08/v02-handsfree-test/walk/N.webp",
-      "frames": 4,
-      "frameSize": [
-        512,
-        512
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "S08-WALK-NE-SPADE-V02",
-      "character": "S08",
-      "direction": "NE",
-      "state": "walk",
-      "version": "Spade V02 mani libere",
-      "src": "characters/s08/v02-handsfree-test/walk/NE.webp",
-      "frames": 4,
-      "frameSize": [
-        512,
-        512
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "S08-WALK-NW-SPADE-V02",
-      "character": "S08",
-      "direction": "NW",
-      "state": "walk",
-      "version": "Spade V02 mani libere",
-      "src": "characters/s08/v02-handsfree-test/walk/NW.webp",
-      "frames": 4,
-      "frameSize": [
-        512,
-        512
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "S08-WALK-S-SPADE-V02",
-      "character": "S08",
-      "direction": "S",
-      "state": "walk",
-      "version": "Spade V02 mani libere",
-      "src": "characters/s08/v02-handsfree-test/walk/S.webp",
-      "frames": 4,
-      "frameSize": [
-        512,
-        512
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
-      "code": "S08-WALK-SE-SPADE-V02",
-      "character": "S08",
-      "direction": "SE",
-      "state": "walk",
-      "version": "Spade V02 mani libere",
-      "src": "characters/s08/v02-handsfree-test/walk/SE.webp",
-      "frames": 4,
-      "frameSize": [
-        512,
-        512
-      ],
-      "fps": 7,
-      "bytes": null
-    },
-    {
       "code": "S08-WALK-SW-SPADE-V02",
       "character": "S08",
       "direction": "SW",
@@ -976,6 +1981,36 @@
         512
       ],
       "fps": 7,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-W-SPADE-V01",
+      "character": "S08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Spade V01",
+      "src": "characters/s08/v01-test/idle/W.webp",
+      "frames": 1,
+      "frameSize": [
+        384,
+        384
+      ],
+      "fps": 1,
+      "bytes": null
+    },
+    {
+      "code": "S08-STAND-W-SPADE-V02",
+      "character": "S08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Spade V02 mani libere",
+      "src": "characters/s08/v02-handsfree-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
       "bytes": null
     },
     {
