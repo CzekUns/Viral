@@ -1,0 +1,36 @@
+{
+  "character_id": "B08",
+  "direction": "E",
+  "revision": "R01",
+  "status": "CANDIDATE_REVIEW",
+  "changed_frame": {
+    "display_number": 4,
+    "index": 3,
+    "image": "E_frame04_candidate.webp",
+    "source": "source/E_frame04_regenerated.png",
+    "uniform_scale": 0.408,
+    "translation": [
+      165,
+      33
+    ]
+  },
+  "frameSize": [
+    512,
+    512
+  ],
+  "anchor": [
+    256,
+    390
+  ],
+  "unchanged_frames": [
+    0,
+    1,
+    2
+  ],
+  "known_remaining_issue": "Contact poses frame 1 and frame 3 remain insufficiently distinct; not corrected in this small revision.",
+  "checks": [
+    "alpha, frame bounds, equal cap scale to replaced frame",
+    "unchanged source frames preserved; candidate cycle only"
+  ],
+  "production_ready": false
+}
