@@ -47,3 +47,45 @@ section.current,section.alternatives,section.export{margin:23px 0}
 .other-direction-panel .other-direction-groups{padding:4px 12px 13px}
 .candidate-direction-warning{font-size:12px;line-height:1.55;color:#92543b;margin:10px 12px;padding:9px 10px;background:#fce8de;border-left:3px solid #a8543d}
 .decode-failed{border:2px solid #ad543b}
+
+/* Multiple selected frames + persistent "da rifare" review queue */
+.multi-tip{font-size:12px;color:#735c46;line-height:1.5;margin:0 0 10px}
+.multi-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:0 0 11px}
+.multi-toolbar strong{margin-right:auto;font-size:12px;color:#5f4435}
+.multi-toolbar button{min-height:38px;padding:7px 10px;font-size:11px;font-weight:750;color:#5a412f;border:1px solid #c6a989;border-radius:7px;background:#fdf5e7}
+.multi-toolbar button:disabled,.redo-toolbar button:disabled,.redo-board button:disabled{opacity:.5;cursor:not-allowed}
+.frame-button.active{outline:3px solid #ae593c;outline-offset:0}
+.frame-button.marked-redo{position:relative;border-color:#a34a37;box-shadow:0 0 0 1px #a34a37}
+.redo-flag{position:absolute;top:3px;right:3px;background:#a34a37;color:white;border-radius:3px;padding:3px 4px;font:800 8px/1.1 system-ui;letter-spacing:.025em;pointer-events:none}
+.redo-toolbar{padding:13px;background:#fff8ee;border:1px solid #cfb392;border-radius:10px;margin:11px 0}
+.redo-toolbar label{font-weight:700;color:#65513d;font-size:12px;display:block}
+.redo-toolbar input{display:block;width:100%;min-height:40px;border:1px solid #bea98e;border-radius:7px;padding:8px 11px;margin:6px 0 11px;color:#483527;background:white;font-size:12px}
+.redo-actions{display:flex;gap:8px;flex-wrap:wrap}
+.redo-actions button{min-height:44px;padding:9px 13px;border:1px solid #904533;border-radius:8px;background:#994933;color:#fff9ef;font-weight:750;font-size:12px}
+.redo-actions button:nth-child(2){background:#fff6e8;color:#704b3b;border-color:#bda28a}
+section.redo-board{background:#f8efdf;border:1px solid #c9ab81;padding:16px;border-radius:12px;margin:29px 0}
+.redo-count{font:700 16px/1.3 system-ui;color:#9b4c38;background:#fff8ec;border:1px solid #e4c5a7;border-radius:12px;padding:2px 8px}
+.board-explainer{font-size:12px;line-height:1.5;color:#685343;margin:2px 0 13px}
+.redo-list{display:flex;flex-direction:column;gap:11px;margin-bottom:12px}
+.redo-group{border:1px solid #d4bca1;background:#fffaf2;padding:11px 12px;border-radius:9px}
+.redo-group h3{font:700 15px/1.3 Georgia,serif;margin:0 0 5px;color:#503b2d}
+.redo-group code{font:10px/1.4 ui-monospace,monospace;display:block;overflow-wrap:anywhere;color:#78634f;margin-bottom:10px}
+.redo-group-items{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.redo-record{min-width:0;background:#f5e4dc;border:1px solid #d8ad9d;border-radius:6px;display:flex;align-items:center;gap:6px;padding:5px 6px;font-size:11px;color:#754334;flex-wrap:wrap}
+.redo-record span{overflow-wrap:anywhere}
+.redo-record button,.redo-goto{border:1px solid #b99d81;background:#fffaf1;border-radius:6px;color:#654938;font-size:11px;min-height:34px;padding:5px 8px;font-weight:750}
+.redo-goto{min-height:38px;background:#e9dbc6}
+.redo-empty{font-size:12px;padding:13px;margin:0;border:1px dashed #c3ad90;border-radius:8px;background:#fff8ef;color:#7e6a55}
+#lab-redo-text{display:block;width:100%;min-height:118px;padding:11px;border-radius:8px;border:1px solid #cbb496;background:#fffdf8;resize:vertical;font:11px/1.5 ui-monospace,monospace;color:#4c3e31;margin:12px 0}
+.actions .issue-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #b4987c;background:#fffaef;color:#6c472f;border-radius:8px;font-weight:750;font-size:12px;min-height:44px;padding:9px 14px}
+.actions .issue-link.disabled{opacity:.5;pointer-events:none}
+.redo-feedback{font-size:12px;color:#5f6540;font-weight:700;min-height:17px;margin:10px 0 0}
+@media(max-width:500px){
+ .multi-toolbar{gap:5px}
+ .multi-toolbar strong{width:100%}
+ .multi-toolbar button{flex:1}
+ .redo-toolbar{padding:9px}
+ .redo-actions button{flex:1;padding:7px}
+ .redo-flag{font-size:7px;padding:2px}
+ section.redo-board{padding:12px}
+}
