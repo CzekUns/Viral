@@ -23,7 +23,16 @@ try{
  await page.waitForFunction(()=>document.querySelector('#lab-status')?.textContent?.includes('pronte'),null,{timeout:25000});
  assert.equal(await page.locator('#lab-avatar option').count(),6);
  assert.equal(await page.locator('#lab-frames .frame-button').count(),4,'S08 East must have 4 actual current frames');
- assert.equal(await page.locator('#lab-candidates .candidate-group').count(),1,'S08 East has only its own frames');
+ assert.equal(await page.locator('#lab-candidates .candidate-group').count(),3,
+   'S08 E has 4 walk frames and both V01/V02 standing fallback sources');
+ assert.match(await page.locator('#lab-availability').textContent(),/0 fotogrammi di camminata alternativi/);
+ assert.match(await page.locator('#lab-availability').textContent(),/28 fotogrammi da altre direzioni/);
+ assert.equal(await page.locator('#lab-other-directions').count(),1);
+ await page.locator('#lab-other-directions summary').click();
+ await page.waitForFunction(()=>document.querySelectorAll('#lab-other-directions .candidate-group').length===7,null,{timeout:12000});
+ assert.equal(await page.locator('#lab-other-directions .candidate-button').count(),28,
+   'Other directions must expose all 7 x 4 source frames, not silently hide them');
+ await page.screenshot({path:path.join(root,'browser-qa','laboratorio-S08-E-frame-extra.png'),fullPage:true});
  await page.locator('#lab-frames .frame-button').nth(0).click();
  await page.locator('#lab-candidates .candidate-button').nth(3).click();
  assert.match(await page.locator('#lab-instructions').inputValue(),/FRAME 1 \(indice 0\)/);
@@ -42,8 +51,8 @@ try{
  await page.locator('#lab-direction').selectOption('NW');
  await page.waitForFunction(()=>document.querySelector('#lab-status')?.textContent?.includes('pronte'),null,{timeout:25000});
  assert.equal(await page.locator('#lab-frames .frame-button').count(),4);
- assert.equal(await page.locator('#lab-candidates .candidate-group').count(),4);
- assert.equal(await page.locator('#lab-candidates .candidate-button').count(),10);
+ assert.equal(await page.locator('#lab-candidates .candidate-group').count(),5);
+ assert.equal(await page.locator('#lab-candidates .candidate-button').count(),11);
  await page.locator('#lab-frames .frame-button').nth(0).click();
  await page.locator('.candidate-group').nth(2).locator('.candidate-button').first().click();
  const instructions=await page.locator('#lab-instructions').inputValue();
@@ -59,7 +68,7 @@ try{
    assert.ok(await page.locator('#lab-frames .frame-button').count()>=4,'missing workbench current frames '+id);
  }
  assert.deepEqual(errors,[],'No browser exceptions');
- console.log('FRAME LABORATORY QA OK: 6 selectable, real edited Canvas preview, B08 NW R02 candidate frame, undo and copy');
+ console.log('FRAME LABORATORY QA OK: 6 avatars, 0 same-dir extras S08 E, 28 other-dir frames, B08 R02 candidates and preview');
 }finally{
  await browser?.close();server.kill();
 }

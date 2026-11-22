@@ -32,3 +32,18 @@ section.current,section.alternatives,section.export{margin:23px 0}
 .actions{display:flex;flex-wrap:wrap;gap:10px}.actions button:last-child{background:#efe1ce;color:#5c432f}
 #lab-status{font-size:12px;font-weight:700;color:#526443;min-height:1em}footer{font-size:11px;color:#83725e;margin-top:38px}
 @media(max-width:500px){.comparison{gap:7px}.screen{padding:6px}.screen-label{font-size:9px}.screen canvas{max-height:175px}.studio{padding:12px 10px 42px}.frame-grid,.candidate-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.frame-button{min-height:103px;padding:3px}.frame-button canvas{height:79px}.candidate-button{min-height:103px}.candidate-button canvas{height:79px}.section-head h2{font-size:20px}}
+
+/* Make candidate availability explicit rather than silently hiding other frames. */
+.extra-availability{background:#f9f0df;border:1px solid #bd9e78;border-radius:11px;padding:12px 14px;margin:0 0 15px;font-size:12px;line-height:1.55;color:#5b4836}
+.extra-availability strong{font-size:13px;display:block;margin-bottom:6px;color:#3e3025}
+.extra-availability p{margin:0 0 6px}
+.extra-example{display:inline-block;min-height:40px;border:1px solid #a67548;background:#eee0c3;color:#68422c;padding:8px 12px;border-radius:7px;font-size:12px;font-weight:750;text-align:left;margin-top:5px}
+.candidate-section-title{font:700 16px/1.3 Georgia,serif;margin:19px 0 9px;color:#584333;border-bottom:1px solid #d8c6ab;padding-bottom:7px}
+.candidate-empty{font-size:12px;padding:11px 12px;border:1px dashed #cbb9a2;border-radius:8px;background:#fff9f0;color:#806e59}
+.candidate-advice{font-size:11px;color:#77644e;line-height:1.5;margin:-2px 0 9px}
+.other-direction-panel{border:1px solid #bea182;border-radius:10px;margin-top:21px;background:#fff8eb}
+.other-direction-panel summary{font:700 14px/1.4 system-ui,sans-serif;color:#694832;padding:13px;cursor:pointer}
+.other-direction-panel[open] summary{border-bottom:1px solid #d5c1a7}
+.other-direction-panel .other-direction-groups{padding:4px 12px 13px}
+.candidate-direction-warning{font-size:12px;line-height:1.55;color:#92543b;margin:10px 12px;padding:9px 10px;background:#fce8de;border-left:3px solid #a8543d}
+.decode-failed{border:2px solid #ad543b}
