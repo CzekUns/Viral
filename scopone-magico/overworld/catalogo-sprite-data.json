@@ -2042,6 +2042,278 @@
       ],
       "fps": 7,
       "bytes": 74710
+    },
+    {
+      "code": "B08-STAND-E-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "E",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 58718,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-STAND-N-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "N",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 94784,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-STAND-NE-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "NE",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 72456,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-STAND-NW-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "NW",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 83678,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-STAND-S-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "S",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 80462,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-STAND-SE-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "SE",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 71846,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-STAND-SW-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "SW",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 77226,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-STAND-W-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "W",
+      "state": "idle",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 139102,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-E-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "E",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 285480,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-N-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "N",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 382944,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-NE-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "NE",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 305046,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-NW-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 364628,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-S-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "S",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 326638,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-SE-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "SE",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 327114,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-SW-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "SW",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 314100,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "code": "B08-WALK-W-BACKSTAFF-V02-R01",
+      "character": "B08",
+      "direction": "W",
+      "state": "walk",
+      "version": "Bastoni V02 · bastone sulla schiena · DA REVISIONARE",
+      "src": "characters/b08/v02-backstaff-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 634854,
+      "artStatus": "DA_REVISIONARE",
+      "approved": false
     }
   ]
 }

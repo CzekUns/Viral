@@ -1,0 +1,320 @@
+{
+  "character": "B08",
+  "variant": "bastone sulla schiena R01",
+  "status": "QA_NON_SUPERATA",
+  "approved": false,
+  "applied": false,
+  "frame_size": [
+    512,
+    512
+  ],
+  "atlas_grid": [
+    5,
+    8
+  ],
+  "directions": [
+    "S",
+    "SE",
+    "E",
+    "NE",
+    "N",
+    "NW",
+    "W",
+    "SW"
+  ],
+  "columns": [
+    "standing",
+    "walk1",
+    "walk2",
+    "walk3",
+    "walk4"
+  ],
+  "inventory": [
+    {
+      "direction": "S",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 0,
+      "intended_state": "standing",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 1,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 2,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 3,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 4,
+      "intended_state": "walk",
+      "status": "DA_REVISIONARE",
+      "approved": false
+    }
+  ],
+  "known_issues": [
+    "Fasi opposte duplicate o insufficientemente distinte in diverse direzioni.",
+    "Orientamento e proporzioni da confrontare con gli originali.",
+    "La striscia W contiene fondo bianco: non utilizzabile come sprite trasparente.",
+    "Frange colorate visibili; posizione del bastone e tracolla non uniforme tra tutte le direzioni."
+  ]
+}
