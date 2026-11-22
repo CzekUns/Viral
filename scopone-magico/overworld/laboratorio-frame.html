@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#efe5d4">
 <title>Laboratorio fotogrammi · Scopone Alchemico</title>
-<link rel="stylesheet" href="laboratorio-frame.css?rev=extra-frames-v02">
+<link rel="stylesheet" href="laboratorio-frame.css?rev=multi-redo-v01">
 </head><body>
 <main class="studio">
 <header class="masthead">
@@ -29,8 +29,22 @@
  <button id="lab-reset" type="button">Ripristina sequenza</button>
 </div>
 <section class="current" aria-label="Fotogrammi attualmente in uso">
- <div class="section-head"><h2>1 · Fotogrammi in uso</h2><span>Seleziona quello da sostituire</span></div>
- <div id="lab-frames" class="frame-grid" role="group" aria-label="Fotogramma destinazione"></div>
+ <div class="section-head"><h2>1 · Fotogrammi in uso</h2><span>Puoi selezionarne anche più di uno</span></div>
+ <p class="multi-tip">Tocca i fotogrammi sbagliati: <strong>rimangono selezionati insieme</strong>. Premi «Segna da rifare» per aggiungerli all'elenco, oppure scegli un sostituto sotto per provarlo su tutti quelli selezionati.</p>
+ <div class="multi-toolbar" role="group" aria-label="Selezione dei fotogrammi">
+  <strong id="lab-selected-count" aria-live="polite">0 fotogrammi selezionati</strong>
+  <button id="lab-select-all" type="button">Seleziona tutti</button>
+  <button id="lab-select-none" type="button">Deseleziona</button>
+ </div>
+ <div id="lab-frames" class="frame-grid" role="group" aria-label="Selezione multipla dei fotogrammi"></div>
+ <div class="redo-toolbar">
+  <label for="lab-mark-note">Nota facoltativa per i fotogrammi selezionati</label>
+  <input id="lab-mark-note" type="text" maxlength="300" placeholder="Es. piede nella direzione sbagliata, cade, braccio disallineato">
+  <div class="redo-actions">
+   <button id="lab-mark-redo" type="button" disabled>✎ Segna da rifare (<span id="lab-mark-count">0</span>)</button>
+   <button id="lab-unmark-redo" type="button" disabled>Rimuovi segnalazione</button>
+  </div>
+ </div>
 </section>
 <section class="alternatives" aria-label="Fotogrammi sostitutivi">
  <div class="section-head"><h2>2 · Scegli un sostituto</h2><span>Versioni alternative, standing e altre direzioni</span></div>
@@ -38,8 +52,19 @@
  <p class="helper" id="lab-help">Prima seleziona un fotogramma sopra, poi tocca un candidato sotto. Puoi anche riutilizzare un altro fotogramma della sequenza corrente.</p>
  <div id="lab-candidates" class="candidate-list"></div>
 </section>
+<section class="redo-board" id="lab-redo-board" aria-label="Elenco dei fotogrammi segnati da rifare">
+ <div class="section-head"><h2>3 · Fotogrammi da rifare <span id="lab-redo-total" class="redo-count">0</span></h2><span>Salvati su questo dispositivo</span></div>
+ <p class="board-explainer">Le segnalazioni restano memorizzate in questo browser anche se cambi Fante, direzione o riapri la pagina. <strong>Per farle arrivare a me</strong>, copia il riepilogo nella chat oppure apri una segnalazione GitHub.</p>
+ <div id="lab-redo-items" class="redo-list" aria-live="polite"></div>
+ <textarea id="lab-redo-text" readonly aria-label="Elenco completo dei fotogrammi da rifare" placeholder="Quando segni un frame, compare qui con codice, direzione e nota."></textarea>
+ <div class="actions">
+  <button id="lab-copy-redo" type="button" disabled>Copia elenco da rifare</button>
+  <a id="lab-github-redo" class="issue-link disabled" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">Apri bozza issue GitHub</a>
+ </div>
+ <p id="lab-redo-status" class="redo-feedback" role="status" aria-live="polite"></p>
+</section>
 <section class="export" aria-label="Istruzioni da inviare in chat">
- <div class="section-head"><h2>3 · Rivedi e comunica</h2><span>La preview non modifica il gioco pubblicato</span></div>
+ <div class="section-head"><h2>4 · Sostituzioni in anteprima</h2><span>La preview non modifica il gioco pubblicato</span></div>
  <div id="lab-changes" class="change-summary"></div>
  <textarea id="lab-instructions" readonly aria-label="Istruzioni per sostituire i fotogrammi"></textarea>
  <div class="actions"><button id="lab-copy" type="button">Copia sostituzioni</button><button id="lab-undo" type="button">Annulla ultima modifica</button></div>
@@ -47,5 +72,5 @@
 </section>
 <footer>I file su GitHub e Drive restano originali; le modifiche qui sono solo una simulazione visiva finché non le integriamo.</footer>
 </main>
-<script type="module" src="laboratorio-frame.js?rev=extra-frames-v02"></script>
+<script type="module" src="laboratorio-frame.js?rev=multi-redo-v01"></script>
 </body></html>
