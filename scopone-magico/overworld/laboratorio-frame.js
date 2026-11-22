@@ -1,10 +1,11 @@
 import {OVERWORLD_AVATARS,resolveAvatar} from './engine/avatar-roster.js';
 import {collectWalkCandidates} from './engine/frame-candidates.js';
+import {addReviewMarks,removeReviewMarks,frameReviewKey,readReviewQueue,saveReviewQueue,formatReviewQueue} from './engine/frame-review-queue.js';
 const $=id=>document.getElementById(id);
 const DIRECTION_LABELS={S:'Sud',SE:'Sud-est',E:'Est',NE:'Nord-est',N:'Nord',NW:'Nord-ovest',W:'Ovest',SW:'Sud-ovest'};
 const images=new Map();
 const ctx={manifest:null,inventory:[],avatar:'s08-player',direction:'E',source:null,sourceItem:null,
- mappings:[],history:[],selected:null,playing:true,fps:7,frame:0,lastAt:0,token:0,pools:null};
+ mappings:[],history:[],selectedFrames:new Set(),redoMarks:[],playing:true,fps:7,frame:0,lastAt:0,token:0,pools:null};
 function getImage(src){
  if(!images.has(src)){
    const img=new Image();img.decoding='async';img.src=src;
@@ -39,20 +40,39 @@ function currentFrameAt(index){return ctx.mappings[index]||sourceAt(index);}
 function listChanges(){return ctx.mappings.map((to,i)=>({index:i,from:sourceAt(i),to})).filter(x=>x.to.src!==x.from.src||x.to.frame!==x.from.frame);}
 function setStatus(text){$('lab-status').textContent=text;}
 function infoFor(src){return ctx.inventory.find(i=>i.src===src);}
+function chosenMarks(){
+ if(!ctx.source)return [];
+ return [...ctx.selectedFrames].sort((a,b)=>a-b).map(frame=>({
+  avatar:ctx.avatar,direction:ctx.direction,src:ctx.source.src,frame
+ }));
+}
+function syncSelectionControls(){
+ const count=ctx.selectedFrames.size;
+ $('lab-selected-count').textContent=count+' fotogramm'+(count===1?'a selezionato':'i selezionati');
+ $('lab-mark-count').textContent=String(count);
+ $('lab-mark-redo').disabled=count===0;
+ $('lab-unmark-redo').disabled=count===0;
+ $('lab-select-none').disabled=count===0;
+ $('lab-select-all').disabled=!!ctx.source&&count===ctx.source.frames;
+}
 function chooseTarget(index){
- ctx.selected=index;
+ if(ctx.selectedFrames.has(index))ctx.selectedFrames.delete(index);
+ else ctx.selectedFrames.add(index);
  renderCurrent();
- $('lab-help').textContent='Hai selezionato il frame '+(index+1)+'/'+ctx.source.frames+'. Tocca un fotogramma alternativo per vederlo subito nell’animazione.';
+ const n=ctx.selectedFrames.size;
+ $('lab-help').textContent=n
+  ?'Hai selezionato '+n+' fotogramm'+(n===1?'a':'i')+'. Puoi segnarli da rifare oppure provare lo stesso sostituto su tutti.'
+  :'Tocca uno o più fotogrammi da correggere, quindi segna da rifare o scegli un sostituto.';
 }
 function replaceTarget(choice){
- if(ctx.selected===null){setStatus('Prima scegli uno dei fotogrammi della camminata in uso.');return;}
+ if(!ctx.selectedFrames.size){setStatus('Prima scegli uno o più fotogrammi della camminata in uso.');return;}
  const prev=ctx.mappings.map(x=>({...x}));
  ctx.history.push(prev);
- ctx.mappings[ctx.selected]={...choice};
+ for(const index of ctx.selectedFrames)ctx.mappings[index]={...choice};
  renderCurrent();renderChanges();
  const source=infoFor(choice.src);
  const warning=source?.direction!==ctx.direction?' ATTENZIONE: il sostituto guarda '+(DIRECTION_LABELS[source.direction]||source.direction)+', non '+DIRECTION_LABELS[ctx.direction]+'.':source?.state==='idle'?' ATTENZIONE: è uno standing, non un passo.':'';
- setStatus('Frame '+(ctx.selected+1)+' sostituito in anteprima. Confronta l’animazione con l’originale.'+warning);
+ setStatus(ctx.selectedFrames.size+' fotogrammi sostituiti in anteprima. Confronta l’animazione con l’originale.'+warning);
 }
 function makeCard(part,caption,css,click){
  const button=document.createElement('button');
@@ -66,13 +86,18 @@ function makeCard(part,caption,css,click){
 }
 function renderCurrent(){
  const list=$('lab-frames');list.replaceChildren();
+ const marked=new Set(ctx.redoMarks.filter(x=>x.avatar===ctx.avatar&&x.direction===ctx.direction&&x.src===ctx.source.src).map(x=>x.frame));
  ctx.mappings.forEach((part,index)=>{
    const changed=part.src!==ctx.source.src||part.frame!==index;
-   const button=makeCard(part,'#'+(index+1)+(changed?' ✓':''),[index===ctx.selected?'active':'',changed?'changed':''].join(' '),()=>chooseTarget(index));
-   button.setAttribute('aria-label','Sostituisci fotogramma '+(index+1)+(changed?' già modificato':''));
-   button.setAttribute('aria-pressed',String(index===ctx.selected));
+   const selected=ctx.selectedFrames.has(index),redo=marked.has(index);
+   const button=makeCard(part,'#'+(index+1)+(redo?' ✎':'')+(changed?' ✓':''),[selected?'active':'',changed?'changed':'',redo?'marked-redo':''].join(' '),()=>chooseTarget(index));
+   button.setAttribute('aria-label','Fotogramma '+(index+1)+(redo?' segnato da rifare':'')+(changed?' con sostituzione in anteprima':''));
+   button.setAttribute('aria-pressed',String(selected));
+   button.dataset.frame=String(index);button.dataset.marked=String(redo);
+   if(redo){const flag=document.createElement('span');flag.className='redo-flag';flag.textContent='DA RIFARE';button.append(flag);}
    list.append(button);
  });
+ syncSelectionControls();
 }
 function renderCandidateGroup(title,item,active){
  const section=document.createElement('div');section.className='candidate-group';
@@ -218,11 +243,11 @@ async function load(){
  ctx.sourceItem=infoFor(src);
  ctx.pools=collectWalkCandidates(ctx.inventory,ctx.manifest,ctx.avatar,ctx.direction);
  ctx.mappings=Array.from({length:ctx.source.frames},(_,i)=>sourceAt(i));
- ctx.history=[];ctx.selected=null;
+ ctx.history=[];ctx.selectedFrames.clear();
  $('lab-fps').value=String(ctx.fps);$('lab-fps-value').textContent=ctx.fps+' FPS';
  $('lab-meta').textContent=avatar.name+' · '+ctx.source.frames+' fotogrammi · '+ctx.fps+' FPS · '+(avatar.artStatus||'Test')+
    ' · '+ctx.source.src.split('/').slice(-3).join('/');
- $('lab-help').textContent='Seleziona un fotogramma in uso e poi uno dei sostituti: la preview cambierà immediatamente.';
+ $('lab-help').textContent='Tocca uno o più fotogrammi da correggere, quindi segna da rifare o scegli un sostituto.';
  renderCurrent();renderCandidates();renderChanges();setStatus('Caricamento dei fotogrammi...');
  const sources=[ctx.source.src,...new Set([...ctx.pools.sameWalk,...ctx.pools.sameStanding].map(i=>i.src))];
  const settled=await Promise.allSettled(sources.map(src=>getImage(src)));
@@ -231,6 +256,78 @@ async function load(){
  if(failures)setStatus(failures+' file non sono stati decodificati; gli altri sono visualizzabili.');
  else setStatus('Anteprime pronte · scegli il frame sbagliato e prova un’alternativa.');
  renderCurrent();renderCandidates();
+}
+function setRedoStatus(message){$('lab-redo-status').textContent=message;}
+function updateRedoMarks(next,action){
+ try{
+   ctx.redoMarks=saveReviewQueue(localStorage,next);
+   renderRedoBoard();renderCurrent();
+   setRedoStatus(action+' · '+ctx.redoMarks.length+' fotogrammi memorizzati in questo browser.');
+ }catch(error){
+   setRedoStatus('Salvataggio non riuscito: '+error.message+'. Copia il riepilogo per non perdere le segnalazioni.');
+   ctx.redoMarks=next;
+   renderRedoBoard();renderCurrent();
+ }
+}
+function renderRedoBoard(){
+ const rows=ctx.redoMarks,list=$('lab-redo-items');
+ $('lab-redo-total').textContent=String(rows.length);
+ $('lab-copy-redo').disabled=rows.length===0;
+ const names=Object.fromEntries(OVERWORLD_AVATARS.map(x=>[x.id,x.name]));
+ const report=formatReviewQueue(rows,names);
+ $('lab-redo-text').value=report;
+ list.replaceChildren();
+ if(!rows.length){
+   const empty=document.createElement('p');empty.className='redo-empty';
+   empty.textContent='Non hai ancora segnato nessun fotogramma. Puoi raccoglierli anche da diverse direzioni e personaggi.';
+   list.append(empty);
+ }else{
+   const byGroup=new Map();
+   for(const item of rows){
+     const key=item.avatar+'|'+item.direction+'|'+item.src;
+     if(!byGroup.has(key))byGroup.set(key,[]);
+     byGroup.get(key).push(item);
+   }
+   for(const group of byGroup.values()){
+     const head=group[0],wrapper=document.createElement('div');wrapper.className='redo-group';
+     const heading=document.createElement('h3');heading.textContent=(names[head.avatar]||head.avatar)+' · '+DIRECTION_LABELS[head.direction]+' · '+group.length+' da rifare';
+     const file=document.createElement('code');file.textContent=head.src;
+     const cards=document.createElement('div');cards.className='redo-group-items';
+     for(const mark of group){
+       const chip=document.createElement('div');chip.className='redo-record';
+       const label=document.createElement('span');label.textContent='Frame '+(mark.frame+1)+(mark.note?' · '+mark.note:'');
+       const erase=document.createElement('button');erase.type='button';erase.textContent='Rimuovi';erase.setAttribute('aria-label','Rimuovi segnalazione del frame '+(mark.frame+1)+' di '+(names[mark.avatar]||mark.avatar)+' '+head.direction);
+       erase.addEventListener('click',()=>updateRedoMarks(removeReviewMarks(ctx.redoMarks,[mark]),'Segnalazione rimossa'));
+       chip.append(label,erase);cards.append(chip);
+     }
+     const goto=document.createElement('button');goto.type='button';goto.className='redo-goto';goto.textContent='Vai alla camminata';
+     goto.addEventListener('click',()=>{
+       ctx.avatar=head.avatar;ctx.direction=head.direction;
+       $('lab-avatar').value=ctx.avatar;$('lab-direction').value=ctx.direction;
+       void load().then(()=>document.querySelector('.current')?.scrollIntoView({behavior:'smooth',block:'start'}));
+     });
+     wrapper.append(heading,file,cards,goto);list.append(wrapper);
+   }
+ }
+ const issue=$('lab-github-redo');
+ if(report&&report.length<6000){
+   const url='https://github.com/CzekUns/Viral/issues/new?title='+encodeURIComponent('Scopone Alchemico: '+rows.length+' fotogrammi da rifare')+
+    '&body='+encodeURIComponent(report);
+   issue.href=url;issue.classList.remove('disabled');issue.setAttribute('aria-disabled','false');
+ }else{
+   issue.href='#';issue.classList.add('disabled');issue.setAttribute('aria-disabled','true');
+ }
+}
+async function copyRedo(){
+ const report=$('lab-redo-text').value;
+ if(!report){setRedoStatus('Nessun fotogramma da copiare.');return;}
+ try{
+   await navigator.clipboard.writeText(report);
+   setRedoStatus('Elenco copiato: incollalo nella chat per farmi leggere le segnalazioni.');
+ }catch{
+   const area=$('lab-redo-text');area.focus();area.select();
+   setRedoStatus('Copia il testo selezionato e incollalo nella chat.');
+ }
 }
 function configure(){
  const chooser=$('lab-avatar');
@@ -245,6 +342,32 @@ function configure(){
  const dir=params.get('direzione')?.toUpperCase();
  if(DIRECTION_LABELS[dir])ctx.direction=dir;
  chooser.value=ctx.avatar;$('lab-direction').value=ctx.direction;
+ $('lab-select-all').addEventListener('click',()=>{
+   if(!ctx.source)return;
+   ctx.selectedFrames=new Set(Array.from({length:ctx.source.frames},(_,i)=>i));
+   renderCurrent();
+ });
+ $('lab-select-none').addEventListener('click',()=>{
+   ctx.selectedFrames.clear();renderCurrent();
+ });
+ $('lab-mark-redo').addEventListener('click',()=>{
+   const marks=chosenMarks();
+   if(!marks.length)return;
+   const note=$('lab-mark-note').value.trim();
+   updateRedoMarks(addReviewMarks(ctx.redoMarks,marks,{note,savedAt:new Date().toISOString()}),
+     marks.length+' fotogramm'+(marks.length===1?'a segnato':'i segnati')+' da rifare');
+   $('lab-mark-note').value='';
+ });
+ $('lab-unmark-redo').addEventListener('click',()=>{
+   const marks=chosenMarks();
+   if(!marks.length)return;
+   updateRedoMarks(removeReviewMarks(ctx.redoMarks,marks),
+     marks.length+' segnalazion'+(marks.length===1?'e rimossa':'i rimosse'));
+ });
+ $('lab-copy-redo').addEventListener('click',copyRedo);
+ $('lab-github-redo').addEventListener('click',e=>{
+   if(!ctx.redoMarks.length||e.currentTarget.getAttribute('aria-disabled')==='true')e.preventDefault();
+ });
  chooser.addEventListener('change',e=>{ctx.avatar=e.target.value;void load();});
  $('lab-direction').addEventListener('change',e=>{ctx.direction=e.target.value;void load();});
  $('lab-play').addEventListener('click',()=>{
@@ -283,7 +406,8 @@ async function start(){
      return response.json();
    }));
    ctx.manifest=manifest;ctx.inventory=data.items;
-   configure();
+   ctx.redoMarks=readReviewQueue(localStorage);
+   configure();renderRedoBoard();
    await load();
    requestAnimationFrame(animate);
  }catch(err){setStatus('Laboratorio non disponibile: '+safeText(err.message));}
