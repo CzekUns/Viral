@@ -1,0 +1,24 @@
+{
+  "export_checks": "PASS",
+  "source_strips_match_pinned_git_blobs": true,
+  "original_strips_preserved": true,
+  "candidate_count": 6,
+  "changed_trial_slots": 6,
+  "unchanged_trial_slots_exact_RGBA_after_webp_decode": 10,
+  "active_replacements": 0,
+  "visual_approval": false,
+  "source_commit": "01cb46f33affee33d00f6bdf631a66277ce95b01",
+  "silhouette_height_ratios": {
+    "S08-V02-NE-3": 1.003,
+    "S08-V02-NE-4": 1.015,
+    "S08-V02-NW-1": 0.917,
+    "S08-V02-NW-2": 0.999,
+    "S08-V02-SE-1": 0.996,
+    "S08-V02-SW-3": 0.964
+  },
+  "review_notes": [
+    "Foot directions revised; source selection recorded.",
+    "NW contact leg alternation and transitions still require review in slow GIF.",
+    "Generated upper-body and equipment details can vary slightly."
+  ]
+}

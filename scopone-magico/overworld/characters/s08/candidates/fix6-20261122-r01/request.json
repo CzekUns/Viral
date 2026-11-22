@@ -1,0 +1,55 @@
+{
+  "repository": "CzekUns/Viral",
+  "base_commit": "01cb46f33affee33d00f6bdf631a66277ce95b01",
+  "base_tree": "3d88f834ff0e106bd16b122aa00ccb33a11c94cf",
+  "source_root": "scopone-magico/overworld/characters/s08/v02-handsfree-test",
+  "source_archive_drive_id": "1rHPQD9WpEfi-jhU6DNxlp6oVAUXnej3_",
+  "requests": [
+    {
+      "direction": "NE",
+      "frame": 3,
+      "index": 2,
+      "note": ""
+    },
+    {
+      "direction": "NE",
+      "frame": 4,
+      "index": 3,
+      "note": ""
+    },
+    {
+      "direction": "NW",
+      "frame": 1,
+      "index": 0,
+      "note": ""
+    },
+    {
+      "direction": "NW",
+      "frame": 2,
+      "index": 1,
+      "note": ""
+    },
+    {
+      "direction": "SE",
+      "frame": 1,
+      "index": 0,
+      "note": "Piede sx"
+    },
+    {
+      "direction": "SW",
+      "frame": 3,
+      "index": 2,
+      "note": ""
+    }
+  ],
+  "request_status": "DA_RIFARE",
+  "candidate_status": "R01_IN_PREPARAZIONE",
+  "replacement_approved": false,
+  "active_replacements": 0,
+  "original_git_blob_sha": {
+    "NE": "76113d0d26d8ee16d9ceb23dabf85de6a4da3ed8",
+    "NW": "69294c8faa26d18e55d4a622d0e29d978fe9e73d",
+    "SE": "8f27f089a3ae36e8504498b47100b85126a7e1f7",
+    "SW": "e87c612dad8e619ab6b9f0f2f5fcbb393656e590"
+  }
+}

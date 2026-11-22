@@ -1,0 +1,297 @@
+{
+  "character": "S08",
+  "version": "V02_HANDSFREE",
+  "revision": "FIX6_R01",
+  "status": "CANDIDATI_NON_APPROVATI",
+  "source_commit": "01cb46f33affee33d00f6bdf631a66277ce95b01",
+  "original_strips_git_sha": {
+    "NE": "76113d0d26d8ee16d9ceb23dabf85de6a4da3ed8",
+    "NW": "69294c8faa26d18e55d4a622d0e29d978fe9e73d",
+    "SE": "8f27f089a3ae36e8504498b47100b85126a7e1f7",
+    "SW": "e87c612dad8e619ab6b9f0f2f5fcbb393656e590"
+  },
+  "active_replacements": 0,
+  "changed_trial_slots": 6,
+  "untouched_trial_slots": 10,
+  "root": [
+    256,
+    350
+  ],
+  "frame_size": [
+    512,
+    512
+  ],
+  "fps": 7,
+  "candidates": [
+    {
+      "id": "S08-V02-NE-3",
+      "direction": "NE",
+      "display_frame": 3,
+      "index": 2,
+      "note": "",
+      "request_status": "DA_RIFARE",
+      "candidate_status": "R01_DA_VALUTARE",
+      "approved": false,
+      "applied": false,
+      "original": "originals/NE_3.png",
+      "candidate_png": "candidates/S08-V02-NE-3_R01.png",
+      "candidate_webp": "candidates/S08-V02-NE-3_R01.webp",
+      "source": "generated_sources/NE_3_R02.png",
+      "source_strip": "scopone-magico/overworld/characters/s08/v02-handsfree-test/walk/NE.webp",
+      "original_sha256": "5f80b0e54593bfccc6657c3ec04d0e6b7b438017656796ae1c7d70b6cbd41f21",
+      "candidate_sha256": "b6c51d11e6f6dcac8c4d01968ea916994f8f9b61d8a863b81b6b6c1f0664486b",
+      "registration": {
+        "uniform_scale": 0.40512820512820513,
+        "translation": [
+          165,
+          48
+        ],
+        "target_vest_bbox": [
+          221,
+          145,
+          293,
+          208
+        ],
+        "source_vest_bbox": [
+          542,
+          353,
+          725,
+          509
+        ],
+        "alpha_bbox": [
+          166,
+          49,
+          343,
+          382
+        ],
+        "silhouette_height_ratio": 1.0029992229992228
+      }
+    },
+    {
+      "id": "S08-V02-NE-4",
+      "direction": "NE",
+      "display_frame": 4,
+      "index": 3,
+      "note": "",
+      "request_status": "DA_RIFARE",
+      "candidate_status": "R01_DA_VALUTARE",
+      "approved": false,
+      "applied": false,
+      "original": "originals/NE_4.png",
+      "candidate_png": "candidates/S08-V02-NE-4_R01.png",
+      "candidate_webp": "candidates/S08-V02-NE-4_R01.webp",
+      "source": "generated_sources/NE_4_R01.png",
+      "source_strip": "scopone-magico/overworld/characters/s08/v02-handsfree-test/walk/NE.webp",
+      "original_sha256": "d16534a277daa7e9f4c6c4d58a6e4642f2c6b0fe782871aea7082a24f355e5ad",
+      "candidate_sha256": "ec11aa2a3896df8e27e3d76b55ab70253e5ce1d60b98df68334640fc62a43797",
+      "registration": {
+        "uniform_scale": 0.4077922077922078,
+        "translation": [
+          171,
+          48
+        ],
+        "target_vest_bbox": [
+          220,
+          142,
+          291,
+          207
+        ],
+        "source_vest_bbox": [
+          540,
+          340,
+          725,
+          509
+        ],
+        "alpha_bbox": [
+          173,
+          49,
+          334,
+          355
+        ],
+        "silhouette_height_ratio": 1.0154025974025975
+      }
+    },
+    {
+      "id": "S08-V02-NW-1",
+      "direction": "NW",
+      "display_frame": 1,
+      "index": 0,
+      "note": "",
+      "request_status": "DA_RIFARE",
+      "candidate_status": "R01_DA_VALUTARE",
+      "approved": false,
+      "applied": false,
+      "original": "originals/NW_1.png",
+      "candidate_png": "candidates/S08-V02-NW-1_R01.png",
+      "candidate_webp": "candidates/S08-V02-NW-1_R01.webp",
+      "source": "generated_sources/NW_1_R02.png",
+      "source_strip": "scopone-magico/overworld/characters/s08/v02-handsfree-test/walk/NW.webp",
+      "original_sha256": "5a4e270a9420e01e295dfa8b3e5f515fba4266619115a235a9df82378c0da3fa",
+      "candidate_sha256": "07570212cadad41d545fd72f5186a86e66159b63ad79cefc9a4f83d6e152f1d0",
+      "registration": {
+        "uniform_scale": 0.4105504587155963,
+        "translation": [
+          148,
+          48
+        ],
+        "target_vest_bbox": [
+          209,
+          160,
+          298,
+          229
+        ],
+        "source_vest_bbox": [
+          503,
+          386,
+          725,
+          556
+        ],
+        "alpha_bbox": [
+          149,
+          49,
+          341,
+          413
+        ],
+        "silhouette_height_ratio": 0.9167227964231797
+      }
+    },
+    {
+      "id": "S08-V02-NW-2",
+      "direction": "NW",
+      "display_frame": 2,
+      "index": 1,
+      "note": "",
+      "request_status": "DA_RIFARE",
+      "candidate_status": "R01_DA_VALUTARE",
+      "approved": false,
+      "applied": false,
+      "original": "originals/NW_2.png",
+      "candidate_png": "candidates/S08-V02-NW-2_R01.png",
+      "candidate_webp": "candidates/S08-V02-NW-2_R01.webp",
+      "source": "generated_sources/NW_2_R02.png",
+      "source_strip": "scopone-magico/overworld/characters/s08/v02-handsfree-test/walk/NW.webp",
+      "original_sha256": "b1f8a9fcedf3e8900f95f1c91d0d21c237567e93fce4840ea39db854495150c1",
+      "candidate_sha256": "91094b4e77f4900249f3a48bb9c9033d045af26713ae3d032036227ee89f8248",
+      "registration": {
+        "uniform_scale": 0.40786240786240785,
+        "translation": [
+          172,
+          48
+        ],
+        "target_vest_bbox": [
+          217,
+          148,
+          295,
+          216
+        ],
+        "source_vest_bbox": [
+          517,
+          358,
+          725,
+          526
+        ],
+        "alpha_bbox": [
+          173,
+          49,
+          335,
+          401
+        ],
+        "silhouette_height_ratio": 0.9986802386802387
+      }
+    },
+    {
+      "id": "S08-V02-SE-1",
+      "direction": "SE",
+      "display_frame": 1,
+      "index": 0,
+      "note": "Piede sx",
+      "request_status": "DA_RIFARE",
+      "candidate_status": "R01_DA_VALUTARE",
+      "approved": false,
+      "applied": false,
+      "original": "originals/SE_1.png",
+      "candidate_png": "candidates/S08-V02-SE-1_R01.png",
+      "candidate_webp": "candidates/S08-V02-SE-1_R01.webp",
+      "source": "generated_sources/SE_1_R01.png",
+      "source_strip": "scopone-magico/overworld/characters/s08/v02-handsfree-test/walk/SE.webp",
+      "original_sha256": "28ae684c58d8a09b5d1eee7f4669ab9b4de13cafa3c6520161d96804adef9ed3",
+      "candidate_sha256": "8177fc787b8e22b2634b99a9e9213712cd8e7bfd967ad2cd098c7b94f8201d25",
+      "registration": {
+        "uniform_scale": 0.4033816425120773,
+        "translation": [
+          162,
+          49
+        ],
+        "target_vest_bbox": [
+          213,
+          147,
+          295,
+          218
+        ],
+        "source_vest_bbox": [
+          514,
+          355,
+          722,
+          534
+        ],
+        "alpha_bbox": [
+          163,
+          50,
+          354,
+          396
+        ],
+        "silhouette_height_ratio": 0.995629834408422
+      }
+    },
+    {
+      "id": "S08-V02-SW-3",
+      "direction": "SW",
+      "display_frame": 3,
+      "index": 2,
+      "note": "",
+      "request_status": "DA_RIFARE",
+      "candidate_status": "R01_DA_VALUTARE",
+      "approved": false,
+      "applied": false,
+      "original": "originals/SW_3.png",
+      "candidate_png": "candidates/S08-V02-SW-3_R01.png",
+      "candidate_webp": "candidates/S08-V02-SW-3_R01.webp",
+      "source": "generated_sources/SW_3_R01.png",
+      "source_strip": "scopone-magico/overworld/characters/s08/v02-handsfree-test/walk/SW.webp",
+      "original_sha256": "409ad28e81d2092046da66c6add82a100814a432828dc2a707cf63ec5b1e430e",
+      "candidate_sha256": "44551e2ef2f743883c1526249d931d4ad52e9f730b1e315684f34e2db1b3baa4",
+      "registration": {
+        "uniform_scale": 0.4036281179138322,
+        "translation": [
+          156,
+          49
+        ],
+        "target_vest_bbox": [
+          222,
+          147,
+          302,
+          229
+        ],
+        "source_vest_bbox": [
+          545,
+          357,
+          745,
+          561
+        ],
+        "alpha_bbox": [
+          157,
+          50,
+          352,
+          398
+        ],
+        "silhouette_height_ratio": 0.9635356463848306
+      }
+    }
+  ],
+  "notes": [
+    "Original source strips match repository blobs at source commit.",
+    "Only candidate/trial material; no active asset path modified.",
+    "Uniform scale/translation register head and red waistcoat to original; no mirroring, warping or synthetic interpolation.",
+    "Visual quality and movement require user review; these are not approved replacements."
+  ]
+}
