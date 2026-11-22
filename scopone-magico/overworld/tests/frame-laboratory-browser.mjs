@@ -46,6 +46,30 @@ try{
  await page.locator('#lab-undo').click();
  assert.equal(await page.locator('#lab-instructions').inputValue(),'','Undo must restore original sequence');
 
+ // Multi-select non-adjacent poses and mark them for redrawing, not replacing.
+ await page.locator('#lab-frames .frame-button').nth(0).click();
+ await page.locator('#lab-frames .frame-button').nth(2).click();
+ assert.equal(await page.locator('#lab-frames .frame-button[aria-pressed="true"]').count(),2);
+ assert.equal(await page.locator('#lab-mark-count').textContent(),'2');
+ await page.locator('#lab-mark-note').fill('piede rivolto a NE / salta');
+ await page.locator('#lab-mark-redo').click();
+ assert.equal(await page.locator('#lab-redo-total').textContent(),'2');
+ assert.equal(await page.locator('#lab-frames .frame-button[data-marked="true"]').count(),2);
+ assert.match(await page.locator('#lab-redo-text').inputValue(),/piede rivolto a NE \/ salta/);
+ const exported=await page.locator('#lab-redo-text').inputValue();
+ assert.match(exported,/Fotogramma 1 \(indice 0\)/);
+ assert.match(exported,/Fotogramma 3 \(indice 2\)/);
+ await page.locator('#lab-candidates .candidate-button').nth(1).click();
+ const combined=await page.locator('#lab-instructions').inputValue();
+ assert.match(combined,/FRAME 1 \(indice 0\)/);
+ assert.match(combined,/FRAME 3 \(indice 2\)/);
+ await page.locator('#lab-undo').click();
+ assert.equal(await page.locator('#lab-instructions').inputValue(),'');
+ await page.locator('#lab-select-none').click();
+ assert.equal(await page.locator('#lab-frames .frame-button[aria-pressed="true"]').count(),0);
+ await page.screenshot({path:path.join(root,'browser-qa','laboratorio-S08-E-multi-da-rifare.png'),fullPage:true});
+
+
  // Bastoni NW has original V01 + three non-active R02 candidate sources.
  await page.locator('#lab-avatar').selectOption('b08-player');
  await page.locator('#lab-direction').selectOption('NW');
@@ -61,6 +85,33 @@ try{
  await page.screenshot({path:path.join(root,'browser-qa','laboratorio-B08-NW-candidato.png'),fullPage:true});
  await page.locator('#lab-copy').click();
  await page.waitForFunction(()=>/copiate|Copia il testo/i.test(document.querySelector('#lab-status')?.textContent||''),null,{timeout:7000});
+ // Collect several frames from a second avatar and retain both groups after reload.
+ await page.locator('#lab-select-all').click();
+ assert.equal(await page.locator('#lab-frames .frame-button[aria-pressed="true"]').count(),4);
+ await page.locator('#lab-mark-note').fill('quattro pose da verificare');
+ await page.locator('#lab-mark-redo').click();
+ assert.equal(await page.locator('#lab-redo-total').textContent(),'6');
+ assert.equal(await page.locator('.redo-group').count(),2);
+ await page.locator('#lab-avatar').selectOption('s08-player');
+ await page.locator('#lab-direction').selectOption('E');
+ await page.waitForFunction(()=>document.querySelector('#lab-status')?.textContent?.includes('pronte'),null,{timeout:25000});
+ assert.equal(await page.locator('#lab-frames .frame-button[data-marked="true"]').count(),2);
+ assert.equal(await page.locator('#lab-redo-total').textContent(),'6');
+ await page.reload();
+ await page.waitForFunction(()=>document.querySelector('#lab-status')?.textContent?.includes('pronte'),null,{timeout:25000});
+ assert.equal(await page.locator('#lab-redo-total').textContent(),'6','Redo list survives page reload');
+ assert.equal(await page.locator('#lab-frames .frame-button[data-marked="true"]').count(),2,'Marked badges survive page reload');
+ assert.equal(await page.locator('.redo-group').count(),2);
+ assert.match(await page.locator('#lab-redo-text').inputValue(),/quattro pose da verificare/);
+ assert.equal(await page.locator('#lab-github-redo').getAttribute('aria-disabled'),'false');
+ assert.match(await page.locator('#lab-github-redo').getAttribute('href'),/^https:\/\/github.com\/CzekUns\/Viral\/issues\/new\?/);
+ // Remove only one mark while preserving the rest.
+ await page.locator('.redo-group').filter({hasText:'8 Spade V02'}).locator('.redo-record button').first().click();
+ assert.equal(await page.locator('#lab-redo-total').textContent(),'5');
+ await page.locator('#lab-copy-redo').click();
+ await page.waitForFunction(()=>/copiato|Copia il testo/i.test(document.querySelector('#lab-redo-status')?.textContent||''),null,{timeout:7000});
+ await page.screenshot({path:path.join(root,'browser-qa','laboratorio-elenco-persistente-da-rifare.png'),fullPage:true});
+
 
  for(const id of ['d08-player','c08-v01-player','c08-v02-player','player']){
    await page.locator('#lab-avatar').selectOption(id);
@@ -68,7 +119,7 @@ try{
    assert.ok(await page.locator('#lab-frames .frame-button').count()>=4,'missing workbench current frames '+id);
  }
  assert.deepEqual(errors,[],'No browser exceptions');
- console.log('FRAME LABORATORY QA OK: 6 avatars, 0 same-dir extras S08 E, 28 other-dir frames, B08 R02 candidates and preview');
+ console.log('FRAME LABORATORY QA OK: 6 avatars, two non-adjacent selected, multi-frame replacement, redo queue across suits, persistence, undo and GitHub issue draft');
 }finally{
  await browser?.close();server.kill();
 }
