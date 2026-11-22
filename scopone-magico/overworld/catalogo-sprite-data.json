@@ -2027,6 +2027,21 @@
       ],
       "fps": 7,
       "bytes": null
+    },
+    {
+      "code": "S08-WALK-NW-R02-FRAME02",
+      "character": "S08",
+      "direction": "NW",
+      "state": "walk",
+      "version": "Spade V02 · NW frame 2 · candidato R02",
+      "src": "characters/s08/revisions/nw-frame02-r02/NW_frame02_candidate.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 74710
     }
   ]
 }
