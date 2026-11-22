@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111823">
+<title>Gaia RTS — FF9 Original Asset Mode</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#10161e;color:#f5ebd2;font-family:system-ui,Arial,sans-serif;touch-action:none}
+button,input{font:inherit}button{color:#fff;border:1px solid #c2a87c;border-radius:5px;background:#26384b;padding:11px 8px;min-height:45px;touch-action:manipulation}button:disabled{opacity:.38}
+#viewport{position:absolute;inset:0;display:block;width:100%;height:100%;touch-action:none}
+#top{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:calc(8px + env(safe-area-inset-top)) 12px 11px;background:linear-gradient(#111923f5,#111923a8 78%,transparent);pointer-events:none}
+#top h1{font:400 22px Georgia,serif;margin:0;letter-spacing:.04em}#top h1 small{display:block;color:#ddbb7e;font:700 10px system-ui;letter-spacing:.17em}
+#top label{font-size:12px;white-space:nowrap}#top button{pointer-events:auto;font-size:13px}
+#stats{font:600 12px system-ui;line-height:1.5;text-align:right;background:#17283cc2;border-radius:5px;padding:5px 9px}
+#footer{position:fixed;left:0;right:0;bottom:0;z-index:4;padding:23px 10px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(transparent,#111a29 12%,#111a29ee)}
+#hint{text-align:center;font:12px system-ui;color:#e9d8b8;margin-bottom:10px;min-height:15px}
+.actions{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;max-width:850px;margin:auto}
+.actions button{font-weight:700;font-size:11px}
+#notice{position:fixed;top:88px;left:50%;transform:translateX(-50%);z-index:6;background:#222b3ee8;border:1px solid #beab83;border-radius:5px;padding:8px 12px;white-space:nowrap;font-size:12px;opacity:0;transition:opacity .2s;pointer-events:none}
+#notice.visible{opacity:1}
+#asset-panel{position:fixed;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);width:min(95vw,500px);max-height:78vh;overflow:auto;background:#172333f5;border:2px solid #baa06e;border-radius:10px;box-shadow:0 20px 80px #000b;padding:20px;touch-action:pan-y}
+#asset-panel h2{margin:0 0 8px;font:400 27px Georgia,serif;color:#ead7a5}
+#asset-panel p,#asset-panel li{font:13px/1.5 system-ui;color:#d8dfdf}
+#asset-panel label{display:block;font-size:13px;margin:14px 0 7px;color:#e7c88e;font-weight:700}
+#asset-panel input{font:12px system-ui;width:100%;border:1px dashed #7c8ca0;border-radius:5px;padding:12px;background:#0c1d2a;color:#f1ebdf;touch-action:manipulation}
+#asset-panel .row{display:flex;gap:8px;margin-top:12px}#asset-panel .row button{flex:1;font-size:13px}
+#asset-panel a{color:#e2c486}#asset-info{color:#e8cfa2;font-size:12px;margin:13px 0}
+#asset-panel .small{font-size:11px;opacity:.82}
+#settings{position:fixed;top:80px;right:10px;z-index:2;display:flex;flex-direction:column;gap:6px}
+#settings button{min-width:44px}
+#result{display:none;position:fixed;z-index:12;inset:0;align-items:center;justify-content:center;background:#10141cd4}
+#result.show{display:flex}#result>div{padding:24px;background:#29394d;border:2px solid #c1a97e;border-radius:8px;text-align:center}
+@media(max-width:550px){#top h1{font-size:17px}#stats{font-size:10px}.actions button{font-size:10px;padding:8px 3px}#asset-panel{padding:15px}#settings{top:70px}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+</head><body>
+<canvas id="viewport" aria-label="Visuale tridimensionale della mappa"></canvas>
+<div id="top"><h1><small>FINAL FANTASY IX · FAN PROTOTYPE</small>GAIA RTS</h1><div id="stats">Gil <span id="gold">240</span> · Unità <span id="count">0</span><div>Città <span id="towns">1</span>/3</div></div></div>
+<div id="settings"><button id="assetbtn" title="Carica asset originali">⚙</button><button id="plus" aria-label="Aumenta zoom">＋</button><button id="minus" aria-label="Riduci zoom">－</button></div>
+<div id="notice"></div>
+<div id="footer"><div id="hint">Carica i modelli originali FF9 per iniziare.</div><div class="actions"><button id="all">▣ Tutte</button><button id="move">➤ Marcia</button><button id="fight">⚔ Attacca</button><button id="recruit">♟ Recluta 60</button><button id="pause">Ⅱ Pausa</button></div></div>
+<section id="asset-panel" aria-label="Importa asset originali">
+<h2>Gli asset originali di FF9</h2>
+<p>Questa versione <b>non disegna un overworld finto</b>. Carica il modello 3D autentico dell'overworld e almeno un mini-personaggio di FF9 in formato <b>GLB</b>. Le texture incorporate restano quelle del gioco.</p>
+<label for="terrain-file">1 · Overworld 3D originale (.glb)</label>
+<input id="terrain-file" type="file" accept=".glb,model/gltf-binary">
+<label for="unit-file">2 · Mini-personaggi overworld originali (.glb, anche più di uno)</label>
+<input id="unit-file" type="file" accept=".glb,model/gltf-binary" multiple>
+<p id="asset-info">Nessun asset ancora caricato.</p>
+<div class="row"><button id="start">Avvia l'RTS</button><button id="close">Chiudi</button></div>
+<p class="small">I file vengono salvati esclusivamente sul dispositivo tramite IndexedDB. Non vengono inviati a GitHub o a server. La dimensione e le coordinate sono adattate automaticamente; le città sono segnaposto tattici finché non vengono calibrate sui luoghi reali.</p>
+<p class="small">Fonti: <a href="https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303153/" target="_blank" rel="noopener">Overworld 3D (Models Resource)</a> · <a href="https://github.com/GameJawnsInc/Dream-World-IX" target="_blank" rel="noopener">FF9 Map Kit per esportare GEO_SUB_W0_* in GLB</a></p>
+</section>
+<div id="result"><div><h2 id="result-title">Campagna terminata</h2><button id="restart">Ricomincia</button></div></div>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {clone as cloneSkinned} from 'three/addons/utils/SkeletonUtils.js';
+const $=id=>document.getElementById(id);
+const renderer=new THREE.WebGLRenderer({canvas:$('viewport'),antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));
+renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;
+const scene=new THREE.Scene();scene.background=new THREE.Color('#7793a2');scene.fog=new THREE.Fog('#8fa4ae',600,1500);
+scene.add(new THREE.HemisphereLight('#e3e2d1','#5b6463',2.5));
+const sun=new THREE.DirectionalLight('#ffebc4',2.5);sun.position.set(-280,550,160);scene.add(sun);
+const camera=new THREE.OrthographicCamera(-200,200,120,-120,.1,3000);
+let view={target:new THREE.Vector3(),span:450,yaw:.6,pitch:.86};
+const orbitVector=()=>new THREE.Vector3(Math.sin(view.yaw)*Math.cos(view.pitch),Math.sin(view.pitch),Math.cos(view.yaw)*Math.cos(view.pitch));
+let world=null,worldAssets=[],unitAssets=[],worldMeshes=[],units=[],towns=[],selected=new Set(),gold=240,paused=false,ready=false;
+let pointerId=null,pointers=new Map(),started=null,moved=false,pinchDist=0,noticeUntil=0,last=performance.now(),unitID=0;
+const loader=new GLTFLoader(),ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+const assetsUrl=(buffer)=>URL.createObjectURL(new Blob([buffer],{type:'model/gltf-binary'}));
+function flash(s){$('notice').textContent=s;$('notice').classList.add('visible');noticeUntil=performance.now()+2600}
+function openDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open('ff9-rts-authentic-assets',1);r.onupgradeneeded=()=>r.result.createObjectStore('assets');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
+async function store(key,buffer){const db=await openDB();await new Promise((ok,no)=>{const tx=db.transaction('assets','readwrite');tx.objectStore('assets').put(buffer,key);tx.oncomplete=ok;tx.onerror=()=>no(tx.error)});db.close()}
+async function loadSaved(key){const db=await openDB();const v=await new Promise((ok,no)=>{const tx=db.transaction('assets','readonly');const req=tx.objectStore('assets').get(key);req.onsuccess=()=>ok(req.result);req.onerror=()=>no(req.error)});db.close();return v}
+function loadGLB(buffer){return new Promise((resolve,reject)=>{const url=assetsUrl(buffer);loader.load(url,g=>{URL.revokeObjectURL(url);resolve(g)},undefined,e=>{URL.revokeObjectURL(url);reject(e)})})}
+function setCamera(){const v=orbitVector();camera.position.copy(view.target).addScaledVector(v,view.span*1.8);camera.lookAt(view.target);const aspect=innerWidth/innerHeight;camera.left=-view.span*aspect/2;camera.right=view.span*aspect/2;camera.top=view.span/2;camera.bottom=-view.span/2;camera.updateProjectionMatrix()}
+function fitWorld(gltf){
+ if(world)scene.remove(world);world=gltf.scene;world.updateMatrixWorld(true);let bb=new THREE.Box3().setFromObject(world);
+ if(bb.isEmpty())throw Error('Il GLB non contiene mesh.');
+ const size=bb.getSize(new THREE.Vector3()),center=bb.getCenter(new THREE.Vector3());
+ const largest=Math.max(size.x,size.z,size.y);if(largest<1e-6)throw Error('Geometria della mappa vuota.');
+ // Center and normalize the real scene; mesh vertices and original textures are preserved.
+ const scale=580/largest;world.scale.multiplyScalar(scale);world.position.sub(center.multiplyScalar(scale));world.updateMatrixWorld(true);
+ scene.add(world);const newBox=new THREE.Box3().setFromObject(world);
+ worldMeshes=[];world.traverse(o=>{if(o.isMesh){o.frustumCulled=false;worldMeshes.push(o)}});
+ if(worldMeshes.length===0)throw Error('Nessuna superficie 3D.');
+ view.target.set(0,newBox.min.y+newBox.getSize(new THREE.Vector3()).y/2,0);
+ view.span=Math.max(310,newBox.getSize(new THREE.Vector3()).z*1.35);scene.fog.near=800;scene.fog.far=2600;
+ const water=new THREE.Mesh(new THREE.PlaneGeometry(6000,6000),new THREE.MeshStandardMaterial({color:'#395f76',roughness:.75}));
+ water.rotation.x=-Math.PI/2;water.position.y=newBox.min.y-2;water.name='water';if(scene.getObjectByName('water'))scene.remove(scene.getObjectByName('water'));scene.add(water);
+ setCamera();
+}
+function getSurface(x,z){if(!world)return null;const box=new THREE.Box3().setFromObject(world);ray.set(new THREE.Vector3(x,box.max.y+900,z),new THREE.Vector3(0,-1,0));const hits=ray.intersectObjects(worldMeshes,true);return hits.find(i=>i.face&&i.face.normal.y>-0.9)?.point||null}
+function onGround(x,z){return getSurface(x,z)}
+function ring(color,r){const geometry=new THREE.RingGeometry(r-.9,r,42);const material=new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide,transparent:true,opacity:.92,depthWrite:false});const ring=new THREE.Mesh(geometry,material);ring.rotation.x=-Math.PI/2;return ring}
+function clearUnits(){for(const u of units){scene.remove(u.group);u.group.traverse(o=>{if(o.geometry?.userData?.generated)o.geometry.dispose()})}units=[];selected.clear();for(const c of towns)scene.remove(c.mesh);towns=[];unitID=0;}
+function setCity(name,nx,nz,side){
+ const bb=new THREE.Box3().setFromObject(world),p=onGround(bb.min.x+bb.getSize(new THREE.Vector3()).x*nx,bb.min.z+bb.getSize(new THREE.Vector3()).z*nz);
+ if(!p)return false;
+ const mesh=new THREE.Group(),marker=ring(side===1?'#74bde5':side===-1?'#e99283':'#dac997',20);mesh.add(marker);
+ const pole=new THREE.Mesh(new THREE.CylinderGeometry(.5,.5,14),new THREE.MeshStandardMaterial({color:'#c8b999'}));pole.position.y=7;mesh.add(pole);
+ const banner=new THREE.Mesh(new THREE.PlaneGeometry(17,9),new THREE.MeshBasicMaterial({color:side===1?'#5f99cb':side===-1?'#b56464':'#d0bc7d',side:THREE.DoubleSide}));banner.position.set(8,12,0);mesh.add(banner);
+ mesh.position.copy(p);mesh.position.y+=1;scene.add(mesh);towns.push({name,p,side,mesh,progress:0,radius:37});return true;
+}
+function newUnit(x,z,side,variantIndex){
+ const p=onGround(x,z);if(!p||!unitAssets.length)return null;
+ const asset=unitAssets[variantIndex%unitAssets.length],g=new THREE.Group();
+ const model=cloneSkinned(asset.scene);model.updateMatrixWorld(true);
+ let b=new THREE.Box3().setFromObject(model),sz=b.getSize(new THREE.Vector3());
+ const sf=25/Math.max(sz.y,sz.z,sz.x,1);model.scale.multiplyScalar(sf);model.updateMatrixWorld(true);b=new THREE.Box3().setFromObject(model);
+ model.position.y-=b.min.y;const center=b.getCenter(new THREE.Vector3());model.position.x-=center.x;model.position.z-=center.z;
+ g.add(model);const selring=ring(side===1?'#96d3ff':'#e4a19a',9);g.add(selring);
+ g.position.copy(p);scene.add(g);
+ const anims=asset.animations||[],mixer=anims.length?new THREE.AnimationMixer(model):null;
+ const stand=anims.find(a=>/idle|stand|wait/i.test(a.name))||anims[0],walk=anims.find(a=>/walk|run/i.test(a.name))||stand;
+ const actions={};if(mixer){if(stand)actions.idle=mixer.clipAction(stand);if(walk)actions.walk=mixer.clipAction(walk)}
+ let current='idle';actions.idle?.play();selring.visible=false;
+ const u={id:++unitID,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,mixer,actions,current,hp:100,goal:null,target:null,cooldown:0,speed:side===1?32:27,ai:Math.random()+1};
+ units.push(u);return u;
+}
+function animateUnit(u,moving){const act=moving?'walk':'idle';if(act!==u.current){u.actions[u.current]?.fadeOut(.18);u.actions[act]?.reset().fadeIn(.18).play();u.current=act}}
+function setupUnits(){
+ clearUnits();gold=240;
+ if(!world||!unitAssets.length)return;
+ setCity('Lindblum',.3,.63,1);setCity('Burmecia',.63,.29,-1);setCity('Alexandria',.76,.62,-1);
+ const l=towns.find(c=>c.name==='Lindblum'),a=towns.find(c=>c.name==='Alexandria'),b=towns.find(c=>c.name==='Burmecia');
+ if(l)for(let i=0;i<6;i++)newUnit(l.p.x+(i%3)*14-15,l.p.z+Math.floor(i/3)*14+31,1,i);
+ if(a)for(let i=0;i<3;i++)newUnit(a.p.x+(i%3)*13-15,a.p.z+25,-1,i);
+ if(b)for(let i=0;i<3;i++)newUnit(b.p.x+(i%3)*13-15,b.p.z+25,-1,i);
+ ready=true;paused=false;view.target.copy(l?.p||view.target);view.span=Math.min(view.span,350);setCamera();$('result').classList.remove('show');flash('Asset FF9 caricati: tocca un personaggio per selezionarlo');updateHUD();
+}
+function updateHUD(){
+ $('gold').textContent=Math.floor(gold);$('count').textContent=units.filter(u=>u.side===1).length;$('towns').textContent=towns.filter(t=>t.side===1).length;
+ $('recruit').disabled=!ready||gold<60;$('all').disabled=!ready;
+ $('move').disabled=!ready;$('fight').disabled=!ready;
+ $('hint').textContent=!ready?'Carica gli asset FF9 autentici per iniziare':(selected.size?selected.size+' unità selezionate · tocca il terreno per muoverle':'Tocca un personaggio; trascina per esplorare, pizzica per lo zoom');
+ $('pause').textContent=paused?'▶ Riprendi':'Ⅱ Pausa';
+}
+function toMouse(x,y){mouse.x=(x/innerWidth)*2-1;mouse.y=-(y/innerHeight)*2+1;ray.setFromCamera(mouse,camera)}
+function pickGround(x,y){toMouse(x,y);const hits=ray.intersectObjects(worldMeshes,true);return hits[0]?.point||null}
+function tap(x,y){
+ if(!ready)return;const p=pickGround(x,y);if(!p)return;
+ let ally=units.filter(u=>u.side===1).sort((a,b)=>a.p.distanceTo(p)-b.p.distanceTo(p))[0];
+ let foe=units.filter(u=>u.side===-1).sort((a,b)=>a.p.distanceTo(p)-b.p.distanceTo(p))[0];
+ if(ally&&ally.p.distanceTo(p)<16){selected.clear();selected.add(ally.id);for(const u of units)u.selring.visible=selected.has(u.id);updateHUD();return}
+ if(selected.size){for(const u of units.filter(u=>selected.has(u.id))){if(foe&&foe.p.distanceTo(p)<18){u.target=foe;u.goal=null}else{u.target=null;u.goal=p.clone()}}}
+}
+function zoom(d){view.span=Math.min(1000,Math.max(80,view.span*d));setCamera()}
+$('viewport').addEventListener('pointerdown',e=>{$('viewport').setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===1){pointerId=e.pointerId;started={x:e.clientX,y:e.clientY};moved=false}});
+$('viewport').addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;const was=pointers.get(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});const ps=[...pointers.values()];
+ if(ps.length===2){moved=true;let d=Math.hypot(ps[0].x-ps[1].x,ps[0].y-ps[1].y);if(pinchDist)zoom(pinchDist/d);pinchDist=d;return}
+ if(!was||!started)return;let dx=e.clientX-was.x,dy=e.clientY-was.y;if(Math.hypot(e.clientX-started.x,e.clientY-started.y)>8)moved=true;
+ if(moved){const right=new THREE.Vector3().setFromMatrixColumn(camera.matrix,0),forward=new THREE.Vector3().setFromMatrixColumn(camera.matrix,1);right.y=0;forward.y=0;view.target.addScaledVector(right,-dx*view.span/innerHeight);view.target.addScaledVector(forward,dy*view.span/innerHeight);setCamera()}
+});
+function pointerEnd(e){if(!pointers.has(e.pointerId))return;pointers.delete(e.pointerId);if(!moved&&pointers.size===0)tap(e.clientX,e.clientY);if(!pointers.size){started=null;pinchDist=0}}
+$('viewport').addEventListener('pointerup',pointerEnd);$('viewport').addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);started=null});
+$('viewport').addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY>0?1.1:.9)},{passive:false});
+$('plus').onclick=()=>zoom(.8);$('minus').onclick=()=>zoom(1.25);
+$('all').onclick=()=>{selected=new Set(units.filter(u=>u.side===1).map(u=>u.id));for(const u of units)u.selring.visible=selected.has(u.id);updateHUD()};
+$('move').onclick=()=>flash('Seleziona le unità, poi tocca il terreno');
+$('fight').onclick=()=>flash('Seleziona le unità, poi tocca un nemico');
+$('recruit').onclick=()=>{const base=towns.find(t=>t.name==='Lindblum');if(!base||gold<60)return;gold-=60;const u=newUnit(base.p.x+Math.random()*25,base.p.z+25,1,unitID);if(u){selected.clear();selected.add(u.id);for(const p of units)p.selring.visible=selected.has(p.id)}updateHUD()};
+$('pause').onclick=()=>{paused=!paused;updateHUD()};
+$('assetbtn').onclick=()=>{$('asset-panel').hidden=false};
+$('close').onclick=()=>{$('asset-panel').hidden=true};
+$('restart').onclick=()=>setupUnits();
+$('asset-panel').addEventListener('click',e=>e.stopPropagation());
+async function takeFile(file,key){if(!file||!file.name.toLowerCase().endsWith('.glb'))throw Error('Serve un file .glb');let bytes=await file.arrayBuffer();await store(key,bytes);return loadGLB(bytes)}
+$('terrain-file').onchange=async e=>{try{let f=e.target.files?.[0];if(!f)return;let gltf=await takeFile(f,'world');fitWorld(gltf);$('asset-info').textContent='Overworld FF9 caricato ✓';flash('Geometria autentica del terreno caricata')}catch(err){flash('Errore nel modello della mappa: '+err.message)}};
+$('unit-file').onchange=async e=>{try{let files=[...(e.target.files||[])];if(!files.length)return;unitAssets=[];for(let i=0;i<files.length;i++){const gltf=await takeFile(files[i],'unit-'+i);unitAssets.push(gltf)}await store('unit-count',new TextEncoder().encode(String(files.length)).buffer);$('asset-info').textContent='Overworld: '+(world?'✓':'mancante')+' · Miniature: '+unitAssets.length;flash(unitAssets.length+' modelli autentici caricati')}catch(err){flash('Errore miniatura: '+err.message)}};
+$('start').onclick=()=>{if(!world||!unitAssets.length){flash('Servono i due tipi di asset originali .glb');return}setupUnits();$('asset-panel').hidden=true};
+async function restore(){try{const wb=await loadSaved('world');if(wb){fitWorld(await loadGLB(wb));}const cnt=await loadSaved('unit-count');let n=cnt?Number(new TextDecoder().decode(cnt)):0;for(let i=0;i<Math.min(n,21);i++){let buf=await loadSaved('unit-'+i);if(buf)unitAssets.push(await loadGLB(buf))}if(world&&unitAssets.length){$('asset-info').textContent='Overworld originale e '+unitAssets.length+' mini-personaggi salvati ✓';setupUnits();$('asset-panel').hidden=true}else{$('asset-info').textContent=(world?'Overworld originale ✓':'Overworld mancante')+' · Miniature: '+unitAssets.length}}catch(e){console.error(e);flash('Asset salvati non caricabili: '+e.message)}}
+function tick(dt){
+ if(!ready||paused)return;gold+=dt*(2+towns.filter(t=>t.side===1).length);
+ for(const u of units){
+  if(u.mixer)u.mixer.update(dt);
+  u.cooldown=Math.max(0,u.cooldown-dt);let opponent=units.filter(v=>v.side!==u.side).sort((a,b)=>u.p.distanceTo(a.p)-u.p.distanceTo(b.p))[0];
+  if(opponent&&u.p.distanceTo(opponent.p)<16&&u.cooldown<=0){opponent.hp-=12;u.cooldown=.7;u.goal=null}
+  if(u.side<0){u.ai-=dt;if(u.ai<=0){u.ai=1.7+Math.random();const attackBase=towns.find(t=>t.side===1);if(opponent&&u.p.distanceTo(opponent.p)<100){u.target=opponent}else if(attackBase){u.goal=attackBase.p.clone();u.target=null}}}
+  const target=u.target&&u.target.hp>0?u.target:null;
+  if(target)u.goal=target.p.clone();
+  let moving=false;
+  if(u.goal){let d=new THREE.Vector3(u.goal.x-u.p.x,0,u.goal.z-u.p.z),len=d.length();if(len>12){d.multiplyScalar(Math.min(len,u.speed*dt)/len);let g=onGround(u.p.x+d.x,u.p.z+d.z);if(g){u.p.copy(g);u.g.position.copy(g);u.model.rotation.y=Math.atan2(-d.x,-d.z);moving=true}}else{u.goal=null}}
+  animateUnit(u,moving);
+ }
+ for(const dead of units.filter(u=>u.hp<=0)){scene.remove(dead.g);selected.delete(dead.id)}
+ units=units.filter(u=>u.hp>0);
+ for(const city of towns){const nearby=units.filter(u=>u.p.distanceTo(city.p)<city.radius);const ally=nearby.some(u=>u.side===1),enemy=nearby.some(u=>u.side===-1);
+ let claimant=ally&&!enemy?1:enemy&&!ally?-1:0;
+ if(claimant&&city.side!==claimant){city.progress+=dt*24;if(city.progress>=100){city.progress=0;city.side=claimant;city.mesh.children[0].material.color.set(claimant===1?'#74bde5':'#e99283');city.mesh.children[2].material.color.set(claimant===1?'#5f99cb':'#b56464');flash(city.name+' conquistata!')}}else city.progress=Math.max(0,city.progress-dt*8)}
+ if(towns.filter(t=>t.side===1).length===towns.length&&towns.length){paused=true;$('result-title').textContent='Hai conquistato l’overworld!';$('result').classList.add('show')}
+ if(!units.some(u=>u.side===1)){paused=true;$('result-title').textContent='Esercito sconfitto';$('result').classList.add('show')}
+ updateHUD();
+}
+window.addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);setCamera()});setCamera();
+function frame(t){let dt=Math.min(.05,(t-last)/1000);last=t;tick(dt);renderer.render(scene,camera);if(noticeUntil&&t>noticeUntil){noticeUntil=0;$('notice').classList.remove('visible')}requestAnimationFrame(frame)}
+requestAnimationFrame(frame);restore();
+</script></body></html>
