@@ -47,6 +47,8 @@ try{
  assert.equal(await page.locator('#lab-instructions').inputValue(),'','Undo must restore original sequence');
 
  // Multi-select non-adjacent poses and mark them for redrawing, not replacing.
+ // Undo restores the preview, but intentionally preserves the active selection.
+ await page.locator('#lab-select-none').click();
  await page.locator('#lab-frames .frame-button').nth(0).click();
  await page.locator('#lab-frames .frame-button').nth(2).click();
  assert.equal(await page.locator('#lab-frames .frame-button[aria-pressed="true"]').count(),2);
