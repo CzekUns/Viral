@@ -1,0 +1,286 @@
+{
+  "character": "S09",
+  "name": "9 Spade V01 cavaliere",
+  "status": "TEST_DA_REVISIONARE",
+  "approved": false,
+  "applied": false,
+  "frame_size": [
+    512,
+    512
+  ],
+  "directions": [
+    "S",
+    "SE",
+    "E",
+    "NE",
+    "N",
+    "NW",
+    "W",
+    "SW"
+  ],
+  "fps": 7,
+  "columns": [
+    "standing",
+    "walk1",
+    "walk2",
+    "walk3",
+    "walk4"
+  ],
+  "inventory": [
+    {
+      "direction": "S",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "S",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SE",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "E",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NE",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "N",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "NW",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "W",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 0,
+      "state": "standing",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 1,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 2,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 3,
+      "state": "walk",
+      "approved": false
+    },
+    {
+      "direction": "SW",
+      "slot": 4,
+      "state": "walk",
+      "approved": false
+    }
+  ],
+  "notes": [
+    "Trasparenza alfa presente; residui di sfondo e frange da verificare.",
+    "Pose e ciclo al passo richiedono revisione visiva.",
+    "Esportazione da griglia 5x8, nessuna correzione anatomica.",
+    "Griglia 5x8: prima colonna standing, quattro pose walk. Frammenti marginali esclusi dal ritaglio; scala comune, box condiviso per direzione. Nessuna approvazione estetica implicita."
+  ],
+  "source": {
+    "file": "source/spritesheet.png",
+    "originalName": "Cavaliere di spade blu in marcia.png",
+    "sha256": "f25bc1eee528c92ebe3bb9217de844a56f50eeb232fd4b5d21ac4170f0ec1584",
+    "size": [
+      992,
+      1586
+    ]
+  }
+}

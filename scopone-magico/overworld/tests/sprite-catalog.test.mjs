@@ -9,19 +9,19 @@ const read=relative=>JSON.parse(readFileSync(path.join(root,relative),'utf8'));
 const inventory=read('catalogo-sprite-data.json').items;
 const manifest=read('assets.json');
 const dirs=['N','NE','E','SE','S','SW','W','NW'];
-const current=new Set(['player','s08-player','b08-player','d08-player','c08-v01-player','c08-v02-player'].flatMap(id=>
+const current=new Set(['player','s08-player','b08-player','d08-player','c08-v01-player','c08-v02-player','b08-v02-player','c09-player','s09-player','b09-player','d09-player'].flatMap(id=>
  ['idle','walk'].flatMap(kind=>Object.values(manifest.images[id].animations[kind].directions))));
 
 test('visual catalog includes all B08/C08/D08/S08 WebPs and Bastoni candidates',()=>{
- assert.equal(inventory.length,135);
- assert.equal(new Set(inventory.map(x=>x.src)).size,135);
- assert.equal(new Set(inventory.map(x=>x.code)).size,135);
- assert.equal(inventory.filter(x=>current.has(x.src)).length,96);
- assert.equal(inventory.filter(x=>!current.has(x.src)).length,39);
+ assert.equal(inventory.length,216);
+ assert.equal(new Set(inventory.map(x=>x.src)).size,216);
+ assert.equal(new Set(inventory.map(x=>x.code)).size,216);
+ assert.equal(inventory.filter(x=>current.has(x.src)).length,176);
+ assert.equal(inventory.filter(x=>!current.has(x.src)).length,40);
  assert.equal(inventory.filter(x=>x.character==='C08').length,74);
- assert.equal(inventory.filter(x=>x.character==='B08').length,21);
+ assert.equal(inventory.filter(x=>x.character==='B08').length,37);
  assert.equal(inventory.filter(x=>x.character==='D08').length,16);
- assert.equal(inventory.filter(x=>x.character==='S08').length,24);
+ assert.equal(inventory.filter(x=>x.character==='S08').length,25);
  for(const item of inventory){
   assert.ok(item.src.startsWith('characters/'),item.code);
   assert.ok(item.src.endsWith('.webp'),item.code);
