@@ -257,7 +257,7 @@ $('plus').onclick=()=>zoom(.8);$('minus').onclick=()=>zoom(1.25);
 $('all').onclick=()=>{selected=new Set(units.filter(u=>u.side===1).map(u=>u.id));for(const u of units)u.selring.visible=selected.has(u.id);updateHUD()};
 $('move').onclick=()=>flash('Seleziona le unità, poi tocca il terreno');
 $('fight').onclick=()=>flash('Seleziona le unità, poi tocca un nemico');
-$('recruit').onclick=()=>{const base=towns.find(t=>t.name==='Lindblum');if(!base||gold<60)return;gold-=60;const u=newUnit(base.p.x+Math.random()*25,base.p.z+25,1,unitID);if(u){selected.clear();selected.add(u.id);for(const p of units)p.selring.visible=selected.has(p.id)}updateHUD()};
+$('recruit').onclick=()=>{const base=towns.find(t=>t.name==='Lindblum');if(!base||gold<60)return;gold-=60;const u=newUnit(base.p.x+(Math.random()-.5)*12,base.p.z+9,1,unitID);if(u){selected.clear();selected.add(u.id);for(const p of units)p.selring.visible=selected.has(p.id)}else{gold+=60;flash('Nessuna zona libera per reclutare')}updateHUD()};
 $('pause').onclick=()=>{paused=!paused;updateHUD()};
 $('assetbtn').onclick=()=>{$('asset-panel').hidden=false};
 $('close').onclick=()=>{$('asset-panel').hidden=true};
