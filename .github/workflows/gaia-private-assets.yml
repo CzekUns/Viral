@@ -1,0 +1,58 @@
+name: Install private FF9 Gaia RTS assets
+
+on:
+  push:
+    branches:
+      - gaia-private-assets
+    paths:
+      - 'gaia-rts/incoming/*.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    if: ${{ github.event.repository.private == true && github.ref == 'refs/heads/gaia-private-assets' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out private asset branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Validate and install 70 original GLBs
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f gaia-rts/incoming/FF9_GaiaRTS_Parte_01.zip ] &&
+             [ -f gaia-rts/incoming/FF9_GaiaRTS_Parte_02.zip ] &&
+             [ -f gaia-rts/incoming/FF9_GaiaRTS_Parte_03.zip ]; then
+            python gaia-rts/scripts/install_private_asset_archives.py
+          else
+            echo "Waiting for all three ZIP files in the private branch."
+          fi
+      - name: Commit validated private assets
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f gaia-rts/private-assets/catalog.json ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -f gaia-rts/private-assets
+            git rm -f --ignore-unmatch gaia-rts/incoming/FF9_GaiaRTS_Parte_01.zip
+            git rm -f --ignore-unmatch gaia-rts/incoming/FF9_GaiaRTS_Parte_02.zip
+            git rm -f --ignore-unmatch gaia-rts/incoming/FF9_GaiaRTS_Parte_03.zip
+            if ! git diff --cached --quiet; then
+              git commit -m "assets(gaia-rts): install verified FF9 models in private branch"
+              git push origin HEAD:gaia-private-assets
+            fi
+          fi
+      - name: Provide private, ready-to-open RTS HTML
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Gaia_RTS_FF9_Privato
+          path: gaia-rts/private-assets/Gaia_RTS_FF9_Privato.html
+          if-no-files-found: ignore
+          retention-days: 30
