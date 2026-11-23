@@ -182,7 +182,7 @@ function pathTo(from,to){
 }
 function issueOrder(u,p){const route=pathTo(u.p,p);u.path=route;u.goal=route.length?route[route.length-1]:null;return !!route.length}
 function ring(color,r){const geometry=new THREE.RingGeometry(r-.9,r,42);const material=new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide,transparent:true,opacity:.92,depthWrite:false});const ring=new THREE.Mesh(geometry,material);ring.rotation.x=-Math.PI/2;return ring}
-function clearUnits(){for(const u of units){scene.remove(u.group);u.group.traverse(o=>{if(o.geometry?.userData?.generated)o.geometry.dispose()})}units=[];selected.clear();for(const c of towns)scene.remove(c.mesh);towns=[];unitID=0;}
+function clearUnits(){for(const u of units){scene.remove(u.g)}units=[];selected.clear();for(const c of towns)scene.remove(c.mesh);towns=[];unitID=0;ready=false;}
 function setCity(name,rawX,rawZ,side){
  const where=toWorld(rawX,rawZ),p=nearGround(where.x,where.z,65);
  if(!p)return false;
