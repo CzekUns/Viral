@@ -1,3 +1,28 @@
+## Aggiornamento — pacchetto completo di 67 asset (23/11/2026)
+
+È stato acquisito dall'utente `FF9_67_Asset_Originali.zip`, catalogo The Models Resource con **67 ZIP originali**. Nessun ZIP è stato caricato su questa repository pubblica.
+
+Verifica tecnica e conversione **fuori da GitHub**:
+- 66 archivi DAE non-Overworld analizzati e convertiti senza errori in 69 file GLB statici.
+- Per 3 archivi sono presenti due varianti/scenari DAE, quindi il numero di GLB supera quello degli archivi.
+- Il GLB dell'Overworld già preparato completa **70 file GLB**.
+- I 69 GLB sono stati ricaricati con trimesh e tutte le mesh hanno materiali/texture originali collegati. Le normali, UV e triangoli derivano dal COLLADA estratto.
+- **Non sono comprese animazioni walk/attack** nei DAE del catalogo. L'RTS utilizza temporaneamente una piccola oscillazione procedurale nel movimento.
+
+### Importazione in un solo ZIP — Android e PC
+
+L'utente ha a disposizione, come allegato nella propria conversazione (non su GitHub):
+- `FF9_GaiaRTS_Starter_Originali.zip` — ~12,7 MB, Overworld autentico + **13** modelli originali selezionati, con manifest `starter.json` e assegnazione di fazione (7 alleati, 6 avversari).
+- `FF9_GaiaRTS_70_GLB_Completo.zip` — ~49,3 MB, **70** GLB e manifest completo per evoluzioni successive.
+
+In [Gaia RTS](https://czekuns.github.io/Viral/gaia-rts/) è presente il campo **Importazione rapida — un solo ZIP**: seleziona lo **starter**, attendi l'importazione 3D, poi il gioco avvia automaticamente la prima schermaglia. Tutti i modelli vengono letti direttamente dalla ZIP nel browser e, se la quota del dispositivo lo consente, conservati localmente tramite IndexedDB. La mappa e le miniature non sono mai servite da GitHub Pages.
+
+Il motore associa correttamente i modelli `ally` agli alleati e `enemy` agli avversari, gestisce la selezione delle unità con tap sullo schermo, movimento sul terreno reale, AI basica, reclutamento e conquista; modello/unità 3D ancora da testare in Chrome/Android prima di definire il prototipo completo.
+
+**QA:** zip originale 67/67 valido; conversioni 66/66 DAE processate; 69 GLB statici validati come scene 3D; zip starter/completo CRC senza errori; parser JavaScript della pagina aggiornato OK. **Non è stato fatto un test WebGL end-to-end su Android**. Coordinate iniziali delle città sono ancora provvisorie.
+
+---
+
 # Gaia RTS — Final Fantasy IX / Original Assets
 
 Prototipo RTS in Three.js basato sugli **asset 3D originali dell'overworld di Final Fantasy IX**, importati localmente dal giocatore. Il codice del motore è nella repository; gli asset Square Enix **non** sono distribuiti da GitHub Pages.
