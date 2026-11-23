@@ -68,3 +68,15 @@ Lo script `scripts/export_ff9_units.ps1` contiene una lista iniziale di identifi
 Il motore RTS è ancora un prototipo: collisioni, pendenze, animazioni e navigazione richiedono collaudo reale con i mini-personaggi. Le località della campagna hanno marcatori tattici e non ancora gli edifici 3D originali calibrati.
 
 Final Fantasy IX, modelli, texture, personaggi e topografia originale appartengono ai titolari dei diritti. L'estrazione dalla copia del gioco non implica una licenza di ridistribuzione pubblica: per questo il sito non carica automaticamente il GLB originale da GitHub. Progetto fan-made non affiliato a Square Enix.
+
+## Esportazione automatica di tutti i 21 modelli overworld
+
+Lo ZIP `Dream-World-IX-master.zip` è **solo il toolkit**, non contiene le mesh/texture originali dei mini-personaggi. Serve una installazione originale FF9 per PC Steam/GOG con `StreamingAssets/p0data4.bin` e `p0data5.bin`.
+
+Dopo avere installato `ff9mapkit[assets]`, esegui:
+
+```powershell
+python scripts/export_all_ff9_overworld.py --game "C:\\SteamLibrary\\steamapps\\common\\FINAL FANTASY IX" --out FF9_MiniOverworld
+```
+
+Lo script legge direttamente il catalogo del toolkit, identifica i 21 `GEO_SUB_W0_*`, li esporta con le clip originali e produce `FF9_MiniOverworld.zip` con `manifest.json`, separando personaggi, chocobo, veicoli e altri. La cartella sorgente del gioco non viene modificata. Alcune esportazioni potrebbero fallire e vengono annotate nel manifest senza interrompere l'intero processo.
