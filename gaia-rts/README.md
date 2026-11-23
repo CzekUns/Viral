@@ -1,46 +1,62 @@
-# Gaia Tactics — RTS Overworld (prototipo non ufficiale)
+# Gaia RTS — **Final Fantasy IX: asset originali**
 
-## Stato
-**Vertical slice giocabile, solo front-end.** Sceneggiatura ispirata al Continente della Nebbia di FINAL FANTASY IX. Nessun asset originale del gioco è incluso nel repository: mappa e miniature attuali sono disegnate proceduralmente e servono a provare il motore di gioco.
+Questa cartella contiene un esperimento non ufficiale: un RTS che usa direttamente i **modelli 3D e le texture originali di FF9**, una volta importati dal proprietario del gioco. **Nella repository non ci sono asset Square Enix.**
 
-Avvia [index.html](./index.html) in browser moderno, anche da Android. Nessuna build, nessuna dipendenza esterna.
+## Avvio
+- Apri \`index.html\` (reindirizza a \`authentic.html\`) in Chrome/Firefox con rete disponibile.
+- L'interfaccia richiede due file reali: **(1) il GLB della mappa 3D originale dell'overworld** e **(2) almeno un GLB dei mini-personaggi originali**.
+- Il gioco carica GLB veri nel renderer Three.js; conserva texture/UV/materiali e, per i personaggi, riproduce quando presenti le clip idle/walk.
+- Dopo l'import seleziona **Avvia l'RTS**. I file sono memorizzati localmente in IndexedDB; non vengono inviati al server.
+- Puoi importare più personaggi insieme; sono assegnati alle unità come varianti cicliche. Un esercito può contenere più copie dello stesso personaggio. La fazione è distinguibile dall'anello colorato, non altera le texture del modello originale.
 
-## Gameplay funzionante
-- Telecamera mobile: trascina la mappa con un dito, pizzica con due dita per lo zoom, oppure usa +/−; su PC funzionano drag e rotellina.
-- Seleziona un'unità alleata toccandola, poi tocca il terreno per impartire un ordine di movimento. Il tasto **Tutte** seleziona tutto l'esercito.
-- Toccando un nemico selezionato lo attacchi; combattimento in tempo reale con danni, punti vita, distanze e velocità differenti.
-- Pathfinding A* con restrizioni su montagne e mare; forze avversarie controllate da IA elementare.
-- Conquista automatica di città quando mantieni delle truppe nel loro raggio senza nemici presenti.
-- Reclutamento a Lindblum, entrate di gil, mappa tattica, pausa e condizioni di vittoria/sconfitta.
-- Prima missione: conquistare **Alexandria** e **Burmecia**, partendo da Lindblum. Sono presenti anche Cleyra, Dali e Treno.
+**Comandi:** tocca un personaggio per selezionarlo; tocca la superficie per muovere le unità selezionate; tocca un nemico per impostare l'inseguimento; trascina per spostare la camera; pinch per zoom. I pulsanti permettono selezione totale, reclutamento e pausa.
 
-## Miniature sostituibili
-Se possiedi sprite che puoi legittimamente utilizzare, puoi posizionare sei immagini WebP con trasparenza in:
+**Scenario:** Lindblum contro Burmecia e Alexandria. I tre segnaposto sono posizionati *approssimativamente* tramite coordinate normalizzate all'interno della geometria caricata; non dichiarano di essere già calibrati sulle posizioni geografiche esatte di FF9. Il pathfinding nel codice attuale segue la superficie trovata dai raycast, senza ancora distinguere bene ogni fiume, costa, collisione, strada o nave. Questi sono i prossimi passaggi tecnici.
 
-```
-gaia-rts/assets/miniatures/
-  ally-guard.webp
-  ally-lancer.webp
-  ally-mage.webp
-  enemy-guard.webp
-  enemy-lancer.webp
-  enemy-mage.webp
-```
+## Come ottenere i mini-personaggi reali (da FF9 Steam / GOG)
+Il tool open source [Dream World IX / ff9mapkit](https://github.com/GameJawnsInc/Dream-World-IX) esporta i modelli \`GEO_SUB_W0_*\` dalla tua installazione del gioco.
 
-Ogni miniatura è disegnata nel mondo di gioco a circa **44 × 70 unità Canvas**. Il motore carica le immagini solo se presenti; altrimenti usa le miniature vettoriali provvisorie. Per un aspetto più fedele a FF9 conviene renderizzare il modello 3D originale in 4/8 direzioni in un atlante di sprite (passaggio successivo). Attualmente il prototipo visualizza una direzione per file: le animazioni e l'orientamento degli sprite importati richiedono un modulo aggiuntivo.
+Su Windows con FF9 installato:
 
-## Limiti reali della V0.1
-- Non contiene la **mappa esatta** di Final Fantasy IX: la costa e le location sono una reinterpretazione originale del Continente della Nebbia per testare il gameplay.
-- I personaggini disegnati nel prototipo sono **segnaposto**, non i modelli 3D originali di FF9.
-- Non comprende ancora navi, chocobo, aeronavi, tutti e quattro i continenti, produzioni, edifici costruibili, salvataggi o multiplayer.
-- Il pathfinding ha una griglia di navigazione semplice; non rappresenta ancora elevazione, ponti o interi mesh 3D.
-- Test automatico effettuato: sintassi JavaScript verificata. **Gameplay non ancora sottoposto a QA con browser reale.**
+\`\`\`powershell
+py -m pip install "ff9mapkit[assets]"
+ff9mapkit setup
+ff9mapkit model-gltf GEO_SUB_W0_001 --anims all --out gidansmall.glb
+ff9mapkit model-gltf GEO_SUB_W0_002 --anims all --out garnetsmall.glb
+\`\`\`
 
-## Proposta evolutiva
-1. Importare una mappa 3D/low-poly autorizzata o una ricostruzione originale molto fedele all'overworld e sviluppare un sistema di camera orbitale.
-2. Integrare piccoli modelli 3D con skin e animazioni (stand/walk/attack) o sprite prerenderizzati in otto direzioni.
-3. Eserciti con formazioni, classi, produzione/reclutamento e tre fazioni.
-4. Navigazione continentale, trasporti, costruzioni e singola campagna.
+Puoi anche eseguire \`scripts/export_ff9_units.ps1\` per esportare sei attori confermati. Tra quelli noti:
+- \`W0_001\` = Gidan/Zidane (mini);
+- \`W0_002\` = Garnet/Dagger (mini);
+- \`W0_003\` = Chocobo;
+- \`W0_008\` = Blue Narciss;
+- \`W0_009\` = Hilda Garde 3;
+- \`W0_010\` = Invincible.
 
-## Proprietà intellettuale
-**Progetto fan-made non ufficiale e non affiliato a Square Enix.** FF9, personaggi, luoghi e asset originali appartengono ai rispettivi titolari. Scaricare modelli da portali di ripping o estrarli dalla propria copia **non concede automaticamente** il diritto di distribuirli pubblicamente. Non committare o pubblicare gli originali in questo repository senza adeguata autorizzazione. Un'implementazione completamente pubblicabile richiede asset originali o licenze esplicite.
+Nel catalogo sono identificati **21** modelli di tipo overworld, ma **non tutti sono piccoli guerrieri**: ci sono mezzi e varianti. Per trovare il catalogo di ogni identificativo usa \`ff9mapkit models GEO_SUB_W0_001\` e la documentazione del toolkit.
+
+## Come ottenere il terreno 3D autentico
+Risorsa reperibile: [Final Fantasy IX → Overworld (The Models Resource)](https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303153/).
+
+1. Scarica il pacchetto e estrailo **sul tuo dispositivo**, senza committarlo nella repo.
+2. Se il contenuto è OBJ/FBX/DAE con texture, usa Blender per convertire la scena a **un GLB**. Lo script \`scripts/convert_overworld_blender.py\` importa questi formati e crea un GLB (controlla in Blender che i materiali e la posizione dei blocchi siano corretti).
+3. Esempio, con Blender nel PATH:
+
+\`\`\`powershell
+blender -b --python scripts/convert_overworld_blender.py -- "C:\FF9\Overworld" "C:\FF9\overworld.glb"
+\`\`\`
+
+4. In \`authentic.html\`, apri le impostazioni asset e scegli il GLB del terreno e quelli dei personaggi.
+
+**Limite verificabile:** la composizione/UV originali dell'archivio 303153 non sono state testate qui, perché il server di download non ha restituito l'archivio al nostro ambiente. Non dare per scontato che qualsiasi rip del terreno sia già pronto da importare o che tutte le texture siano collegate automaticamente.
+
+## Codice e test
+- \`authentic.html\`: motore renderer WebGL, input touch e interfaccia per GLB autentici.
+- \`scripts/export_ff9_units.ps1\`: comandi batch di estrazione dalla tua installazione.
+- \`scripts/convert_overworld_blender.py\`: convertitore dati scaricati in GLB.
+- \`legacy-prototype.html\`: primo test di gameplay con geometria disegnata procedurale; **non è la versione approvata**.
+
+**QA effettuato:** il codice JavaScript del renderer 3D supera il controllo di parsing. **Non è ancora stato provato con gli asset reali** né validato con un test touch su browser Android. Non considerare la modalità 3D un prodotto completo fino a queste verifiche.
+
+## Licenze
+Il codice originale dell'esperimento è distinto dai dati del gioco. I modelli e le texture di FF9 sono protetti da copyright e l'estrazione dalla propria installazione non concede automaticamente il diritto a distribuirli tramite GitHub Pages o altri canali. L'esperimento è fan-made, non affiliato a Square Enix, e **non redistribuisce asset del gioco**. Verifica l'autorizzazione/licenza applicabile prima di qualunque pubblicazione con asset originali.
