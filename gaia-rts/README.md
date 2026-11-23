@@ -1,3 +1,37 @@
+# Gaia RTS · Final Fantasy IX 3D (GitHub Pages)
+
+**Stato aggiornato — 23 novembre 2026.** L'utente ha autorizzato esplicitamente l'uso e la pubblicazione nel proprio repository di tutti i modelli FF9 estratti e convertiti, per un prototipo personale non commerciale. La repository `CzekUns/Viral` è stata resa nuovamente pubblica dal proprietario.
+
+## Avvio diretto del gioco
+
+**Gioca:** https://czekuns.github.io/Viral/gaia-rts/
+
+Il gioco carica **automaticamente** `gaia-rts/assets/FF9_GaiaRTS_Starter_Originali.zip` dal medesimo dominio GitHub Pages. Il pacchetto include **l'Overworld autentico di FF9 in GLB + 13 modelli di personaggi originali** (7 alleati e 6 avversari). Dopo il download, il browser apre una schermaglia con selezione touch, movimento RTS sul terreno 3D, combattimento base, reclutamento, IA nemica e conquista di tre città-segnaposto. Non serve più scaricare o scegliere file GLB/ZIP manualmente.
+
+L'intero catalogo di **70 GLB** (85,7 MB non compressi) è presente e referenziabile da `gaia-rts/assets/all/`; i metadati sono in `gaia-rts/assets/catalog.json`. Il gioco iniziale carica **13 dei 70**, per evitare di saturare la RAM di smartphone modesti. Gli altri modelli sono disponibili per gli sviluppi successivi, ma non sono già tutti unità attive in partita.
+
+L'importazione manuale da ZIP resta disponibile dal pannello ⚙ per i test. Il gioco memorizza gli asset in IndexedDB quando lo spazio lo consente.
+
+## Verifiche e limitazioni attuali
+
+- Gli ZIP originari dell'utente e i **70 file GLB** sono stati convalidati, compreso l'Overworld e i materiali/texture.
+- I tre punti di generazione di Lindblum, Burmecia e Alexandria sono stati verificati geometricamente sulla mesh `Terrain-material` della mappa reale; rappresentano ancora coordinate tattiche provvisorie, non georeferenziazione definitiva.
+- La sintassi JavaScript del caricatore è stata validata; il job GitHub Pages è riuscito con gli asset nella directory pubblicata. **Non equivale a un test end-to-end WebGL su Android**, che resta da eseguire.
+- Gli archivi esportati non contengono animazioni complete di camminata/combattimento. Le unità si muovono sul terreno reale con un leggero ciclo procedurale.
+- I modelli rimangono proprietà dei rispettivi titolari; l'uso personale/non commerciale non costituisce automaticamente una licenza di ridistribuzione.
+
+## Struttura
+
+- `index.html` → ingresso e redirect al renderer autentico.
+- `authentic.html` → Three.js, UI smartphone, combattimenti RTS e caricamento ZIP automatico.
+- `assets/FF9_GaiaRTS_Starter_Originali.zip` → pacchetto di avvio autocaricato (~12,7 MB).
+- `assets/all/` → 70 file GLB originali suddivisi per categoria.
+- `assets/catalog.json` → manifest dei 70 GLB con hash e origine.
+- `scripts/` → strumenti per conversione e verifica.
+- `legacy-prototype.html` → vecchia demo stilizzata, **non** il gioco principale.
+
+---
+
 ## Build privata con asset FF9 originali — novembre 2026
 
 La repository `CzekUns/Viral` è **pubblica** (verificato via GitHub): gli asset non devono essere aggiunti qui per il solo fatto che il proprietario conosce l'URL. L'interfaccia pubblica del progetto **non contiene** i GLB o gli ZIP Square Enix.
