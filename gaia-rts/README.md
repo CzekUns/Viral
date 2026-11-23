@@ -1,3 +1,16 @@
+## Build privata con asset FF9 originali — novembre 2026
+
+La repository `CzekUns/Viral` è **pubblica** (verificato via GitHub): gli asset non devono essere aggiunti qui per il solo fatto che il proprietario conosce l'URL. L'interfaccia pubblica del progetto **non contiene** i GLB o gli ZIP Square Enix.
+
+Per evitare l'importazione manuale continua, il motore supporta ora due modalità:
+
+1. **Build HTML privata**: file `Gaia_RTS_FF9_Privato.html` preparato e consegnato all'utente nella conversazione. Ha il pacchetto starter originale incorporato e non richiede caricamento manuale dei modelli. Scaricarlo dal messaggio; non è pubblicato né ospitato su GitHub.
+2. **Deploy privato con asset accanto al codice**: `authentic.html` prova automaticamente a recuperare `assets/FF9_GaiaRTS_Starter_Originali.zip` da un server **con accesso protetto**. Se assente, usa il caricamento manuale con ZIP come prima. Attenzione: mettere il file sotto una directory servita da GitHub Pages rende il suo contenuto normalmente accessibile agli utenti del sito anche quando il repository sorgente è privato.
+
+Il singolo HTML privato carica le librerie Three.js da CDN (richiede Internet), ma incorpora la geometria e le texture FF9 direttamente nel file. Include navigazione su terreno a griglia derivata dal GLB, unità originali e combattimenti sperimentali. Sono stati verificati il parsing JavaScript e l'identità SHA-256 del pacchetto incorporato; **il rendering reale su Android non è ancora stato collaudato**.
+
+---
+
 ## Aggiornamento — pacchetto completo di 67 asset (23/11/2026)
 
 È stato acquisito dall'utente `FF9_67_Asset_Originali.zip`, catalogo The Models Resource con **67 ZIP originali**. Nessun ZIP è stato caricato su questa repository pubblica.
