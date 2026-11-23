@@ -1,0 +1,10 @@
+# Non pubblicare gli asset estratti da Final Fantasy IX.
+assets/
+ff9-export/
+*.glb
+*.fbx
+*.obj
+*.dae
+*.mtl
+*.blend
+*.zip
