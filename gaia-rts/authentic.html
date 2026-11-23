@@ -298,8 +298,8 @@ $('unit-file').onchange=async e=>{try{
  $('asset-info').textContent='Overworld: '+(world?'✓':'mancante')+' · Modelli: '+unitAssets.length;
  flash(unitAssets.length+' modelli originali caricati');
 }catch(err){console.error(err);flash('Errore modello: '+err.message)}};
-$('pack-file').onchange=async e=>{
- const file=e.target.files?.[0];if(!file)return;
+async function importStarter(file){
+ if(!file)return;
  const status=$('import-status');
  $('pack-file').disabled=true;$('start').disabled=true;
  try{
@@ -337,7 +337,8 @@ $('pack-file').onchange=async e=>{
   $('asset-panel').hidden=true;
  }catch(err){console.error(err);status.textContent='Importazione non riuscita: '+err.message;flash('Errore ZIP: '+err.message)}
  finally{$('pack-file').disabled=false;$('start').disabled=false}
-};
+}
+$('pack-file').onchange=e=>importStarter(e.target.files?.[0]);
 $('start').onclick=()=>{if(!world){flash('Importa prima il GLB originale della mappa FF9');return}if(unitAssets.length)setupUnits();else{const raw=toWorld(-1100,-790);view.target.copy(nearGround(raw.x,raw.z,70)||view.target);view.span=350;setCamera();flash('Overworld FF9 autentico: modalità esplorazione, importa i mini-personaggi per giocare')} $('asset-panel').hidden=true};
 async function restore(){try{const wb=await loadSaved('world');if(wb){fitWorld(await loadGLB(wb));}const cnt=await loadSaved('unit-count');let n=cnt?Number(new TextDecoder().decode(cnt)):0;
  const rolesBuffer=await loadSaved('unit-roles');
@@ -383,5 +384,21 @@ function tick(dt){
 }
 window.addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);setCamera()});setCamera();
 function frame(t){let dt=Math.min(.05,(t-last)/1000);last=t;tick(dt);renderer.render(scene,camera);if(noticeUntil&&t>noticeUntil){noticeUntil=0;$('notice').classList.remove('visible')}requestAnimationFrame(frame)}
-requestAnimationFrame(frame);restore();
+requestAnimationFrame(frame);
+async function boot(){
+ // A private self-hosted deployment can place the starter ZIP beside the game.
+ // No game data is committed to or distributed by the public code repository.
+ try{
+  const response=await fetch('./assets/FF9_GaiaRTS_Starter_Originali.zip',{cache:'default'});
+  if(response.ok){
+   const size=Number(response.headers.get('content-length')||0);
+   if(size>80*1024*1024)throw Error('Asset ZIP too large');
+   $('import-status').textContent='Caricamento automatico degli asset dal deposito locale…';
+   await importStarter(await response.blob());
+   if(ready)return;
+  }
+ }catch(e){console.info('Pacchetto automatico non disponibile',e)}
+ await restore();
+}
+boot();
 </script></body></html>
