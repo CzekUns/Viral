@@ -1,0 +1,1782 @@
+{
+  "private": true,
+  "count": 70,
+  "models": [
+    {
+      "file": "01_Playable_Characters/Amarant__310757.glb",
+      "bytes": 1106424,
+      "sha256": "a11a473bf548c179e0844946347e19eb88a095a09636ef40659b245bdd209028"
+    },
+    {
+      "file": "01_Playable_Characters/Amarant__Trance__312355.glb",
+      "bytes": 843952,
+      "sha256": "053580c61b50db2c07e500bf5fce11f3a6288d594138dae653a9c095ec89bfae"
+    },
+    {
+      "file": "01_Playable_Characters/Eiko__312357.glb",
+      "bytes": 905540,
+      "sha256": "aff00cffe959424567470fbc6c6d6e5776bcce23915e416261ef1304de269f55"
+    },
+    {
+      "file": "01_Playable_Characters/Eiko__Trance__312358.glb",
+      "bytes": 995992,
+      "sha256": "c9ee2a11482a070f5cc8a69c9ec4605a4575bc11f81c96d006b8f3a16435d7de"
+    },
+    {
+      "file": "01_Playable_Characters/Freya__303108.glb",
+      "bytes": 940648,
+      "sha256": "e8b3d2c5b4666f025f48432095d3476973d0c481717ae88461538b45df131a55"
+    },
+    {
+      "file": "01_Playable_Characters/Freya__Trance__303107.glb",
+      "bytes": 977680,
+      "sha256": "ffb11671d2863c925679a2e9dbf149ca250ca5553f1e58a3fc4292b56ac5fb38"
+    },
+    {
+      "file": "01_Playable_Characters/Garnet___Dagger__303110.glb",
+      "bytes": 1218316,
+      "sha256": "9d7ed91a43f36c27b2d10d112d6632b144948c6cb4eae75568d2e0b5eba4aa2c"
+    },
+    {
+      "file": "01_Playable_Characters/Garnet___Dagger__Trance__303109.glb",
+      "bytes": 1261172,
+      "sha256": "8ac58e03336cb8982c3b427460652e55ea638d1bb90796d802138756d67a556e"
+    },
+    {
+      "file": "01_Playable_Characters/Quina__303111.glb",
+      "bytes": 909924,
+      "sha256": "30dc02da42bd4cdf6f313ac3f0da9a322ede3c18d79fd86d9890ac62981636db"
+    },
+    {
+      "file": "01_Playable_Characters/Quina__Trance__312362.glb",
+      "bytes": 905176,
+      "sha256": "3364fd8daea1d4bda6861471d22d866a8d8e872c1e8ee979cd78ce9e7514b790"
+    },
+    {
+      "file": "01_Playable_Characters/Steiner__303113.glb",
+      "bytes": 904168,
+      "sha256": "c56111ed876a427f74c0ca11dbd8736e123a9a254ea4f7618cecd29143e75058"
+    },
+    {
+      "file": "01_Playable_Characters/Steiner__Trance__303112.glb",
+      "bytes": 946188,
+      "sha256": "6d74ee6c01b3fcba0b1da23cefc2e294a9cf28be5dcdd4a2f39961aaff1dc95f"
+    },
+    {
+      "file": "01_Playable_Characters/Vivi__303115.glb",
+      "bytes": 888412,
+      "sha256": "b104c585fa71bc3ad68656c50e41a6bf42ce01933eab1882e4d981d916d9a538"
+    },
+    {
+      "file": "01_Playable_Characters/Vivi__Trance__303114.glb",
+      "bytes": 883772,
+      "sha256": "3815ff52da00d6d790ae95a8a4b81de2dca5f24c6522d9977f52df2558127b42"
+    },
+    {
+      "file": "01_Playable_Characters/Zidane__303117.glb",
+      "bytes": 1199748,
+      "sha256": "72c96232d0be491fa539dacf0c2b64c79f4811ab4d1baea7b182e760b8fb0d73"
+    },
+    {
+      "file": "01_Playable_Characters/Zidane__Trance__303116.glb",
+      "bytes": 985080,
+      "sha256": "b71fa4beac2909c476a6a2e2e5fab801d42b5c824f5953254071e4f151f36f96"
+    },
+    {
+      "file": "02_Guests/Beatrix__312356.glb",
+      "bytes": 831004,
+      "sha256": "4c588ce8ab4250b195c6e72b14b2e202092fbc0a734b658384e7f9d86d8b332a"
+    },
+    {
+      "file": "02_Guests/Blank__313749.glb",
+      "bytes": 89164,
+      "sha256": "a2319c5e3bec5cbfef0aa163fa5396f477dc7452678baef8c5836114c1ed0ba9"
+    },
+    {
+      "file": "02_Guests/Cinna__303106.glb",
+      "bytes": 1063548,
+      "sha256": "7e9c2ce14b8b22d17e1c8a69cd4a2a732ae7d851f208d5947de001803b19f3b5"
+    },
+    {
+      "file": "02_Guests/Marcus__313747.glb",
+      "bytes": 943220,
+      "sha256": "b08f6f9dc1068f1da26a63bebfcaea5ebf4c4e25d844c531e7bdeb1c7db7836e"
+    },
+    {
+      "file": "02_Guests/Zidane__Knights_of_Pluto__312363.glb",
+      "bytes": 847992,
+      "sha256": "f8b7720022c38668c6b785cd2e88b4bb66076a222eed00979c090165cec3b25b"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Alexandrian_Soldier_01__317905.glb",
+      "bytes": 84772,
+      "sha256": "7c91d9fcce5ce12c7985db256fc1f87d6ccb959ef376830a9c6781ccf7616442"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Alexandrian_Soldier_02__317904.glb",
+      "bytes": 84772,
+      "sha256": "94f90f266c45d6ce143fbb0a15f19a00e516e7122eb7b17d7fd893ebacc836a2"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Baku__313742.glb",
+      "bytes": 143480,
+      "sha256": "551d1dc4b55645e675518fd059f0984480301d6039699e64afca604843902812"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Baku__King_Leo__317916.glb",
+      "bytes": 1757364,
+      "sha256": "9f6c6417353dc104f0837c0cf138291a80e78f38f889d889e7c122987e03f36d"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Bobby_Corwen__317910.glb",
+      "bytes": 78292,
+      "sha256": "7711f021dc5855e4114cf66571dc896721bef507979e42c30090bac43da64f37"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Burmecian_King__317922.glb",
+      "bytes": 77344,
+      "sha256": "ea3f2d33b413b96365b90e3032f8df7a1e9ab6a0260a92c05b270bcb42357b7f"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Chocobo__317911.glb",
+      "bytes": 663136,
+      "sha256": "4c1674b764d4966e7ab9b5099c5de5ca86adda1966b9bc27b224180aab9aa380"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Doctor_Tot__313750.glb",
+      "bytes": 85284,
+      "sha256": "acdd6f8001ead4dcd8d43d11c9191a7dbdd8b40a1793cd4f59530ef9032476f2"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Fat_Chocobo__317909.glb",
+      "bytes": 778908,
+      "sha256": "9ef24f50c945408a8ef5dad8fa66889bf4ad6e093950a59693275c8bacef1bd7"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Garland__313744.glb",
+      "bytes": 2049356,
+      "sha256": "49093c3f8d84f180011da529c4a12a9808dfa9db549fc4ecc65f737b95c2cf97"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Garnet___Dagger__Child__313745.glb",
+      "bytes": 86404,
+      "sha256": "19e273f1650ce4608921526073f289b9a15f543e2593d4646700dbd1d7654a36"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Garnet___Dagger__Coronation__313746.glb",
+      "bytes": 848440,
+      "sha256": "332e4f95714cbac7cf33e21e14b31d16f7622b4ceef704646ec4656d4d6101e9"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Garnet___Dagger__Hood__312361.glb",
+      "bytes": 808048,
+      "sha256": "fc4fdf79906ac642de1bf6ce16b0f6e4973893ff6db2eb4ce6a08e83f18aea25"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Knight_of_Pluto_01__317907.glb",
+      "bytes": 89364,
+      "sha256": "db035858f338818910d0da979d91009b49dca882d0309a95e6023142ac6b31a9"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Knight_of_Pluto_02__317908.glb",
+      "bytes": 89400,
+      "sha256": "bea3202741eb05d34df45f679f2954c2f55375176a53d541b93acd762a7a94ab"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Kuja__312359.glb",
+      "bytes": 1345856,
+      "sha256": "f288c49162fc5e31f826217e462262734e8bf95c9c5f862eedae776aaf3f2974"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Lady_Hilda__313751.glb",
+      "bytes": 731088,
+      "sha256": "7810aa6262127d8181743e0f3fb9249909f2d7a9296d3724d9c391d3c33a7323"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Lani__317898.glb",
+      "bytes": 819820,
+      "sha256": "1889c2b4cbb2d4c6e7442323ca00e6d136b281fd7b16d7806a6eb9c57033a6e2"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Mikoto__317923.glb",
+      "bytes": 88724,
+      "sha256": "22d78d3fa34c7149210898d86e1b5ac5077e624066dceeb8989446706716173e"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Moogle__F__303103.glb",
+      "bytes": 615792,
+      "sha256": "f5564160798122340c0a9dceba719e6e5f3971ee3238628be5722524ebc59e51"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Morrid__317921.glb",
+      "bytes": 73216,
+      "sha256": "2c792b6143ee958db671e447a849576627b384d85ca227e4f666e27a9bab4cdc"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Puck__313752.glb",
+      "bytes": 79156,
+      "sha256": "0890a74ab8c54543a0bce27f18c90bf563fd85a726c652d27646f1b0e817b4c5"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Quale__313753.glb",
+      "bytes": 801768,
+      "sha256": "0295a6e3ec412917d8eb226b0560c7862f8ecf95f70d4830a2394a8890d5759f"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Quan__317919.glb",
+      "bytes": 734004,
+      "sha256": "a31699b4153e6a290ec0c42d90338933af00617db3061d9e876ea1b104810deb"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Queen_Brahne__317914.glb",
+      "bytes": 758272,
+      "sha256": "22d6caa0eb839d62f9c9950a2c201bca1bed7d673781ac78f1770ca6cc4b233b"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Regent_Cid__317912.glb",
+      "bytes": 744568,
+      "sha256": "20bb64639e7a52ce673c04c99835b8bd6a06f8f43cb0f065d57afbf480913104"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Regent_Cid__Frog__317913.glb",
+      "bytes": 77556,
+      "sha256": "384390e45d3c7a9c1c7ef45103d8f71a6c07d7753ba8217c14fc3d6b23e334f0"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Ruby__313748.glb",
+      "bytes": 742740,
+      "sha256": "81a9c35ec467284d601dd86f986689d3792ac8eaf7de3cb10dea42d108a66faf"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Sir_Iron-Tail_Fratley__317915.glb",
+      "bytes": 772468,
+      "sha256": "6ecdae27d76625cf24b1f4be8fde32295be238ebc8a5d13c094e2119c26530ea"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Stiltzkin__317920.glb",
+      "bytes": 701344,
+      "sha256": "cd09f2554834406f31fa80a040e78f273aa066e1ef093045ef51ef5d562c41f6"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Thorn__317917.glb",
+      "bytes": 788376,
+      "sha256": "683debc63f0adbd8265b63dada7c4657e4774ba84a87c60fffb0404d3f4c26ca"
+    },
+    {
+      "file": "03_Non_Playable_Characters/Zorn__317918.glb",
+      "bytes": 789504,
+      "sha256": "be71a395620e01d0311d3f0b337d555b40271afca74d2a806cfd0a098bba7d60"
+    },
+    {
+      "file": "04_Enemies/Alexandrian_Soldier__317903.glb",
+      "bytes": 103948,
+      "sha256": "1fb5ac3c711628060605657461898c4086ce19e081db5f991fa9005de155a3b5"
+    },
+    {
+      "file": "04_Enemies/Knight_of_Pluto__317906.glb",
+      "bytes": 107260,
+      "sha256": "e22cf854662f54a204b61a40f0857d347285a3e459b651cc1d56b9cdc59513f8"
+    },
+    {
+      "file": "04_Enemies/Ragtime_Mouse__313754.glb",
+      "bytes": 277924,
+      "sha256": "6363f2115b09529f74fc3eddb0bf998236e87131f3fe1f9175d6819c0b92341a"
+    },
+    {
+      "file": "05_Bosses/Beatrix__317901.glb",
+      "bytes": 115340,
+      "sha256": "3d2a9aa535d37e461042e8e1aa2d6dc28fa91c6508777fc4628bab9cfdd7a26a"
+    },
+    {
+      "file": "05_Bosses/Garland__317902.glb",
+      "bytes": 2049320,
+      "sha256": "5e1ab8007d51340b3c23c30486fe9dcf595f5b977056f108d0df2f63f8d85a06"
+    },
+    {
+      "file": "05_Bosses/Kuja__Trance__312360.glb",
+      "bytes": 889132,
+      "sha256": "a1f7d3f65140c8747876ef26784063f1b47e456e62cb576a70070fa0f8d99a9e"
+    },
+    {
+      "file": "05_Bosses/Lani__317899.glb",
+      "bytes": 1708880,
+      "sha256": "d594a0fd1d51b4a3919f79a5c7449374fcbc84d1dd3d2116925a93eae26b01a5"
+    },
+    {
+      "file": "05_Bosses/Masked_Man__Baku__313743.glb",
+      "bytes": 1989064,
+      "sha256": "7e181a936bf9a798f5b70d042fd0d942add05594b3c08766da327ffb9e6df5e5"
+    },
+    {
+      "file": "05_Bosses/Necron__317900.glb",
+      "bytes": 3151024,
+      "sha256": "30f09b32e693b4ed995e103bc3adb0a91793cc4b2304127da422444abaf3aa31"
+    },
+    {
+      "file": "06_Objects/Ladder__303101.glb",
+      "bytes": 36096,
+      "sha256": "6623f4d6ca51b5e361f67037bb23690fe4b4c6d370a22dee8c1d5d44fa6a01dc"
+    },
+    {
+      "file": "06_Objects/Princess_Garnet___Queen_Brahne_Doll__303102.glb",
+      "bytes": 50400,
+      "sha256": "7a560eb1c5711d89d60830e652299bade7461f010319521284c333538ff96b9a"
+    },
+    {
+      "file": "06_Objects/Princess_Garnet___Queen_Brahne_Doll__303102__2.glb",
+      "bytes": 50816,
+      "sha256": "da929f71aebd2e4e21b5a53f52731ba26fc468e674b2b620d887310f4eb6ea71"
+    },
+    {
+      "file": "07_Battle_Backgrounds/Cargo_Hold__303104.glb",
+      "bytes": 1162588,
+      "sha256": "d90da158b274d5bac5224b9c92163d211c7af0e4c10b69b367d82e75c6478cc0"
+    },
+    {
+      "file": "07_Battle_Backgrounds/Cargo_Hold__303104__2.glb",
+      "bytes": 1013596,
+      "sha256": "8741bf2f505c90d4152dc3b973e3ff37bbcf5077ef90ed89f109afcba7b4dc6f"
+    },
+    {
+      "file": "07_Battle_Backgrounds/Theater_Stage__303105.glb",
+      "bytes": 1238232,
+      "sha256": "02f8b3890c1ce0c3a84e9b33ce019d86a348dce40b148da66259bab89dcfcaf7"
+    },
+    {
+      "file": "07_Battle_Backgrounds/Theater_Stage__303105__2.glb",
+      "bytes": 942648,
+      "sha256": "de86918b546079ce3916e7783ec8c70b384f476265ff6ae6c4d2adbe43d93a95"
+    },
+    {
+      "file": "08_Maps/FF9_Overworld_Original.glb",
+      "bytes": 32797576,
+      "sha256": "aeba38b55bbc5bcf94c578706bf8d2edf16f80e1554d1e2d9316a79b29248491"
+    }
+  ],
+  "source_manifest": {
+    "source": "user-supplied FF9_67_Asset_Originali.zip",
+    "format": "ff9-gaia-model-conversion-v1",
+    "models": [
+      {
+        "name": "Amarant",
+        "id": "310757",
+        "source_archive": "01_Playable_Characters/Amarant__310757/310757.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/310757/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Amarant__310757.glb",
+            "status": "ok",
+            "source_triangles": 2874,
+            "mesh_parts": 4,
+            "texture_materials": 4,
+            "bytes": 1106424,
+            "upright_axis": "Z",
+            "source_dae_bytes": 288011,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Amarant (Trance)",
+        "id": "312355",
+        "source_archive": "01_Playable_Characters/Amarant_(Trance)__312355/312355.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312355/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Amarant__Trance__312355.glb",
+            "status": "ok",
+            "source_triangles": 2410,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 843952,
+            "upright_axis": "Z",
+            "source_dae_bytes": 231712,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Eiko",
+        "id": "312357",
+        "source_archive": "01_Playable_Characters/Eiko__312357/312357.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312357/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Eiko__312357.glb",
+            "status": "ok",
+            "source_triangles": 2648,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 905540,
+            "upright_axis": "Z",
+            "source_dae_bytes": 248429,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Eiko (Trance)",
+        "id": "312358",
+        "source_archive": "01_Playable_Characters/Eiko_(Trance)__312358/312358.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312358/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Eiko__Trance__312358.glb",
+            "status": "ok",
+            "source_triangles": 2675,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 995992,
+            "upright_axis": "Z",
+            "source_dae_bytes": 249998,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Freya",
+        "id": "303108",
+        "source_archive": "01_Playable_Characters/Freya__303108/303108.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303108/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Freya__303108.glb",
+            "status": "ok",
+            "source_triangles": 2486,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 940648,
+            "upright_axis": "Z",
+            "source_dae_bytes": 411812,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Freya (Trance)",
+        "id": "303107",
+        "source_archive": "01_Playable_Characters/Freya_(Trance)__303107/303107.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303107/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Freya__Trance__303107.glb",
+            "status": "ok",
+            "source_triangles": 2496,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 977680,
+            "upright_axis": "Z",
+            "source_dae_bytes": 410249,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Garnet / Dagger",
+        "id": "303110",
+        "source_archive": "01_Playable_Characters/Garnet_Dagger__303110/303110.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303110/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Garnet___Dagger__303110.glb",
+            "status": "ok",
+            "source_triangles": 3710,
+            "mesh_parts": 4,
+            "texture_materials": 4,
+            "bytes": 1218316,
+            "upright_axis": "Z",
+            "source_dae_bytes": 622663,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Garnet / Dagger (Trance)",
+        "id": "303109",
+        "source_archive": "01_Playable_Characters/Garnet_Dagger_(Trance)__303109/303109.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303109/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Garnet___Dagger__Trance__303109.glb",
+            "status": "ok",
+            "source_triangles": 3574,
+            "mesh_parts": 4,
+            "texture_materials": 4,
+            "bytes": 1261172,
+            "upright_axis": "Z",
+            "source_dae_bytes": 331502,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Quina",
+        "id": "303111",
+        "source_archive": "01_Playable_Characters/Quina__303111/303111.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303111/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Quina__303111.glb",
+            "status": "ok",
+            "source_triangles": 2590,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 909924,
+            "upright_axis": "Z",
+            "source_dae_bytes": 439481,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Quina (Trance)",
+        "id": "312362",
+        "source_archive": "01_Playable_Characters/Quina_(Trance)__312362/312362.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312362/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Quina__Trance__312362.glb",
+            "status": "ok",
+            "source_triangles": 2268,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 905176,
+            "upright_axis": "Z",
+            "source_dae_bytes": 204162,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Steiner",
+        "id": "303113",
+        "source_archive": "01_Playable_Characters/Steiner__303113/303113.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303113/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Steiner__303113.glb",
+            "status": "ok",
+            "source_triangles": 2592,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 904168,
+            "upright_axis": "Z",
+            "source_dae_bytes": 424476,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Steiner (Trance)",
+        "id": "303112",
+        "source_archive": "01_Playable_Characters/Steiner_(Trance)__303112/303112.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303112/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Steiner__Trance__303112.glb",
+            "status": "ok",
+            "source_triangles": 2326,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 946188,
+            "upright_axis": "Z",
+            "source_dae_bytes": 385891,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Vivi",
+        "id": "303115",
+        "source_archive": "01_Playable_Characters/Vivi__303115/303115.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303115/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Vivi__303115.glb",
+            "status": "ok",
+            "source_triangles": 2198,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 888412,
+            "upright_axis": "Z",
+            "source_dae_bytes": 372520,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Vivi (Trance)",
+        "id": "303114",
+        "source_archive": "01_Playable_Characters/Vivi_(Trance)__303114/303114.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303114/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Vivi__Trance__303114.glb",
+            "status": "ok",
+            "source_triangles": 2002,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 883772,
+            "upright_axis": "Z",
+            "source_dae_bytes": 341048,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Zidane",
+        "id": "303117",
+        "source_archive": "01_Playable_Characters/Zidane__303117/303117.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303117/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Zidane__303117.glb",
+            "status": "ok",
+            "source_triangles": 3388,
+            "mesh_parts": 5,
+            "texture_materials": 5,
+            "bytes": 1199748,
+            "upright_axis": "Z",
+            "source_dae_bytes": 726713,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Zidane (Trance)",
+        "id": "303116",
+        "source_archive": "01_Playable_Characters/Zidane_(Trance)__303116/303116.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303116/",
+        "category": "01_Playable_Characters",
+        "outputs": [
+          {
+            "path": "01_Playable_Characters/Zidane__Trance__303116.glb",
+            "status": "ok",
+            "source_triangles": 2878,
+            "mesh_parts": 4,
+            "texture_materials": 4,
+            "bytes": 985080,
+            "upright_axis": "Z",
+            "source_dae_bytes": 528570,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Beatrix",
+        "id": "312356",
+        "source_archive": "02_Guests/Beatrix__312356/312356.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312356/",
+        "category": "02_Guests",
+        "outputs": [
+          {
+            "path": "02_Guests/Beatrix__312356.glb",
+            "status": "ok",
+            "source_triangles": 2765,
+            "mesh_parts": 3,
+            "texture_materials": 3,
+            "bytes": 831004,
+            "upright_axis": "Z",
+            "source_dae_bytes": 433372,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Blank",
+        "id": "313749",
+        "source_archive": "02_Guests/Blank__313749/313749.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313749/",
+        "category": "02_Guests",
+        "outputs": [
+          {
+            "path": "02_Guests/Blank__313749.glb",
+            "status": "ok",
+            "source_triangles": 491,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 89164,
+            "upright_axis": "Z",
+            "source_dae_bytes": 64177,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Cinna",
+        "id": "303106",
+        "source_archive": "02_Guests/Cinna__303106/303106.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303106/",
+        "category": "02_Guests",
+        "outputs": [
+          {
+            "path": "02_Guests/Cinna__303106.glb",
+            "status": "ok",
+            "source_triangles": 2454,
+            "mesh_parts": 3,
+            "texture_materials": 3,
+            "bytes": 1063548,
+            "upright_axis": "Z",
+            "source_dae_bytes": 410907,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Marcus",
+        "id": "313747",
+        "source_archive": "02_Guests/Marcus__313747/313747.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313747/",
+        "category": "02_Guests",
+        "outputs": [
+          {
+            "path": "02_Guests/Marcus__313747.glb",
+            "status": "ok",
+            "source_triangles": 2658,
+            "mesh_parts": 3,
+            "texture_materials": 3,
+            "bytes": 943220,
+            "upright_axis": "Z",
+            "source_dae_bytes": 256405,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Zidane (Knights of Pluto)",
+        "id": "312363",
+        "source_archive": "02_Guests/Zidane_(Knights_of_Pluto)__312363/312363.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312363/",
+        "category": "02_Guests",
+        "outputs": [
+          {
+            "path": "02_Guests/Zidane__Knights_of_Pluto__312363.glb",
+            "status": "ok",
+            "source_triangles": 3034,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 847992,
+            "upright_axis": "Z",
+            "source_dae_bytes": 287202,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Alexandrian Soldier 01",
+        "id": "317905",
+        "source_archive": "03_Non_Playable_Characters/Alexandrian_Soldier_01__317905/317905.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317905/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Alexandrian_Soldier_01__317905.glb",
+            "status": "ok",
+            "source_triangles": 496,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 84772,
+            "upright_axis": "Y",
+            "source_dae_bytes": 108620,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Alexandrian Soldier 02",
+        "id": "317904",
+        "source_archive": "03_Non_Playable_Characters/Alexandrian_Soldier_02__317904/317904.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317904/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Alexandrian_Soldier_02__317904.glb",
+            "status": "ok",
+            "source_triangles": 496,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 84772,
+            "upright_axis": "Y",
+            "source_dae_bytes": 108333,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Baku",
+        "id": "313742",
+        "source_archive": "03_Non_Playable_Characters/Baku__313742/313742.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313742/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Baku__313742.glb",
+            "status": "ok",
+            "source_triangles": 621,
+            "mesh_parts": 9,
+            "texture_materials": 9,
+            "bytes": 143480,
+            "upright_axis": "Z",
+            "source_dae_bytes": 136353,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Baku (King Leo)",
+        "id": "317916",
+        "source_archive": "03_Non_Playable_Characters/Baku_(King_Leo)__317916/317916.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317916/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Baku__King_Leo__317916.glb",
+            "status": "ok",
+            "source_triangles": 2644,
+            "mesh_parts": 5,
+            "texture_materials": 5,
+            "bytes": 1757364,
+            "upright_axis": "Y",
+            "source_dae_bytes": 457601,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Bobby Corwen",
+        "id": "317910",
+        "source_archive": "03_Non_Playable_Characters/Bobby_Corwen__317910/317910.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317910/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Bobby_Corwen__317910.glb",
+            "status": "ok",
+            "source_triangles": 455,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 78292,
+            "upright_axis": "Y",
+            "source_dae_bytes": 94479,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Burmecian King",
+        "id": "317922",
+        "source_archive": "03_Non_Playable_Characters/Burmecian_King__317922/317922.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317922/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Burmecian_King__317922.glb",
+            "status": "ok",
+            "source_triangles": 430,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 77344,
+            "upright_axis": "Y",
+            "source_dae_bytes": 100359,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Chocobo",
+        "id": "317911",
+        "source_archive": "03_Non_Playable_Characters/Chocobo__317911/317911.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317911/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Chocobo__317911.glb",
+            "status": "ok",
+            "source_triangles": 1498,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 663136,
+            "upright_axis": "Y",
+            "source_dae_bytes": 429757,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Doctor Tot",
+        "id": "313750",
+        "source_archive": "03_Non_Playable_Characters/Doctor_Tot__313750/313750.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313750/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Doctor_Tot__313750.glb",
+            "status": "ok",
+            "source_triangles": 528,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 85284,
+            "upright_axis": "Z",
+            "source_dae_bytes": 69662,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Fat Chocobo",
+        "id": "317909",
+        "source_archive": "03_Non_Playable_Characters/Fat_Chocobo__317909/317909.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317909/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Fat_Chocobo__317909.glb",
+            "status": "ok",
+            "source_triangles": 2293,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 778908,
+            "upright_axis": "Y",
+            "source_dae_bytes": 593851,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Garland",
+        "id": "313744",
+        "source_archive": "03_Non_Playable_Characters/Garland__313744/313744.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313744/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Garland__313744.glb",
+            "status": "ok",
+            "source_triangles": 5952,
+            "mesh_parts": 4,
+            "texture_materials": 4,
+            "bytes": 2049356,
+            "upright_axis": "Z",
+            "source_dae_bytes": 562586,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Garnet / Dagger (Child)",
+        "id": "313745",
+        "source_archive": "03_Non_Playable_Characters/Garnet_Dagger_(Child)__313745/313745.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313745/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Garnet___Dagger__Child__313745.glb",
+            "status": "ok",
+            "source_triangles": 498,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 86404,
+            "upright_axis": "Z",
+            "source_dae_bytes": 63440,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Garnet / Dagger (Coronation)",
+        "id": "313746",
+        "source_archive": "03_Non_Playable_Characters/Garnet_Dagger_(Coronation)__313746/313746.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313746/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Garnet___Dagger__Coronation__313746.glb",
+            "status": "ok",
+            "source_triangles": 2786,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 848440,
+            "upright_axis": "Z",
+            "source_dae_bytes": 251861,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Garnet / Dagger (Hood)",
+        "id": "312361",
+        "source_archive": "03_Non_Playable_Characters/Garnet_Dagger_(Hood)__312361/312361.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312361/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Garnet___Dagger__Hood__312361.glb",
+            "status": "ok",
+            "source_triangles": 2862,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 808048,
+            "upright_axis": "Z",
+            "source_dae_bytes": 269013,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Knight of Pluto 01",
+        "id": "317907",
+        "source_archive": "03_Non_Playable_Characters/Knight_of_Pluto_01__317907/317907.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317907/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Knight_of_Pluto_01__317907.glb",
+            "status": "ok",
+            "source_triangles": 516,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 89364,
+            "upright_axis": "Y",
+            "source_dae_bytes": 109283,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Knight of Pluto 02",
+        "id": "317908",
+        "source_archive": "03_Non_Playable_Characters/Knight_of_Pluto_02__317908/317908.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317908/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Knight_of_Pluto_02__317908.glb",
+            "status": "ok",
+            "source_triangles": 520,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 89400,
+            "upright_axis": "Y",
+            "source_dae_bytes": 110048,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Kuja",
+        "id": "312359",
+        "source_archive": "03_Non_Playable_Characters/Kuja__312359/312359.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312359/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Kuja__312359.glb",
+            "status": "ok",
+            "source_triangles": 2655,
+            "mesh_parts": 3,
+            "texture_materials": 3,
+            "bytes": 1345856,
+            "upright_axis": "Z",
+            "source_dae_bytes": 322449,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Lady Hilda",
+        "id": "313751",
+        "source_archive": "03_Non_Playable_Characters/Lady_Hilda__313751/313751.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313751/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Lady_Hilda__313751.glb",
+            "status": "ok",
+            "source_triangles": 2018,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 731088,
+            "upright_axis": "Z",
+            "source_dae_bytes": 474254,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Lani",
+        "id": "317898",
+        "source_archive": "03_Non_Playable_Characters/Lani__317898/317898.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317898/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Lani__317898.glb",
+            "status": "ok",
+            "source_triangles": 2669,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 819820,
+            "upright_axis": "Y",
+            "source_dae_bytes": 477801,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Mikoto",
+        "id": "317923",
+        "source_archive": "03_Non_Playable_Characters/Mikoto__317923/317923.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317923/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Mikoto__317923.glb",
+            "status": "ok",
+            "source_triangles": 512,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 88724,
+            "upright_axis": "Y",
+            "source_dae_bytes": 103915,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Moogle (F)",
+        "id": "303103",
+        "source_archive": "03_Non_Playable_Characters/Moogle_(F)__303103/303103.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303103/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Moogle__F__303103.glb",
+            "status": "ok",
+            "source_triangles": 1455,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 615792,
+            "upright_axis": "Z",
+            "source_dae_bytes": 122675,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Morrid",
+        "id": "317921",
+        "source_archive": "03_Non_Playable_Characters/Morrid__317921/317921.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317921/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Morrid__317921.glb",
+            "status": "ok",
+            "source_triangles": 458,
+            "mesh_parts": 1,
+            "texture_materials": 1,
+            "bytes": 73216,
+            "upright_axis": "Y",
+            "source_dae_bytes": 94816,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Puck",
+        "id": "313752",
+        "source_archive": "03_Non_Playable_Characters/Puck__313752/313752.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313752/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Puck__313752.glb",
+            "status": "ok",
+            "source_triangles": 461,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 79156,
+            "upright_axis": "Z",
+            "source_dae_bytes": 62835,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Quale",
+        "id": "313753",
+        "source_archive": "03_Non_Playable_Characters/Quale__313753/313753.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313753/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Quale__313753.glb",
+            "status": "ok",
+            "source_triangles": 2518,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 801768,
+            "upright_axis": "Z",
+            "source_dae_bytes": 219658,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Quan",
+        "id": "317919",
+        "source_archive": "03_Non_Playable_Characters/Quan__317919/317919.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317919/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Quan__317919.glb",
+            "status": "ok",
+            "source_triangles": 1928,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 734004,
+            "upright_axis": "Y",
+            "source_dae_bytes": 361208,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Queen Brahne",
+        "id": "317914",
+        "source_archive": "03_Non_Playable_Characters/Queen_Brahne__317914/317914.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317914/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Queen_Brahne__317914.glb",
+            "status": "ok",
+            "source_triangles": 2174,
+            "mesh_parts": 3,
+            "texture_materials": 3,
+            "bytes": 758272,
+            "upright_axis": "Y",
+            "source_dae_bytes": 619691,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Regent Cid",
+        "id": "317912",
+        "source_archive": "03_Non_Playable_Characters/Regent_Cid__317912/317912.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317912/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Regent_Cid__317912.glb",
+            "status": "ok",
+            "source_triangles": 2121,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 744568,
+            "upright_axis": "Y",
+            "source_dae_bytes": 578626,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Regent Cid (Frog)",
+        "id": "317913",
+        "source_archive": "03_Non_Playable_Characters/Regent_Cid_(Frog)__317913/317913.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317913/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Regent_Cid__Frog__317913.glb",
+            "status": "ok",
+            "source_triangles": 478,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 77556,
+            "upright_axis": "Y",
+            "source_dae_bytes": 103428,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Ruby",
+        "id": "313748",
+        "source_archive": "03_Non_Playable_Characters/Ruby__313748/313748.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313748/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Ruby__313748.glb",
+            "status": "ok",
+            "source_triangles": 2026,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 742740,
+            "upright_axis": "Z",
+            "source_dae_bytes": 492455,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Sir Iron-Tail Fratley",
+        "id": "317915",
+        "source_archive": "03_Non_Playable_Characters/Sir_Iron-Tail_Fratley__317915/317915.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317915/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Sir_Iron-Tail_Fratley__317915.glb",
+            "status": "ok",
+            "source_triangles": 2355,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 772468,
+            "upright_axis": "Y",
+            "source_dae_bytes": 616328,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Stiltzkin",
+        "id": "317920",
+        "source_archive": "03_Non_Playable_Characters/Stiltzkin__317920/317920.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317920/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Stiltzkin__317920.glb",
+            "status": "ok",
+            "source_triangles": 1682,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 701344,
+            "upright_axis": "Y",
+            "source_dae_bytes": 457139,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Thorn",
+        "id": "317917",
+        "source_archive": "03_Non_Playable_Characters/Thorn__317917/317917.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317917/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Thorn__317917.glb",
+            "status": "ok",
+            "source_triangles": 2396,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 788376,
+            "upright_axis": "Y",
+            "source_dae_bytes": 543351,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Zorn",
+        "id": "317918",
+        "source_archive": "03_Non_Playable_Characters/Zorn__317918/317918.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317918/",
+        "category": "03_Non_Playable_Characters",
+        "outputs": [
+          {
+            "path": "03_Non_Playable_Characters/Zorn__317918.glb",
+            "status": "ok",
+            "source_triangles": 2396,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 789504,
+            "upright_axis": "Y",
+            "source_dae_bytes": 544221,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Alexandrian Soldier",
+        "id": "317903",
+        "source_archive": "04_Enemies/Alexandrian_Soldier__317903/317903.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317903/",
+        "category": "04_Enemies",
+        "outputs": [
+          {
+            "path": "04_Enemies/Alexandrian_Soldier__317903.glb",
+            "status": "ok",
+            "source_triangles": 550,
+            "mesh_parts": 6,
+            "texture_materials": 6,
+            "bytes": 103948,
+            "upright_axis": "Y",
+            "source_dae_bytes": 139414,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Knight of Pluto",
+        "id": "317906",
+        "source_archive": "04_Enemies/Knight_of_Pluto__317906/317906.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317906/",
+        "category": "04_Enemies",
+        "outputs": [
+          {
+            "path": "04_Enemies/Knight_of_Pluto__317906.glb",
+            "status": "ok",
+            "source_triangles": 552,
+            "mesh_parts": 8,
+            "texture_materials": 8,
+            "bytes": 107260,
+            "upright_axis": "Y",
+            "source_dae_bytes": 147995,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Ragtime Mouse",
+        "id": "313754",
+        "source_archive": "04_Enemies/Ragtime_Mouse__313754/313754.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313754/",
+        "category": "04_Enemies",
+        "outputs": [
+          {
+            "path": "04_Enemies/Ragtime_Mouse__313754.glb",
+            "status": "ok",
+            "source_triangles": 1826,
+            "mesh_parts": 5,
+            "texture_materials": 5,
+            "bytes": 277924,
+            "upright_axis": "Z",
+            "source_dae_bytes": 202857,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Beatrix",
+        "id": "317901",
+        "source_archive": "05_Bosses/Beatrix__317901/317901.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317901/",
+        "category": "05_Bosses",
+        "outputs": [
+          {
+            "path": "05_Bosses/Beatrix__317901.glb",
+            "status": "ok",
+            "source_triangles": 586,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 115340,
+            "upright_axis": "Y",
+            "source_dae_bytes": 122008,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Garland",
+        "id": "317902",
+        "source_archive": "05_Bosses/Garland__317902/317902.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317902/",
+        "category": "05_Bosses",
+        "outputs": [
+          {
+            "path": "05_Bosses/Garland__317902.glb",
+            "status": "ok",
+            "source_triangles": 5952,
+            "mesh_parts": 4,
+            "texture_materials": 4,
+            "bytes": 2049320,
+            "upright_axis": "Y",
+            "source_dae_bytes": 1034633,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Kuja (Trance)",
+        "id": "312360",
+        "source_archive": "05_Bosses/Kuja_(Trance)__312360/312360.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/312360/",
+        "category": "05_Bosses",
+        "outputs": [
+          {
+            "path": "05_Bosses/Kuja__Trance__312360.glb",
+            "status": "ok",
+            "source_triangles": 3148,
+            "mesh_parts": 2,
+            "texture_materials": 2,
+            "bytes": 889132,
+            "upright_axis": "Z",
+            "source_dae_bytes": 436512,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Lani",
+        "id": "317899",
+        "source_archive": "05_Bosses/Lani__317899/317899.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317899/",
+        "category": "05_Bosses",
+        "outputs": [
+          {
+            "path": "05_Bosses/Lani__317899.glb",
+            "status": "ok",
+            "source_triangles": 2902,
+            "mesh_parts": 4,
+            "texture_materials": 4,
+            "bytes": 1708880,
+            "upright_axis": "Y",
+            "source_dae_bytes": 515113,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Masked Man (Baku)",
+        "id": "313743",
+        "source_archive": "05_Bosses/Masked_Man_(Baku)__313743/313743.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/313743/",
+        "category": "05_Bosses",
+        "outputs": [
+          {
+            "path": "05_Bosses/Masked_Man__Baku__313743.glb",
+            "status": "ok",
+            "source_triangles": 4066,
+            "mesh_parts": 9,
+            "texture_materials": 9,
+            "bytes": 1989064,
+            "upright_axis": "Z",
+            "source_dae_bytes": 417466,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Necron",
+        "id": "317900",
+        "source_archive": "05_Bosses/Necron__317900/317900.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/317900/",
+        "category": "05_Bosses",
+        "outputs": [
+          {
+            "path": "05_Bosses/Necron__317900.glb",
+            "status": "ok",
+            "source_triangles": 6942,
+            "mesh_parts": 14,
+            "texture_materials": 14,
+            "bytes": 3151024,
+            "upright_axis": "Y",
+            "source_dae_bytes": 1884397,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Ladder",
+        "id": "303101",
+        "source_archive": "06_Objects/Ladder__303101/303101.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303101/",
+        "category": "06_Objects",
+        "outputs": [
+          {
+            "path": "06_Objects/Ladder__303101.glb",
+            "status": "ok",
+            "source_triangles": 120,
+            "mesh_parts": 1,
+            "texture_materials": 1,
+            "bytes": 36096,
+            "upright_axis": "Z",
+            "source_dae_bytes": 22895,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Princess Garnet / Queen Brahne Doll",
+        "id": "303102",
+        "source_archive": "06_Objects/Princess_Garnet_Queen_Brahne_Doll__303102/303102.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303102/",
+        "category": "06_Objects",
+        "outputs": [
+          {
+            "path": "06_Objects/Princess_Garnet___Queen_Brahne_Doll__303102.glb",
+            "status": "ok",
+            "source_triangles": 260,
+            "mesh_parts": 1,
+            "texture_materials": 1,
+            "bytes": 50400,
+            "upright_axis": "Z",
+            "source_dae_bytes": 27702,
+            "animations": "Not included: original DAEs contain no animation clips"
+          },
+          {
+            "path": "06_Objects/Princess_Garnet___Queen_Brahne_Doll__303102__2.glb",
+            "status": "ok",
+            "source_triangles": 264,
+            "mesh_parts": 1,
+            "texture_materials": 1,
+            "bytes": 50816,
+            "upright_axis": "Z",
+            "source_dae_bytes": 29648,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Cargo Hold",
+        "id": "303104",
+        "source_archive": "07_Battle_Backgrounds/Cargo_Hold__303104/303104.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303104/",
+        "category": "07_Battle_Backgrounds",
+        "outputs": [
+          {
+            "path": "07_Battle_Backgrounds/Cargo_Hold__303104.glb",
+            "status": "ok",
+            "source_triangles": 993,
+            "mesh_parts": 18,
+            "texture_materials": 18,
+            "bytes": 1162588,
+            "upright_axis": "Z",
+            "source_dae_bytes": 196367,
+            "animations": "Not included: original DAEs contain no animation clips"
+          },
+          {
+            "path": "07_Battle_Backgrounds/Cargo_Hold__303104__2.glb",
+            "status": "ok",
+            "source_triangles": 999,
+            "mesh_parts": 18,
+            "texture_materials": 18,
+            "bytes": 1013596,
+            "upright_axis": "Z",
+            "source_dae_bytes": 186141,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      },
+      {
+        "name": "Theater Stage",
+        "id": "303105",
+        "source_archive": "07_Battle_Backgrounds/Theater_Stage__303105/303105.zip",
+        "source_url": "https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303105/",
+        "category": "07_Battle_Backgrounds",
+        "outputs": [
+          {
+            "path": "07_Battle_Backgrounds/Theater_Stage__303105.glb",
+            "status": "ok",
+            "source_triangles": 4371,
+            "mesh_parts": 14,
+            "texture_materials": 14,
+            "bytes": 1238232,
+            "upright_axis": "Z",
+            "source_dae_bytes": 312742,
+            "animations": "Not included: original DAEs contain no animation clips"
+          },
+          {
+            "path": "07_Battle_Backgrounds/Theater_Stage__303105__2.glb",
+            "status": "ok",
+            "source_triangles": 961,
+            "mesh_parts": 16,
+            "texture_materials": 16,
+            "bytes": 942648,
+            "upright_axis": "Z",
+            "source_dae_bytes": 171892,
+            "animations": "Not included: original DAEs contain no animation clips"
+          }
+        ],
+        "status": "ok"
+      }
+    ]
+  },
+  "note": "Keep in a private repository branch. GitHub Pages can expose file bytes."
+}
