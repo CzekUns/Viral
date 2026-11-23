@@ -4215,6 +4215,478 @@
           }
         }
       }
+    },
+    "b08-v02-player": {
+      "src": "characters/b08/v02-backstaff-test/standing/S.webp",
+      "type": "character",
+      "characterId": "B08",
+      "name": "8 Bastoni · V02 schiena",
+      "variant": "B08 V02 bastone sulla schiena R01",
+      "artStatus": "TEST_DA_REVISIONARE",
+      "source": "characters/b08/v02-backstaff-test/manifest.json",
+      "anchor": [
+        0.5,
+        0.88
+      ],
+      "renderSize": [
+        96,
+        96
+      ],
+      "directions": {
+        "S": "characters/b08/v02-backstaff-test/standing/S.webp",
+        "SE": "characters/b08/v02-backstaff-test/standing/SE.webp",
+        "E": "characters/b08/v02-backstaff-test/standing/E.webp",
+        "NE": "characters/b08/v02-backstaff-test/standing/NE.webp",
+        "N": "characters/b08/v02-backstaff-test/standing/N.webp",
+        "NW": "characters/b08/v02-backstaff-test/standing/NW.webp",
+        "W": "characters/b08/v02-backstaff-test/standing/W.webp",
+        "SW": "characters/b08/v02-backstaff-test/standing/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/b08/v02-backstaff-test/standing/S.webp",
+            "SE": "characters/b08/v02-backstaff-test/standing/SE.webp",
+            "E": "characters/b08/v02-backstaff-test/standing/E.webp",
+            "NE": "characters/b08/v02-backstaff-test/standing/NE.webp",
+            "N": "characters/b08/v02-backstaff-test/standing/N.webp",
+            "NW": "characters/b08/v02-backstaff-test/standing/NW.webp",
+            "W": "characters/b08/v02-backstaff-test/standing/W.webp",
+            "SW": "characters/b08/v02-backstaff-test/standing/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            }
+          }
+        },
+        "walk": {
+          "frames": 4,
+          "fps": 7,
+          "directions": {
+            "S": "characters/b08/v02-backstaff-test/walk/S.webp",
+            "SE": "characters/b08/v02-backstaff-test/walk/SE.webp",
+            "E": "characters/b08/v02-backstaff-test/walk/E.webp",
+            "NE": "characters/b08/v02-backstaff-test/walk/NE.webp",
+            "N": "characters/b08/v02-backstaff-test/walk/N.webp",
+            "NW": "characters/b08/v02-backstaff-test/walk/NW.webp",
+            "W": "characters/b08/v02-backstaff-test/walk/W.webp",
+            "SW": "characters/b08/v02-backstaff-test/walk/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.88
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            }
+          }
+        }
+      }
+    },
+    "b08-v02-player-idle-SE": {
+      "src": "characters/b08/v02-backstaff-test/standing/SE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-idle-E": {
+      "src": "characters/b08/v02-backstaff-test/standing/E.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "E",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-idle-NE": {
+      "src": "characters/b08/v02-backstaff-test/standing/NE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-idle-N": {
+      "src": "characters/b08/v02-backstaff-test/standing/N.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "N",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-idle-NW": {
+      "src": "characters/b08/v02-backstaff-test/standing/NW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-idle-W": {
+      "src": "characters/b08/v02-backstaff-test/standing/W.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "W",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-idle-SW": {
+      "src": "characters/b08/v02-backstaff-test/standing/SW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-S": {
+      "src": "characters/b08/v02-backstaff-test/walk/S.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "S",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-SE": {
+      "src": "characters/b08/v02-backstaff-test/walk/SE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-E": {
+      "src": "characters/b08/v02-backstaff-test/walk/E.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "E",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-NE": {
+      "src": "characters/b08/v02-backstaff-test/walk/NE.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-N": {
+      "src": "characters/b08/v02-backstaff-test/walk/N.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "N",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-NW": {
+      "src": "characters/b08/v02-backstaff-test/walk/NW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "NW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-W": {
+      "src": "characters/b08/v02-backstaff-test/walk/W.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "W",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "b08-v02-player-walk-SW": {
+      "src": "characters/b08/v02-backstaff-test/walk/SW.webp",
+      "type": "sprite",
+      "characterId": "B08",
+      "direction": "SW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
     }
   },
   "spritesheetSchema": {
