@@ -7,6 +7,7 @@ export const OVERWORLD_AVATARS=Object.freeze([
   Object.freeze({id:'d08-player',name:'8 Denari V01',short:'Denari',suit:'Denari',version:'V01 TEST',emoji:'🪙'}),
   Object.freeze({id:'c08-v01-player',name:'8 Coppe V01',short:'Coppe V01',suit:'Coppe',version:'V01 TEST',emoji:'🏺'}),
   Object.freeze({id:'c08-v02-player',name:'8 Coppe V02 compatto',short:'Coppe V02',suit:'Coppe',version:'V02 COMPATTO',emoji:'🏺'}),
+  Object.freeze({id:'c09-player',name:'9 Coppe V01 · Cavaliere',short:'9 Coppe',suit:'Coppe',version:'V01 CAVALIERE TEST',emoji:'🏇'}),
 ]);
 export function resolveAvatar(id){return OVERWORLD_AVATARS.find(x=>x.id===id)||OVERWORLD_AVATARS[0];}
 export function nextAvatar(id){return OVERWORLD_AVATARS[(OVERWORLD_AVATARS.findIndex(x=>x.id===id)+1)%OVERWORLD_AVATARS.length];}

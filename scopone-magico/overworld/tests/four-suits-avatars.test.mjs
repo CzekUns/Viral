@@ -10,9 +10,9 @@ const manifest=JSON.parse(readFileSync(path.join(root,'assets.json'),'utf8'));
 const directions=['S','SE','E','NE','N','NW','W','SW'];
 test('All four suits and three Coppe versions remain independently selectable',()=>{
  const ids=OVERWORLD_AVATARS.map(a=>a.id);
- assert.deepEqual(ids,['player','s08-player','b08-player','b08-v02-player','d08-player','c08-v01-player','c08-v02-player']);
- assert.equal(new Set(ids).size,7);
- assert.deepEqual([...new Set(ids.map(id=>manifest.images[id].characterId))].sort(),['B08','C08','D08','S08']);
+ assert.deepEqual(ids,['player','s08-player','b08-player','b08-v02-player','d08-player','c08-v01-player','c08-v02-player','c09-player']);
+ assert.equal(new Set(ids).size,8);
+ assert.deepEqual([...new Set(ids.map(id=>manifest.images[id].characterId))].sort(),['B08','C08','C09','D08','S08']);
  for(let i=0;i<ids.length;i++)assert.equal(nextAvatar(ids[i]).id,ids[(i+1)%ids.length]);
  assert.equal(resolveAvatar('unknown').id,'player');
 });
@@ -27,7 +27,7 @@ test('Four new characters contain all 8 real 512x512 standing WebPs and 4x512 wa
        assert.ok(image?.startsWith('characters/'));
        assert.ok(statSync(path.join(root,image)).size>10000,image);
        const d=info.perDirection[dir];
-       assert.deepEqual(d.anchor,avatar.id==='b08-v02-player'?[.5,.88]:[.5,390/512],avatar.id+' '+dir);
+       assert.deepEqual(d.anchor,avatar.id==='c09-player'?[.5,.9]:avatar.id==='b08-v02-player'?[.5,.88]:[.5,390/512],avatar.id+' '+dir);
        assert.deepEqual(d.renderScale,[1.4,1.4]);
        assert.equal(d.frames,mode==='walk'?4:1);
        assert.equal(d.fps,mode==='walk'?7:1);

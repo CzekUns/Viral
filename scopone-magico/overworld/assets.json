@@ -4687,6 +4687,478 @@
       ],
       "lazy": true,
       "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-idle-SE": {
+      "src": "characters/c09/v01-mounted-test/standing/SE.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "SE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-idle-E": {
+      "src": "characters/c09/v01-mounted-test/standing/E.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "E",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-idle-NE": {
+      "src": "characters/c09/v01-mounted-test/standing/NE.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "NE",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-idle-N": {
+      "src": "characters/c09/v01-mounted-test/standing/N.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "N",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-idle-NW": {
+      "src": "characters/c09/v01-mounted-test/standing/NW.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "NW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-idle-W": {
+      "src": "characters/c09/v01-mounted-test/standing/W.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "W",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-idle-SW": {
+      "src": "characters/c09/v01-mounted-test/standing/SW.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "SW",
+      "state": "idle",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-S": {
+      "src": "characters/c09/v01-mounted-test/walk/S.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "S",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-SE": {
+      "src": "characters/c09/v01-mounted-test/walk/SE.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "SE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-E": {
+      "src": "characters/c09/v01-mounted-test/walk/E.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "E",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-NE": {
+      "src": "characters/c09/v01-mounted-test/walk/NE.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "NE",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-N": {
+      "src": "characters/c09/v01-mounted-test/walk/N.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "N",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-NW": {
+      "src": "characters/c09/v01-mounted-test/walk/NW.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "NW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-W": {
+      "src": "characters/c09/v01-mounted-test/walk/W.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "W",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player-walk-SW": {
+      "src": "characters/c09/v01-mounted-test/walk/SW.webp",
+      "type": "sprite",
+      "characterId": "C09",
+      "direction": "SW",
+      "state": "walk",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "lazy": true,
+      "artStatus": "TEST_DA_REVISIONARE"
+    },
+    "c09-player": {
+      "src": "characters/c09/v01-mounted-test/standing/S.webp",
+      "type": "character",
+      "characterId": "C09",
+      "name": "9 Coppe · Cavaliere V01",
+      "variant": "C09 V01 cavaliere TEST",
+      "artStatus": "TEST_DA_REVISIONARE",
+      "source": "characters/c09/v01-mounted-test/manifest.json",
+      "anchor": [
+        0.5,
+        0.9
+      ],
+      "renderSize": [
+        128,
+        128
+      ],
+      "directions": {
+        "S": "characters/c09/v01-mounted-test/standing/S.webp",
+        "SE": "characters/c09/v01-mounted-test/standing/SE.webp",
+        "E": "characters/c09/v01-mounted-test/standing/E.webp",
+        "NE": "characters/c09/v01-mounted-test/standing/NE.webp",
+        "N": "characters/c09/v01-mounted-test/standing/N.webp",
+        "NW": "characters/c09/v01-mounted-test/standing/NW.webp",
+        "W": "characters/c09/v01-mounted-test/standing/W.webp",
+        "SW": "characters/c09/v01-mounted-test/standing/SW.webp"
+      },
+      "animations": {
+        "idle": {
+          "frames": 1,
+          "fps": 1,
+          "directions": {
+            "S": "characters/c09/v01-mounted-test/standing/S.webp",
+            "SE": "characters/c09/v01-mounted-test/standing/SE.webp",
+            "E": "characters/c09/v01-mounted-test/standing/E.webp",
+            "NE": "characters/c09/v01-mounted-test/standing/NE.webp",
+            "N": "characters/c09/v01-mounted-test/standing/N.webp",
+            "NW": "characters/c09/v01-mounted-test/standing/NW.webp",
+            "W": "characters/c09/v01-mounted-test/standing/W.webp",
+            "SW": "characters/c09/v01-mounted-test/standing/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 1,
+              "fps": 1
+            }
+          }
+        },
+        "walk": {
+          "frames": 4,
+          "fps": 7,
+          "directions": {
+            "S": "characters/c09/v01-mounted-test/walk/S.webp",
+            "SE": "characters/c09/v01-mounted-test/walk/SE.webp",
+            "E": "characters/c09/v01-mounted-test/walk/E.webp",
+            "NE": "characters/c09/v01-mounted-test/walk/NE.webp",
+            "N": "characters/c09/v01-mounted-test/walk/N.webp",
+            "NW": "characters/c09/v01-mounted-test/walk/NW.webp",
+            "W": "characters/c09/v01-mounted-test/walk/W.webp",
+            "SW": "characters/c09/v01-mounted-test/walk/SW.webp"
+          },
+          "perDirection": {
+            "S": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "SE": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "E": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "NE": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "N": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "NW": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "W": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            },
+            "SW": {
+              "anchor": [
+                0.5,
+                0.9
+              ],
+              "renderScale": [
+                1.4,
+                1.4
+              ],
+              "artStatus": "TEST_DA_REVISIONARE",
+              "frames": 4,
+              "fps": 7
+            }
+          }
+        }
+      }
     }
   },
   "spritesheetSchema": {

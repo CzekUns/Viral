@@ -2314,6 +2314,262 @@
       "bytes": 634854,
       "artStatus": "DA_REVISIONARE",
       "approved": false
+    },
+    {
+      "code": "C09-STAND-S-V01",
+      "character": "C09",
+      "direction": "S",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-STAND-SE-V01",
+      "character": "C09",
+      "direction": "SE",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-STAND-E-V01",
+      "character": "C09",
+      "direction": "E",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-STAND-NE-V01",
+      "character": "C09",
+      "direction": "NE",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-STAND-N-V01",
+      "character": "C09",
+      "direction": "N",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-STAND-NW-V01",
+      "character": "C09",
+      "direction": "NW",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-STAND-W-V01",
+      "character": "C09",
+      "direction": "W",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-STAND-SW-V01",
+      "character": "C09",
+      "direction": "SW",
+      "state": "idle",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-S-V01",
+      "character": "C09",
+      "direction": "S",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-SE-V01",
+      "character": "C09",
+      "direction": "SE",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-E-V01",
+      "character": "C09",
+      "direction": "E",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-NE-V01",
+      "character": "C09",
+      "direction": "NE",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-N-V01",
+      "character": "C09",
+      "direction": "N",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-NW-V01",
+      "character": "C09",
+      "direction": "NW",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-W-V01",
+      "character": "C09",
+      "direction": "W",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
+    },
+    {
+      "code": "C09-WALK-SW-V01",
+      "character": "C09",
+      "direction": "SW",
+      "state": "walk",
+      "version": "9 Coppe V01 cavaliere · DA REVISIONARE",
+      "src": "characters/c09/v01-mounted-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": null,
+      "approved": false
     }
   ]
 }
