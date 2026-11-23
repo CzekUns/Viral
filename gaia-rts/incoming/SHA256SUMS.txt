@@ -1,0 +1,4 @@
+# SHA-256 original GLB archive segments prepared from user's FF9 pack
+6c3ccfe0b100d1c524dac6dbc4778256cc85a2b0a00615821781a7b21452b40b  FF9_GaiaRTS_Parte_01.zip
+d12d1d1ce851dfacb032ba29d8b213d82a158d16e52d1999c5c936637b216f7d  FF9_GaiaRTS_Parte_02.zip
+cef25bf2cae291951d3d1894a95dcb3c4c605a89f5f74f6b73eb4b3aeceaa10e  FF9_GaiaRTS_Parte_03.zip
