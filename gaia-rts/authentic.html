@@ -386,8 +386,21 @@ window.addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);s
 function frame(t){let dt=Math.min(.05,(t-last)/1000);last=t;tick(dt);renderer.render(scene,camera);if(noticeUntil&&t>noticeUntil){noticeUntil=0;$('notice').classList.remove('visible')}requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 async function boot(){
- // A private self-hosted deployment can place the starter ZIP beside the game.
- // No game data is committed to or distributed by the public code repository.
+ // A standalone private build may embed its real FF9 starter ZIP directly in this document.
+ // That private build must never be deployed through publicly reachable GitHub Pages.
+ const embedded=$('embedded-gaia-starter');
+ if(embedded){
+  try{
+   const encoded=embedded.textContent.trim();
+   embedded.remove();
+   const bin=atob(encoded);
+   const bytes=new Uint8Array(bin.length);
+   for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+   await importStarter(new Blob([bytes],{type:'application/zip'}));
+   if(ready)return;
+  }catch(err){console.error('Embedded original asset load failed',err);flash('Errore nel pacchetto incorporato: '+err.message)}
+ }
+ // A protected server may place the starter ZIP beside the game.
  try{
   const response=await fetch('./assets/FF9_GaiaRTS_Starter_Originali.zip',{cache:'default'});
   if(response.ok){
