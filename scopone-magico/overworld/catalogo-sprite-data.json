@@ -2570,6 +2570,774 @@
       "fps": 7,
       "bytes": null,
       "approved": false
+    },
+    {
+      "code": "S09-STAND-S-V01",
+      "character": "S09",
+      "direction": "S",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 96738,
+      "approved": false
+    },
+    {
+      "code": "S09-STAND-SE-V01",
+      "character": "S09",
+      "direction": "SE",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 130848,
+      "approved": false
+    },
+    {
+      "code": "S09-STAND-E-V01",
+      "character": "S09",
+      "direction": "E",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 142288,
+      "approved": false
+    },
+    {
+      "code": "S09-STAND-NE-V01",
+      "character": "S09",
+      "direction": "NE",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 120402,
+      "approved": false
+    },
+    {
+      "code": "S09-STAND-N-V01",
+      "character": "S09",
+      "direction": "N",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 78222,
+      "approved": false
+    },
+    {
+      "code": "S09-STAND-NW-V01",
+      "character": "S09",
+      "direction": "NW",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 111588,
+      "approved": false
+    },
+    {
+      "code": "S09-STAND-W-V01",
+      "character": "S09",
+      "direction": "W",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 132836,
+      "approved": false
+    },
+    {
+      "code": "S09-STAND-SW-V01",
+      "character": "S09",
+      "direction": "SW",
+      "state": "idle",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 128636,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-S-V01",
+      "character": "S09",
+      "direction": "S",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 391726,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-SE-V01",
+      "character": "S09",
+      "direction": "SE",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 507266,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-E-V01",
+      "character": "S09",
+      "direction": "E",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 591672,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-NE-V01",
+      "character": "S09",
+      "direction": "NE",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 482704,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-N-V01",
+      "character": "S09",
+      "direction": "N",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 312334,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-NW-V01",
+      "character": "S09",
+      "direction": "NW",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 430514,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-W-V01",
+      "character": "S09",
+      "direction": "W",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 538654,
+      "approved": false
+    },
+    {
+      "code": "S09-WALK-SW-V01",
+      "character": "S09",
+      "direction": "SW",
+      "state": "walk",
+      "version": "9 Spade V01 cavaliere · DA REVISIONARE",
+      "src": "characters/s09/v01-mounted-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 503964,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-S-V01",
+      "character": "B09",
+      "direction": "S",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 95832,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-SE-V01",
+      "character": "B09",
+      "direction": "SE",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 133140,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-E-V01",
+      "character": "B09",
+      "direction": "E",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 149392,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-NE-V01",
+      "character": "B09",
+      "direction": "NE",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 121544,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-N-V01",
+      "character": "B09",
+      "direction": "N",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 89066,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-NW-V01",
+      "character": "B09",
+      "direction": "NW",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 129974,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-W-V01",
+      "character": "B09",
+      "direction": "W",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 141312,
+      "approved": false
+    },
+    {
+      "code": "B09-STAND-SW-V01",
+      "character": "B09",
+      "direction": "SW",
+      "state": "idle",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 128092,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-S-V01",
+      "character": "B09",
+      "direction": "S",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 394878,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-SE-V01",
+      "character": "B09",
+      "direction": "SE",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 523622,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-E-V01",
+      "character": "B09",
+      "direction": "E",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 613180,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-NE-V01",
+      "character": "B09",
+      "direction": "NE",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 471948,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-N-V01",
+      "character": "B09",
+      "direction": "N",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 347950,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-NW-V01",
+      "character": "B09",
+      "direction": "NW",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 508698,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-W-V01",
+      "character": "B09",
+      "direction": "W",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 576898,
+      "approved": false
+    },
+    {
+      "code": "B09-WALK-SW-V01",
+      "character": "B09",
+      "direction": "SW",
+      "state": "walk",
+      "version": "9 Bastoni V01 cavaliere · DA REVISIONARE",
+      "src": "characters/b09/v01-mounted-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 496296,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-S-V01",
+      "character": "D09",
+      "direction": "S",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/S.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 102038,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-SE-V01",
+      "character": "D09",
+      "direction": "SE",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/SE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 133202,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-E-V01",
+      "character": "D09",
+      "direction": "E",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/E.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 148582,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-NE-V01",
+      "character": "D09",
+      "direction": "NE",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/NE.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 132762,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-N-V01",
+      "character": "D09",
+      "direction": "N",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/N.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 91280,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-NW-V01",
+      "character": "D09",
+      "direction": "NW",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/NW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 124824,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-W-V01",
+      "character": "D09",
+      "direction": "W",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/W.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 138350,
+      "approved": false
+    },
+    {
+      "code": "D09-STAND-SW-V01",
+      "character": "D09",
+      "direction": "SW",
+      "state": "idle",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/standing/SW.webp",
+      "frames": 1,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 1,
+      "bytes": 136964,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-S-V01",
+      "character": "D09",
+      "direction": "S",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/S.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 427090,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-SE-V01",
+      "character": "D09",
+      "direction": "SE",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/SE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 546614,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-E-V01",
+      "character": "D09",
+      "direction": "E",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/E.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 627488,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-NE-V01",
+      "character": "D09",
+      "direction": "NE",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/NE.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 503176,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-N-V01",
+      "character": "D09",
+      "direction": "N",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/N.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 368588,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-NW-V01",
+      "character": "D09",
+      "direction": "NW",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/NW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 498564,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-W-V01",
+      "character": "D09",
+      "direction": "W",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/W.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 576134,
+      "approved": false
+    },
+    {
+      "code": "D09-WALK-SW-V01",
+      "character": "D09",
+      "direction": "SW",
+      "state": "walk",
+      "version": "9 Denari V01 cavaliere · DA REVISIONARE",
+      "src": "characters/d09/v01-mounted-test/walk/SW.webp",
+      "frames": 4,
+      "frameSize": [
+        512,
+        512
+      ],
+      "fps": 7,
+      "bytes": 559502,
+      "approved": false
     }
   ]
 }
