@@ -37,13 +37,13 @@ button,input{font:inherit}button{color:#fff;border:1px solid #c2a87c;border-radi
 <div id="top"><h1><small>FINAL FANTASY IX · FAN PROTOTYPE</small>GAIA RTS</h1><div id="stats">Gil <span id="gold">240</span> · Unità <span id="count">0</span><div>Città <span id="towns">1</span>/3</div></div></div>
 <div id="settings"><button id="assetbtn" title="Carica asset originali">⚙</button><button id="plus" aria-label="Aumenta zoom">＋</button><button id="minus" aria-label="Riduci zoom">－</button></div>
 <div id="notice"></div>
-<div id="footer"><div id="hint">Carica i modelli originali FF9 per iniziare.</div><div class="actions"><button id="all">▣ Tutte</button><button id="move">➤ Marcia</button><button id="fight">⚔ Attacca</button><button id="recruit">♟ Recluta 60</button><button id="pause">Ⅱ Pausa</button></div></div>
+<div id="footer"><div id="hint">Avvio automatico del mondo 3D FF9…</div><div class="actions"><button id="all">▣ Tutte</button><button id="move">➤ Marcia</button><button id="fight">⚔ Attacca</button><button id="recruit">♟ Recluta 60</button><button id="pause">Ⅱ Pausa</button></div></div>
 <section id="asset-panel" aria-label="Importa asset originali">
-<h2>Gli asset originali di FF9</h2>
-<p>Questa versione <b>non disegna un overworld finto</b>. Carica il modello 3D autentico dell'overworld in formato <b>GLB</b>. Puoi già esplorare tutti i continenti; aggiungi almeno un mini-personaggio GLB per attivare la battaglia RTS. Le texture incorporate restano quelle del gioco.</p>
-<label for="pack-file">Importazione rapida — un solo ZIP</label>
+<h2>Gaia RTS · Overworld originale</h2>
+<p>La <b>mappa 3D autentica</b> e i personaggi di Final Fantasy IX vengono caricati <b>automaticamente</b> dal sito. Attendi il completamento del caricamento: non devi selezionare file. Questa è una versione RTS sperimentale per smartphone.</p>
+<label for="pack-file">Importazione manuale (solo alternativa)</label>
 <input id="pack-file" type="file" accept=".zip,application/zip" aria-label="Seleziona il pacchetto iniziale Gaia RTS">
-<p id="import-status" class="small">Carica FF9_GaiaRTS_Starter_Originali.zip: contiene l'Overworld originale e 13 modelli FF9, con fazioni assegnate.</p>
+<p id="import-status" class="small" role="status" aria-live="polite">Preparazione scenario Gaia RTS: download automatico degli asset 3D…</p>
 <hr style="border:0;border-top:1px solid #746c53;margin:16px 0">
 <label for="terrain-file">Oppure: Overworld 3D originale (.glb)</label>
 <input id="terrain-file" type="file" accept=".glb,model/gltf-binary">
@@ -51,7 +51,7 @@ button,input{font:inherit}button{color:#fff;border:1px solid #c2a87c;border-radi
 <input id="unit-file" type="file" accept=".glb,model/gltf-binary" multiple>
 <p id="asset-info">Nessun asset ancora caricato.</p>
 <div class="row"><button id="start">Avvia l'RTS</button><button id="close">Chiudi</button></div>
-<p class="small">Usa il pacchetto iniziale ZIP della conversazione per importare tutto insieme; in alternativa puoi importare GLB singoli. I modelli estratti non contengono necessariamente animazioni di camminata: il motore utilizza il movimento sul terreno e un leggero ciclo procedurale provvisorio.</p><p class="small">I file vengono salvati esclusivamente sul dispositivo tramite IndexedDB. Non vengono inviati a GitHub o a server. La dimensione e le coordinate sono adattate automaticamente; le città sono segnaposto tattici finché non vengono calibrate sui luoghi reali.</p>
+<p class="small">Il catalogo originale conta 70 file GLB, disponibili nella cartella <a href="assets/catalog.json" target="_blank" rel="noopener">asset FF9</a>. Per la prima schermaglia vengono caricati 13 modelli, così lo smartphone non deve elaborare l’intero catalogo. I modelli estratti non includono animazioni complete di camminata o attacco: il movimento usa una leggera animazione procedurale provvisoria.</p><p class="small">Gli asset vengono scaricati dalla stessa installazione GitHub Pages e, quando possibile, memorizzati sul dispositivo tramite IndexedDB. Gli ordini e i movimenti restano locali. Le città sono riferimenti tattici provvisori sulla mappa originale, da calibrare sulle posizioni canoniche.</p>
 <p class="small">Fonti: <a href="https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303153/" target="_blank" rel="noopener">Overworld 3D (Models Resource)</a> · <a href="https://github.com/GameJawnsInc/Dream-World-IX" target="_blank" rel="noopener">FF9 Map Kit per esportare GEO_SUB_W0_* in GLB</a></p>
 </section>
 <div id="result"><div><h2 id="result-title">Campagna terminata</h2><button id="restart">Ricomincia</button></div></div>
@@ -386,8 +386,9 @@ window.addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);s
 function frame(t){let dt=Math.min(.05,(t-last)/1000);last=t;tick(dt);renderer.render(scene,camera);if(noticeUntil&&t>noticeUntil){noticeUntil=0;$('notice').classList.remove('visible')}requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 async function boot(){
+ $('import-status').textContent='Caricamento automatico del pacchetto FF9 in corso…';
  // A standalone private build may embed its real FF9 starter ZIP directly in this document.
- // That private build must never be deployed through publicly reachable GitHub Pages.
+ // Standalone builds may embed the starter ZIP; the hosted site uses a separate local ZIP.
  const embedded=$('embedded-gaia-starter');
  if(embedded){
   try{
@@ -400,14 +401,25 @@ async function boot(){
    if(ready)return;
   }catch(err){console.error('Embedded original asset load failed',err);flash('Errore nel pacchetto incorporato: '+err.message)}
  }
- // A protected server may place the starter ZIP beside the game.
+ // The Github Pages build serves the uploaded starter ZIP beside the game.
  try{
   const response=await fetch('./assets/FF9_GaiaRTS_Starter_Originali.zip',{cache:'default'});
   if(response.ok){
    const size=Number(response.headers.get('content-length')||0);
    if(size>80*1024*1024)throw Error('Asset ZIP too large');
-   $('import-status').textContent='Caricamento automatico degli asset dal deposito locale…';
-   await importStarter(await response.blob());
+   const status=$('import-status');
+   const total=Number(response.headers.get('content-length')||0);
+   let payload;
+   if(response.body){
+    const reader=response.body.getReader(),parts=[];let loaded=0;
+    for(;;){
+     const step=await reader.read();if(step.done)break;
+     parts.push(step.value);loaded+=step.value.byteLength;
+     status.textContent=total?'Download modelli FF9: '+Math.min(100,Math.floor(loaded/total*100))+'%':'Download modelli FF9: '+(loaded/1048576).toFixed(1)+' MB';
+    }
+    payload=new Blob(parts,{type:'application/zip'});
+   }else payload=await response.blob();
+   await importStarter(payload);
    if(ready)return;
   }
  }catch(e){console.info('Pacchetto automatico non disponibile',e)}
