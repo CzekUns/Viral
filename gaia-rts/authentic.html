@@ -40,14 +40,14 @@ button,input{font:inherit}button{color:#fff;border:1px solid #c2a87c;border-radi
 <div id="footer"><div id="hint">Carica i modelli originali FF9 per iniziare.</div><div class="actions"><button id="all">▣ Tutte</button><button id="move">➤ Marcia</button><button id="fight">⚔ Attacca</button><button id="recruit">♟ Recluta 60</button><button id="pause">Ⅱ Pausa</button></div></div>
 <section id="asset-panel" aria-label="Importa asset originali">
 <h2>Gli asset originali di FF9</h2>
-<p>Questa versione <b>non disegna un overworld finto</b>. Carica il modello 3D autentico dell'overworld e almeno un mini-personaggio di FF9 in formato <b>GLB</b>. Le texture incorporate restano quelle del gioco.</p>
+<p>Questa versione <b>non disegna un overworld finto</b>. Carica il modello 3D autentico dell'overworld in formato <b>GLB</b>. Puoi già esplorare tutti i continenti; aggiungi almeno un mini-personaggio GLB per attivare la battaglia RTS. Le texture incorporate restano quelle del gioco.</p>
 <label for="terrain-file">1 · Overworld 3D originale (.glb)</label>
 <input id="terrain-file" type="file" accept=".glb,model/gltf-binary">
 <label for="unit-file">2 · Mini-personaggi overworld originali (.glb, anche più di uno)</label>
 <input id="unit-file" type="file" accept=".glb,model/gltf-binary" multiple>
 <p id="asset-info">Nessun asset ancora caricato.</p>
 <div class="row"><button id="start">Avvia l'RTS</button><button id="close">Chiudi</button></div>
-<p class="small">I file vengono salvati esclusivamente sul dispositivo tramite IndexedDB. Non vengono inviati a GitHub o a server. La dimensione e le coordinate sono adattate automaticamente; le città sono segnaposto tattici finché non vengono calibrate sui luoghi reali.</p>
+<p class="small"><b>Mappa convertita dal tuo ZIP:</b> scarica <code>FF9_Overworld_Original.glb</code> dalla conversazione e selezionala nel primo campo. Non caricare lo ZIP qui.</p><p class="small">I file vengono salvati esclusivamente sul dispositivo tramite IndexedDB. Non vengono inviati a GitHub o a server. La dimensione e le coordinate sono adattate automaticamente; le città sono segnaposto tattici finché non vengono calibrate sui luoghi reali.</p>
 <p class="small">Fonti: <a href="https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303153/" target="_blank" rel="noopener">Overworld 3D (Models Resource)</a> · <a href="https://github.com/GameJawnsInc/Dream-World-IX" target="_blank" rel="noopener">FF9 Map Kit per esportare GEO_SUB_W0_* in GLB</a></p>
 </section>
 <div id="result"><div><h2 id="result-title">Campagna terminata</h2><button id="restart">Ricomincia</button></div></div>
@@ -199,7 +199,7 @@ function newUnit(x,z,side,variantIndex){
  const stand=anims.find(a=>/idle|stand|wait/i.test(a.name))||anims[0],walk=anims.find(a=>/walk|run/i.test(a.name))||stand;
  const actions={};if(mixer){if(stand)actions.idle=mixer.clipAction(stand);if(walk)actions.walk=mixer.clipAction(walk)}
  let current='idle';actions.idle?.play();selring.visible=false;
- const u={id:++unitID,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,mixer,actions,current,hp:100,goal:null,path:[],target:null,cooldown:0,speed:side===1?12:10,ai:Math.random()+1};
+ const u={id:++unitID,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,mixer,actions,current,hp:100,goal:null,path:[],target:null,cooldown:0,routeTimer:0,speed:side===1?12:10,ai:Math.random()+1};
  units.push(u);return u;
 }
 function animateUnit(u,moving){const act=moving?'walk':'idle';if(act!==u.current){u.actions[u.current]?.fadeOut(.18);u.actions[act]?.reset().fadeIn(.18).play();u.current=act}}
@@ -225,7 +225,7 @@ function updateHUD(){
  $('gold').textContent=Math.floor(gold);$('count').textContent=units.filter(u=>u.side===1).length;$('towns').textContent=towns.filter(t=>t.side===1).length;
  $('recruit').disabled=!ready||gold<60;$('all').disabled=!ready;
  $('move').disabled=!ready;$('fight').disabled=!ready;
- $('hint').textContent=!ready?'Carica gli asset FF9 autentici per iniziare':(selected.size?selected.size+' unità selezionate · tocca il terreno per muoverle':'Tocca un personaggio; trascina per esplorare, pizzica per lo zoom');
+ $('hint').textContent=!ready?(world?'Mappa originale 3D: trascina per esplorare. Importa i mini-personaggi da ⚙ per attivare l’RTS.':'Carica il GLB autentico FF9 per iniziare'):(selected.size?selected.size+' unità selezionate · tocca il terreno per muoverle':'Tocca un personaggio; trascina per esplorare, pizzica per lo zoom');
  $('pause').textContent=paused?'▶ Riprendi':'Ⅱ Pausa';
 }
 function toMouse(x,y){mouse.x=(x/innerWidth)*2-1;mouse.y=-(y/innerHeight)*2+1;ray.setFromCamera(mouse,camera)}
@@ -266,8 +266,8 @@ $('asset-panel').addEventListener('click',e=>e.stopPropagation());
 async function takeFile(file,key){if(!file||!file.name.toLowerCase().endsWith('.glb'))throw Error('Serve un file .glb');let bytes=await file.arrayBuffer();await store(key,bytes);return loadGLB(bytes)}
 $('terrain-file').onchange=async e=>{try{let f=e.target.files?.[0];if(!f)return;let gltf=await takeFile(f,'world');fitWorld(gltf);$('asset-info').textContent='Overworld FF9 caricato ✓';flash('Geometria autentica del terreno caricata')}catch(err){flash('Errore nel modello della mappa: '+err.message)}};
 $('unit-file').onchange=async e=>{try{let files=[...(e.target.files||[])];if(!files.length)return;unitAssets=[];for(let i=0;i<files.length;i++){const gltf=await takeFile(files[i],'unit-'+i);unitAssets.push(gltf)}await store('unit-count',new TextEncoder().encode(String(files.length)).buffer);$('asset-info').textContent='Overworld: '+(world?'✓':'mancante')+' · Miniature: '+unitAssets.length;flash(unitAssets.length+' modelli autentici caricati')}catch(err){flash('Errore miniatura: '+err.message)}};
-$('start').onclick=()=>{if(!world||!unitAssets.length){flash('Servono i due tipi di asset originali .glb');return}setupUnits();$('asset-panel').hidden=true};
-async function restore(){try{const wb=await loadSaved('world');if(wb){fitWorld(await loadGLB(wb));}const cnt=await loadSaved('unit-count');let n=cnt?Number(new TextDecoder().decode(cnt)):0;for(let i=0;i<Math.min(n,21);i++){let buf=await loadSaved('unit-'+i);if(buf)unitAssets.push(await loadGLB(buf))}if(world&&unitAssets.length){$('asset-info').textContent='Overworld originale e '+unitAssets.length+' mini-personaggi salvati ✓';setupUnits();$('asset-panel').hidden=true}else{$('asset-info').textContent=(world?'Overworld originale ✓':'Overworld mancante')+' · Miniature: '+unitAssets.length}}catch(e){console.error(e);flash('Asset salvati non caricabili: '+e.message)}}
+$('start').onclick=()=>{if(!world){flash('Importa prima il GLB originale della mappa FF9');return}if(unitAssets.length)setupUnits();else{const raw=toWorld(-1100,-790);view.target.copy(nearGround(raw.x,raw.z,70)||view.target);view.span=350;setCamera();flash('Overworld FF9 autentico: modalità esplorazione, importa i mini-personaggi per giocare')} $('asset-panel').hidden=true};
+async function restore(){try{const wb=await loadSaved('world');if(wb){fitWorld(await loadGLB(wb));}const cnt=await loadSaved('unit-count');let n=cnt?Number(new TextDecoder().decode(cnt)):0;for(let i=0;i<Math.min(n,21);i++){let buf=await loadSaved('unit-'+i);if(buf)unitAssets.push(await loadGLB(buf))}if(world&&unitAssets.length){$('asset-info').textContent='Overworld originale e '+unitAssets.length+' mini-personaggi salvati ✓';setupUnits();$('asset-panel').hidden=true}else{if(world){const raw=toWorld(-1100,-790);view.target.copy(nearGround(raw.x,raw.z,70)||view.target);view.span=350;setCamera();$('asset-panel').hidden=true;flash('Mappa originale FF9 caricata: usa ⚙ per aggiungere i mini-personaggi')} $('asset-info').textContent=(world?'Overworld originale ✓':'Overworld mancante')+' · Miniature: '+unitAssets.length}}catch(e){console.error(e);flash('Asset salvati non caricabili: '+e.message)}}
 function tick(dt){
  if(!ready||paused)return;gold+=dt*(2+towns.filter(t=>t.side===1).length);
  for(const u of units){
@@ -280,7 +280,8 @@ function tick(dt){
    if(opponent&&u.p.distanceTo(opponent.p)<80)u.target=opponent;
    else if(base){u.target=null;issueOrder(u,base.p)}
   }
-  if(u.target&&u.target.hp>0&&u.ai<=.8&&u.p.distanceTo(u.target.p)>7)issueOrder(u,u.target.p);
+  u.routeTimer-=dt;
+  if(u.target&&u.target.hp>0&&u.routeTimer<=0&&u.p.distanceTo(u.target.p)>7){issueOrder(u,u.target.p);u.routeTimer=1.3}
   let moving=false;
   if(u.path.length){
    let target=u.path[0],d=new THREE.Vector3(target.x-u.p.x,0,target.z-u.p.z),len=d.length();
