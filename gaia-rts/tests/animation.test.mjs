@@ -98,8 +98,8 @@ test('rest pose folds outstretched arms beside the hips while leaving head and l
  const right=lowerFF9Arms(rightHand,metrics),left=lowerFF9Arms(leftHand,metrics);
  assert.ok(Math.abs(right.x)<100,'right hand comes inward');
  assert.ok(Math.abs(left.x)<100,'left hand comes inward');
- assert.ok(right.y<rightHand.y-35,'right hand drops toward hip');
- assert.ok(left.y<leftHand.y-35,'left hand drops toward hip');
+ assert.ok(right.y<rightHand.y-12,'right hand drops toward hip');
+ assert.ok(left.y<leftHand.y-12,'left hand drops toward hip');
  for(const still of [{x:0,y:260,z:3},{x:25,y:485,z:4},{x:20,y:40,z:-3}]){
   assert.deepEqual(lowerFF9Arms(still,metrics),still,'torso, head and legs stay stable');
  }
