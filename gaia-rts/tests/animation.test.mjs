@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {deformFF9Vertex,lowerFF9Arms,createFF9Animator,prepareFF9Animations} from '../procedural-animator.js';
+import {deformFF9Vertex,lowerFF9Arms,createFF9Animator,prepareFF9Animations,headingForMotion,gaitPhaseDelta} from '../procedural-animator.js';
 
 const m={minY:0,h:500,width:300,midX:0,midZ:0};
 test('left and right walk poses swing feet in opposing directions',()=>{
@@ -111,4 +111,38 @@ test('arm rest pose is symmetrical and winged Chocobo keeps its wings',()=>{
  assert.ok(Math.abs(a.x+b.x)<1e-5);
  assert.ok(Math.abs(a.y-b.y)<1e-5);
  assert.deepEqual(lowerFF9Arms({x:135,y:225,z:5},{...metrics,foldArms:false}),{x:135,y:225,z:5});
+});
+
+
+test('walking points the actual model forward (+Z) along its ground velocity',()=>{
+ assert.ok(Math.abs(headingForMotion(0,1))<1e-9,'+Z forward stays unrotated');
+ assert.ok(Math.abs(headingForMotion(1,0)-Math.PI/2)<1e-9,'+X movement faces east');
+ assert.ok(Math.abs(headingForMotion(0,-1)-Math.PI)<1e-9,'-Z movement faces south');
+ assert.ok(Math.abs(headingForMotion(-1,0)+Math.PI/2)<1e-9,'-X movement faces west');
+});
+test('gait advances with actual terrain travel, not with elapsed animation time',()=>{
+ const {model}=makeModel();
+ const animator=createFF9Animator(model,[],{},0,.65);
+ const start=animator.gaitPhase;
+ for(let i=0;i<12;i++)animator.update(.016,false,0);
+ assert.equal(animator.gaitPhase,start,'standing still cannot walk');
+ for(let i=0;i<12;i++)animator.update(.016,true,0);
+ assert.equal(animator.gaitPhase,start,'blocked movement cannot skate in place');
+ animator.update(.016,true,.1);
+ assert.ok(Math.abs(animator.gaitPhase-start-gaitPhaseDelta(.1,.65))<1e-10);
+ assert.ok(Math.abs(gaitPhaseDelta(.2,.65)-gaitPhaseDelta(.1,.65)*2)<1e-10);
+});
+test('human arms counter-swing against the same-side leg with meaningful amplitude',()=>{
+ const metrics={...m,armFoldAngles:[.75,.75],foldArms:true};
+ const arm=lowerFF9Arms({x:145,y:210,z:0},metrics);
+ const rightArmStep1=deformFF9Vertex(arm,metrics,'step-left',{armMask:1,armSide:1});
+ const rightArmStep2=deformFF9Vertex(arm,metrics,'step-right',{armMask:1,armSide:1});
+ const rightLegStep1=deformFF9Vertex({x:40,y:8,z:0},metrics,'step-left',
+  {armMask:0,armSide:1});
+ assert.ok(Math.abs(rightArmStep1.z-arm.z)>metrics.h*.10,'arm swing is visible');
+ assert.ok(rightArmStep1.z*rightLegStep1.z<0,'right arm opposes right leg');
+ assert.ok(rightArmStep1.z*rightArmStep2.z<0,'arm reverses direction each step');
+ const leftArm=lowerFF9Arms({x:-145,y:210,z:0},metrics);
+ const leftArmStep1=deformFF9Vertex(leftArm,metrics,'step-left',{armMask:1,armSide:-1});
+ assert.ok(rightArmStep1.z*leftArmStep1.z<0,'right and left arms move in opposite phase');
 });
