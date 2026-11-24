@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {deformFF9Vertex,lowerFF9Arms,createFF9Animator,prepareFF9Animations,headingForMotion,gaitPhaseDelta} from '../procedural-animator.js';
+import {deformFF9Vertex,lowerFF9Arms,createFF9Animator,prepareFF9Animations,headingForMotion,gaitPhaseDelta,ff9AnimationProfile} from '../procedural-animator.js';
 
 const m={minY:0,h:500,width:300,midX:0,midZ:0};
 test('left and right walk poses swing feet in opposing directions',()=>{
@@ -145,4 +145,42 @@ test('human arms counter-swing against the same-side leg with meaningful amplitu
  const leftArm=lowerFF9Arms({x:-145,y:210,z:0},metrics);
  const leftArmStep1=deformFF9Vertex(leftArm,metrics,'step-left',{armMask:1,armSide:-1});
  assert.ok(rightArmStep1.z*leftArmStep1.z<0,'right and left arms move in opposite phase');
+});
+
+
+test('Vivi and Freya receive distinct presets; ordinary characters keep the established gait',()=>{
+ const base=ff9AnimationProfile('Zidane');
+ const vivi=ff9AnimationProfile('Vivi__303115.glb');
+ const freya=ff9AnimationProfile('Freya__303108.glb');
+ assert.equal(base.id,'standard');
+ assert.equal(base.legAmplitude,1);
+ assert.equal(base.armAmplitude,1);
+ assert.equal(vivi.id,'vivi');
+ assert.equal(freya.id,'freya');
+ assert.ok(vivi.legAmplitude<freya.legAmplitude);
+ assert.ok(vivi.armAmplitude<freya.armAmplitude);
+ assert.ok(freya.foldScale<base.foldScale);
+});
+test('Vivi robe and Freya long costume remain unchanged during walking',()=>{
+ const center={x:35,y:200,z:0},foot={x:35,y:50,z:0};
+ const source={minY:0,h:500,width:300,midX:0,midZ:0};
+ const rig={armMask:0,armSide:1};
+ const standard=deformFF9Vertex(center,{...source,profile:ff9AnimationProfile('Zidane')},'step-left',rig);
+ assert.notDeepEqual(standard,center,'standard characters still use established deformation');
+ for(const name of ['Vivi','Freya']){
+  const p=ff9AnimationProfile(name),metrics={...source,profile:p};
+  assert.deepEqual(deformFF9Vertex(center,metrics,'step-left',rig),center,name+' costume must not warp');
+  assert.notDeepEqual(deformFF9Vertex(foot,metrics,'step-left',rig),foot,name+' feet must still walk');
+ }
+});
+test('smooth crossfade keeps both opposing poses active near stride reversal',()=>{
+ const {mesh,model}=makeModel();
+ const walk=createFF9Animator(model,[],{},0,.65,'standard');
+ walk.update(.016,true,0);
+ const [left,right]=mesh.morphTargetInfluences;
+ assert.ok(left>0&&right>0,'both poses blend across neutral; no abrupt cut');
+ assert.ok(Math.abs(left-right)<.001,'symmetrical stride crossover');
+ const sum=left+right;
+ walk.update(.016,true,0);
+ assert.ok(mesh.morphTargetInfluences[0]+mesh.morphTargetInfluences[1]>sum);
 });
