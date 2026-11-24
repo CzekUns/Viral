@@ -60,7 +60,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone as cloneSkinned} from 'three/addons/utils/SkeletonUtils.js';
 import JSZip from 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm';
-import {prepareFF9Animations,createFF9Animator,headingForMotion} from './procedural-animator.js?v=grounded-gait-20261124';
+import {prepareFF9Animations,createFF9Animator,headingForMotion} from './procedural-animator.js?v=vivi-freya-20261124';
 const $=id=>document.getElementById(id);
 const renderer=new THREE.WebGLRenderer({canvas:$('viewport'),antialias:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));
@@ -234,7 +234,7 @@ function newUnit(x,z,side,variantIndex){
  const selring=ring(side===1?'#96d3ff':'#e4a19a',.34);
  g.add(selring);g.position.copy(p);scene.add(g);
  const id=++unitID;
- const animator=createFF9Animator(model,asset.animations||[],THREE,id,b.getSize(new THREE.Vector3()).y);
+ const animator=createFF9Animator(model,asset.animations||[],THREE,id,b.getSize(new THREE.Vector3()).y,asset.userData?.gaiaAnimationProfile||'standard');
  selring.visible=false;
  const u={id,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,animator,
   hp:100,goal:null,path:[],target:null,cooldown:0,routeTimer:0,
