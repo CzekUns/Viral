@@ -35,7 +35,7 @@ button,input{font:inherit}button{color:#fff;border:1px solid #c2a87c;border-radi
 </head><body>
 <canvas id="viewport" aria-label="Visuale tridimensionale della mappa"></canvas>
 <div id="top"><h1><small>FINAL FANTASY IX · FAN PROTOTYPE</small>GAIA RTS</h1><div id="stats">Gil <span id="gold">240</span> · Unità <span id="count">0</span><div>Città <span id="towns">1</span>/3</div></div></div>
-<div id="settings"><button id="assetbtn" title="Gestione asset originali" aria-label="Gestione asset">⚙</button><button id="plus" title="Avvicina la mappa" aria-label="Avvicina la mappa">＋</button><button id="minus" title="Allontana la mappa" aria-label="Allontana la mappa">－</button><button id="home" title="Centra la squadra" aria-label="Centra la squadra">⌖</button><button id="overview" title="Mostra l'intera Gaia" aria-label="Mostra l'intera mappa">▧</button></div>
+<div id="settings"><button id="assetbtn" title="Gestione asset originali" aria-label="Gestione asset">⚙</button><button id="plus" title="Avvicina la mappa" aria-label="Avvicina la mappa">＋</button><button id="minus" title="Allontana la mappa" aria-label="Allontana la mappa">－</button><button id="home" title="Centra la squadra" aria-label="Centra la squadra">⌖</button></div>
 <div id="notice"></div>
 <div id="footer"><div id="hint">Avvio automatico del mondo 3D FF9…</div><div class="actions"><button id="all">▣ Tutte</button><button id="move">➤ Marcia</button><button id="fight">⚔ Attacca</button><button id="recruit">♟ Recluta 60</button><button id="pause">Ⅱ Pausa</button></div></div>
 <section id="asset-panel" aria-label="Importa asset originali">
@@ -68,7 +68,9 @@ const scene=new THREE.Scene();scene.background=new THREE.Color('#7793a2');scene.
 scene.add(new THREE.HemisphereLight('#e3e2d1','#5b6463',2.5));
 const sun=new THREE.DirectionalLight('#ffebc4',2.5);sun.position.set(-280,550,160);scene.add(sun);
 const camera=new THREE.OrthographicCamera(-200,200,120,-120,.1,9500);
-const MAP_WORLD_SIZE=1100,START_ZOOM=105,MIN_ZOOM=28,MAX_ZOOM=3500;
+// Tactical ground-level camera: 10x closer than the previous 105-unit opening view.
+const MAP_WORLD_SIZE=1100,START_ZOOM=10.5,MIN_ZOOM=3,MAX_ZOOM=70;
+const UNIT_WORLD_HEIGHT=.65; // 1/10 of the previous 6.5-unit character height
 let view={target:new THREE.Vector3(),span:START_ZOOM,yaw:.6,pitch:.86};
 const orbitVector=()=>new THREE.Vector3(Math.sin(view.yaw)*Math.cos(view.pitch),Math.sin(view.pitch),Math.cos(view.yaw)*Math.cos(view.pitch));
 let world=null,worldAssets=[],unitAssets=[],unitRoles=[],worldMeshes=[],landMeshes=[],units=[],towns=[],selected=new Set(),gold=240,paused=false,ready=false;
@@ -88,17 +90,6 @@ function setCamera(){
  const aspect=Math.max(.2,innerWidth/Math.max(innerHeight,1));
  camera.left=-view.span*aspect/2;camera.right=view.span*aspect/2;
  camera.top=view.span/2;camera.bottom=-view.span/2;camera.updateProjectionMatrix();
-}
-function overviewSpan(){
- if(!surfaceBounds)return 1400;
- const size=surfaceBounds.getSize(new THREE.Vector3());
- const aspect=Math.max(.25,innerWidth/Math.max(innerHeight,1));
- return Math.min(MAX_ZOOM,Math.max(size.x*1.5/aspect,size.z*1.65,900));
-}
-function showWorldMap(){
- if(!world)return;
- view.target.set(0,8,0);view.span=overviewSpan();setCamera();
- flash('Gaia completa · premi ⌖ per tornare alla squadra');
 }
 function focusSquad(){
  const allies=units.filter(u=>u.side===1);
@@ -126,7 +117,7 @@ function fitWorld(gltf){
  }});
  if(!landMeshes.length)throw Error('Il GLB non contiene la superficie Terrain: usare la mappa originale FF9.');
  buildSurfaceIndex();
- view.target.set(0,8,0);view.span=overviewSpan();scene.fog.near=5000;scene.fog.far=9500;
+ view.target.set(0,8,0);view.span=45;scene.fog.near=5000;scene.fog.far=9500;
  if(scene.getObjectByName('water'))scene.remove(scene.getObjectByName('water'));
  // Original GLB already contains textured sea and islands. Do not overlay synthetic water.
  setCamera();flash('Mappa originale importata: '+worldMeshes.length+' materiali 3D');
@@ -209,7 +200,7 @@ function pathTo(from,to){
  return [];
 }
 function issueOrder(u,p){const route=pathTo(u.p,p);u.path=route;u.goal=route.length?route[route.length-1]:null;return !!route.length}
-function ring(color,r){const geometry=new THREE.RingGeometry(r-.9,r,42);const material=new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide,transparent:true,opacity:.92,depthWrite:false});const ring=new THREE.Mesh(geometry,material);ring.rotation.x=-Math.PI/2;return ring}
+function ring(color,r){const geometry=new THREE.RingGeometry(Math.max(.03,r-Math.min(.9,r*.19)),r,42);const material=new THREE.MeshBasicMaterial({color,side:THREE.DoubleSide,transparent:true,opacity:.92,depthWrite:false});const ring=new THREE.Mesh(geometry,material);ring.rotation.x=-Math.PI/2;return ring}
 function clearUnits(){for(const u of units){scene.remove(u.g)}units=[];selected.clear();for(const c of towns)scene.remove(c.mesh);towns=[];unitID=0;ready=false;}
 function setCity(name,rawX,rawZ,side){
  const where=toWorld(rawX,rawZ),p=nearGround(where.x,where.z,65);
@@ -217,7 +208,9 @@ function setCity(name,rawX,rawZ,side){
  const mesh=new THREE.Group(),marker=ring(side===1?'#74bde5':side===-1?'#e99283':'#dac997',11);mesh.add(marker);
  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.22,.22,6),new THREE.MeshStandardMaterial({color:'#c8b999'}));pole.position.y=3;mesh.add(pole);
  const banner=new THREE.Mesh(new THREE.PlaneGeometry(7,4),new THREE.MeshBasicMaterial({color:side===1?'#5f99cb':side===-1?'#b56464':'#d0bc7d',side:THREE.DoubleSide}));banner.position.set(3,5,0);mesh.add(banner);
- mesh.position.copy(p);mesh.position.y+=.35;scene.add(mesh);towns.push({name,p,side,mesh,progress:0,radius:14});return true;
+ mesh.scale.setScalar(.1); // City indicators shrink with the 1/10-sized tactical actors.
+ mesh.position.copy(p);mesh.position.y+=.035;scene.add(mesh);
+ towns.push({name,p,side,mesh,progress:0,radius:1.6});return true;
 }
 function newUnit(x,z,side,variantIndex){
  const p=nearGround(x,z,17);if(!p||!unitAssets.length)return null;
@@ -227,21 +220,21 @@ function newUnit(x,z,side,variantIndex){
  const asset=unitAssets[assetIndex],g=new THREE.Group();
  const model=cloneSkinned(asset.scene);model.updateMatrixWorld(true);
  let b=new THREE.Box3().setFromObject(model),sz=b.getSize(new THREE.Vector3());
- const sf=6.5/Math.max(sz.y,sz.z,sz.x,.001);model.scale.multiplyScalar(sf);model.updateMatrixWorld(true);b=new THREE.Box3().setFromObject(model);
+ const sf=UNIT_WORLD_HEIGHT/Math.max(sz.y,sz.z,sz.x,.001);model.scale.multiplyScalar(sf);model.updateMatrixWorld(true);b=new THREE.Box3().setFromObject(model);
  model.position.y-=b.min.y;const center=b.getCenter(new THREE.Vector3());model.position.x-=center.x;model.position.z-=center.z;
- g.add(model);const selring=ring(side===1?'#96d3ff':'#e4a19a',3.4);g.add(selring);
+ g.add(model);const selring=ring(side===1?'#96d3ff':'#e4a19a',.34);g.add(selring);
  g.position.copy(p);scene.add(g);
  const anims=asset.animations||[],mixer=anims.length?new THREE.AnimationMixer(model):null;
  const stand=anims.find(a=>/idle|stand|wait/i.test(a.name))||anims[0],walk=anims.find(a=>/walk|run/i.test(a.name))||stand;
  const actions={};if(mixer){if(stand)actions.idle=mixer.clipAction(stand);if(walk)actions.walk=mixer.clipAction(walk)}
  let current='idle';actions.idle?.play();selring.visible=false;
- const u={id:++unitID,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,mixer,actions,current,hp:100,goal:null,path:[],target:null,cooldown:0,routeTimer:0,speed:side===1?20:17,ai:Math.random()+1,baseY:model.position.y};
+ const u={id:++unitID,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,mixer,actions,current,hp:100,goal:null,path:[],target:null,cooldown:0,routeTimer:0,speed:side===1?2:1.7,ai:Math.random()+1,baseY:model.position.y};
  units.push(u);return u;
 }
 function animateUnit(u,moving){
  const act=moving?'walk':'idle';
  if(act!==u.current){u.actions[u.current]?.fadeOut(.18);u.actions[act]?.reset().fadeIn(.18).play();u.current=act}
- if(!u.actions.walk){u.model.position.y=u.baseY+(moving?Math.abs(Math.sin(performance.now()*.011+u.id))*.16:0)}
+ if(!u.actions.walk){u.model.position.y=u.baseY+(moving?Math.abs(Math.sin(performance.now()*.011+u.id))*.016:0)}
 }
 function setupUnits(){
  clearUnits();gold=240;
@@ -252,21 +245,21 @@ function setupUnits(){
  setCity('Burmecia',-1040,-675,-1);
  setCity('Alexandria',-1210,-940,-1);
  const l=towns.find(c=>c.name==='Lindblum'),a=towns.find(c=>c.name==='Alexandria'),b=towns.find(c=>c.name==='Burmecia');
- if(l)for(let i=0;i<6;i++)newUnit(l.p.x+(i%3)*5-5,l.p.z+Math.floor(i/3)*5+10,1,i);
- if(a)for(let i=0;i<3;i++)newUnit(a.p.x+(i%3)*4-4,a.p.z+9,-1,i);
- if(b)for(let i=0;i<3;i++)newUnit(b.p.x+(i%3)*4-4,b.p.z+9,-1,i);
+ if(l)for(let i=0;i<6;i++)newUnit(l.p.x+(i%3)*.55-.55,l.p.z+Math.floor(i/3)*.55+1,1,i);
+ if(a)for(let i=0;i<3;i++)newUnit(a.p.x+(i%3)*.45-.45,a.p.z+.9,-1,i);
+ if(b)for(let i=0;i<3;i++)newUnit(b.p.x+(i%3)*.45-.45,b.p.z+.9,-1,i);
  ready=units.some(u=>u.side===1);paused=false;
  const firstAlly=units.find(u=>u.side===1);
  view.target.copy(firstAlly?.p||l?.p||view.target);view.span=START_ZOOM;setCamera();
  $('result').classList.remove('show');
- flash('Mappa FF9 ingrandita · '+units.length+' unità · ▧ vista mondo / ⌖ squadra');
+ flash('Vista terrestre ×10 · '+units.length+' miniature · ⌖ centra la squadra');
  updateHUD();
 }
 function updateHUD(){
  $('gold').textContent=Math.floor(gold);$('count').textContent=units.filter(u=>u.side===1).length;$('towns').textContent=towns.filter(t=>t.side===1).length;
  $('recruit').disabled=!ready||gold<60;$('all').disabled=!ready;
  $('move').disabled=!ready;$('fight').disabled=!ready;
- $('hint').textContent=!ready?(world?'Mappa originale 3D: trascina per esplorare. Importa i mini-personaggi da ⚙ per attivare l’RTS.':'Carica il GLB autentico FF9 per iniziare'):(selected.size?selected.size+' unità selezionate · tocca il terreno per muoverle':'Mappa ingrandita · trascina per esplorare · ▧ Gaia completa · ⌖ squadra');
+ $('hint').textContent=!ready?(world?'Mappa originale 3D: trascina per esplorare. Importa i mini-personaggi da ⚙ per attivare l’RTS.':'Carica il GLB autentico FF9 per iniziare'):(selected.size?selected.size+' unità selezionate · tocca il terreno per muoverle':'Vista ravvicinata ×10 · trascina per esplorare · pizzica per zoom · ⌖ squadra');
  $('pause').textContent=paused?'▶ Riprendi':'Ⅱ Pausa';
 }
 function toMouse(x,y){mouse.x=(x/innerWidth)*2-1;mouse.y=-(y/innerHeight)*2+1;ray.setFromCamera(mouse,camera)}
@@ -275,7 +268,7 @@ function nearUnitOnScreen(x,y,side){
  const mouseP=new THREE.Vector3();
  let best=null,dist=Infinity;
  for(const u of units){if(u.side!==side)continue;
-  mouseP.copy(u.p).add(new THREE.Vector3(0,3.2,0)).project(camera);
+  mouseP.copy(u.p).add(new THREE.Vector3(0,UNIT_WORLD_HEIGHT*.5,0)).project(camera);
   const px=(mouseP.x+1)*innerWidth/2,py=(1-mouseP.y)*innerHeight/2;
   const d=Math.hypot(px-x,py-y);
   if(d<dist){dist=d;best=u}
@@ -307,12 +300,11 @@ function pointerEnd(e){if(!pointers.has(e.pointerId))return;pointers.delete(e.po
 $('viewport').addEventListener('pointerup',pointerEnd);$('viewport').addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);started=null});
 $('viewport').addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY>0?1.1:.9)},{passive:false});
 $('plus').onclick=()=>zoom(.75);$('minus').onclick=()=>zoom(1.33);
-$('overview').onclick=showWorldMap;
 $('home').onclick=focusSquad;
 $('all').onclick=()=>{selected=new Set(units.filter(u=>u.side===1).map(u=>u.id));for(const u of units)u.selring.visible=selected.has(u.id);updateHUD()};
 $('move').onclick=()=>flash('Seleziona le unità, poi tocca il terreno');
 $('fight').onclick=()=>flash('Seleziona le unità, poi tocca un nemico');
-$('recruit').onclick=()=>{const base=towns.find(t=>t.name==='Lindblum');if(!base||gold<60)return;gold-=60;const u=newUnit(base.p.x+(Math.random()-.5)*12,base.p.z+9,1,unitID);if(u){selected.clear();selected.add(u.id);for(const p of units)p.selring.visible=selected.has(p.id)}else{gold+=60;flash('Nessuna zona libera per reclutare')}updateHUD()};
+$('recruit').onclick=()=>{const base=towns.find(t=>t.name==='Lindblum');if(!base||gold<60)return;gold-=60;const u=newUnit(base.p.x+(Math.random()-.5)*1.2,base.p.z+.9,1,unitID);if(u){selected.clear();selected.add(u.id);for(const p of units)p.selring.visible=selected.has(p.id)}else{gold+=60;flash('Nessuna zona libera per reclutare')}updateHUD()};
 $('pause').onclick=()=>{paused=!paused;updateHUD()};
 $('assetbtn').onclick=()=>{$('asset-panel').hidden=false};
 $('close').onclick=()=>{$('asset-panel').hidden=true};
@@ -381,18 +373,18 @@ function tick(dt){
   u.mixer?.update(dt);
   u.cooldown=Math.max(0,u.cooldown-dt);
   const opponent=units.filter(v=>v.side!==u.side).sort((a,b)=>u.p.distanceTo(a.p)-u.p.distanceTo(b.p))[0];
-  if(opponent&&u.p.distanceTo(opponent.p)<7&&u.cooldown<=0){opponent.hp-=12;u.cooldown=.8;u.path=[];u.goal=null}
+  if(opponent&&u.p.distanceTo(opponent.p)<.7&&u.cooldown<=0){opponent.hp-=12;u.cooldown=.8;u.path=[];u.goal=null}
   u.ai-=dt;
   if(u.side<0&&u.ai<=0){u.ai=2.5+Math.random();const base=towns.find(t=>t.side===1);
-   if(opponent&&u.p.distanceTo(opponent.p)<80)u.target=opponent;
+   if(opponent&&u.p.distanceTo(opponent.p)<8)u.target=opponent;
    else if(base){u.target=null;issueOrder(u,base.p)}
   }
   u.routeTimer-=dt;
-  if(u.target&&u.target.hp>0&&u.routeTimer<=0&&u.p.distanceTo(u.target.p)>7){issueOrder(u,u.target.p);u.routeTimer=1.3}
+  if(u.target&&u.target.hp>0&&u.routeTimer<=0&&u.p.distanceTo(u.target.p)>.7){issueOrder(u,u.target.p);u.routeTimer=1.3}
   let moving=false;
   if(u.path.length){
    let target=u.path[0],d=new THREE.Vector3(target.x-u.p.x,0,target.z-u.p.z),len=d.length();
-   if(len<Math.max(.85,u.speed*dt)){u.path.shift()}
+   if(len<Math.max(.11,u.speed*dt)){u.path.shift()}
    else {d.multiplyScalar(Math.min(len,u.speed*dt)/len);const g=onGround(u.p.x+d.x,u.p.z+d.z);
     if(g){u.p.copy(g);u.g.position.copy(g);u.model.rotation.y=Math.atan2(-d.x,-d.z);moving=true}
     else u.path=[]}
