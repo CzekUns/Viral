@@ -53,8 +53,11 @@ class Mesh extends Obj{constructor(geometry,material){super();this.geometry=geom
 class Geometry{dispose(){}}
 class Material{constructor(){this.color={set(){}}}dispose(){}}
 class GridHelper extends Obj{constructor(){super();this.material=new Material()}}
+class BufferGeometry extends Geometry{setFromPoints(points){this.points=points;return this}}
+class LineLoop extends Obj{constructor(geometry,material){super();this.geometry=geometry;this.material=material}computeLineDistances(){this.computed=true}}
 const THREE={Group:Obj,Object3D:Obj,Mesh,GridHelper,Vector3:V3,
- MeshStandardMaterial:Material,MeshBasicMaterial:Material,
+ MeshStandardMaterial:Material,MeshBasicMaterial:Material,LineDashedMaterial:Material,
+ LineLoop,BufferGeometry,
  BoxGeometry:Geometry,ConeGeometry:Geometry,RingGeometry:Geometry,
  CylinderGeometry:Geometry,DodecahedronGeometry:Geometry,
  OctahedronGeometry:Geometry,PlaneGeometry:Geometry,DoubleSide:2};
@@ -64,6 +67,8 @@ test('runtime city builds on top of real ground, can expand, and pathfind throug
  assert.equal(city.buildableCount,4096);assert.equal(city.cityY,.045);
  assert.ok(scene.children.includes(city.group));
  assert.ok(city.group.children.some(item=>item instanceof GridHelper));
+ assert.ok(city.group.children.some(item=>item.name==='Prossima area edificabile 16×16'&&item.children.length===2),
+  'preview is drawn without consuming city tiles');
  assert.ok(city.group.children.length>35);
  const n=scene.children.length;
  const expanded=city.click('expansion',{x:4.7,z:0});
