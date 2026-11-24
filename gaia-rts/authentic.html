@@ -51,7 +51,7 @@ button,input{font:inherit}button{color:#fff;border:1px solid #c2a87c;border-radi
 <input id="unit-file" type="file" accept=".glb,model/gltf-binary" multiple>
 <p id="asset-info">Nessun asset ancora caricato.</p>
 <div class="row"><button id="start">Avvia l'RTS</button><button id="close">Chiudi</button></div>
-<p class="small">Il catalogo originale conta 70 file GLB, disponibili nella cartella <a href="assets/catalog.json" target="_blank" rel="noopener">asset FF9</a>. Per la prima schermaglia vengono caricati 13 modelli, così lo smartphone non deve elaborare l’intero catalogo. I modelli estratti non includono animazioni complete di camminata o attacco: il movimento usa una leggera animazione procedurale provvisoria.</p><p class="small">Gli asset vengono scaricati dalla stessa installazione GitHub Pages e, quando possibile, memorizzati sul dispositivo tramite IndexedDB. Gli ordini e i movimenti restano locali. Le città sono riferimenti tattici provvisori sulla mappa originale, da calibrare sulle posizioni canoniche.</p>
+<p class="small">Il catalogo originale conta 70 file GLB, disponibili nella cartella <a href="assets/catalog.json" target="_blank" rel="noopener">asset FF9</a>. Per la prima schermaglia vengono caricati 13 modelli, così lo smartphone non deve elaborare l’intero catalogo. I GLB attuali sono statici, senza scheletro né clip: il gioco genera pose 3D di marcia, attacco e reazione ai colpi tramite morph target GPU. Gli scheletri e le animazioni originali potranno sostituire questa soluzione provvisoria.</p><p class="small">Gli asset vengono scaricati dalla stessa installazione GitHub Pages e, quando possibile, memorizzati sul dispositivo tramite IndexedDB. Gli ordini e i movimenti restano locali. Le città sono riferimenti tattici provvisori sulla mappa originale, da calibrare sulle posizioni canoniche.</p>
 <p class="small">Fonti: <a href="https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303153/" target="_blank" rel="noopener">Overworld 3D (Models Resource)</a> · <a href="https://github.com/GameJawnsInc/Dream-World-IX" target="_blank" rel="noopener">FF9 Map Kit per esportare GEO_SUB_W0_* in GLB</a></p>
 </section>
 <div id="result"><div><h2 id="result-title">Campagna terminata</h2><button id="restart">Ricomincia</button></div></div>
@@ -60,6 +60,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone as cloneSkinned} from 'three/addons/utils/SkeletonUtils.js';
 import JSZip from 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm';
+import {prepareFF9Animations,createFF9Animator} from './procedural-animator.js';
 const $=id=>document.getElementById(id);
 const renderer=new THREE.WebGLRenderer({canvas:$('viewport'),antialias:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));
@@ -218,23 +219,30 @@ function newUnit(x,z,side,variantIndex){
  const choices=unitAssets.map((_,i)=>i).filter(i=>unitRoles[i]===faction);
  const assetIndex=choices.length?choices[variantIndex%choices.length]:variantIndex%unitAssets.length;
  const asset=unitAssets[assetIndex],g=new THREE.Group();
+ // GLB static models have no armature; build morph poses once per asset.
+ // Native clips, when present, retain priority in the animator.
+ prepareFF9Animations(asset,THREE,asset.scene.name||('FF9_unit_'+assetIndex));
  const model=cloneSkinned(asset.scene);model.updateMatrixWorld(true);
  let b=new THREE.Box3().setFromObject(model),sz=b.getSize(new THREE.Vector3());
- const sf=UNIT_WORLD_HEIGHT/Math.max(sz.y,sz.z,sz.x,.001);model.scale.multiplyScalar(sf);model.updateMatrixWorld(true);b=new THREE.Box3().setFromObject(model);
- model.position.y-=b.min.y;const center=b.getCenter(new THREE.Vector3());model.position.x-=center.x;model.position.z-=center.z;
- g.add(model);const selring=ring(side===1?'#96d3ff':'#e4a19a',.34);g.add(selring);
- g.position.copy(p);scene.add(g);
- const anims=asset.animations||[],mixer=anims.length?new THREE.AnimationMixer(model):null;
- const stand=anims.find(a=>/idle|stand|wait/i.test(a.name))||anims[0],walk=anims.find(a=>/walk|run/i.test(a.name))||stand;
- const actions={};if(mixer){if(stand)actions.idle=mixer.clipAction(stand);if(walk)actions.walk=mixer.clipAction(walk)}
- let current='idle';actions.idle?.play();selring.visible=false;
- const u={id:++unitID,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,mixer,actions,current,hp:100,goal:null,path:[],target:null,cooldown:0,routeTimer:0,speed:side===1?2:1.7,ai:Math.random()+1,baseY:model.position.y};
+ const sf=UNIT_WORLD_HEIGHT/Math.max(sz.y,sz.z,sz.x,.001);
+ model.scale.multiplyScalar(sf);model.updateMatrixWorld(true);
+ b=new THREE.Box3().setFromObject(model);
+ model.position.y-=b.min.y;
+ const center=b.getCenter(new THREE.Vector3());
+ model.position.x-=center.x;model.position.z-=center.z;
+ g.add(model);
+ const selring=ring(side===1?'#96d3ff':'#e4a19a',.34);
+ g.add(selring);g.position.copy(p);scene.add(g);
+ const id=++unitID;
+ const animator=createFF9Animator(model,asset.animations||[],THREE,id);
+ selring.visible=false;
+ const u={id,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,animator,
+  hp:100,goal:null,path:[],target:null,cooldown:0,routeTimer:0,
+  speed:side===1?2:1.7,ai:Math.random()+1};
  units.push(u);return u;
 }
-function animateUnit(u,moving){
- const act=moving?'walk':'idle';
- if(act!==u.current){u.actions[u.current]?.fadeOut(.18);u.actions[act]?.reset().fadeIn(.18).play();u.current=act}
- if(!u.actions.walk){u.model.position.y=u.baseY+(moving?Math.abs(Math.sin(performance.now()*.011+u.id))*.016:0)}
+function animateUnit(u,moving,dt){
+ u.animator.update(dt,moving);
 }
 function setupUnits(){
  clearUnits();gold=240;
@@ -259,7 +267,7 @@ function updateHUD(){
  $('gold').textContent=Math.floor(gold);$('count').textContent=units.filter(u=>u.side===1).length;$('towns').textContent=towns.filter(t=>t.side===1).length;
  $('recruit').disabled=!ready||gold<60;$('all').disabled=!ready;
  $('move').disabled=!ready;$('fight').disabled=!ready;
- $('hint').textContent=!ready?(world?'Mappa originale 3D: trascina per esplorare. Importa i mini-personaggi da ⚙ per attivare l’RTS.':'Carica il GLB autentico FF9 per iniziare'):(selected.size?selected.size+' unità selezionate · tocca il terreno per muoverle':'Vista ravvicinata ×10 · trascina per esplorare · pizzica per zoom · ⌖ squadra');
+ $('hint').textContent=!ready?(world?'Mappa FF9 caricata: attendi i personaggi 3D':'Caricamento Overworld FF9 originale…'):(selected.size?selected.size+' unità selezionate · tocca il terreno per muoverle':'Unità 3D animate · tocca per selezionare · trascina per esplorare · ⌖ squadra');
  $('pause').textContent=paused?'▶ Riprendi':'Ⅱ Pausa';
 }
 function toMouse(x,y){mouse.x=(x/innerWidth)*2-1;mouse.y=-(y/innerHeight)*2+1;ray.setFromCamera(mouse,camera)}
@@ -368,41 +376,79 @@ async function restore(){try{const wb=await loadSaved('world');if(wb){fitWorld(a
  unitRoles=rolesBuffer?JSON.parse(new TextDecoder().decode(rolesBuffer)):[];
  for(let i=0;i<Math.min(n,30);i++){let buf=await loadSaved('unit-'+i);if(buf)unitAssets.push(await loadGLB(buf))}if(world&&unitAssets.length){$('asset-info').textContent='Overworld originale e '+unitAssets.length+' mini-personaggi salvati ✓';setupUnits();$('asset-panel').hidden=true}else{if(world){const raw=toWorld(-1100,-790);view.target.copy(nearGround(raw.x,raw.z,70)||view.target);view.span=START_ZOOM;setCamera();$('asset-panel').hidden=true;flash('Mappa originale FF9 caricata: usa ⚙ per aggiungere i mini-personaggi')} $('asset-info').textContent=(world?'Overworld originale ✓':'Overworld mancante')+' · Miniature: '+unitAssets.length}}catch(e){console.error(e);flash('Asset salvati non caricabili: '+e.message)}}
 function tick(dt){
- if(!ready||paused)return;gold+=dt*(2+towns.filter(t=>t.side===1).length);
+ if(!ready||paused)return;
+ gold+=dt*(2+towns.filter(t=>t.side===1).length);
  for(const u of units){
-  u.mixer?.update(dt);
+  if(u.hp<=0){
+   u.animator.die();
+   u.path=[];u.goal=null;u.target=null;
+   animateUnit(u,false,dt);
+   continue;
+  }
   u.cooldown=Math.max(0,u.cooldown-dt);
-  const opponent=units.filter(v=>v.side!==u.side).sort((a,b)=>u.p.distanceTo(a.p)-u.p.distanceTo(b.p))[0];
-  if(opponent&&u.p.distanceTo(opponent.p)<.7&&u.cooldown<=0){opponent.hp-=12;u.cooldown=.8;u.path=[];u.goal=null}
+  const opponents=units.filter(v=>v.side!==u.side&&v.hp>0);
+  let opponent=null,best=Infinity;
+  for(const candidate of opponents){
+   const d=u.p.distanceToSquared(candidate.p);
+   if(d<best){best=d;opponent=candidate}
+  }
+  if(opponent&&best<.7*.7&&u.cooldown<=0){
+   opponent.hp-=12;u.cooldown=.8;u.path=[];u.goal=null;
+   u.animator.attack();opponent.animator.hit();
+   if(opponent.hp<=0){opponent.animator.die();selected.delete(opponent.id)}
+  }
   u.ai-=dt;
-  if(u.side<0&&u.ai<=0){u.ai=2.5+Math.random();const base=towns.find(t=>t.side===1);
-   if(opponent&&u.p.distanceTo(opponent.p)<8)u.target=opponent;
+  if(u.side<0&&u.ai<=0){
+   u.ai=2.5+Math.random();
+   const base=towns.find(t=>t.side===1);
+   if(opponent&&best<8*8)u.target=opponent;
    else if(base){u.target=null;issueOrder(u,base.p)}
   }
   u.routeTimer-=dt;
-  if(u.target&&u.target.hp>0&&u.routeTimer<=0&&u.p.distanceTo(u.target.p)>.7){issueOrder(u,u.target.p);u.routeTimer=1.3}
+  if(u.target&&u.target.hp>0&&u.routeTimer<=0&&u.p.distanceTo(u.target.p)>.7){
+   issueOrder(u,u.target.p);u.routeTimer=1.3;
+  }
   let moving=false;
   if(u.path.length){
-   let target=u.path[0],d=new THREE.Vector3(target.x-u.p.x,0,target.z-u.p.z),len=d.length();
+   const target=u.path[0];
+   const d=new THREE.Vector3(target.x-u.p.x,0,target.z-u.p.z),len=d.length();
    if(len<Math.max(.11,u.speed*dt)){u.path.shift()}
-   else {d.multiplyScalar(Math.min(len,u.speed*dt)/len);const g=onGround(u.p.x+d.x,u.p.z+d.z);
-    if(g){u.p.copy(g);u.g.position.copy(g);u.model.rotation.y=Math.atan2(-d.x,-d.z);moving=true}
-    else u.path=[]}
+   else{
+    d.multiplyScalar(Math.min(len,u.speed*dt)/len);
+    const ground=onGround(u.p.x+d.x,u.p.z+d.z);
+    if(ground){
+     u.p.copy(ground);u.g.position.copy(ground);
+     u.model.rotation.y=Math.atan2(-d.x,-d.z);
+     moving=true;
+    }else u.path=[];
+   }
   }
-  animateUnit(u,moving);
+  animateUnit(u,moving,dt);
  }
- for(const dead of units.filter(u=>u.hp<=0)){scene.remove(dead.g);selected.delete(dead.id)}
- units=units.filter(u=>u.hp>0);
+ for(const fallen of units.filter(u=>u.hp<=0&&u.animator.finished)){
+  scene.remove(fallen.g);selected.delete(fallen.id);
+ }
+ units=units.filter(u=>u.hp>0||!u.animator.finished);
  for(const city of towns){
-  const nearby=units.filter(u=>Math.hypot(u.p.x-city.p.x,u.p.z-city.p.z)<city.radius);
+  const nearby=units.filter(u=>u.hp>0&&Math.hypot(u.p.x-city.p.x,u.p.z-city.p.z)<city.radius);
   const ally=nearby.some(u=>u.side===1),enemy=nearby.some(u=>u.side===-1);
   const claimant=ally&&!enemy?1:enemy&&!ally?-1:0;
-  if(claimant&&city.side!==claimant){city.progress+=dt*24;
-   if(city.progress>=100){city.progress=0;city.side=claimant;city.mesh.children[0].material.color.set(claimant===1?'#74bde5':'#e99283');city.mesh.children[2].material.color.set(claimant===1?'#5f99cb':'#b56464');flash(city.name+' conquistata!')}
+  if(claimant&&city.side!==claimant){
+   city.progress+=dt*24;
+   if(city.progress>=100){
+    city.progress=0;city.side=claimant;
+    city.mesh.children[0].material.color.set(claimant===1?'#74bde5':'#e99283');
+    city.mesh.children[2].material.color.set(claimant===1?'#5f99cb':'#b56464');
+    flash(city.name+' conquistata!');
+   }
   }else city.progress=Math.max(0,city.progress-dt*8);
  }
- if(towns.filter(t=>t.side===1).length===towns.length&&towns.length){paused=true;$('result-title').textContent='Hai conquistato il continente!';$('result').classList.add('show')}
- if(!units.some(u=>u.side===1)){paused=true;$('result-title').textContent='Esercito sconfitto';$('result').classList.add('show')}
+ if(towns.filter(t=>t.side===1).length===towns.length&&towns.length){
+  paused=true;$('result-title').textContent='Hai conquistato il continente!';$('result').classList.add('show');
+ }
+ if(!units.some(u=>u.side===1&&u.hp>0)){
+  paused=true;$('result-title').textContent='Esercito sconfitto';$('result').classList.add('show');
+ }
  updateHUD();
 }
 window.addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight);setCamera()});setCamera();
