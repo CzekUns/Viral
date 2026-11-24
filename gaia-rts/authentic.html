@@ -311,7 +311,12 @@ $('plus').onclick=()=>zoom(.75);$('minus').onclick=()=>zoom(1.33);
 $('home').onclick=focusSquad;
 $('all').onclick=()=>{selected=new Set(units.filter(u=>u.side===1).map(u=>u.id));for(const u of units)u.selring.visible=selected.has(u.id);updateHUD()};
 $('move').onclick=()=>flash('Seleziona le unità, poi tocca il terreno');
-$('fight').onclick=()=>flash('Seleziona le unità, poi tocca un nemico');
+$('fight').onclick=()=>{
+ const allies=units.filter(u=>u.hp>0&&u.side===1&&selected.has(u.id));
+ if(!allies.length){flash('Seleziona una unità o premi ▣ Tutte');return}
+ for(const u of allies)u.animator.attack();
+ flash('Attacco animato! Ora tocca un nemico per far combattere la squadra.');
+};
 $('recruit').onclick=()=>{const base=towns.find(t=>t.name==='Lindblum');if(!base||gold<60)return;gold-=60;const u=newUnit(base.p.x+(Math.random()-.5)*1.2,base.p.z+.9,1,unitID);if(u){selected.clear();selected.add(u.id);for(const p of units)p.selring.visible=selected.has(p.id)}else{gold+=60;flash('Nessuna zona libera per reclutare')}updateHUD()};
 $('pause').onclick=()=>{paused=!paused;updateHUD()};
 $('assetbtn').onclick=()=>{$('asset-panel').hidden=false};
@@ -447,7 +452,11 @@ function tick(dt){
   paused=true;$('result-title').textContent='Hai conquistato il continente!';$('result').classList.add('show');
  }
  if(!units.some(u=>u.side===1&&u.hp>0)){
-  paused=true;$('result-title').textContent='Esercito sconfitto';$('result').classList.add('show');
+  // Let the final soldier finish the fall animation before displaying defeat.
+  const stillFalling=units.some(u=>u.side===1&&u.hp<=0&&!u.animator.finished);
+  if(!stillFalling){
+   paused=true;$('result-title').textContent='Esercito sconfitto';$('result').classList.add('show');
+  }
  }
  updateHUD();
 }
