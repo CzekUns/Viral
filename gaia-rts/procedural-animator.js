@@ -268,6 +268,7 @@ export function createFF9Animator(model,nativeClips,THREE,seed=0,unitHeight=.65)
   die(){if(!state.dying){state.dying=true;state.deathElapsed=0}},
   get finished(){return state.dying&&state.deathElapsed>=1.25},
   get state(){return state.current},
+  get gaitPhase(){return state.phase},
   get mode(){return morphMeshes.length?'morph':actions.walk?'native':'static'},
   get morphMeshCount(){return morphMeshes.length}
  };
