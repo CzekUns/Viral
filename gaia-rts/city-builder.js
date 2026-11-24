@@ -53,8 +53,8 @@ export function createGaiaCityBuilder({THREE,scene,center,getGround,onChange=()=
  const cityY=(levels.length?Math.max(...levels):center.y)+.045;
  const group=new THREE.Group();group.name='Lindblum · buildable 64x64';scene.add(group);
  const mats={
-  grass:new THREE.MeshStandardMaterial({color:'#7b9765',roughness:1,transparent:true,opacity:.83,depthWrite:false,side:THREE.DoubleSide}),
-  expansion:new THREE.MeshStandardMaterial({color:'#c6ac6b',roughness:1,transparent:true,opacity:.77,depthWrite:false,side:THREE.DoubleSide}),
+  grass:new THREE.MeshStandardMaterial({color:'#7b9765',roughness:1,transparent:true,opacity:.59,depthWrite:false,side:THREE.DoubleSide}),
+  expansion:new THREE.MeshStandardMaterial({color:'#c6ac6b',roughness:1,transparent:true,opacity:.65,depthWrite:false,side:THREE.DoubleSide}),
   edge:new THREE.MeshStandardMaterial({color:'#80745b',roughness:1}),
   road:new THREE.MeshStandardMaterial({color:'#b6a48a',roughness:1}),
   stone:new THREE.MeshStandardMaterial({color:'#d8c4a1',roughness:1}),
@@ -69,6 +69,7 @@ export function createGaiaCityBuilder({THREE,scene,center,getGround,onChange=()=
   gold:new THREE.MeshStandardMaterial({color:'#d9bc79',roughness:1})
  };
  const districts=[{...base}],occupied=new Map(),structures=[],siteMeshes=new Map(),siteList=[];
+ const ghost=new THREE.Group();ghost.name='Prossima area edificabile 16×16';group.add(ghost);
  const costs=Object.fromEntries(Object.entries(CITY_BUILDINGS).map(([id,b])=>[id,b.cost]));
  let markers=new THREE.Group();group.add(markers);
  const box=(parent,w,h,d,material,x=0,y=0,z=0)=>{
@@ -136,6 +137,39 @@ export function createGaiaCityBuilder({THREE,scene,center,getGround,onChange=()=
   box(group,w,.027,short,mats.edge,centerX,cityY-.01,centerZ+h/2);
   box(group,short,.027,h,mats.edge,centerX-w/2,cityY-.01,centerZ);
   box(group,short,.027,h,mats.edge,centerX+w/2,cityY-.01,centerZ);
+ }
+ function drawExpansionPreview(){
+  // Show a real 16×16 next-step plot adjacent to Lindblum without purchasing it.
+  for(const child of [...ghost.children]){
+   ghost.remove(child);child.geometry?.dispose?.();child.material?.dispose?.();
+  }
+  const proposed=[
+   {x:64,z:24},{x:64,z:40},{x:-16,z:24},
+   {x:24,z:64},{x:24,z:-16},
+   ...districts.slice(1).map(d=>({x:d.x+d.w,z:d.z}))
+  ].find(({x,z})=>{
+   if(!canExpandCity(districts,x,z))return false;
+   const p=worldPoint(x+7,z+7);
+   return !!getGround(p.x,p.z);
+  });
+  if(!proposed)return;
+  const size=16*CITY_TILE;
+  const cx=origin.x+(proposed.x+8)*CITY_TILE;
+  const cz=origin.z+(proposed.z+8)*CITY_TILE;
+  const plane=new THREE.Mesh(new THREE.PlaneGeometry(size,size),
+   new THREE.MeshBasicMaterial({color:'#d9ad55',transparent:true,opacity:.20,
+     depthWrite:false,side:THREE.DoubleSide}));
+  plane.rotation.x=-Math.PI/2;plane.position.set(cx,cityY+.017,cz);
+  ghost.add(plane);
+  const pts=[
+   new THREE.Vector3(cx-size/2,cityY+.025,cz-size/2),
+   new THREE.Vector3(cx+size/2,cityY+.025,cz-size/2),
+   new THREE.Vector3(cx+size/2,cityY+.025,cz+size/2),
+   new THREE.Vector3(cx-size/2,cityY+.025,cz+size/2)
+  ];
+  const loop=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),
+   new THREE.LineDashedMaterial({color:'#ffe09b',dashSize:.13,gapSize:.08}));
+  loop.computeLineDistances();ghost.add(loop);
  }
  function drawRoads(){
   const w=BASE_TILES*CITY_TILE,street=4*CITY_TILE;
@@ -285,7 +319,7 @@ export function createGaiaCityBuilder({THREE,scene,center,getGround,onChange=()=
    }
   }
  }
- makePlot(base);drawRoads();drawFence();townCenter();restore();
+ makePlot(base);drawRoads();drawFence();townCenter();restore();drawExpansionPreview();
  function groundAt(x,z){
   const c=cellFromWorld(x,z,origin);
   return cityContains(districts,c.x,c.z)?new THREE.Vector3(x,cityY+.03,z):null;
@@ -311,7 +345,7 @@ export function createGaiaCityBuilder({THREE,scene,center,getGround,onChange=()=
     const wp=worldPoint(t.x,t.z);return !!getGround(wp.x,wp.z)
    });
    if(land.length<3)return {ok:false,message:'Questo lotto è sopra il mare o non ha terreno disponibile'};
-   const d={x,z,w:16,h:16};districts.push(d);makePlot(d);save();onChange();
+   const d={x,z,w:16,h:16};districts.push(d);makePlot(d);drawExpansionPreview();save();onChange();
    return {ok:true,message:'Nuovo quartiere 16×16 aggiunto',cost:costs.expansion};
   }
   if(type==='lumber'||type==='mine'){
