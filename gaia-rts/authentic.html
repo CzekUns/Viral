@@ -82,7 +82,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone as cloneSkinned} from 'three/addons/utils/SkeletonUtils.js';
 import JSZip from 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm';
 import {prepareFF9Animations,createFF9Animator,headingForMotion} from './procedural-animator.js?v=vivi-freya-20261124';
-import {createGaiaCityBuilder,CITY_BUILDINGS,CITY_TILE} from './city-builder.js?v=city64-v1';
+import {createGaiaCityBuilder,CITY_BUILDINGS,CITY_TILE} from './city-builder.js?v=city64-v2';
 const $=id=>document.getElementById(id);
 const renderer=new THREE.WebGLRenderer({canvas:$('viewport'),antialias:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));
@@ -92,7 +92,7 @@ scene.add(new THREE.HemisphereLight('#e3e2d1','#5b6463',2.5));
 const sun=new THREE.DirectionalLight('#ffebc4',2.5);sun.position.set(-280,550,160);scene.add(sun);
 const camera=new THREE.OrthographicCamera(-200,200,120,-120,.1,9500);
 // Tactical ground-level camera: 10x closer than the previous 105-unit opening view.
-const MAP_WORLD_SIZE=1100,START_ZOOM=11.6,MIN_ZOOM=.85,MAX_ZOOM=70;
+const MAP_WORLD_SIZE=1100,START_ZOOM=7.5,MIN_ZOOM=.65,MAX_ZOOM=70;
 const UNIT_WORLD_HEIGHT=.065; // A further 1/10, matching miniature tile scale.
 let view={target:new THREE.Vector3(),span:START_ZOOM,yaw:.6,pitch:1.19};
 const orbitVector=()=>new THREE.Vector3(Math.sin(view.yaw)*Math.cos(view.pitch),Math.sin(view.pitch),Math.cos(view.yaw)*Math.cos(view.pitch));
