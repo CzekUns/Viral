@@ -1,0 +1,67 @@
+name: Gaia RTS — Animation QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'gaia-rts/authentic.html'
+      - 'gaia-rts/procedural-animator.js'
+      - 'gaia-rts/tests/**'
+      - '.github/workflows/gaia-animation-qa.yml'
+  pull_request:
+    paths:
+      - 'gaia-rts/authentic.html'
+      - 'gaia-rts/procedural-animator.js'
+      - 'gaia-rts/tests/**'
+
+permissions:
+  contents: read
+
+jobs:
+  animation-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify procedural animator JavaScript
+        run: node --check gaia-rts/procedural-animator.js
+      - name: Verify gameplay module syntax
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          import subprocess
+          from pathlib import Path
+          code = Path('gaia-rts/authentic.html').read_text(encoding='utf8')
+          modules = re.findall(r'<script type="module">([\s\S]*?)</script>', code)
+          assert len(modules) == 1, "Expected one gameplay module"
+          subprocess.run(['node', '--input-type=module', '--check'],
+                         input=modules[0], text=True, check=True)
+          assert "createFF9Animator" in modules[0]
+          assert "prepareFF9Animations" in modules[0]
+          print("Gameplay module: syntax OK")
+          PY
+      - name: Test animation poses and state transitions
+        run: node --test gaia-rts/tests/animation.test.mjs
+      - name: Validate original FF9 starter package
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import zipfile
+          from pathlib import Path
+          pack=Path('gaia-rts/assets/FF9_GaiaRTS_Starter_Originali.zip')
+          with zipfile.ZipFile(pack) as archive:
+              assert archive.testzip() is None
+              cfg=json.loads(archive.read('starter.json'))
+              assert cfg['format']=='gaia-rts/starter-v1'
+              assert len(cfg['units'])==13
+              names=[cfg['world']]+[entry['path'] for entry in cfg['units']]
+              for filename in names:
+                  assert archive.read(filename)[:4]==b'glTF', filename
+          print("FF9 starter: overworld + 13 authentic GLB units, ZIP valid")
+          PY
