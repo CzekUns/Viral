@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {deformFF9Vertex,createFF9Animator,prepareFF9Animations} from '../procedural-animator.js';
+import {deformFF9Vertex,lowerFF9Arms,createFF9Animator,prepareFF9Animations} from '../procedural-animator.js';
 
 const m={minY:0,h:500,width:300,midX:0,midZ:0};
 test('left and right walk poses swing feet in opposing directions',()=>{
@@ -61,11 +61,15 @@ class Bounds{
  getSize(out){return out.set(300,500,50)}
  getCenter(out){return out.set(0,250,0)}
 }
-class Attribute{constructor(array,itemSize){this.array=array;this.itemSize=itemSize;this.count=array.length/itemSize;this.name=''}}
+class Attribute{
+ constructor(array,itemSize){this.array=array;this.itemSize=itemSize;this.count=array.length/itemSize;this.name=''}
+ setXYZ(i,x,y,z){this.array[i*3]=x;this.array[i*3+1]=y;this.array[i*3+2]=z}
+}
 class Geometry{
  constructor(){this.attr=new Attribute(new Float32Array([-80,0,0,80,0,0,120,300,0,0,480,0]),3);this.morphAttributes={}}
  getAttribute(name){return name==='position'?this.attr:null}
- clone(){const geo=new Geometry();geo.attr=this.attr;return geo}
+ clone(){const geo=new Geometry();geo.attr=new Attribute(this.attr.array.slice(),3);return geo}
+ computeVertexNormals(){this.normalsUpdated=true}
 }
 test('preparation never edits original geometry or materials, and only runs once',()=>{
  const material={name:'FF9_Textured'},source=new Geometry();
@@ -76,6 +80,9 @@ test('preparation never edits original geometry or materials, and only runs once
  prepareFF9Animations(gltf,mock,'Zidane');
  assert.equal(mesh.material,material);
  assert.equal(source.morphAttributes.position,undefined);
+ assert.deepEqual([...source.getAttribute('position').array].slice(0,3),[-80,0,0]);
+ assert.equal(gltf.userData.gaiaArmsLowered,true);
+ assert.equal(mesh.geometry.normalsUpdated,true);
  assert.equal(mesh.geometry.morphTargetsRelative,true);
  assert.equal(mesh.geometry.morphAttributes.position.length,4);
  assert.deepEqual(mesh.geometry.morphAttributes.position.map(x=>x.name),
@@ -83,4 +90,25 @@ test('preparation never edits original geometry or materials, and only runs once
  assert.deepEqual(mesh.morphTargetInfluences,[0,0,0,0]);
  prepareFF9Animations(gltf,mock,'Zidane');
  assert.equal(gltf.userData.gaiaMorphMeshes,1);
+});
+
+test('rest pose folds outstretched arms beside the hips while leaving head and legs intact',()=>{
+ const metrics={...m,armFoldAngles:[.75,.75],foldArms:true};
+ const rightHand={x:145,y:210,z:2},leftHand={x:-145,y:210,z:2};
+ const right=lowerFF9Arms(rightHand,metrics),left=lowerFF9Arms(leftHand,metrics);
+ assert.ok(Math.abs(right.x)<100,'right hand comes inward');
+ assert.ok(Math.abs(left.x)<100,'left hand comes inward');
+ assert.ok(right.y<rightHand.y-35,'right hand drops toward hip');
+ assert.ok(left.y<leftHand.y-35,'left hand drops toward hip');
+ for(const still of [{x:0,y:260,z:3},{x:25,y:485,z:4},{x:20,y:40,z:-3}]){
+  assert.deepEqual(lowerFF9Arms(still,metrics),still,'torso, head and legs stay stable');
+ }
+});
+test('arm rest pose is symmetrical and winged Chocobo keeps its wings',()=>{
+ const metrics={...m,armFoldAngles:[.65,.65],foldArms:true};
+ const a=lowerFF9Arms({x:135,y:225,z:5},metrics);
+ const b=lowerFF9Arms({x:-135,y:225,z:5},metrics);
+ assert.ok(Math.abs(a.x+b.x)<1e-5);
+ assert.ok(Math.abs(a.y-b.y)<1e-5);
+ assert.deepEqual(lowerFF9Arms({x:135,y:225,z:5},{...metrics,foldArms:false}),{x:135,y:225,z:5});
 });
