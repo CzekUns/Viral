@@ -1,3 +1,21 @@
+# Aggiornamento animazioni 3D · 24 novembre 2026
+
+**[Avvia Gaia RTS](https://czekuns.github.io/Viral/gaia-rts/)** · [Animatore procedurale](procedural-animator.js) · [6 test automatici](tests/animation.test.mjs)
+
+### Stato attuale — animazioni nel gioco
+
+Gli asset di partenza sono i **13 modelli GLB originali** del pacchetto starter, estratti da FF9 e convertiti mantenendo mesh, UV, materiali e texture. L'ispezione reale dei GLB ha confermato **0 rig/skins e 0 animation clips** per tutti i 13 modelli. Non è quindi possibile riprodurre già le clip native.
+
+**Implementato in-game:** l'animatore prepara 4 morph target per ogni mesh statica (passo sinistro, passo destro, attacco, reazione ai colpi), una sola volta per modello, riutilizzandoli tra tutte le unità. I morph vengono applicati dalla GPU; l'animazione procedurale **non sostituisce i GLB originali** e non cambia le texture. La caduta finale usa una rotazione progressiva del modello e dura circa 1,25 s prima che l'unità venga rimossa. Sono presenti idle, walk, attack, hit, death e transizioni in base al gameplay reale; terminato il movimento, i piedi non saltellano più.
+
+**Per provarli:** apri il gioco, premi **▣ Tutte**, tocca un punto vicino del terreno per far marciare la squadra. Premi **⚔ Attacca** per visualizzare subito l'animazione d'attacco delle unità selezionate; tocca un nemico per avviare un attacco reale con danno, reazione e morte.
+
+**Priorità animazioni originali:** se in futuro si importano GLB con rig e clip native, l'animatore usa automaticamente quelle che corrispondono a `idle/stand/wait`, `walk/run`, `attack/strike/swing`, `hit/damage/hurt` e `death/dead/fall`, usando i morph solo come fallback quando mancano clip. Per recuperare le animazioni autentiche FF9 serve accedere ai dati dell'installazione PC Steam/GOG: il repository già include `scripts/export_all_ff9_overworld.py` e il toolkit Dream World IX consente l'esportazione `model-gltf --anims all`. Al momento **non sono state estratte né caricate nuove animazioni originali**, per mancanza dei file di gioco.
+
+**QA:** 6/6 test unitari Node superati su GitHub Actions (`Gaia RTS — Animation QA`), verifica della sintassi JS in `authentic.html`, CRC del pacchetto starter e 13 GLB con intestazione valida. Deploy GitHub Pages confermato. La resa effettiva in WebGL su Android **non è ancora stata collaudata**: verificare visivamente le deformazioni e gli FPS sul dispositivo.
+
+---
+
 # Gaia RTS · Final Fantasy IX 3D (GitHub Pages)
 
 **Stato aggiornato — 23 novembre 2026.** L'utente ha autorizzato esplicitamente l'uso e la pubblicazione nel proprio repository di tutti i modelli FF9 estratti e convertiti, per un prototipo personale non commerciale. La repository `CzekUns/Viral` è stata resa nuovamente pubblica dal proprietario.
