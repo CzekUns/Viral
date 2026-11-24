@@ -51,7 +51,7 @@ button,input{font:inherit}button{color:#fff;border:1px solid #c2a87c;border-radi
 <input id="unit-file" type="file" accept=".glb,model/gltf-binary" multiple>
 <p id="asset-info">Nessun asset ancora caricato.</p>
 <div class="row"><button id="start">Avvia l'RTS</button><button id="close">Chiudi</button></div>
-<p class="small">Il catalogo originale conta 70 file GLB, disponibili nella cartella <a href="assets/catalog.json" target="_blank" rel="noopener">asset FF9</a>. Per la prima schermaglia vengono caricati 13 modelli, così lo smartphone non deve elaborare l’intero catalogo. I GLB attuali sono statici, senza scheletro né clip: il gioco genera pose 3D di marcia, attacco e reazione ai colpi tramite morph target GPU. Gli scheletri e le animazioni originali potranno sostituire questa soluzione provvisoria.</p><p class="small">Gli asset vengono scaricati dalla stessa installazione GitHub Pages e, quando possibile, memorizzati sul dispositivo tramite IndexedDB. Gli ordini e i movimenti restano locali. Le città sono riferimenti tattici provvisori sulla mappa originale, da calibrare sulle posizioni canoniche.</p>
+<p class="small">Il catalogo originale conta 70 file GLB, disponibili nella cartella <a href="assets/catalog.json" target="_blank" rel="noopener">asset FF9</a>. Per la prima schermaglia vengono caricati 13 modelli, così lo smartphone non deve elaborare l’intero catalogo. I GLB attuali sono statici, senza scheletro né clip: il gioco genera pose 3D di marcia, con braccia alternate al passo e fase sincronizzata alla distanza percorsa, attacco e reazione ai colpi tramite morph target GPU. Gli scheletri e le animazioni originali potranno sostituire questa soluzione provvisoria.</p><p class="small">Gli asset vengono scaricati dalla stessa installazione GitHub Pages e, quando possibile, memorizzati sul dispositivo tramite IndexedDB. Gli ordini e i movimenti restano locali. Le città sono riferimenti tattici provvisori sulla mappa originale, da calibrare sulle posizioni canoniche.</p>
 <p class="small">Fonti: <a href="https://models.spriters-resource.com/pc_computer/finalfantasyix/asset/303153/" target="_blank" rel="noopener">Overworld 3D (Models Resource)</a> · <a href="https://github.com/GameJawnsInc/Dream-World-IX" target="_blank" rel="noopener">FF9 Map Kit per esportare GEO_SUB_W0_* in GLB</a></p>
 </section>
 <div id="result"><div><h2 id="result-title">Campagna terminata</h2><button id="restart">Ricomincia</button></div></div>
@@ -60,7 +60,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {clone as cloneSkinned} from 'three/addons/utils/SkeletonUtils.js';
 import JSZip from 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm';
-import {prepareFF9Animations,createFF9Animator} from './procedural-animator.js?v=neutral-arms-20261124';
+import {prepareFF9Animations,createFF9Animator,headingForMotion} from './procedural-animator.js?v=grounded-gait-20261124';
 const $=id=>document.getElementById(id);
 const renderer=new THREE.WebGLRenderer({canvas:$('viewport'),antialias:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.7));
@@ -234,15 +234,15 @@ function newUnit(x,z,side,variantIndex){
  const selring=ring(side===1?'#96d3ff':'#e4a19a',.34);
  g.add(selring);g.position.copy(p);scene.add(g);
  const id=++unitID;
- const animator=createFF9Animator(model,asset.animations||[],THREE,id);
+ const animator=createFF9Animator(model,asset.animations||[],THREE,id,b.getSize(new THREE.Vector3()).y);
  selring.visible=false;
  const u={id,p:new THREE.Vector3(p.x,p.y,p.z),side,g,model,selring,animator,
   hp:100,goal:null,path:[],target:null,cooldown:0,routeTimer:0,
-  speed:side===1?2:1.7,ai:Math.random()+1};
+  speed:side===1?.85:.72,ai:Math.random()+1};
  units.push(u);return u;
 }
-function animateUnit(u,moving,dt){
- u.animator.update(dt,moving);
+function animateUnit(u,moving,dt,distance=0){
+ u.animator.update(dt,moving,distance);
 }
 function setupUnits(){
  clearUnits();gold=240;
@@ -431,7 +431,7 @@ function tick(dt){
   if(u.target&&u.target.hp>0&&u.routeTimer<=0&&u.p.distanceTo(u.target.p)>.7){
    issueOrder(u,u.target.p);u.routeTimer=1.3;
   }
-  let moving=false;
+  let moving=false,travelDistance=0;
   if(u.path.length){
    const target=u.path[0];
    const d=new THREE.Vector3(target.x-u.p.x,0,target.z-u.p.z),len=d.length();
@@ -441,12 +441,13 @@ function tick(dt){
     const ground=onGround(u.p.x+d.x,u.p.z+d.z);
     if(ground){
      u.p.copy(ground);u.g.position.copy(ground);
-     u.model.rotation.y=Math.atan2(-d.x,-d.z);
-     moving=true;
+     u.model.rotation.y=headingForMotion(d.x,d.z);
+     travelDistance=Math.hypot(d.x,d.z);
+     moving=travelDistance>.0001;
     }else u.path=[];
    }
   }
-  animateUnit(u,moving,dt);
+  animateUnit(u,moving,dt,travelDistance);
  }
  for(const fallen of units.filter(u=>u.hp<=0&&u.animator.finished)){
   scene.remove(fallen.g);selected.delete(fallen.id);
