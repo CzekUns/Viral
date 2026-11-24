@@ -1,3 +1,27 @@
+# Gaia RTS · Città edificabile su Gaia (prototipo 24/11/2026)
+
+**[Gioca con la città 64×64](https://czekuns.github.io/Viral/gaia-rts/authentic.html)**
+
+La demo **sostituisce il segnalino di Lindblum** con una città costruibile posizionata direttamente sopra la geometria originale di FF9. **Il GLB Overworld e le sue texture non sono modificati**: la griglia è un livello semi-trasparente montato sul terreno esistente, non una seconda scena e non un'immagine piatta.
+
+## Già integrato nel gioco
+
+- **64×64 tile** iniziali a Lindblum (4.096 celle logiche); 1 tile = **0,12 unità Three.js**. Le case hanno impronte 5×5, le caserme 9×7 e i magazzini 8×6; una città non richiede 4.096 mesh separate.
+- **Espansione a scelta**: premere `▦ Espandi 16×16` e toccare un lotto esterno confinante; vengono comprate **256 celle** su griglia allineata. La demo mostra in anticipo con un **rettangolo giallo tratteggiato** il primo lotto adiacente disponibile. Non si possono sovrapporre lotti né costruire sul mare.
+- **Edifici cittadini giocabili**: pulsanti `🏠 Casa`, `⚔ Caserma`, `📦 Magazzino`. Gli edifici consumano Gil e bloccano i tile occupati; le strade principali restano libere e le unità usano un percorso A* locale sui tile posseduti.
+- **Risorse all'esterno**: punti designati per `🌲 Segheria` e `⛏ Miniera`, sulla superficie originale. La demo nasce con una segheria e una miniera già visibili, più siti disponibili per costruire. Sono **segnaposti procedurali provvisori**, non ancora risorse geologiche estratte dal contenuto originale.
+- **Mini-personaggi ×0,1** rispetto alla revisione precedente: altezza modello `0,065` unità 3D e nuova visuale maggiormente dall'alto, con zoom predefinito `7,5` e zoom minimo `0,65` per ispezionare le miniature.
+- **Comandi smartphone**: il pannello urbano compare in basso. Toccare una modalità di costruzione, poi un terreno libero; `🏗` mostra/nasconde i comandi, `⌖` centra la città, il pizzico cambia scala. Una nuova costruzione non è permessa fuori dagli appezzamenti acquistati.
+- **Salvataggio città locale**: espansioni, edifici e attivazione dei siti esterni sono memorizzati in `localStorage`; il modello, le texture e gli asset FF9 rimangono nei loro archivi. In questa prima demo il saldo Gil non è persistente, e i costi sono di test.
+
+## Architettura e limiti
+
+`city-builder.js` contiene la gestione della griglia, dei lotti, dei materiali, delle costruzioni e del percorso locale. È separato dal vecchio pathfinding mondiale per non imporre una griglia fitta a tutta Gaia. In `authentic.html` c'è l'integrazione Three.js, i comandi touch e il collegamento alla città. `tests/city-builder.test.mjs` copre posizionamento, espansione, collisioni, percorso, risorse e anteprima.
+
+**Prototipo, non ricostruzione completa di Gaia:** al momento è edificabile soltanto Lindblum e le altre due città mantengono il segnalino. La posizione della città e i siti risorse sono ancora approssimativi; gli edifici sono geometrie low-poly di prova, non gli asset architettonici finali. Il motore non simula ancora lavoratori, produzione reale, trasporto di risorse o costruzione su più livelli. Un deploy GitHub Pages e i test Node non sostituiscono un test WebGL visivo su smartphone.
+
+---
+
 # Aggiornamento animazioni 3D · 24 novembre 2026
 
 **[Avvia Gaia RTS](https://czekuns.github.io/Viral/gaia-rts/)** · [Animatore procedurale](procedural-animator.js) · [6 test automatici](tests/animation.test.mjs)
