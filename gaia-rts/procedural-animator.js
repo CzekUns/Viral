@@ -7,6 +7,27 @@
 const POSES=['step-left','step-right','attack','hit'];
 const clamp01=value=>Math.max(0,Math.min(1,value));
 const ease=(a,b,x)=>{const t=clamp01((x-a)/(b-a));return t*t*(3-2*t)};
+// Separate locomotion profiles for figures with robes or long costume pieces.
+// The original character meshes have no bones; generic skinning of their
+// silhouette bends capes, hats and weapons as if they were limbs.
+export function ff9AnimationProfile(label=''){
+ const id=String(label).toLowerCase();
+ if(/vivi/.test(id))return {
+  id:'vivi',foldScale:.12,legAmplitude:.25,kneeAmplitude:.32,
+  armAmplitude:.12,legEnd:.13,legFade:.24,armMaskScale:.22,
+  armZoneStart:.24,armZoneEnd:.63,strideScale:.55,blendSpeed:7
+ };
+ if(/freya/.test(id))return {
+  id:'freya',foldScale:.42,legAmplitude:.68,kneeAmplitude:.52,
+  armAmplitude:.35,legEnd:.21,legFade:.33,armMaskScale:.55,
+  armZoneStart:.23,armZoneEnd:.70,strideScale:1.12,blendSpeed:7.5
+ };
+ return {
+  id:'standard',foldScale:1,legAmplitude:1,kneeAmplitude:1,
+  armAmplitude:1,legEnd:.35,legFade:.48,armMaskScale:1,
+  armZoneStart:.16,armZoneEnd:.80,strideScale:1,blendSpeed:10
+ };
+}
 // Original converted FF9 figures face local +Z. Point that axis toward actual velocity.
 export function headingForMotion(dx,dz){return Math.atan2(dx,dz)}
 // Advance the walking cycle only when feet travel over the terrain.
@@ -30,7 +51,8 @@ export function lowerFF9Arms(position,metrics){
  if(armRegion<1e-5)return {x,y,z};
  const shoulderX=midX+side*width*.17;
  const shoulderY=minY+h*.67;
- const theta=(metrics.armFoldAngles?.[side<0?0:1]??.78)*(-side);
+ const foldScale=metrics.profile?.foldScale??1;
+ const theta=(metrics.armFoldAngles?.[side<0?0:1]??.78)*(-side)*foldScale;
  const dx=x-shoulderX,dy=y-shoulderY;
  const c=Math.cos(theta),sn=Math.sin(theta);
  const rotatedX=shoulderX+c*dx-sn*dy;
@@ -72,8 +94,9 @@ export function deformFF9Vertex(position,metrics,pose,vertexRig=null){
  const ny=clamp01((y-minY)/Math.max(h,.001));
  const nx=(x-midX)/Math.max(width*.5,.001);
  const side=Math.max(-1,Math.min(1,nx*4.5));
+ const profile=metrics.profile||ff9AnimationProfile('');
  const hip=minY+h*.43,shoulder=minY+h*.67;
- const legMask=1-ease(.35,.48,ny);
+ const legMask=1-ease(profile.legEnd,profile.legFade,ny);
  // After the neutral T-pose correction arms move inward, so their mask
  // MUST come from their original exported vertex positions before folding.
  const armMask=vertexRig?.armMask??(
@@ -89,14 +112,14 @@ export function deformFF9Vertex(position,metrics,pose,vertexRig=null){
   const phase=(pose==='step-left'?1:-1);
   const gait=phase*side;
   // Feet swing front-to-back; opposite arms swing with stronger amplitude.
-  let turned=turn(y,z,hip,midZ,gait*.56,legMask);y=turned[0];z=turned[1];
+  let turned=turn(y,z,hip,midZ,gait*.56*profile.legAmplitude,legMask);y=turned[0];z=turned[1];
   const knee=minY+h*.22;
-  turned=turn(y,z,knee,midZ,-gait*.23,legMask*(1-ease(.19,.32,ny)));y=turned[0];z=turned[1];
+  turned=turn(y,z,knee,midZ,-gait*.23*profile.kneeAmplitude,legMask*(1-ease(.19,.32,ny)));y=turned[0];z=turned[1];
   const armGait=phase*armSide;
-  turned=turn(y,z,shoulder,midZ,-armGait*.82,armMask);y=turned[0];z=turned[1];
-  // Bend elbows slightly so arms don't resemble rigid windmill blades.
+  turned=turn(y,z,shoulder,midZ,-armGait*.82*profile.armAmplitude,armMask);y=turned[0];z=turned[1];
+  // Keep elbows lively without swinging wide robes or long costume pieces.
   const forearm=armMask*(1-ease(.36,.52,ny));
-  turned=turn(y,z,minY+h*.43,midZ,armGait*.16,forearm);
+  turned=turn(y,z,minY+h*.43,midZ,armGait*.16*profile.armAmplitude,forearm);
   y=turned[0];z=turned[1];
  }else if(pose==='attack'){
   const upper=ease(.43,.73,ny);
@@ -125,11 +148,12 @@ export function prepareFF9Animations(gltf,THREE,label=''){
  }
  if(!Number.isFinite(ext.y)||ext.y<=1e-6)return gltf;
  const center=bounds.getCenter(new THREE.Vector3());
- const metrics={minY:bounds.min.y,h:ext.y,width:ext.x,midX:center.x,midZ:center.z};
+ const displayName=(gltf.userData?.gaiaDisplayName||label||'').toLowerCase();
+ const profile=ff9AnimationProfile(displayName);
+ const metrics={minY:bounds.min.y,h:ext.y,width:ext.x,midX:center.x,midZ:center.z,profile};
  const inverseRoot=root.matrixWorld.clone().invert();
  const nativeClips=gltf.animations||[];
  const hasNativeWalk=nativeClips.some(clip=>/walk|run/i.test(clip.name));
- const displayName=(gltf.userData?.gaiaDisplayName||label||'').toLowerCase();
  // Chocobos have wings, not human arms: do not fold them against their torso.
  metrics.foldArms=!/(chocobo|quadruped|bird|horse|mount)/i.test(displayName);
  if(metrics.foldArms&&!hasNativeWalk){
@@ -158,7 +182,9 @@ export function prepareFF9Animations(gltf,THREE,label=''){
    const nx=Math.abs((body.x-metrics.midX)/Math.max(metrics.width*.5,.001));
    const ny=clamp01((body.y-metrics.minY)/metrics.h);
    const armMask=metrics.foldArms?(
-    ease(.16,.29,ny)*(1-ease(.69,.80,ny))*ease(.36,.58,nx)
+    ease(profile.armZoneStart,profile.armZoneStart+.12,ny)*
+    (1-ease(profile.armZoneEnd-.12,profile.armZoneEnd,ny))*
+    ease(.36,.58,nx)*profile.armMaskScale
    ):0;
    const vertexRig={armMask,armSide:body.x<metrics.midX?-1:1};
    for(let j=0;j<POSES.length;j++){
@@ -179,10 +205,11 @@ export function prepareFF9Animations(gltf,THREE,label=''){
  root.userData.gaiaRigReady=true;
  gltf.userData={...(gltf.userData||{}),gaiaMorphMeshes:morphMeshes,
   gaiaRigModel:label,gaiaArmsLowered:metrics.foldArms&&!hasNativeWalk,
-  gaiaArmFoldAngles:metrics.armFoldAngles||[]};
+  gaiaArmFoldAngles:metrics.armFoldAngles||[],gaiaAnimationProfile:profile.id};
  return gltf;
 }
-export function createFF9Animator(model,nativeClips,THREE,seed=0,unitHeight=.65){
+export function createFF9Animator(model,nativeClips,THREE,seed=0,unitHeight=.65,profileId='standard'){
+ const profile=ff9AnimationProfile(profileId);
  const clips=nativeClips||[];
  const mixer=clips.length?new THREE.AnimationMixer(model):null;
  const first=patterns=>clips.find(clip=>patterns.some(pattern=>pattern.test(clip.name)));
@@ -229,9 +256,9 @@ export function createFF9Animator(model,nativeClips,THREE,seed=0,unitHeight=.65)
    state.hitRemaining=Math.max(0,state.hitRemaining-t);
   }
   const desiredMove=moving&&!state.dying?1:0;
-  state.walkBlend+=(desiredMove-state.walkBlend)*Math.min(1,t*10);
+  state.walkBlend+=(desiredMove-state.walkBlend)*Math.min(1,t*profile.blendSpeed);
   if(state.walkBlend>.01&&moving&&travelDistance>0){
-   state.phase+=gaitPhaseDelta(travelDistance,unitHeight);
+   state.phase+=gaitPhaseDelta(travelDistance,unitHeight*profile.strideScale);
    if(state.phase>Math.PI*1000)state.phase%=Math.PI*2;
   }
   const attack=state.attackRemaining>0?Math.sin((1-state.attackRemaining/.46)*Math.PI):0;
@@ -244,8 +271,11 @@ export function createFF9Animator(model,nativeClips,THREE,seed=0,unitHeight=.65)
   if(mixer)mixer.update(t);
   const wave=Math.sin(state.phase);
   const walk=state.walkBlend*(state.dying?0:1);
-  const walkLeft=!actions.walk?walk*Math.max(0,wave):0;
-  const walkRight=!actions.walk?walk*Math.max(0,-wave):0;
+  // Both leg poses blend continuously. max(0,sin) had a hard velocity
+  // corner at each crossing, visible as a mechanical double-step.
+  const smoothWave=wave*(1.5-.5*wave*wave);
+  const walkLeft=!actions.walk?walk*(.5+.5*smoothWave):0;
+  const walkRight=!actions.walk?walk*(.5-.5*smoothWave):0;
   for(const mesh of morphMeshes){
    const influences=mesh.morphTargetInfluences;
    influences[0]=walkLeft;influences[1]=walkRight;
