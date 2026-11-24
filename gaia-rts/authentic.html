@@ -363,7 +363,11 @@ $('home').onclick=focusSquad;
 $('citybtn').onclick=()=>{
  if(!cityBuilder){flash('La città non è ancora caricata');return}
  $('city-dock').hidden=!$('city-dock').hidden;
- if(!$('city-dock').hidden)focusSquad();
+ if($('city-dock').hidden){
+  activeBuild=null;
+  for(const b of document.querySelectorAll('[data-city-build]'))b.classList.remove('active');
+  $('city-mode-hint').textContent='Tocca un tipo di costruzione';
+ }else focusSquad();
 };
 for(const button of document.querySelectorAll('[data-city-build]')){
  button.onclick=()=>{
