@@ -221,7 +221,7 @@ function newUnit(x,z,side,variantIndex){
  const asset=unitAssets[assetIndex],g=new THREE.Group();
  // GLB static models have no armature; build morph poses once per asset.
  // Native clips, when present, retain priority in the animator.
- prepareFF9Animations(asset,THREE,asset.scene.name||('FF9_unit_'+assetIndex));
+ prepareFF9Animations(asset,THREE,asset.userData?.gaiaDisplayName||asset.scene.name||('FF9_unit_'+assetIndex));
  const model=cloneSkinned(asset.scene);model.updateMatrixWorld(true);
  let b=new THREE.Box3().setFromObject(model),sz=b.getSize(new THREE.Vector3());
  const sf=UNIT_WORLD_HEIGHT/Math.max(sz.y,sz.z,sz.x,.001);
@@ -328,9 +328,14 @@ $('terrain-file').onchange=async e=>{try{let f=e.target.files?.[0];if(!f)return;
 $('unit-file').onchange=async e=>{try{
  let files=[...(e.target.files||[])];if(!files.length)return;
  unitAssets=[];unitRoles=[];
- for(let i=0;i<files.length;i++){const gltf=await takeFile(files[i],'unit-'+i);unitAssets.push(gltf);unitRoles.push('auto')}
+ for(let i=0;i<files.length;i++){
+  const gltf=await takeFile(files[i],'unit-'+i);
+  gltf.userData={...(gltf.userData||{}),gaiaDisplayName:files[i].name};
+  unitAssets.push(gltf);unitRoles.push('auto');
+ }
  await store('unit-count',new TextEncoder().encode(String(files.length)).buffer);
  await store('unit-roles',new TextEncoder().encode(JSON.stringify(unitRoles)).buffer);
+ await store('unit-names',new TextEncoder().encode(JSON.stringify(unitAssets.map((a,i)=>a.userData?.gaiaDisplayName||'FF9 unit '+i))).buffer);
  $('asset-info').textContent='Overworld: '+(world?'✓':'mancante')+' · Modelli: '+unitAssets.length;
  flash(unitAssets.length+' modelli originali caricati');
 }catch(err){console.error(err);flash('Errore modello: '+err.message)}};
@@ -359,13 +364,16 @@ async function importStarter(file){
    const entry=zip.file(item.path);if(!entry)throw Error('Asset assente: '+item.path);
    status.textContent='Importazione modello '+(i+1)+' / '+cfg.units.length+': '+item.name;
    const buf=await entry.async('arraybuffer');
-   unitAssets.push(await loadGLB(buf));unitRoles.push(item.side==='enemy'?'enemy':'ally');
+   const modelAsset=await loadGLB(buf);
+   modelAsset.userData={...(modelAsset.userData||{}),gaiaDisplayName:item.name};
+   unitAssets.push(modelAsset);unitRoles.push(item.side==='enemy'?'enemy':'ally');
    try{await store('unit-'+i,buf)}catch(err){console.warn('Salvataggio modello non riuscito',err)}
    await new Promise(resolve=>requestAnimationFrame(resolve));
   }
   try{
    await store('unit-count',new TextEncoder().encode(String(unitAssets.length)).buffer);
    await store('unit-roles',new TextEncoder().encode(JSON.stringify(unitRoles)).buffer);
+ await store('unit-names',new TextEncoder().encode(JSON.stringify(unitAssets.map((a,i)=>a.userData?.gaiaDisplayName||'FF9 unit '+i))).buffer);
   }catch(err){console.warn('Impossibile memorizzare tutti gli asset nel browser',err)}
   status.textContent='Pronto: Overworld originale + '+unitAssets.length+' modelli FF9. Comandi touch attivi.';
   $('asset-info').textContent='Overworld FF9 ✓ · Modelli: '+unitAssets.length+' ✓';
@@ -379,7 +387,17 @@ $('start').onclick=()=>{if(!world){flash('Importa prima il GLB originale della m
 async function restore(){try{const wb=await loadSaved('world');if(wb){fitWorld(await loadGLB(wb));}const cnt=await loadSaved('unit-count');let n=cnt?Number(new TextDecoder().decode(cnt)):0;
  const rolesBuffer=await loadSaved('unit-roles');
  unitRoles=rolesBuffer?JSON.parse(new TextDecoder().decode(rolesBuffer)):[];
- for(let i=0;i<Math.min(n,30);i++){let buf=await loadSaved('unit-'+i);if(buf)unitAssets.push(await loadGLB(buf))}if(world&&unitAssets.length){$('asset-info').textContent='Overworld originale e '+unitAssets.length+' mini-personaggi salvati ✓';setupUnits();$('asset-panel').hidden=true}else{if(world){const raw=toWorld(-1100,-790);view.target.copy(nearGround(raw.x,raw.z,70)||view.target);view.span=START_ZOOM;setCamera();$('asset-panel').hidden=true;flash('Mappa originale FF9 caricata: usa ⚙ per aggiungere i mini-personaggi')} $('asset-info').textContent=(world?'Overworld originale ✓':'Overworld mancante')+' · Miniature: '+unitAssets.length}}catch(e){console.error(e);flash('Asset salvati non caricabili: '+e.message)}}
+ const namesData=await loadSaved('unit-names');
+ const savedNames=namesData?JSON.parse(new TextDecoder().decode(namesData)):[];
+ for(let i=0;i<Math.min(n,30);i++){
+  const buf=await loadSaved('unit-'+i);
+  if(buf){
+   const modelAsset=await loadGLB(buf);
+   const fallback=i===5&&n===13?'Chocobo':'FF9_unit_'+i;
+   modelAsset.userData={...(modelAsset.userData||{}),gaiaDisplayName:savedNames[i]||fallback};
+   unitAssets.push(modelAsset);
+  }
+ }if(world&&unitAssets.length){$('asset-info').textContent='Overworld originale e '+unitAssets.length+' mini-personaggi salvati ✓';setupUnits();$('asset-panel').hidden=true}else{if(world){const raw=toWorld(-1100,-790);view.target.copy(nearGround(raw.x,raw.z,70)||view.target);view.span=START_ZOOM;setCamera();$('asset-panel').hidden=true;flash('Mappa originale FF9 caricata: usa ⚙ per aggiungere i mini-personaggi')} $('asset-info').textContent=(world?'Overworld originale ✓':'Overworld mancante')+' · Miniature: '+unitAssets.length}}catch(e){console.error(e);flash('Asset salvati non caricabili: '+e.message)}}
 function tick(dt){
  if(!ready||paused)return;
  gold+=dt*(2+towns.filter(t=>t.side===1).length);
