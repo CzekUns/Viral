@@ -144,8 +144,8 @@ export function createGaiaCityBuilder({THREE,scene,center,getGround,onChange=()=
    ghost.remove(child);child.geometry?.dispose?.();child.material?.dispose?.();
   }
   const proposed=[
-   {x:64,z:24},{x:64,z:40},{x:-16,z:24},
-   {x:24,z:64},{x:24,z:-16},
+   {x:64,z:32},{x:64,z:16},{x:-16,z:32},
+   {x:32,z:64},{x:32,z:-16},
    ...districts.slice(1).map(d=>({x:d.x+d.w,z:d.z}))
   ].find(({x,z})=>{
    if(!canExpandCity(districts,x,z))return false;
