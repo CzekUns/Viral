@@ -7,6 +7,13 @@
 const POSES=['step-left','step-right','attack','hit'];
 const clamp01=value=>Math.max(0,Math.min(1,value));
 const ease=(a,b,x)=>{const t=clamp01((x-a)/(b-a));return t*t*(3-2*t)};
+// Original converted FF9 figures face local +Z. Point that axis toward actual velocity.
+export function headingForMotion(dx,dz){return Math.atan2(dx,dz)}
+// Advance the walking cycle only when feet travel over the terrain.
+// One full two-step stride is approximately 0.92 character heights.
+export function gaitPhaseDelta(travelDistance,unitHeight=.65){
+ return Math.max(0,travelDistance)*(2*Math.PI)/Math.max(.05,unitHeight*.92);
+}
 
 // Neutral pose correction for unrigged FF9 humanoids. The static DAE/GLB models
 // were exported with arms spread outward; changing walk poses alone does not
@@ -59,15 +66,19 @@ function estimateArmAngles(root,inverseRoot,metrics,THREE){
  });
 }
 
-export function deformFF9Vertex(position,metrics,pose){
+export function deformFF9Vertex(position,metrics,pose,vertexRig=null){
  let {x,y,z}=position;
  const {h,width,minY,midX,midZ}=metrics;
  const ny=clamp01((y-minY)/Math.max(h,.001));
  const nx=(x-midX)/Math.max(width*.5,.001);
  const side=Math.max(-1,Math.min(1,nx*4.5));
- const hip=minY+h*.43,shoulder=minY+h*.74;
+ const hip=minY+h*.43,shoulder=minY+h*.67;
  const legMask=1-ease(.35,.48,ny);
- const armMask=ease(.19,.32,ny)*(1-ease(.77,.89,ny))*ease(.14,.38,Math.abs(nx));
+ // After the neutral T-pose correction arms move inward, so their mask
+ // MUST come from their original exported vertex positions before folding.
+ const armMask=vertexRig?.armMask??(
+  ease(.19,.32,ny)*(1-ease(.77,.89,ny))*ease(.14,.38,Math.abs(nx)));
+ const armSide=vertexRig?.armSide??side;
  const turn=(py,pz,pivotY,pivotZ,angle,weight)=>{
   if(Math.abs(angle*weight)<1e-8)return [py,pz];
   const c=Math.cos(angle),s=Math.sin(angle),dy=py-pivotY,dz=pz-pivotZ;
@@ -75,11 +86,18 @@ export function deformFF9Vertex(position,metrics,pose){
   return [py+(ry-py)*weight,pz+(rz-pz)*weight];
  };
  if(pose==='step-left'||pose==='step-right'){
-  const gait=(pose==='step-left'?1:-1)*side;
-  let turned=turn(y,z,hip,midZ,gait*.42,legMask);y=turned[0];z=turned[1];
+  const phase=(pose==='step-left'?1:-1);
+  const gait=phase*side;
+  // Feet swing front-to-back; opposite arms swing with stronger amplitude.
+  let turned=turn(y,z,hip,midZ,gait*.56,legMask);y=turned[0];z=turned[1];
   const knee=minY+h*.22;
-  turned=turn(y,z,knee,midZ,-gait*.15,legMask*(1-ease(.19,.32,ny)));y=turned[0];z=turned[1];
-  turned=turn(y,z,shoulder,midZ,-gait*.28,armMask);y=turned[0];z=turned[1];
+  turned=turn(y,z,knee,midZ,-gait*.23,legMask*(1-ease(.19,.32,ny)));y=turned[0];z=turned[1];
+  const armGait=phase*armSide;
+  turned=turn(y,z,shoulder,midZ,-armGait*.82,armMask);y=turned[0];z=turned[1];
+  // Bend elbows slightly so arms don't resemble rigid windmill blades.
+  const forearm=armMask*(1-ease(.36,.52,ny));
+  turned=turn(y,z,minY+h*.43,midZ,armGait*.16,forearm);
+  y=turned[0];z=turned[1];
  }else if(pose==='attack'){
   const upper=ease(.43,.73,ny);
   const turned=turn(y,z,shoulder,midZ,-.55,armMask);y=turned[0];z=turned[1];
@@ -137,8 +155,14 @@ export function prepareFF9Animations(gltf,THREE,label=''){
    const neutral=lowerFF9Arms(body,metrics);
    neutralLocal.set(neutral.x,neutral.y,neutral.z).applyMatrix4(fromBody);
    pos.setXYZ(i,neutralLocal.x,neutralLocal.y,neutralLocal.z);
+   const nx=Math.abs((body.x-metrics.midX)/Math.max(metrics.width*.5,.001));
+   const ny=clamp01((body.y-metrics.minY)/metrics.h);
+   const armMask=metrics.foldArms?(
+    ease(.16,.29,ny)*(1-ease(.69,.80,ny))*ease(.36,.58,nx)
+   ):0;
+   const vertexRig={armMask,armSide:body.x<metrics.midX?-1:1};
    for(let j=0;j<POSES.length;j++){
-    const moved=deformFF9Vertex(neutral,metrics,POSES[j]);
+    const moved=deformFF9Vertex(neutral,metrics,POSES[j],vertexRig);
     dest.set(moved.x,moved.y,moved.z).applyMatrix4(fromBody).sub(neutralLocal);
     const at=i*3;morphData[j][at]=dest.x;morphData[j][at+1]=dest.y;morphData[j][at+2]=dest.z;
    }
@@ -158,7 +182,7 @@ export function prepareFF9Animations(gltf,THREE,label=''){
   gaiaArmFoldAngles:metrics.armFoldAngles||[]};
  return gltf;
 }
-export function createFF9Animator(model,nativeClips,THREE,seed=0){
+export function createFF9Animator(model,nativeClips,THREE,seed=0,unitHeight=.65){
  const clips=nativeClips||[];
  const mixer=clips.length?new THREE.AnimationMixer(model):null;
  const first=patterns=>clips.find(clip=>patterns.some(pattern=>pattern.test(clip.name)));
@@ -197,7 +221,7 @@ export function createFF9Animator(model,nativeClips,THREE,seed=0){
   }
   nativeState=name;
  }
- function update(dt,moving){
+ function update(dt,moving,travelDistance=0){
   const t=Math.max(0,Math.min(.06,dt));
   if(state.dying)state.deathElapsed+=t;
   else{
@@ -206,7 +230,10 @@ export function createFF9Animator(model,nativeClips,THREE,seed=0){
   }
   const desiredMove=moving&&!state.dying?1:0;
   state.walkBlend+=(desiredMove-state.walkBlend)*Math.min(1,t*10);
-  if(state.walkBlend>.01)state.phase+=t*13;
+  if(state.walkBlend>.01&&moving&&travelDistance>0){
+   state.phase+=gaitPhaseDelta(travelDistance,unitHeight);
+   if(state.phase>Math.PI*1000)state.phase%=Math.PI*2;
+  }
   const attack=state.attackRemaining>0?Math.sin((1-state.attackRemaining/.46)*Math.PI):0;
   const hit=state.hitRemaining>0?Math.sin((1-state.hitRemaining/.34)*Math.PI):0;
   const action=state.dying?'dead':state.hitRemaining>0?'hit':
