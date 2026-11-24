@@ -8,6 +8,57 @@ const POSES=['step-left','step-right','attack','hit'];
 const clamp01=value=>Math.max(0,Math.min(1,value));
 const ease=(a,b,x)=>{const t=clamp01((x-a)/(b-a));return t*t*(3-2*t)};
 
+// Neutral pose correction for unrigged FF9 humanoids. The static DAE/GLB models
+// were exported with arms spread outward; changing walk poses alone does not
+// change this T/A-pose when standing still.
+export function lowerFF9Arms(position,metrics){
+ const {x,y,z}=position;
+ if(metrics.foldArms===false)return {x,y,z};
+ const {minY,h,width,midX}=metrics;
+ const half=Math.max(width*.5,.001),rel=x-midX;
+ const side=rel<0?-1:1,nx=Math.abs(rel)/half;
+ const ny=clamp01((y-minY)/Math.max(h,.001));
+ // Arm silhouette is separated from head, chest centre, pelvis and legs.
+ const armRegion=ease(.15,.27,ny)*(1-ease(.71,.82,ny))*ease(.26,.48,nx);
+ if(armRegion<1e-5)return {x,y,z};
+ const shoulderX=midX+side*width*.17;
+ const shoulderY=minY+h*.67;
+ const theta=(metrics.armFoldAngles?.[side<0?0:1]??.78)*(-side);
+ const dx=x-shoulderX,dy=y-shoulderY;
+ const c=Math.cos(theta),sn=Math.sin(theta);
+ const rotatedX=shoulderX+c*dx-sn*dy;
+ const rotatedY=shoulderY+sn*dx+c*dy;
+ return {x:x+(rotatedX-x)*armRegion,y:y+(rotatedY-y)*armRegion,z};
+}
+
+// Estimate arm slope separately on each side. This is an asymmetry-safe,
+// size-independent calculation from the real original GLB vertices.
+function estimateArmAngles(root,inverseRoot,metrics,THREE){
+ const ySamples=[[],[]],v=new THREE.Vector3();
+ const half=Math.max(metrics.width*.5,.001);
+ root.traverse(mesh=>{
+  if(!mesh.isMesh||!mesh.geometry)return;
+  const pos=mesh.geometry.getAttribute('position');
+  if(!pos)return;
+  const toBody=inverseRoot.clone().multiply(mesh.matrixWorld);
+  for(let i=0;i<pos.count;i++){
+   v.fromBufferAttribute(pos,i).applyMatrix4(toBody);
+   const nx=(v.x-metrics.midX)/half;
+   const ny=(v.y-metrics.minY)/metrics.h;
+   if(Math.abs(nx)>.8&&ny>.16&&ny<.78){
+    ySamples[nx<0?0:1].push(ny);
+   }
+  }
+ });
+ return ySamples.map(values=>{
+  values.sort((a,b)=>a-b);
+  const median=values.length>=10?values[Math.floor(values.length/2)]:.4;
+  const reach=half*.85-metrics.width*.17;
+  const angle=Math.atan2(reach,Math.max(metrics.h*.13,(.67-median)*metrics.h))+.12;
+  return Math.max(.35,Math.min(1,angle));
+ });
+}
+
 export function deformFF9Vertex(position,metrics,pose){
  let {x,y,z}=position;
  const {h,width,minY,midX,midZ}=metrics;
@@ -16,7 +67,7 @@ export function deformFF9Vertex(position,metrics,pose){
  const side=Math.max(-1,Math.min(1,nx*4.5));
  const hip=minY+h*.43,shoulder=minY+h*.74;
  const legMask=1-ease(.35,.48,ny);
- const armMask=ease(.43,.58,ny)*(1-ease(.83,.94,ny))*ease(.16,.42,Math.abs(nx));
+ const armMask=ease(.19,.32,ny)*(1-ease(.77,.89,ny))*ease(.14,.38,Math.abs(nx));
  const turn=(py,pz,pivotY,pivotZ,angle,weight)=>{
   if(Math.abs(angle*weight)<1e-8)return [py,pz];
   const c=Math.cos(angle),s=Math.sin(angle),dy=py-pivotY,dz=pz-pivotZ;
@@ -58,8 +109,15 @@ export function prepareFF9Animations(gltf,THREE,label=''){
  const center=bounds.getCenter(new THREE.Vector3());
  const metrics={minY:bounds.min.y,h:ext.y,width:ext.x,midX:center.x,midZ:center.z};
  const inverseRoot=root.matrixWorld.clone().invert();
+ const nativeClips=gltf.animations||[];
+ const hasNativeWalk=nativeClips.some(clip=>/walk|run/i.test(clip.name));
+ const displayName=(gltf.userData?.gaiaDisplayName||label||'').toLowerCase();
+ // Chocobos have wings, not human arms: do not fold them against their torso.
+ metrics.foldArms=!/(chocobo|quadruped|bird|horse|mount)/i.test(displayName);
+ if(metrics.foldArms&&!hasNativeWalk){
+  metrics.armFoldAngles=estimateArmAngles(root,inverseRoot,metrics,THREE);
+ }
  let morphMeshes=0;
- const hasNativeWalk=(gltf.animations||[]).some(clip=>/walk|run/i.test(clip.name));
  if(!hasNativeWalk)root.traverse(mesh=>{
   if(!mesh.isMesh||mesh.isSkinnedMesh)return;
   const source=mesh.geometry,attr=source?.getAttribute('position');
@@ -70,15 +128,23 @@ export function prepareFF9Animations(gltf,THREE,label=''){
   const fromBody=toBody.clone().invert();
   const v=new THREE.Vector3(),dest=new THREE.Vector3();
   const morphData=POSES.map(()=>new Float32Array(pos.count*3));
+  const neutralLocal=new THREE.Vector3();
   for(let i=0;i<pos.count;i++){
    v.fromBufferAttribute(pos,i);
    const body=v.clone().applyMatrix4(toBody);
+   // Bake lowered arms into the cloned neutral geometry, not into the
+   // copyrighted source GLB geometry. This keeps arms down even in idle.
+   const neutral=lowerFF9Arms(body,metrics);
+   neutralLocal.set(neutral.x,neutral.y,neutral.z).applyMatrix4(fromBody);
+   pos.setXYZ(i,neutralLocal.x,neutralLocal.y,neutralLocal.z);
    for(let j=0;j<POSES.length;j++){
-    const moved=deformFF9Vertex(body,metrics,POSES[j]);
-    dest.set(moved.x,moved.y,moved.z).applyMatrix4(fromBody).sub(v);
+    const moved=deformFF9Vertex(neutral,metrics,POSES[j]);
+    dest.set(moved.x,moved.y,moved.z).applyMatrix4(fromBody).sub(neutralLocal);
     const at=i*3;morphData[j][at]=dest.x;morphData[j][at+1]=dest.y;morphData[j][at+2]=dest.z;
    }
   }
+  pos.needsUpdate=true;
+  geometry.computeVertexNormals();
   geometry.morphTargetsRelative=true;
   geometry.morphAttributes.position=morphData.map((data,j)=>{
    const buffer=new THREE.Float32BufferAttribute(data,3);
@@ -87,7 +153,9 @@ export function prepareFF9Animations(gltf,THREE,label=''){
   mesh.geometry=geometry;mesh.updateMorphTargets();morphMeshes++;
  });
  root.userData.gaiaRigReady=true;
- gltf.userData={...(gltf.userData||{}),gaiaMorphMeshes:morphMeshes,gaiaRigModel:label};
+ gltf.userData={...(gltf.userData||{}),gaiaMorphMeshes:morphMeshes,
+  gaiaRigModel:label,gaiaArmsLowered:metrics.foldArms&&!hasNativeWalk,
+  gaiaArmFoldAngles:metrics.armFoldAngles||[]};
  return gltf;
 }
 export function createFF9Animator(model,nativeClips,THREE,seed=0){
