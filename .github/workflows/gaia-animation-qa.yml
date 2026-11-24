@@ -6,12 +6,14 @@ on:
     paths:
       - 'gaia-rts/authentic.html'
       - 'gaia-rts/procedural-animator.js'
+      - 'gaia-rts/city-builder.js'
       - 'gaia-rts/tests/**'
       - '.github/workflows/gaia-animation-qa.yml'
   pull_request:
     paths:
       - 'gaia-rts/authentic.html'
       - 'gaia-rts/procedural-animator.js'
+      - 'gaia-rts/city-builder.js'
       - 'gaia-rts/tests/**'
 
 permissions:
@@ -28,7 +30,9 @@ jobs:
         with:
           node-version: '22'
       - name: Verify procedural animator JavaScript
-        run: node --check gaia-rts/procedural-animator.js
+        run: |
+          node --check gaia-rts/procedural-animator.js
+          node --check gaia-rts/city-builder.js
       - name: Verify gameplay module syntax
         shell: bash
         run: |
@@ -46,7 +50,7 @@ jobs:
           print("Gameplay module: syntax OK")
           PY
       - name: Test animation poses and state transitions
-        run: node --test gaia-rts/tests/animation.test.mjs
+        run: node --test gaia-rts/tests/*.test.mjs
       - name: Validate original FF9 starter package
         shell: bash
         run: |
